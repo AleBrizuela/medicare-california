@@ -1722,10 +1722,21 @@ footer .footer-bottom { background: rgba(0,0,0,0.35) !important; color: rgba(255
             
     // Silent webhook — won't block thank you if not yet configured
     try {
+        const params = new URLSearchParams();
+        params.append('name', formData.name);
+        params.append('email', formData.email);
+        params.append('phone', formData.phone);
+        params.append('dob', formData.dob);
+        params.append('zip', formData.zip);
+        params.append('state', formData.state);
+        params.append('consentGiven', formData.consentGiven);
+        params.append('submittedAt', formData.submittedAt);
+
+        console.log('[CASB-Contact-EN] Sending webhook payload:', Object.fromEntries(params));
+
         fetch('https://hooks.zapier.com/hooks/catch/26596586/u0480fa/', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formData)
+            body: params
         }).catch(() => {});
     } catch(e) {}
 

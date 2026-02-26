@@ -1118,7 +1118,7 @@ footer { background: #0a1628 !important; }
 <section class="hero" id="home">
   <div class="hero-content">
     <h1>Medicare is Complicated.</h1>
-    <p>We help California families find the best possible coverage at the lowest available cost in the shortest amount of time. We know the plans inside out so you don't have to. You focus on your family. We handle the Medicare.</p>
+    <p>We help California families find the best possible coverage at the lowest available cost. We know the plans inside out so you don't have to. You focus on your family. We handle the Medicare.</p>
     
     <div class="hero-ctas">
       <a href="#guide-section" class="btn btn-coral" style="font-size:1.1rem;padding:1rem 2.5rem">Chat with Your Guide</a>
@@ -1167,9 +1167,6 @@ footer { background: #0a1628 !important; }
     </div>
     <div style="display:flex;align-items:center;gap:8px;color:white;font-size:0.95rem;font-weight:600">
       <i class="fas fa-dollar-sign" style="color:var(--coral);font-size:1.1rem"></i> Lowest Cost
-    </div>
-    <div style="display:flex;align-items:center;gap:8px;color:white;font-size:0.95rem;font-weight:600">
-      <i class="fas fa-clock" style="color:var(--coral);font-size:1.1rem"></i> Shortest Time
     </div>
   </div>
 </div>
@@ -2291,15 +2288,28 @@ footer { background: #0a1628 !important; }
   function finalizeLead() {
     chatState.currentState = agentStates.confirmation;
 
-    const { name, phone, email, zip } = chatState.leadData;
+    const { name, phone, email, zip, bestTime = 'lo antes posible' } = chatState.leadData;
 
     // Send lead data to Zapier
     try {
+      const zapPayload = {
+        name: name || '',
+        phone: phone || '',
+        email: email || '',
+        zip: zip || '',
+        bestTime: bestTime || '',
+        submittedAt: new Date().toISOString(),
+        site: 'californiaseniorsbenefits.com-es',
+        state: zipToState(zip || '') || '',
+        consentGiven: 'true'
+      };
+      console.log('[CASB-ES] Zapier payload:', JSON.stringify(zapPayload));
+      const params = new URLSearchParams();
+      Object.entries(zapPayload).forEach(([k,v]) => params.append(k, String(v)));
       fetch('https://hooks.zapier.com/hooks/catch/26596586/u0480fa/', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({...chatState.leadData, submittedAt: new Date().toISOString(), site: 'californiaseniorsbenefits.com', state: zipToState(chatState.leadData.zip || ''), consentGiven: true})
-      }).catch(() => {});
+        body: params
+      }).then(r => console.log('[CASB-ES] Zapier response:', r.status)).catch(e => console.error('[CASB-ES] Zapier error:', e));
     } catch(e) {}
 
     const lang = document.body.classList.contains('lang-es') ? 'es' : 'en';

@@ -1190,7 +1190,7 @@ footer { background: #0a1628 !important; }
 <section class="hero" id="home">
   <div class="hero-content">
     <h1>Medicare is Complicated.</h1>
-    <p>We help California families find the best possible coverage at the lowest available cost in the shortest amount of time. We know the plans inside out so you don't have to. You focus on your family. We handle the Medicare.</p>
+    <p>We help California families find the best possible coverage at the lowest available cost. We know the plans inside out so you don't have to. You focus on your family. We handle the Medicare.</p>
     
     <div class="hero-ctas">
       <a href="#guide-section" class="btn btn-coral" style="font-size:1.1rem;padding:1rem 2.5rem">Chat with Your Guide</a>
@@ -1239,9 +1239,6 @@ footer { background: #0a1628 !important; }
     </div>
     <div style="display:flex;align-items:center;gap:8px;color:white;font-size:0.95rem;font-weight:600">
       <i class="fas fa-dollar-sign" style="color:var(--coral);font-size:1.1rem"></i> Lowest Cost
-    </div>
-    <div style="display:flex;align-items:center;gap:8px;color:white;font-size:0.95rem;font-weight:600">
-      <i class="fas fa-clock" style="color:var(--coral);font-size:1.1rem"></i> Shortest Time
     </div>
   </div>
 </div>
@@ -1444,7 +1441,7 @@ footer { background: #0a1628 !important; }
 
   <!-- Spanish Companion Site Banner -->
   <div class="spanish-banner" style="background:var(--teal-light);border-top:2px solid var(--teal);border-bottom:2px solid var(--teal);padding:1.25rem 2rem;text-align:center;font-size:0.95rem;color:var(--teal-dark);margin:3rem 0">
-    Do you have family members who prefer Spanish? Visit our Spanish-language site: <a href="https://www.guiamarcos.com" style="color:var(--teal-dark);font-weight:700;text-decoration:none" target="_blank" rel="noopener">guiamarcos.com</a> →
+    ¿Quieres comunicarte con nuestra guía automática en español? <a href="https://californiaseniorsbenefits.com/index-es.html" style="color:var(--teal-dark);font-weight:700;text-decoration:none">Visítanos aquí</a> · Do you have family members who prefer Spanish? Visit <a href="https://www.guiamarcos.com" style="color:var(--teal-dark);font-weight:700;text-decoration:none" target="_blank" rel="noopener">guiamarcos.com</a> →
   </div>
 
   <!-- FAQ Section -->
@@ -1547,7 +1544,7 @@ footer { background: #0a1628 !important; }
   </div>
 
   <div style="text-align:center;padding:1rem 2rem 0.5rem;font-size:0.8rem;opacity:0.6">
-    <a href="https://www.guiamarcos.com/" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.7);text-decoration:none">Guia Marcos</a> — nuestro sitio en español
+    <a href="https://www.guiamarcos.com/" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.7);text-decoration:none">Guia Marcos</a> — nuestro sitio en español · Want to chat with our automated guide? <a href="https://californiaseniorsbenefits.com/index.html" style="color:rgba(255,255,255,0.9);text-decoration:underline">Chat now</a>
   </div>
 </footer>
 
@@ -2475,25 +2472,28 @@ footer { background: #0a1628 !important; }
 
     const { name, phone, email, dob, zip, bestTime = 'pronto' } = chatState.leadData;
 
-    // Send lead data silently to Zapier (replace URL to activate)
+    // Send lead data to Zapier using form-encoded data for reliable field parsing
     try {
+      const zapPayload = {
+        name: name || '',
+        phone: phone || '',
+        email: email || '',
+        dob: dob || '',
+        zip: zip || '',
+        bestTime: bestTime || '',
+        submittedAt: new Date().toISOString(),
+        site: 'californiaseniorsbenefits.com',
+        state: zipToState(zip) || '',
+        consentGiven: 'true'
+      };
+      console.log('[CASB-EN] Zapier payload:', JSON.stringify(zapPayload));
+      const params = new URLSearchParams();
+      Object.entries(zapPayload).forEach(([k,v]) => params.append(k, String(v)));
       fetch('https://hooks.zapier.com/hooks/catch/26596586/u0480fa/', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name,
-          phone,
-          email,
-          dob,
-          zip,
-          bestTime,
-          submittedAt: new Date().toISOString(),
-          site: 'californiaseniorsbenefits.com',
-          state: zipToState(zip),
-          consentGiven: true
-        })
-      }).catch(() => {});
-    } catch(e) {}
+        body: params
+      }).then(r => console.log('[CASB-EN] Zapier response:', r.status)).catch(e => console.error('[CASB-EN] Zapier error:', e));
+    } catch(e) { console.error('[CASB-EN] Zapier exception:', e); }
 
     const lang = document.body.classList.contains('lang-es') ? 'es' : 'en';
     const timeText = lang === 'es' ? (bestTime.includes('Morning') ? 'por la mañana' : bestTime.includes('Afternoon') ? 'por la tarde' : bestTime.includes('Evening') ? 'por la noche' : 'cuando sea') : bestTime;

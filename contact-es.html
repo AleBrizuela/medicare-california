@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-  <script>if(localStorage.getItem('casb_lang')==='es'){window.location.replace('contact-es.html');};</script>
+  <script>if(localStorage.getItem('casb_lang')!=='es'){window.location.replace('contact.html');}</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Get a free Medicare plan quote for California. Compare Medicare Advantage, Medigap, and Part D plans. Licensed agent, no cost, no obligation.">
         <link rel="canonical" href="https://medicarecalifornia.com/contact.html">
   <meta name="robots" content="index, follow">
-  <title>Contact Us | Get a Free Medicare Quote | Medicare California</title>
+  <title>Contáctanos | Obtén una Cotización Medicare Gratuita | Medicare California</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -1043,21 +1043,21 @@ footer .footer-bottom { background: rgba(0,0,0,0.35) !important; color: rgba(255
 <a href="#main-content" class="skip-link" style="position:absolute;top:-40px;left:0;background:var(--navy);color:white;padding:8px 16px;z-index:10000;font-size:14px;transition:top 0.3s" onfocus="this.style.top='0'" onblur="this.style.top='-40px'">Skip to main content</a>
     <!-- Navigation -->
     <nav id="navbar" role="navigation" aria-label="Main navigation">
-  <a href="index.html" class="nav-logo"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;margin-right:6px">
+  <a href="index-es.html" class="nav-logo"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;margin-right:6px">
 <path d="M14 2L4 7V13C4 19.6 8.3 25.7 14 27C19.7 25.7 24 19.6 24 13V7L14 2Z" fill="var(--teal)"/>
 <path d="M14 10C12.9 8.5 11 8 9.5 9C8 10 7.5 12 8.5 13.5L14 20L19.5 13.5C20.5 12 20 10 18.5 9C17 8 15.1 8.5 14 10Z" fill="white"/>
 </svg><span style="font-size:1.15rem;letter-spacing:-0.02em">Medicare</span> <span style="font-weight:500;font-size:0.95rem;opacity:0.75">California</span></a>
   <ul class="nav-menu" id="navMenu">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="resources.html">Resources</a></li>
-    <li><a href="contact.html" class="active">Contact Us</a></li>
+    <li><a href="index-es.html">Inicio</a></li>
+    <li><a href="resources-es.html">Recursos</a></li>
+    <li><a href="contact-es.html" class="active">Contact Us</a></li>
     <li><a href="index.html#guide-section" class="btn-nav" style="background:var(--coral);color:white;padding:0.4rem 1rem;border-radius:6px;font-weight:600">Chat with Your Guide</a></li>
-    <li><div class="lang-pill"><button class="" onclick="goLang('es')" aria-label="Español">ES</button><button class="lp-active" onclick="goLang('en')" aria-label="English">EN</button></div></li>
+    <li><div class="lang-pill"><button class="lp-active" onclick="goLang('es')" aria-label="Español">ES</button><button class="" onclick="goLang('en')" aria-label="English">EN</button></div></li>
   </ul>
   <button class="nav-toggle" id="navToggle" onclick="toggleNav()">
     <i class="fas fa-bars"></i>
   </button>
-        </nav>
+</nav>
 
 <main role="main">
 
@@ -1120,19 +1120,19 @@ footer .footer-bottom { background: rgba(0,0,0,0.35) !important; color: rgba(255
                     <input type="tel" id="phone" name="phone" required>
                 </div>
                 <div class="form-group">
-                    <label for="dob-month">Date of Birth</label>
+                    <label for="dob-month">Fecha de Nacimiento</label>
                     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
                         <select id="dob-month" name="dob_month" required>
-                            <option value="">Month</option>
-<option value="01">January</option><option value="02">February</option>
-<option value="03">March</option><option value="04">April</option>
-<option value="05">May</option><option value="06">June</option>
-<option value="07">July</option><option value="08">August</option>
-<option value="09">September</option><option value="10">October</option>
-<option value="11">November</option><option value="12">December</option>
+                            <option value="">Mes</option>
+<option value="01">Enero</option><option value="02">Febrero</option>
+<option value="03">Marzo</option><option value="04">Abril</option>
+<option value="05">Mayo</option><option value="06">Junio</option>
+<option value="07">Julio</option><option value="08">Agosto</option>
+<option value="09">Septiembre</option><option value="10">Octubre</option>
+<option value="11">Noviembre</option><option value="12">Diciembre</option>
                         </select>
                         <select id="dob-day" name="dob_day" required>
-                            <option value="">Day</option>
+                            <option value="">Día</option>
 <option value="01">1</option>
 <option value="02">2</option>
 <option value="03">3</option>
@@ -1166,7 +1166,7 @@ footer .footer-bottom { background: rgba(0,0,0,0.35) !important; color: rgba(255
 <option value="31">31</option>
                         </select>
                         <select id="dob-year" name="dob_year" required>
-                            <option value="">Year</option>
+                            <option value="">Año</option>
 <option value="1962">1962</option>
 <option value="1961">1961</option>
 <option value="1960">1960</option>
@@ -1215,12 +1215,12 @@ footer .footer-bottom { background: rgba(0,0,0,0.35) !important; color: rgba(255
                 </div>
 
                 <div class="form-group">
-                    <label for="zip">ZIP code</label>
-                    <input type="text" id="zip" name="zip" maxlength="5" placeholder="e.g. 90028" autocomplete="postal-code" inputmode="numeric"
+                    <label for="zip">Código postal</label>
+                    <input type="text" id="zip" name="zip" maxlength="5" placeholder="Ej: 90028" autocomplete="postal-code" inputmode="numeric"
                         oninput="const st=zipToState(this.value);if(st){document.getElementById('state').value=st;}">
-                    <label for="state" style="display:block;margin-top:12px">State</label>
+                    <label for="state" style="display:block;margin-top:12px">Estado</label>
                     <select id="state" name="state" style="width:100%">
-                      <option value="">Select state...</option>
+                      <option value="">Seleccionar estado...</option>
                           <option value="AL">AL — Alabama</option>
                           <option value="AK">AK — Alaska</option>
                           <option value="AZ">AZ — Arizona</option>
@@ -1293,7 +1293,7 @@ footer .footer-bottom { background: rgba(0,0,0,0.35) !important; color: rgba(255
 <div id="form-success" style="display:none; text-align:center; padding:2.5rem 1.5rem; background:#f0faf4; border-radius:12px; border:2px solid #2e7d52; margin-top:1rem;">
   <div style="font-size:3rem; margin-bottom:1rem;">✅</div>
   <h3 style="color:#2e7d52; font-size:1.5rem; margin-bottom:0.75rem;">Thank You!</h3>
-  <p style="color:#444; font-size:1.1rem; margin-bottom:0.5rem;">We received your request and will contact you within 24 - 48 hours.</p>
+  <p style="color:#444; font-size:1.1rem; margin-bottom:0.5rem;">Recibimos su solicitud y nos comunicaremos con usted en 24 - 48 horas.</p>
 </div>
 
             <!-- Thank You State -->
@@ -1304,7 +1304,7 @@ footer .footer-bottom { background: rgba(0,0,0,0.35) !important; color: rgba(255
                 <h3 class="thank-you-heading">Thank you, <span id="thankYouName"></span>!</h3>
                 <p class="thank-you-text">Alejandra will be in touch with you soon. In the meantime, feel free to browse our Medicare Guide or chat with our guide below.</p>
                 <div class="thank-you-buttons">
-                    <a href="resources.html" class="thank-you-btn thank-you-btn-primary">Read the Medicare Guide</a>
+                    <a href="resources-es.html" class="thank-you-btn thank-you-btn-primary">Read the Medicare Guide</a>
                     <a href="index.html#guide-section" class="thank-you-btn thank-you-btn-secondary">Chat with Your Guide</a>
                 </div>
             </div>
@@ -1358,7 +1358,7 @@ footer .footer-bottom { background: rgba(0,0,0,0.35) !important; color: rgba(255
                         <div class="contact-content">
                             <div class="contact-label">WhatsApp</div>
                             <div class="contact-value">
-                                <a href="https://wa.me/13105979142" target="_blank">Message us on WhatsApp</a>
+                                <a href="https://wa.me/13105979142" target="_blank">Mensaje us on WhatsApp</a>
                             </div>
                         </div>
                     </div>
@@ -1492,15 +1492,15 @@ footer .footer-bottom { background: rgba(0,0,0,0.35) !important; color: rgba(255
     <div class="footer-section">
       <h4>Pages</h4>
       <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
-        <li><a href="resources.html">Resources</a></li>
+        <li><a href="index-es.html">Inicio</a></li>
+        <li><a href="contact-es.html">Contact Us</a></li>
+        <li><a href="resources-es.html">Recursos</a></li>
       </ul>
     </div>
     
     <div class="footer-section">
-      <h4>Contact</h4>
-      <p><strong>Email:</strong> <a href="mailto:alejaMediCare@gmail.com" style="color:rgba(255,255,255,0.85)">alejaMediCare@gmail.com</a></p>
+      <h4>Contacto</h4>
+      <p><strong>Correo Electrónico:</strong> <a href="mailto:alejaMediCare@gmail.com" style="color:rgba(255,255,255,0.85)">alejaMediCare@gmail.com</a></p>
       <p><strong>WhatsApp:</strong> <a href="https://wa.me/13105979142">Text us</a></p>
     </div>
     
@@ -1591,7 +1591,7 @@ footer .footer-bottom { background: rgba(0,0,0,0.35) !important; color: rgba(255
                 }
             });
 
-            // Validate email format
+            // Validar formato de email
     const emailField = document.getElementById('email');
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
     if (emailField && emailField.value.trim() && !emailRegex.test(emailField.value.trim())) {
@@ -1600,7 +1600,7 @@ footer .footer-bottom { background: rgba(0,0,0,0.35) !important; color: rgba(255
         isValid = false;
     }
 
-    // Validate phone — must have 10 digits
+    // Validar teléfono — debe tener 10 dígitos
     const phoneField = document.getElementById('phone');
     if (phoneField) {
         const phoneDigits = phoneField.value.replace(/\D/g, '');
@@ -1621,13 +1621,13 @@ footer .footer-bottom { background: rgba(0,0,0,0.35) !important; color: rgba(255
             if(!dobMonth.value) dobMonth.classList.add('error');
             if(!dobDay.value) dobDay.classList.add('error');
             if(!dobYear.value) dobYear.classList.add('error');
-            if(dobErr){ dobErr.textContent = "Please enter a valid date of birth."; dobErr.style.display='block'; }
+            if(dobErr){ dobErr.textContent='Por favor complete todos los campos de fecha de nacimiento.'; dobErr.style.display='block'; }
             isValid = false;
         } else {
             const testDate = new Date(dobYear.value, dobMonth.value-1, dobDay.value);
             if(testDate.getMonth() !== parseInt(dobMonth.value)-1){
                 dobDay.classList.add('error');
-                if(dobErr){ dobErr.textContent = "Invalid date (e.g. Feb 30 does not exist)."; dobErr.style.display='block'; }
+                if(dobErr){ dobErr.textContent='Fecha inválida.'; dobErr.style.display='block'; }
                 isValid = false;
             } else {
                 [dobMonth,dobDay,dobYear].forEach(el=>el.classList.remove('error'));
@@ -1637,25 +1637,23 @@ footer .footer-bottom { background: rgba(0,0,0,0.35) !important; color: rgba(255
     }
 
     if (!isValid) {
-        // Find first error field and show message near it
         const firstError = contactForm.querySelector('.error');
         if (firstError) {
             firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            // Show inline error message if not already present
             if (!firstError.nextElementSibling || !firstError.nextElementSibling.classList.contains('field-error')) {
                 const msg = document.createElement('span');
                 msg.className = 'field-error';
                 msg.style.cssText = 'color:#e53e3e;font-size:0.82rem;display:block;margin-top:4px';
-                msg.textContent = firstError.type === 'email' ? 'Please enter a valid email address.' : 
-                                  firstError.type === 'tel' ? 'Please enter a valid 10-digit phone number.' : 
-                                  'This field is required.';
+                msg.textContent = firstError.type === 'email' ? 'Por favor ingrese un correo válido.' :
+                                  firstError.type === 'tel' ? 'Por favor ingrese un teléfono de 10 dígitos.' :
+                                  'Este campo es requerido.';
                 firstError.parentNode.insertBefore(msg, firstError.nextSibling);
             }
         }
         return;
     }
 
-    // Clear any previous error messages
+    // Limpiar mensajes de error previos
     contactForm.querySelectorAll('.field-error').forEach(el => el.remove());
 
             // Collect form data
@@ -1695,7 +1693,7 @@ footer .footer-bottom { background: rgba(0,0,0,0.35) !important; color: rgba(255
 
             // Hide form, show thank you message
             
-    // Silent webhook — won't block thank you if not yet configured
+    // Webhook silencioso — no bloqueará el mensaje de gracias si no está configurado
     try {
         fetch('https://hooks.zapier.com/hooks/catch/26596586/u0480fa/', {
             method: 'POST',
@@ -1723,9 +1721,9 @@ footer .footer-bottom { background: rgba(0,0,0,0.35) !important; color: rgba(255
   <script>
     function goLang(lang){
   localStorage.setItem('casb_lang',lang);
-  if(lang!=='en') window.location.href='contact-es.html';
+  if(lang!=='es') window.location.href='contact.html';
 }
-function toggleLang(){goLang('es');}
+function toggleLang(){goLang('en');}
   
   
 function zipToState(zip) {

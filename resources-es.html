@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
+  <script>if(localStorage.getItem('casb_lang')!=='es'){window.location.replace('resources.html');}</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="canonical" href="https://medicarecalifornia.com/guide.html">
+        <link rel="canonical" href="https://medicarecalifornia.com/resources.html">
   <meta name="robots" content="index, follow">
-  <title>Resources | MediCare California</title>
+  <title>Recursos | Medicare California</title>
     <meta name="description" content="Free Medicare resources for California families. Learn about Medicare Advantage, Medigap, Part D, and enrollment periods. Chat with our AI-powered Medicare assistant.">
     <meta name="keywords" content="Medicare California, Medicare Advantage, Medigap, Part A, Part B, Part D, enrollment, costs, dual eligible">
-    <meta property="og:title" content="California Medicare Guide 2026 — MediCare California">
+    <meta property="og:title" content="California Medicare Guide 2026 — Medicare California">
     <meta property="og:description" content="Complete, plain-English guide to Medicare in California for adult children helping aging parents.">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://medicare-california.com/guide.html">
+    <meta property="og:url" content="https://medicare-california.com/resources.html">
     <meta property="og:image" content="https://medicare-california.com/og-image.jpg">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -924,23 +925,56 @@ footer .footer-bottom { background: rgba(0,0,0,0.35) !important; color: rgba(255
       .desktop-ctas { display: none; }
     }
 
-</style>
+
+/* ── Language Pill Toggle ──────────────────────────────────── */
+.lang-pill {
+  display: inline-flex;
+  border: 2px solid var(--navy, #1E3A5F);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-left: 8px;
+  flex-shrink: 0;
+}
+.lang-pill button {
+  background: none;
+  border: none;
+  padding: 5px 13px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--navy, #1E3A5F);
+  letter-spacing: 0.04em;
+  transition: background 0.18s, color 0.18s;
+  line-height: 1;
+}
+.lang-pill button.lp-active {
+  background: var(--navy, #1E3A5F);
+  color: #fff;
+}
+.lang-pill button:not(.lp-active):hover { background: #e8f0fe; }
+@media (max-width: 900px) {
+  .lang-pill button { padding: 8px 16px; font-size: 0.85rem; }
+}
+    </style>
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png">
+  <link rel="shortcut icon" href="favicon-192x192.png">
+  <link rel="apple-touch-icon" href="favicon-192x192.png">
 </head>
 <body>
 <a href="#main-content" class="skip-link" style="position:absolute;top:-40px;left:0;background:var(--navy);color:white;padding:8px 16px;z-index:10000;font-size:14px;transition:top 0.3s" onfocus="this.style.top='0'" onblur="this.style.top='-40px'">Skip to main content</a>
 
     <!-- NAVIGATION -->
     <nav id="navbar" role="navigation" aria-label="Main navigation">
-  <a href="index.html" class="nav-logo"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;margin-right:6px">
+  <a href="index-es.html" class="nav-logo"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;margin-right:6px">
 <path d="M14 2L4 7V13C4 19.6 8.3 25.7 14 27C19.7 25.7 24 19.6 24 13V7L14 2Z" fill="var(--teal)"/>
 <path d="M14 10C12.9 8.5 11 8 9.5 9C8 10 7.5 12 8.5 13.5L14 20L19.5 13.5C20.5 12 20 10 18.5 9C17 8 15.1 8.5 14 10Z" fill="white"/>
-</svg><span style="font-size:1.1rem;letter-spacing:-0.02em">Medi</span><span style="color:var(--coral);font-size:1.1rem;letter-spacing:-0.02em">Care</span> <span style="font-weight:500;font-size:0.95rem;opacity:0.8">California</span></a>
+</svg><span style="font-size:1.15rem;letter-spacing:-0.02em">Medicare</span> <span style="font-weight:500;font-size:0.95rem;opacity:0.75">California</span></a>
   <ul class="nav-menu" id="navMenu">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="guide.html" class="active">Resources</a></li>
-    <li><a href="contact.html">Contact Us</a></li>
+    <li><a href="index-es.html">Inicio</a></li>
+    <li><a href="resources-es.html" class="active">Recursos</a></li>
+    <li><a href="contact-es.html">Contact Us</a></li>
     <li><a href="index.html#guide-section" class="btn-nav" style="background:var(--coral);color:white;padding:0.4rem 1rem;border-radius:6px;font-weight:600">Chat with Your Guide</a></li>
-    <li><button class="lang-toggle" id="langToggle" onclick="toggleLang()" aria-label="Switch language" style="background:none;border:1px solid #e2e8f0;border-radius:6px;padding:.3rem .7rem;font-size:.85rem;font-weight:600;cursor:pointer;color:var(--slate)">EN / ES</button></li>
+    <li><div class="lang-pill"><button class="lp-active" onclick="goLang('es')" aria-label="Español">ES</button><button class="" onclick="goLang('en')" aria-label="English">EN</button></div></li>
   </ul>
   <button class="nav-toggle" id="navToggle" onclick="toggleNav()">
     <i class="fas fa-bars"></i>
@@ -952,9 +986,6 @@ footer .footer-bottom { background: rgba(0,0,0,0.35) !important; color: rgba(255
     <!-- HERO SECTION -->
     <section class="hero">
         <div class="hero-container">
-            <div class="breadcrumb">
-                <a href="index.html" >Home</a> <span >&gt;</span> <span >Your Guide</span>
-            </div>
             <h1 >California Medicare Resources</h1>
             <p class="hero-subheading" >Everything your family needs to understand Medicare — written in plain English, with links to official sources.</p>
             <p class="hero-disclaimer" >This page is for informational purposes. For personalized advice, talk to a licensed agent.</p>
@@ -984,7 +1015,7 @@ footer .footer-bottom { background: rgba(0,0,0,0.35) !important; color: rgba(255
             <div class="sidebar-cta">
                 <h4 >Ready for a Personalized Review?</h4>
                 <p >These resources give you the foundation. Alejandra makes it personal — reviewing your parent's specific doctors, medications, and budget.</p>
-                <a href="contact.html" class="sidebar-cta-btn" >Get Your Free Review →</a>
+                <a href="contact-es.html" class="sidebar-cta-btn" >Get Your Free Review →</a>
                 <div class="sidebar-cta-phone">
                     <strong >Call Now</strong>
                     
@@ -1515,14 +1546,14 @@ footer .footer-bottom { background: rgba(0,0,0,0.35) !important; color: rgba(255
                 <p>These resources give you the foundation. Alejandra will do a free plan comparison for your parent — reviewing their specific doctors, medications, and budget in just 15 minutes.</p>
                 <div class="cta-buttons desktop-ctas">
                     <a href="index.html#guide-section" class="cta-btn cta-btn-primary">Chat with Your Guide</a>
-                    <a href="contact.html" class="cta-btn cta-btn-secondary">Contact Us</a>
+                    <a href="contact-es.html" class="cta-btn cta-btn-secondary">Contact Us</a>
                 </div>
             </div>
             
             <!-- Sticky mobile CTAs (hidden on desktop) -->
             <div class="sticky-mobile-ctas" id="stickyMobileCtas">
               <a href="index.html#guide-section" style="flex:1;text-align:center;background:var(--teal);color:white;padding:0.75rem 1rem;border-radius:8px;text-decoration:none;font-weight:700;font-size:0.9rem">Chat with Your Guide</a>
-              <a href="contact.html" style="flex:1;text-align:center;background:var(--coral);color:white;padding:0.75rem 1rem;border-radius:8px;text-decoration:none;font-weight:700;font-size:0.9rem">Contact Us</a>
+              <a href="contact-es.html" style="flex:1;text-align:center;background:var(--coral);color:white;padding:0.75rem 1rem;border-radius:8px;text-decoration:none;font-weight:700;font-size:0.9rem">Contact Us</a>
             </div>
 
         </div>
@@ -1541,14 +1572,14 @@ footer .footer-bottom { background: rgba(0,0,0,0.35) !important; color: rgba(255
     <div class="footer-section">
       <h4>Pages</h4>
       <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
-        <li><a href="guide.html">Resources</a></li>
+        <li><a href="index-es.html">Inicio</a></li>
+        <li><a href="contact-es.html">Contact Us</a></li>
+        <li><a href="resources-es.html">Recursos</a></li>
       </ul>
     </div>
     
     <div class="footer-section">
-      <h4>Contact</h4>
+      <h4>Contacto</h4>
       <p><strong>Email:</strong> <a href="mailto:alejaMediCare@gmail.com" style="color:rgba(255,255,255,0.85)">alejaMediCare@gmail.com</a></p>
       <p><strong>WhatsApp:</strong> <a href="https://wa.me/13105979142">Text us</a></p>
     </div>
@@ -1566,6 +1597,9 @@ footer .footer-bottom { background: rgba(0,0,0,0.35) !important; color: rgba(255
   </div>
 
   <a href="index.html#guide-section" class="cta-button" style="display: inline-block; background: var(--coral); color: white; padding: 0.8rem 1.5rem; border-radius: 6px; text-decoration: none; margin: 1rem 0;">Chat with Your Guide →</a>
+
+  <div style="text-align:center;padding:1rem 2rem 0.5rem;font-size:0.8rem;opacity:0.6">
+    <a href="https://www.guiamarcos.com/" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.7);text-decoration:none">Guia Marcos</a> — nuestro sitio en español</div>
 </footer>
 
     <!-- JAVASCRIPT -->
@@ -1682,17 +1716,20 @@ footer .footer-bottom { background: rgba(0,0,0,0.35) !important; color: rgba(255
         });
     
   
-  function toggleLang() {
-    const body = document.body;
-    body.classList.toggle('lang-es');
-    const btn = document.getElementById('langToggle');
-    if (btn) btn.textContent = body.classList.contains('lang-es') ? 'ES / EN' : 'EN / ES';
-  }
+
   function toggleNav() {
     const menu = document.getElementById('navMenu');
     if (menu) menu.classList.toggle('active');
   }
   </script>
 
+  <script>
+    function goLang(lang){
+  localStorage.setItem('casb_lang',lang);
+  if(lang!=='es') window.location.href='resources.html';
+}
+function toggleLang(){goLang('en');}
+  
+  </script>
 </body>
 </html>

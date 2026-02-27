@@ -1720,6 +1720,22 @@ footer .footer-bottom { background: rgba(0,0,0,0.35) !important; color: rgba(255
             
     // Webhook silencioso — no bloqueará el mensaje de gracias si no está configurado
     try {
+        const subject = 'Nuevo Lead Formulario | ' + (formData.name || 'Desconocido');
+        const body = [
+          '=== NUEVO LEAD FORMULARIO de CaliforniaSeniorsBenefits.com ===',
+          '',
+          'Nombre: ' + (formData.name || ''),
+          'Telefono: ' + (formData.phone || ''),
+          'Email: ' + (formData.email || ''),
+          'Fecha de Nacimiento: ' + (formData.dob || ''),
+          'Codigo Postal: ' + (formData.zip || ''),
+          'Estado: ' + (formData.state || ''),
+          '',
+          'Enviado: ' + formData.submittedAt,
+          'Fuente: californiaseniorsbenefits.com/contacto (ES)',
+          '==========================================='
+        ].join('\n');
+
         const params = new URLSearchParams();
         params.append('name', formData.name);
         params.append('email', formData.email);
@@ -1729,6 +1745,8 @@ footer .footer-bottom { background: rgba(0,0,0,0.35) !important; color: rgba(255
         params.append('state', formData.state);
         params.append('consentGiven', formData.consentGiven);
         params.append('submittedAt', formData.submittedAt);
+        params.append('subject', subject);
+        params.append('body', body);
 
         console.log('[CASB-Contact-ES] Sending webhook payload:', Object.fromEntries(params));
 

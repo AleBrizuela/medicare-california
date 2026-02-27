@@ -1722,6 +1722,22 @@ footer .footer-bottom { background: rgba(0,0,0,0.35) !important; color: rgba(255
             
     // Silent webhook — won't block thank you if not yet configured
     try {
+        const subject = 'New Contact Form Lead | ' + (formData.name || 'Unknown');
+        const body = [
+          '=== NEW CONTACT FORM LEAD from CaliforniaSeniorsBenefits.com ===',
+          '',
+          'Name: ' + (formData.name || ''),
+          'Phone: ' + (formData.phone || ''),
+          'Email: ' + (formData.email || ''),
+          'DOB: ' + (formData.dob || ''),
+          'Zip: ' + (formData.zip || ''),
+          'State: ' + (formData.state || ''),
+          '',
+          'Submitted: ' + formData.submittedAt,
+          'Source: californiaseniorsbenefits.com/contact (EN)',
+          '==========================================='
+        ].join('\n');
+
         const params = new URLSearchParams();
         params.append('name', formData.name);
         params.append('email', formData.email);
@@ -1731,6 +1747,8 @@ footer .footer-bottom { background: rgba(0,0,0,0.35) !important; color: rgba(255
         params.append('state', formData.state);
         params.append('consentGiven', formData.consentGiven);
         params.append('submittedAt', formData.submittedAt);
+        params.append('subject', subject);
+        params.append('body', body);
 
         console.log('[CASB-Contact-EN] Sending webhook payload:', Object.fromEntries(params));
 

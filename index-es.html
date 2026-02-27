@@ -2292,16 +2292,36 @@ footer { background: #0a1628 !important; }
 
     // Send lead data to Zapier
     try {
+      const stateVal = zipToState(zip || '') || '';
+      const submittedAt = new Date().toLocaleString('en-US',{timeZone:'America/Los_Angeles',month:'2-digit',day:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
+      const subject = 'Nuevo Lead - Medicare Padres | ' + (name || 'Desconocido');
+      const body = [
+        '=== NUEVO LEAD de CaliforniaSeniorsBenefits.com ===',
+        '',
+        'Nombre: ' + (name || ''),
+        'Telefono: ' + (phone || ''),
+        'Email: ' + (email || ''),
+        'Codigo Postal: ' + (zip || ''),
+        'Estado: ' + stateVal,
+        'Mejor Hora para Llamar: ' + (bestTime || ''),
+        '',
+        'Enviado: ' + submittedAt,
+        'Fuente: californiaseniorsbenefits.com (ES)',
+        '==========================================='
+      ].join('\n');
+
       const zapPayload = {
         name: name || '',
         phone: phone || '',
         email: email || '',
         zip: zip || '',
         bestTime: bestTime || '',
-        submittedAt: new Date().toLocaleString('en-US',{timeZone:'America/Los_Angeles',month:'2-digit',day:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'}),
+        submittedAt: submittedAt,
         site: 'californiaseniorsbenefits.com-es',
-        state: zipToState(zip || '') || '',
-        consentGiven: 'true'
+        state: stateVal,
+        consentGiven: 'true',
+        subject: subject,
+        body: body
       };
       console.log('[CASB-ES] Zapier payload:', JSON.stringify(zapPayload));
       const params = new URLSearchParams();

@@ -164,10 +164,12 @@
     .btn-primary {
       background: var(--teal);
       color: var(--white);
+      border: 2px solid var(--teal);
     }
-    
+
     .btn-primary:hover {
       background: var(--teal-dark);
+      border-color: var(--teal-dark);
       transform: translateY(-2px);
       box-shadow: var(--shadow-md);
     }
@@ -1511,56 +1513,6 @@ footer { background: #0a1628 !important; }
 
 <!-- Chat Agent Section -->
 
-<!-- California Focus -->
-<section class="california-focus" style="position:relative;overflow:hidden">
-  <div class="container" style="position:relative;z-index:1">
-    <div style="text-align:center;margin-bottom:3rem">
-      <div class="section-label">WHY CALIFORNIA FAMILIES TRUST US</div>
-      <h2 class="section-title" style="font-size:clamp(2rem,4vw,3rem)">We Know California Medicare</h2>
-      <p class="section-sub" style="max-width:600px;margin:0 auto">California has more Medicare options than almost any state. That is exactly why you need a guide who knows the landscape.</p>
-    </div>
-    
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:3rem" class="ca-stats-grid">
-      <div style="background:white;border-radius:16px;padding:2.5rem 1.5rem;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);position:relative;overflow:hidden">
-        <div style="font-size:3rem;font-weight:800;color:var(--teal);line-height:1;margin-bottom:0.5rem">8M+</div>
-        <div style="font-size:1rem;color:var(--navy);font-weight:600;margin-bottom:0.25rem">Californians on Medicare</div>
-        <div style="font-size:0.85rem;color:var(--slate)">Largest Medicare population in the U.S.</div>
-      </div>
-      <div style="background:white;border-radius:16px;padding:2.5rem 1.5rem;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);position:relative;overflow:hidden">
-        <div style="font-size:3rem;font-weight:800;color:var(--coral);line-height:1;margin-bottom:0.5rem">50+</div>
-        <div style="font-size:1rem;color:var(--navy);font-weight:600;margin-bottom:0.25rem">Plans in LA County</div>
-        <div style="font-size:0.85rem;color:var(--slate)">We cut through the noise for you</div>
-      </div>
-      <div style="background:white;border-radius:16px;padding:2.5rem 1.5rem;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);position:relative;overflow:hidden">
-        <div style="font-size:3rem;font-weight:800;color:var(--navy);line-height:1;margin-bottom:0.5rem">$0</div>
-        <div style="font-size:1rem;color:var(--navy);font-weight:600;margin-bottom:0.25rem">Cost to You</div>
-        <div style="font-size:0.85rem;color:var(--slate)">Our services are always free</div>
-      </div>
-    </div>
-    
-    <div class="carriers-row">
-      <div style="background:#f0fdfa;border:1px solid #5eead4;border-radius:12px;padding:1rem 1.25rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-      <span style="font-size:1.3rem">⭐</span>
-      <p style="margin:0;font-size:.9rem;color:var(--navy);line-height:1.5">
-        <strong>Spotlight: SCAN Health Plan</strong> — California's top-rated non-profit Medicare Advantage plan. 4-star+ rated for 13 consecutive years. $0 premium options available.
-      </p>
-    </div>
-    <div class="carrier-pill carrier-kaiser">Kaiser</div>
-      <div class="carrier-pill carrier-scan" style="background:linear-gradient(135deg,#0d9488,#0f766e);color:white;border-color:#0d9488;font-weight:700;position:relative">SCAN<span style="position:absolute;top:-8px;right:-8px;background:var(--coral);color:white;font-size:9px;font-weight:800;padding:2px 5px;border-radius:10px;white-space:nowrap">★ 4.0+</span></div>
-      <div class="carrier-pill carrier-alignment">Alignment</div>
-      <div class="carrier-pill carrier-humana">Humana</div>
-      <div class="carrier-pill carrier-united">UnitedHealthcare</div>
-      <div class="carrier-pill carrier-anthem">Anthem Blue Cross</div>
-      <div class="carrier-pill carrier-aetna">Aetna</div>
-    </div>
-  </div>
-  <svg viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:280px;opacity:0.08;position:absolute;right:-20px;top:50%;transform:translateY(-50%)">
-<path d="M155 5 L160 15 L158 25 L165 35 L170 50 L168 65 L175 80 L180 95 L185 110 L190 120 L195 130 L192 140 L188 148 L185 155 L180 162 L175 170 L178 180 L182 190 L180 200 L175 208 L168 215 L160 220 L155 228 L150 235 L145 245 L138 252 L130 258 L125 265 L118 270 L110 275 L105 280 L98 282 L90 278 L85 272 L80 265 L75 258 L72 250 L68 242 L65 235 L62 228 L58 220 L55 212 L52 205 L50 198 L48 190 L46 182 L44 175 L42 168 L40 160 L38 152 L36 145 L35 138 L34 130 L33 122 L35 115 L38 108 L42 100 L48 92 L55 85 L62 78 L70 72 L78 65 L85 58 L92 50 L100 42 L108 35 L115 28 L122 20 L130 15 L138 10 L145 8 L155 5Z" fill="currentColor"/>
-</svg>
-</section>
-
-
-
 <!-- ══ ABOUT ══ -->
   <section id="about" style="background:white;padding:80px 24px">
     <div class="container" style="max-width:960px">
@@ -1680,6 +1632,56 @@ footer { background: #0a1628 !important; }
     </div>
   </div>
 </section>
+<!-- California Focus -->
+<section class="california-focus" style="position:relative;overflow:hidden">
+  <div class="container" style="position:relative;z-index:1">
+    <div style="text-align:center;margin-bottom:3rem">
+      <div class="section-label">WHY CALIFORNIA FAMILIES TRUST US</div>
+      <h2 class="section-title" style="font-size:clamp(2rem,4vw,3rem)">We Know California Medicare</h2>
+      <p class="section-sub" style="max-width:600px;margin:0 auto">California has more Medicare options than almost any state. That is exactly why you need a guide who knows the landscape.</p>
+    </div>
+    
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:3rem" class="ca-stats-grid">
+      <div style="background:white;border-radius:16px;padding:2.5rem 1.5rem;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);position:relative;overflow:hidden">
+        <div style="font-size:3rem;font-weight:800;color:var(--teal);line-height:1;margin-bottom:0.5rem">8M+</div>
+        <div style="font-size:1rem;color:var(--navy);font-weight:600;margin-bottom:0.25rem">Californians on Medicare</div>
+        <div style="font-size:0.85rem;color:var(--slate)">Largest Medicare population in the U.S.</div>
+      </div>
+      <div style="background:white;border-radius:16px;padding:2.5rem 1.5rem;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);position:relative;overflow:hidden">
+        <div style="font-size:3rem;font-weight:800;color:var(--coral);line-height:1;margin-bottom:0.5rem">50+</div>
+        <div style="font-size:1rem;color:var(--navy);font-weight:600;margin-bottom:0.25rem">Plans in LA County</div>
+        <div style="font-size:0.85rem;color:var(--slate)">We cut through the noise for you</div>
+      </div>
+      <div style="background:white;border-radius:16px;padding:2.5rem 1.5rem;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);position:relative;overflow:hidden">
+        <div style="font-size:3rem;font-weight:800;color:var(--navy);line-height:1;margin-bottom:0.5rem">$0</div>
+        <div style="font-size:1rem;color:var(--navy);font-weight:600;margin-bottom:0.25rem">Cost to You</div>
+        <div style="font-size:0.85rem;color:var(--slate)">Our services are always free</div>
+      </div>
+    </div>
+    
+    <div class="carriers-row">
+      <div style="background:#f0fdfa;border:1px solid #5eead4;border-radius:12px;padding:1rem 1.25rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <span style="font-size:1.3rem">⭐</span>
+      <p style="margin:0;font-size:.9rem;color:var(--navy);line-height:1.5">
+        <strong>Spotlight: SCAN Health Plan</strong> — California's top-rated non-profit Medicare Advantage plan. 4-star+ rated for 13 consecutive years. $0 premium options available.
+      </p>
+    </div>
+    <div class="carrier-pill carrier-kaiser">Kaiser</div>
+      <div class="carrier-pill carrier-scan" style="background:linear-gradient(135deg,#0d9488,#0f766e);color:white;border-color:#0d9488;font-weight:700;position:relative">SCAN<span style="position:absolute;top:-8px;right:-8px;background:var(--coral);color:white;font-size:9px;font-weight:800;padding:2px 5px;border-radius:10px;white-space:nowrap">★ 4.0+</span></div>
+      <div class="carrier-pill carrier-alignment">Alignment</div>
+      <div class="carrier-pill carrier-humana">Humana</div>
+      <div class="carrier-pill carrier-united">UnitedHealthcare</div>
+      <div class="carrier-pill carrier-anthem">Anthem Blue Cross</div>
+      <div class="carrier-pill carrier-aetna">Aetna</div>
+    </div>
+  </div>
+  <svg viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:280px;opacity:0.08;position:absolute;right:-20px;top:50%;transform:translateY(-50%)">
+<path d="M155 5 L160 15 L158 25 L165 35 L170 50 L168 65 L175 80 L180 95 L185 110 L190 120 L195 130 L192 140 L188 148 L185 155 L180 162 L175 170 L178 180 L182 190 L180 200 L175 208 L168 215 L160 220 L155 228 L150 235 L145 245 L138 252 L130 258 L125 265 L118 270 L110 275 L105 280 L98 282 L90 278 L85 272 L80 265 L75 258 L72 250 L68 242 L65 235 L62 228 L58 220 L55 212 L52 205 L50 198 L48 190 L46 182 L44 175 L42 168 L40 160 L38 152 L36 145 L35 138 L34 130 L33 122 L35 115 L38 108 L42 100 L48 92 L55 85 L62 78 L70 72 L78 65 L85 58 L92 50 L100 42 L108 35 L115 28 L122 20 L130 15 L138 10 L145 8 L155 5Z" fill="currentColor"/>
+</svg>
+</section>
+
+
+
 
 <!-- FAQ Section -->
 <section id="faq" style="background:#F8FAFB;padding:80px 24px">

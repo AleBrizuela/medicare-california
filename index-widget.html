@@ -324,6 +324,9 @@
     .hero h1 {
       color: var(--white);
       margin-bottom: 1.5rem;
+      font-size: clamp(40px, 5.5vw, 64px);
+      font-weight: 800;
+      line-height: 1.1;
     }
     
     .hero p {
@@ -1414,6 +1417,361 @@ footer { background: #0a1628 !important; }
       .widget-opt { min-height: 70px; padding: 14px 12px !important; }
     }
     
+
+    /* ═══════════════════════════════════════════════════════════════
+       MOBILE ENHANCEMENTS + FIXES, California Seniors Benefits
+       ═══════════════════════════════════════════════════════════════ */
+
+    /* ── 0a. DESKTOP HERO FIX: Prevent h1 clipping on all screens ── */
+    body .hero,
+    section.hero {
+      padding-top: 100px;
+    }
+
+    /* ── 0b. "ASI FUNCIONA" SECTION: Center heading + subtitle ── */
+    .how-it-works .section-label,
+    .how-it-works .section-title,
+    .how-it-works h2,
+    .how-it-works > div > p:first-of-type,
+    .how-it-works > div > div > p {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ── 1. HERO FIX: Prevent h1 clipping under CMS banner + fixed header ── */
+    /*    Uses body prefix for specificity over the inline !important rule      */
+    @media (max-width: 768px) {
+      body .hero,
+      section.hero {
+        padding-top: 110px !important;
+        padding-bottom: 32px !important;
+      }
+      .hero h1 {
+        font-size: 26px !important;
+        line-height: 1.3 !important;
+        margin-bottom: 12px !important;
+        white-space: normal !important;
+      }
+      .hero p {
+        font-size: 14px !important;
+        line-height: 1.55 !important;
+        margin-bottom: 12px !important;
+      }
+      .hero p[style*="font-size:20px"] {
+        font-size: 15px !important;
+        margin-bottom: 8px !important;
+      }
+      .hero-ctas {
+        gap: 8px !important;
+        margin-bottom: 16px !important;
+      }
+      .hero-ctas .btn {
+        padding: 14px 16px !important;
+        font-size: 15px !important;
+      }
+    }
+
+    /* ── 2. CARRIER TRUST BAR: Scroll hint + fade edges ── */
+    @media (max-width: 768px) {
+      .carrier-trust-bar {
+        padding: 28px 0 28px 16px !important;
+        position: relative;
+      }
+      .trust-bar-label {
+        padding-left: 0;
+        padding-right: 16px;
+        font-size: 11px !important;
+        margin-bottom: 16px !important;
+      }
+      .carrier-logos {
+        padding-right: 24px !important;
+        gap: 8px !important;
+        mask-image: linear-gradient(to right, black 85%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+      }
+      .carrier-pill {
+        font-size: 13px !important;
+        padding: 8px 14px !important;
+      }
+    }
+
+    /* ── 3. THREE-STEP PROCESS: Tighter mobile layout ── */
+    @media (max-width: 768px) {
+      .how-it-works {
+        padding: 40px 16px !important;
+      }
+      .how-it-works .section-title,
+      .how-it-works h2 {
+        font-size: 22px !important;
+      }
+      .steps-grid {
+        gap: 0 !important;
+      }
+      .steps-grid > div {
+        padding: 20px 8px !important;
+      }
+      .steps-grid > div > div:first-child {
+        width: 60px !important;
+        height: 60px !important;
+        margin-bottom: 12px !important;
+      }
+      .steps-grid > div > div:first-child span {
+        font-size: 1.6rem !important;
+      }
+      .steps-grid > div > div:nth-child(2) {
+        font-size: 1.8rem !important;
+        margin-bottom: 8px !important;
+      }
+      .steps-grid h3 {
+        font-size: 1.1rem !important;
+        margin-bottom: 6px !important;
+      }
+      .steps-grid p {
+        font-size: 0.9rem !important;
+        line-height: 1.55 !important;
+      }
+    }
+
+    /* ── 4. TEAM SECTION: More scannable on mobile ── */
+    @media (max-width: 768px) {
+      .team-grid {
+        gap: 16px !important;
+      }
+      .team-grid > div {
+        padding: 20px 16px !important;
+      }
+      .team-grid > div > div:first-child {
+        gap: 12px !important;
+        margin-bottom: 14px !important;
+      }
+      .team-grid > div > div:first-child > div:first-child {
+        width: 64px !important;
+        height: 64px !important;
+      }
+      .team-grid > div > div:first-child > div:last-child > div:first-child {
+        font-size: 16px !important;
+      }
+      .team-grid > div > p {
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+        margin-bottom: 8px !important;
+      }
+      .team-grid > div > p:last-child {
+        font-size: 13px !important;
+      }
+      /* Yosemite photo: shorter */
+      .team-grid + div {
+        max-height: 280px !important;
+        margin-top: 24px !important;
+      }
+    }
+
+    /* ── 5. STATS BAR: Bigger numbers, tighter layout ── */
+    @media (max-width: 768px) {
+      .stats-bar {
+        padding: 28px 16px !important;
+      }
+      .stats-grid {
+        gap: 12px !important;
+      }
+      .stat-item h3 {
+        font-size: 34px !important;
+        line-height: 1.1 !important;
+      }
+      .stat-item p {
+        font-size: 12px !important;
+        line-height: 1.4 !important;
+      }
+    }
+
+    /* ── 6. FAQ ACCORDION: Bigger touch targets ── */
+    @media (max-width: 768px) {
+      section details summary,
+      section button[aria-expanded] {
+        min-height: 56px !important;
+        padding: 16px !important;
+        font-size: 15px !important;
+        line-height: 1.4 !important;
+      }
+    }
+
+    /* ── 7. CTA BANNERS: Tighter on mobile ── */
+    @media (max-width: 768px) {
+      .cta-banner {
+        padding: 32px 16px !important;
+      }
+      .cta-banner h2 {
+        font-size: 20px !important;
+        line-height: 1.3 !important;
+        margin-bottom: 8px !important;
+      }
+      .cta-banner p {
+        font-size: 14px !important;
+        margin-bottom: 20px !important;
+      }
+      .cta-buttons .btn {
+        padding: 14px 24px !important;
+        font-size: 15px !important;
+        width: 100% !important;
+        max-width: 320px !important;
+        justify-content: center;
+      }
+    }
+
+    /* ── 8. FOOTER: Better tap targets ── */
+    @media (max-width: 768px) {
+      footer {
+        padding: 36px 16px 90px !important;
+      }
+      footer a {
+        display: inline-block !important;
+        padding: 4px 8px !important;
+        font-size: 15px !important;
+        min-height: 44px;
+        line-height: 2 !important;
+      }
+      footer p:last-child {
+        font-size: 11px !important;
+        line-height: 1.5 !important;
+      }
+    }
+
+    /* ── 9. WHATSAPP FLOAT: Above sticky CTA bar ── */
+    @media (max-width: 768px) {
+      .wa-float {
+        bottom: 72px !important;
+        right: 12px !important;
+        width: 52px !important;
+        height: 52px !important;
+      }
+    }
+
+    /* ── 10. CMS DISCLAIMER: Compact ── */
+    @media (max-width: 768px) {
+      #cms-disclaimer {
+        font-size: 10px !important;
+        padding: 6px 10px !important;
+        line-height: 1.4 !important;
+      }
+    }
+
+    /* ── 11. GLOBAL MOBILE POLISH ── */
+    @media (max-width: 768px) {
+      section {
+        padding: 36px 16px !important;
+      }
+      .section-label {
+        font-size: 11px !important;
+        letter-spacing: 1.5px !important;
+        margin-bottom: 8px !important;
+      }
+      .section-title,
+      section h2 {
+        font-size: 22px !important;
+        line-height: 1.25 !important;
+        margin-bottom: 10px !important;
+      }
+      /* Better tap feedback */
+      .btn:active,
+      .widget-opt:active {
+        transform: scale(0.97) !important;
+        transition: transform 0.1s !important;
+      }
+    }
+
+    /* ── 12. WIDGET: Better mobile flow ── */
+    @media (max-width: 768px) {
+      .widget-q {
+        font-size: 18px !important;
+        line-height: 1.3 !important;
+        padding-left: 0 !important;
+        text-align: left !important;
+      }
+      .widget-qsub {
+        font-size: 13px !important;
+        margin-bottom: 16px !important;
+      }
+      .widget-opt {
+        padding: 12px !important;
+        gap: 12px !important;
+        min-height: 64px !important;
+        border-width: 1.5px !important;
+      }
+      .widget-opt-icon {
+        width: 40px !important;
+        height: 40px !important;
+        font-size: 16px !important;
+        border-radius: 8px !important;
+      }
+      .widget-opt-text h4 {
+        font-size: 15px !important;
+      }
+      .widget-opt-text p {
+        font-size: 12px !important;
+      }
+      .widget-opt-badge {
+        font-size: 9px !important;
+        padding: 3px 8px !important;
+      }
+      #widget-progress-bar {
+        height: 4px !important;
+      }
+      .widget-back {
+        font-size: 13px !important;
+        padding: 6px 12px !important;
+      }
+      .widget-result h3 {
+        font-size: 20px !important;
+      }
+      .widget-result p {
+        font-size: 14px !important;
+      }
+    }
+
+    /* ── 13. MOBILE STICKY CTA: Smooth slide-up ── */
+    @media (max-width: 768px) {
+      .mobile-sticky-cta {
+        transform: translateY(100%);
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      }
+      .mobile-sticky-cta.visible {
+        transform: translateY(0);
+      }
+      .mobile-sticky-cta button {
+        border-radius: 10px !important;
+        font-size: 15px !important;
+        padding: 14px 20px !important;
+      }
+    }
+
+    /* ── 14. LANDSCAPE PHONE ── */
+    @media (max-width: 768px) and (orientation: landscape) {
+      .hero {
+        padding-top: 90px !important;
+        padding-bottom: 24px !important;
+      }
+      .hero h1 {
+        font-size: 24px !important;
+      }
+      .stats-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+      }
+    }
+
+    /* ── 15. REDUCED MOTION ── */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ── 16. LAZY LOAD PLACEHOLDERS ── */
+    img[loading="lazy"] {
+      background: var(--lt-gray);
+      transition: opacity 0.3s;
+    }
     </style>
   <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png">
   <link rel="shortcut icon" href="favicon-192x192.png">
@@ -1445,7 +1803,7 @@ footer { background: #0a1628 !important; }
 <!-- Hero Section -->
 <section class="hero" id="home">
   <div class="hero-content">
-    <h1>Medicare is Complicated.</h1>
+    <h1>California <em>Seniors Benefits</em></h1>
     <p>We help California families find the best possible coverage at the lowest available cost. We know the plans inside out so you don't have to. You focus on your family. We handle the Medicare.</p>
     
     <div class="hero-ctas">
@@ -1579,10 +1937,12 @@ footer { background: #0a1628 !important; }
 
       <!-- Step 1 -->
       <div style="text-align:center;padding:2.5rem 2rem">
-        <div style="width:88px;height:88px;background:var(--coral);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;box-shadow:0 4px 20px rgba(249,115,22,.3)">
-          <span style="font-size:2.2rem;font-weight:800;color:white;line-height:1">1</span>
+        <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin:0 auto 1.25rem">
+          <div style="width:64px;height:64px;background:var(--coral);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(249,115,22,.3);flex-shrink:0">
+            <span style="font-size:1.6rem;font-weight:800;color:white;line-height:1">1</span>
+          </div>
+          <span style="font-size:2rem">🗣️</span>
         </div>
-        <div style="font-size:2.4rem;margin-bottom:1rem">🗣️</div>
         <h3 style="font-size:1.3rem;font-weight:700;color:var(--navy);margin-bottom:.75rem" data-lang="en">Tell us about you</h3>
         <p style="color:var(--slate);line-height:1.7;font-size:1rem" data-lang="en">Your ZIP, key doctors, rough budget. Three minutes. No paperwork.</p>
         <h3 style="font-size:1.3rem;font-weight:700;color:var(--navy);margin-bottom:.75rem" data-lang="es">Cuéntanos sobre ti</h3>
@@ -1591,10 +1951,12 @@ footer { background: #0a1628 !important; }
 
       <!-- Step 2 -->
       <div style="text-align:center;padding:2.5rem 2rem;border-left:1px dashed #e2e8f0;border-right:1px dashed #e2e8f0">
-        <div style="width:88px;height:88px;background:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;box-shadow:0 4px 20px rgba(13,148,136,.3)">
-          <span style="font-size:2.2rem;font-weight:800;color:white;line-height:1">2</span>
+        <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin:0 auto 1.25rem">
+          <div style="width:64px;height:64px;background:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(13,148,136,.3);flex-shrink:0">
+            <span style="font-size:1.6rem;font-weight:800;color:white;line-height:1">2</span>
+          </div>
+          <span style="font-size:2rem">🔬</span>
         </div>
-        <div style="font-size:2.4rem;margin-bottom:1rem">🔬</div>
         <h3 style="font-size:1.3rem;font-weight:700;color:var(--navy);margin-bottom:.75rem" data-lang="en">We compare every option</h3>
         <p style="color:var(--slate);line-height:1.7;font-size:1rem" data-lang="en">Carriers, networks, drug costs, fine print — we dig through it all and bring you a clear recommendation.</p>
         <h3 style="font-size:1.3rem;font-weight:700;color:var(--navy);margin-bottom:.75rem" data-lang="es">Nosotros hacemos el trabajo difícil</h3>
@@ -1603,10 +1965,12 @@ footer { background: #0a1628 !important; }
 
       <!-- Step 3 -->
       <div style="text-align:center;padding:2.5rem 2rem">
-        <div style="width:88px;height:88px;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;box-shadow:0 4px 20px rgba(15,23,42,.2)">
-          <span style="font-size:2.2rem;font-weight:800;color:white;line-height:1">3</span>
+        <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin:0 auto 1.25rem">
+          <div style="width:64px;height:64px;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(15,23,42,.2);flex-shrink:0">
+            <span style="font-size:1.6rem;font-weight:800;color:white;line-height:1">3</span>
+          </div>
+          <span style="font-size:2rem">📋</span>
         </div>
-        <div style="font-size:2.4rem;margin-bottom:1rem">📋</div>
         <h3 style="font-size:1.3rem;font-weight:700;color:var(--navy);margin-bottom:.75rem" data-lang="en">We handle the paperwork</h3>
         <p style="color:var(--slate);line-height:1.7;font-size:1rem" data-lang="en">Enrollment, forms, follow-ups — we stay with you. Our service doesn't end at signup.</p>
         <h3 style="font-size:1.3rem;font-weight:700;color:var(--navy);margin-bottom:.75rem" data-lang="es">Nosotros manejamos el papeleo</h3>
@@ -1772,15 +2136,8 @@ footer { background: #0a1628 !important; }
     </div>
     
     <div class="carriers-row">
-      <div style="background:#f0fdfa;border:1px solid #5eead4;border-radius:12px;padding:1rem 1.25rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-      <span style="font-size:1.3rem">⭐</span>
-      <p style="margin:0;font-size:.9rem;color:var(--navy);line-height:1.5">
-        <strong>Spotlight: SCAN Health Plan</strong> — California's top-rated non-profit Medicare Advantage plan. 4-star+ rated for 13 consecutive years. $0 premium options available.
-      </p>
-    </div>
     <div class="carrier-pill carrier-kaiser">Kaiser</div>
-      <div class="carrier-pill carrier-scan" style="background:linear-gradient(135deg,#0d9488,#0f766e);color:white;border-color:#0d9488;font-weight:700;position:relative">SCAN<span style="position:absolute;top:-8px;right:-8px;background:var(--coral);color:white;font-size:9px;font-weight:800;padding:2px 5px;border-radius:10px;white-space:nowrap">★ 4.0+</span></div>
-      <div class="carrier-pill carrier-alignment">Alignment</div>
+      <div class="carrier-pill carrier-scan">SCAN</div>
       <div class="carrier-pill carrier-humana">Humana</div>
       <div class="carrier-pill carrier-united">UnitedHealthcare</div>
       <div class="carrier-pill carrier-anthem">Anthem Blue Cross</div>

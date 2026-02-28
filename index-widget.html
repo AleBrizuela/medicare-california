@@ -2048,63 +2048,87 @@ footer { background: #0a1628 !important; }
   <!-- ══ END ABOUT ══ -->
 
 
-  <!-- FAQ Section -->
-<section class="faq">
-  <div class="container">
-    <h2>Questions we hear all the time</h2>
-    
-    <div class="faq-container">
-      <div class="faq-item">
-        <button class="faq-question" >
-          <span>How much does this service cost?</span>
-          <i class="fas fa-chevron-down faq-icon"></i>
+  <!-- FAQ Section (combined) -->
+<section id="faq" style="background:#F8FAFB;padding:80px 24px">
+  <div class="container" style="max-width:860px">
+    <div style="text-align:center;margin-bottom:48px">
+      <div class="section-label">COMMON QUESTIONS</div>
+      <h2 class="section-title">Medicare Questions, Answered</h2>
+      <p class="section-sub" style="max-width:640px;margin:0 auto">Straight answers to the questions California families ask us most.</p>
+    </div>
+    <div class="faq-container" style="max-width:800px;margin:0 auto">
+      <div class="faq-item" style="background:white;border:1px solid #E5E7EB;border-radius:12px;margin-bottom:16px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06)">
+        <button class="faq-question" onclick="toggleFAQ(this)" style="padding:24px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;color:var(--navy);background:white;border:none;width:100%;transition:all 0.3s ease;font-size:17px">
+          <span>Does your service cost anything?</span>
+          <i class="fas fa-chevron-down faq-icon" style="transition:transform 0.3s ease;font-size:16px"></i>
         </button>
-        <div class="faq-answer">
-          <p>Nothing. Zero. Zip. Medicare agents are paid by insurance companies — not by you. There is no cost, no hidden fees, and no obligation to enroll.</p>
+        <div class="faq-answer" style="max-height:0;overflow:hidden;padding:0 24px;background:white;transition:max-height 0.4s ease-out,padding 0.3s ease">
+          <p style="margin:0;font-size:15px;color:var(--slate);line-height:1.7">No. Our guidance is completely free. As licensed Medicare agents, we are compensated by the insurance carriers, not by you. The plans cost the same whether you enroll through us or directly with the carrier. There is no markup, no hidden fee, and no obligation.</p>
         </div>
       </div>
-      
-      <div class="faq-item">
-        <button class="faq-question" >
-          <span>Can I keep my current doctor with Medicare?</span>
-          <i class="fas fa-chevron-down faq-icon"></i>
-        </button>
-        <div class="faq-answer">
-          <p>It depends on the plan. Some Medicare Advantage plans have network restrictions. Original Medicare plus a Medigap supplement gives the most flexibility. Alejandra will check whether your doctors are in-network before recommending any plan.</p>
-        </div>
-      </div>
-      
-      <div class="faq-item">
-        <button class="faq-question" >
+      <div class="faq-item" style="background:white;border:1px solid #E5E7EB;border-radius:12px;margin-bottom:16px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06)">
+        <button class="faq-question" onclick="toggleFAQ(this)" style="padding:24px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;color:var(--navy);background:white;border:none;width:100%;transition:all 0.3s ease;font-size:17px">
           <span>When can I enroll in Medicare?</span>
-          <i class="fas fa-chevron-down faq-icon"></i>
+          <i class="fas fa-chevron-down faq-icon" style="transition:transform 0.3s ease;font-size:16px"></i>
         </button>
-        <div class="faq-answer">
-          <p>The main window is the 3 months before and after turning 65 (Initial Enrollment Period). There's also the Annual Enrollment Period (Oct 15 – Dec 7) to change plans. Missing the right window can mean late enrollment penalties — so timing matters.</p>
+        <div class="faq-answer" style="max-height:0;overflow:hidden;padding:0 24px;background:white;transition:max-height 0.4s ease-out,padding 0.3s ease">
+          <p style="margin:0;font-size:15px;color:var(--slate);line-height:1.7">Your Initial Enrollment Period (IEP) starts 3 months before your 65th birthday and ends 3 months after. There are also Special Enrollment Periods if you have employer coverage, and the Annual Enrollment Period (Oct 15 to Dec 7) when you can switch plans. Missing the right window can mean permanent penalties.</p>
         </div>
       </div>
-      
-      <div class="faq-item">
-        <button class="faq-question" >
-          <span s the difference between Medicare Advantage and Medigap?">What's the difference between Medicare Advantage and Medigap?</span>
-          <i class="fas fa-chevron-down faq-icon"></i>
+      <div class="faq-item" style="background:white;border:1px solid #E5E7EB;border-radius:12px;margin-bottom:16px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06)">
+        <button class="faq-question" onclick="toggleFAQ(this)" style="padding:24px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;color:var(--navy);background:white;border:none;width:100%;transition:all 0.3s ease;font-size:17px">
+          <span>What's the difference between Medicare Advantage and Medigap?</span>
+          <i class="fas fa-chevron-down faq-icon" style="transition:transform 0.3s ease;font-size:16px"></i>
         </button>
-        <div class="faq-answer">
-          <p>Medicare Advantage (Part C) is an all-in-one plan from a private insurer — often $0/month, includes dental/vision, but uses a network. Medigap supplements Original Medicare — higher premium, but you can see any Medicare-accepting doctor nationwide. The right choice depends on your specific situation.</p>
+        <div class="faq-answer" style="max-height:0;overflow:hidden;padding:0 24px;background:white;transition:max-height 0.4s ease-out,padding 0.3s ease">
+          <p style="margin:0;font-size:15px;color:var(--slate);line-height:1.7">Medicare Advantage (Part C) bundles everything into one plan, often with $0 premiums and extras like dental and vision, but uses a provider network. Original Medicare with a Medigap Supplement gives you the most freedom to see any doctor nationwide with predictable costs. The right choice depends on your doctors, medications, and budget.</p>
         </div>
       </div>
-      
-      <div class="faq-item">
-        <button class="faq-question" >
-          <span>What if the person also has Medi-Cal?</span>
-          <i class="fas fa-chevron-down faq-icon"></i>
+      <div class="faq-item" style="background:white;border:1px solid #E5E7EB;border-radius:12px;margin-bottom:16px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06)">
+        <button class="faq-question" onclick="toggleFAQ(this)" style="padding:24px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;color:var(--navy);background:white;border:none;width:100%;transition:all 0.3s ease;font-size:17px">
+          <span>Can I keep my doctor with Medicare?</span>
+          <i class="fas fa-chevron-down faq-icon" style="transition:transform 0.3s ease;font-size:16px"></i>
         </button>
-        <div class="faq-answer">
-          <p>Yes — and it can actually be a great situation. Many Californians qualify for both Medicare and Medi-Cal (called 'dual eligible'), which can mean very low or zero costs for most services. Alejandra specializes in helping dual-eligible clients get the most out of their coverage.</p>
+        <div class="faq-answer" style="max-height:0;overflow:hidden;padding:0 24px;background:white;transition:max-height 0.4s ease-out,padding 0.3s ease">
+          <p style="margin:0;font-size:15px;color:var(--slate);line-height:1.7">With Original Medicare plus a Supplement, you can see any doctor in the country that accepts Medicare. With Medicare Advantage, you typically use in-network providers. We check whether your current doctors are in-network before recommending a plan, so you don't get any surprises.</p>
         </div>
       </div>
-      
-      
+      <div class="faq-item" style="background:white;border:1px solid #E5E7EB;border-radius:12px;margin-bottom:16px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06)">
+        <button class="faq-question" onclick="toggleFAQ(this)" style="padding:24px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;color:var(--navy);background:white;border:none;width:100%;transition:all 0.3s ease;font-size:17px">
+          <span>How much does Medicare cost in California?</span>
+          <i class="fas fa-chevron-down faq-icon" style="transition:transform 0.3s ease;font-size:16px"></i>
+        </button>
+        <div class="faq-answer" style="max-height:0;overflow:hidden;padding:0 24px;background:white;transition:max-height 0.4s ease-out,padding 0.3s ease">
+          <p style="margin:0;font-size:15px;color:var(--slate);line-height:1.7">Most people pay $0 for Part A. The standard Part B premium for 2025 is $185/month. Medicare Advantage plans in California often have $0 monthly premiums. Medigap plans range from roughly $100 to $300+/month. We compare all your options so you understand the true total cost.</p>
+        </div>
+      </div>
+      <div class="faq-item" style="background:white;border:1px solid #E5E7EB;border-radius:12px;margin-bottom:16px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06)">
+        <button class="faq-question" onclick="toggleFAQ(this)" style="padding:24px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;color:var(--navy);background:white;border:none;width:100%;transition:all 0.3s ease;font-size:17px">
+          <span>What if I also have Medi-Cal?</span>
+          <i class="fas fa-chevron-down faq-icon" style="transition:transform 0.3s ease;font-size:16px"></i>
+        </button>
+        <div class="faq-answer" style="max-height:0;overflow:hidden;padding:0 24px;background:white;transition:max-height 0.4s ease-out,padding 0.3s ease">
+          <p style="margin:0;font-size:15px;color:var(--slate);line-height:1.7">That can actually be a great situation. Many Californians qualify for both Medicare and Medi-Cal (called 'dual eligible'), which can mean very low or zero costs for most services. Alejandra specializes in helping dual-eligible clients get the most out of their coverage.</p>
+        </div>
+      </div>
+      <div class="faq-item" style="background:white;border:1px solid #E5E7EB;border-radius:12px;margin-bottom:16px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06)">
+        <button class="faq-question" onclick="toggleFAQ(this)" style="padding:24px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;color:var(--navy);background:white;border:none;width:100%;transition:all 0.3s ease;font-size:17px">
+          <span>Do I need Medicare if I have employer insurance?</span>
+          <i class="fas fa-chevron-down faq-icon" style="transition:transform 0.3s ease;font-size:16px"></i>
+        </button>
+        <div class="faq-answer" style="max-height:0;overflow:hidden;padding:0 24px;background:white;transition:max-height 0.4s ease-out,padding 0.3s ease">
+          <p style="margin:0;font-size:15px;color:var(--slate);line-height:1.7">It depends on employer size. If your employer has 20+ employees, your group coverage is primary and you can delay Part B without penalty. If fewer than 20, Medicare becomes primary at 65 and you should enroll during your IEP. We help families navigate this exact situation all the time.</p>
+        </div>
+      </div>
+      <div class="faq-item" style="background:white;border:1px solid #E5E7EB;border-radius:12px;margin-bottom:16px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06)">
+        <button class="faq-question" onclick="toggleFAQ(this)" style="padding:24px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;color:var(--navy);background:white;border:none;width:100%;transition:all 0.3s ease;font-size:17px">
+          <span>Does Medicare cover prescription drugs?</span>
+          <i class="fas fa-chevron-down faq-icon" style="transition:transform 0.3s ease;font-size:16px"></i>
+        </button>
+        <div class="faq-answer" style="max-height:0;overflow:hidden;padding:0 24px;background:white;transition:max-height 0.4s ease-out,padding 0.3s ease">
+          <p style="margin:0;font-size:15px;color:var(--slate);line-height:1.7">Original Medicare does not cover most outpatient prescriptions. You need a separate Part D plan or a Medicare Advantage plan that includes drug coverage. We check which plan covers your specific medications at the lowest total cost.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -2152,85 +2176,7 @@ footer { background: #0a1628 !important; }
 
 
 
-<!-- FAQ Section -->
-<section id="faq" style="background:#F8FAFB;padding:80px 24px">
-  <div class="container" style="max-width:860px">
-    <div style="text-align:center;margin-bottom:48px">
-      <div class="section-label">COMMON QUESTIONS</div>
-      <h2 class="section-title">Medicare Questions, Answered</h2>
-      <p class="section-sub" style="max-width:640px;margin:0 auto">Straight answers to the questions California families ask us most.</p>
-    </div>
-
-    <div class="faq-list">
-
-      <details class="faq-item">
-        <summary class="faq-question">When can I enroll in Medicare?</summary>
-        <div class="faq-answer">
-          <p>Your Initial Enrollment Period (IEP) starts 3 months before your 65th birthday and ends 3 months after. This 7-month window is the most important one because enrolling late can mean gaps in coverage and permanent premium penalties.</p>
-          <p>There are also Special Enrollment Periods if you're still working with employer coverage, and the Annual Enrollment Period (October 15 to December 7) when you can switch Medicare Advantage or Part D plans.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-question">What is the difference between Medicare Advantage and Original Medicare with a Supplement?</summary>
-        <div class="faq-answer">
-          <p>Original Medicare (Parts A and B) with a Medigap Supplement gives you the most freedom: see any doctor or hospital that accepts Medicare, anywhere in the country, with no referrals needed. The monthly premium is higher, but your out-of-pocket costs are predictable.</p>
-          <p>Medicare Advantage (Part C) bundles everything into one plan, often with $0 premiums and extra benefits like dental, vision, and gym memberships. The trade-off is that you typically use a network of doctors and may need referrals for specialists.</p>
-          <p>The right choice depends on your doctors, medications, and budget. That is exactly what we help families figure out.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-question">Does Medicare cover prescription drugs?</summary>
-        <div class="faq-answer">
-          <p>Original Medicare (Parts A and B) does not cover most outpatient prescriptions. You need a separate Part D plan or a Medicare Advantage plan that includes drug coverage.</p>
-          <p>Part D plans vary by formulary (the list of covered drugs), pharmacy network, and cost. We check which plan covers your specific medications at the lowest total cost, including premiums, copays, and the coverage gap.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-question">How much does Medicare cost in California?</summary>
-        <div class="faq-answer">
-          <p>Most people pay $0 for Part A (hospital coverage) if they or their spouse paid Medicare taxes for at least 10 years. The standard Part B premium for 2025 is $185/month, though higher earners pay more.</p>
-          <p>Beyond that, costs depend on what additional coverage you choose. Medicare Advantage plans in California often have $0 monthly premiums. Medigap Supplement plans range from roughly $100 to $300+/month depending on the plan letter and your age. We compare all your options so you understand the true total cost, not just the premium.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-question">Can I keep my doctor with Medicare?</summary>
-        <div class="faq-answer">
-          <p>With Original Medicare plus a Supplement, you can see any doctor or hospital in the country that accepts Medicare. Most do.</p>
-          <p>With Medicare Advantage, you'll typically need to use in-network providers. We check whether your current doctors are in-network before recommending a plan, so you don't get any surprises.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-question">Is there a penalty for enrolling in Medicare late?</summary>
-        <div class="faq-answer">
-          <p>Yes. If you don't sign up for Part B during your Initial Enrollment Period and you don't have qualifying employer coverage, you may pay a late enrollment penalty of 10% for every 12-month period you could have had Part B but didn't. This penalty lasts for as long as you have Part B.</p>
-          <p>Part D has a similar penalty: roughly 1% of the national base premium for every month you went without creditable drug coverage. These penalties are permanent, which is why timing your enrollment correctly matters so much.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-question">Do I need Medicare if I have employer insurance?</summary>
-        <div class="faq-answer">
-          <p>It depends on the size of your employer. If your employer has 20 or more employees, your group coverage is primary and Medicare is secondary. You can delay enrolling in Part B without penalty as long as you have creditable employer coverage.</p>
-          <p>If the employer has fewer than 20 employees, Medicare becomes primary at 65. In this case, you should enroll in Part B during your IEP to avoid penalties and gaps.</p>
-          <p>The rules around employer coverage and Medicare can be tricky. We help families navigate this exact situation all the time.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-question">Does your service cost anything?</summary>
-        <div class="faq-answer">
-          <p>No. Our guidance is completely free. As licensed Medicare agents, we are compensated by the insurance carriers, not by you. The plans cost the same whether you enroll through us or directly with the carrier. There is no markup, no hidden fee, and no obligation.</p>
-        </div>
-      </details>
-
-    </div>
-  </div>
-</section>
+<!-- Second FAQ section removed — combined into single FAQ above -->
 
 <!-- FAQPage Schema -->
 <script type="application/ld+json">
@@ -2345,7 +2291,7 @@ footer { background: #0a1628 !important; }
   </div>
 
   <div style="text-align:center;padding:1rem 2rem 0.5rem;font-size:0.8rem;opacity:0.6">
-    <a href="https://www.guiamarcos.com/" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.7);text-decoration:none">Guia Marcos</a> — nuestro sitio en español
+    <a href="https://www.beneficiosmedicare.com/" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.7);text-decoration:none">www.beneficiosmedicare.com</a> — nuestro sitio en español
   </div>
 </footer>
 

@@ -1332,6 +1332,88 @@ footer { background: #0a1628 !important; }
 @media (max-width: 900px) {
   .lang-pill button { padding: 8px 16px; font-size: 0.85rem; }
 }
+    
+    /* Widget CSS Variables */
+    :root {
+      --green: #0D9488;
+      --blue: #1E3A5F;
+      --lt-blue: #F0FDFA;
+      --lt-gray: #F8FAFC;
+      --lt-green: #F0FDF4;
+      --lt-mint: #F0FDFA;
+      --dark: #1E293B;
+      --gray: #475569;
+      --shadow-lg: 0 4px 24px rgba(0,0,0,0.10);
+    }
+
+    /* Widget Styles */
+    .widget-container {
+      max-width: 640px; margin: 0 auto; position: relative; overflow: hidden;
+      background: white; border-radius: 20px; padding: 48px;
+      box-shadow: var(--shadow-lg);
+    }
+    .widget-step { display: none; }
+    .widget-step.active { display: block; }
+    .widget-back {
+      background: var(--lt-blue); border: 2px solid var(--teal);
+      color: var(--teal); font-size: 14px; font-weight: 600;
+      cursor: pointer; margin-bottom: 20px;
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 16px; border-radius: 20px; transition: all 0.2s;
+    }
+    .widget-back:hover { background: var(--teal); color: white; }
+    .widget-q { font-size: 24px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .widget-qsub { font-size: 15px; color: var(--gray); margin-bottom: 24px; }
+    .widget-options { display: flex; flex-direction: column; gap: 12px; }
+    .widget-opt {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 18px 20px; border-radius: 16px; cursor: pointer;
+      border: 2px solid var(--lt-gray); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      background: white;
+    }
+    .widget-opt:hover { transform: translateX(8px); border-color: var(--teal); background: var(--lt-mint); }
+    .widget-opt-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; color: white; flex-shrink: 0; margin-top: 1px;
+    }
+    .widget-opt-text { display: flex; flex-direction: column; justify-content: flex-start; flex: 1; min-width: 0; }
+    .widget-opt-text h4 { font-size: 16px; font-weight: 700; color: var(--navy); line-height: 1.2; }
+    .widget-opt-text p { font-size: 15px; color: var(--gray); margin-top: 4px; }
+    .widget-opt-row { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+    .widget-opt-row p { flex: 1; margin: 0; }
+    .widget-opt-badge {
+      padding: 5px 14px; border-radius: 20px;
+      font-size: 13px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.5px; flex-shrink: 0; white-space: nowrap;
+    }
+    .badge-urgent { background: #FEE2E2; color: #DC2626; }
+    .badge-soon { background: #FEF3C7; color: #D97706; }
+    .badge-explore { background: var(--lt-blue); color: var(--teal); }
+    .badge-help { background: var(--lt-green); color: var(--teal); }
+    #widget-progress-bar {
+      position: absolute; top: 0; left: 0; right: 0; height: 5px;
+      background: var(--lt-gray);
+    }
+    #widget-progress-fill {
+      height: 100%; width: 0%; background: var(--teal);
+      transition: width 0.4s ease;
+    }
+    @keyframes widget-pulse {
+      0%   { box-shadow: var(--shadow-lg); }
+      40%  { box-shadow: 0 8px 48px rgba(13,148,136,0.45); }
+      100% { box-shadow: var(--shadow-lg); }
+    }
+    .pulse-highlight { animation: widget-pulse 1s ease-in-out; }
+
+    /* Widget mobile */
+    @media (max-width: 768px) {
+      .widget-container { padding: 24px 16px !important; border-radius: 16px !important; }
+      .widget-q { font-size: 19px !important; line-height: 1.35 !important; }
+      .widget-qsub { font-size: 14px !important; }
+      .widget-opt { min-height: 70px; padding: 14px 12px !important; }
+    }
+    
     </style>
   <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png">
   <link rel="shortcut icon" href="favicon-192x192.png">
@@ -1351,7 +1433,7 @@ footer { background: #0a1628 !important; }
     <li><a href="index.html">Home</a></li>
     <li><a href="resources.html">Resources</a></li>
     <li><a href="contact.html">Contact Us</a></li>
-    <li><a href="#guide-section" class="btn-nav" style="background:var(--coral);color:white;padding:0.4rem 1rem;border-radius:6px;font-weight:600">Chat with Your Guide</a></li>
+    <li><a href="#guide-section" class="btn-nav" style="background:var(--coral);color:white;padding:0.4rem 1rem;border-radius:6px;font-weight:600">Find the Right Plan</a></li>
     <li><div class="lang-pill"><button class="" onclick="goLang('es')" aria-label="Español">ES</button><button class="lp-active" onclick="goLang('en')" aria-label="English">EN</button></div></li>
   </ul>
   <button class="nav-toggle" id="navToggle" onclick="toggleNav()" aria-label="Toggle navigation menu" aria-expanded="false">
@@ -1367,7 +1449,7 @@ footer { background: #0a1628 !important; }
     <p>We help California families find the best possible coverage at the lowest available cost. We know the plans inside out so you don't have to. You focus on your family. We handle the Medicare.</p>
     
     <div class="hero-ctas">
-      <a href="#guide-section" class="btn btn-coral" style="font-size:1.1rem;padding:1rem 2.5rem">Chat with Your Guide</a>
+      <a href="#guide-section" class="btn btn-coral" style="font-size:1.1rem;padding:1rem 2.5rem">Find the Right Plan</a>
       <a href="contact.html" class="btn btn-primary">Contact Us</a>
     </div>
     
@@ -1376,32 +1458,70 @@ footer { background: #0a1628 !important; }
 </section>
 
 
-<section class="guide-section" id="guide-section">
+<section class="guide-section" id="guide-section" style="background:var(--light-gray);padding:80px 0">
   <div class="container">
-    <div class="agent-intro">
-      <div class="section-label">YOUR GUIDE</div>
-      <h2>Chat with <span style="color:var(--coral)">Your Guide</span></h2>
-      <p>Your Guide answers Medicare questions instantly — plan types, costs, enrollment windows — and connects you with Alejandra when you're ready for a personalized review.</p>
+    <div style="text-align:center;margin-bottom:40px">
+      <div class="section-label">FIND THE RIGHT PLAN</div>
+      <h2>Help Your Parent Get the <span style="color:var(--teal)">Best Medicare Coverage</span></h2>
+      <p style="max-width:600px;margin:0 auto;font-size:1.05rem;color:var(--slate)">Answer a few quick questions and we'll match your parent with the right Medicare plan. Free, no obligation.</p>
     </div>
     
-    <div class="chat-window" id="chatWindow">
-      <div class="chat-header">
-        <div class="chat-header-avatar" style="background:var(--teal);color:white;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px">G</div>
-        <div class="chat-header-info">
-          <h4>Your Guide</h4>
-          
+    <div id="widget-anchor" style="scroll-margin-top:100px">
+      <div class="widget-container" id="widget-box">
+        <div id="widget-progress-bar"><div id="widget-progress-fill"></div></div>
+        
+        <div class="widget-step active" id="w-step-0">
+          <div class="widget-q" style="text-align:center">How can we help your parent?</div>
+          <div class="widget-qsub" style="text-align:center">Select the option that best describes the situation.</div>
+          <div class="widget-options">
+            <div class="widget-opt" onclick="startFlow('first-time')">
+              <div class="widget-opt-icon" style="background:var(--navy)"><i class="fas fa-birthday-cake"></i></div>
+              <div class="widget-opt-text">
+                <h4>My parent is turning 65</h4>
+                <div class="widget-opt-row">
+                  <p>Step-by-step enrollment guidance.</p>
+                  <span class="widget-opt-badge badge-urgent">START</span>
+                </div>
+              </div>
+            </div>
+            <div class="widget-opt" onclick="startFlow('moving')">
+              <div class="widget-opt-icon" style="background:var(--teal)"><i class="fas fa-truck-moving"></i></div>
+              <div class="widget-opt-text">
+                <h4>My parent is moving</h4>
+                <div class="widget-opt-row">
+                  <p>Keep coverage when relocating.</p>
+                  <span class="widget-opt-badge badge-soon">TRANSFER</span>
+                </div>
+              </div>
+            </div>
+            <div class="widget-opt" onclick="startFlow('better')">
+              <div class="widget-opt-icon" style="background:var(--teal-dark)"><i class="fas fa-balance-scale"></i></div>
+              <div class="widget-opt-text">
+                <h4>Their plan isn't working</h4>
+                <div class="widget-opt-row">
+                  <p>Find better coverage and savings.</p>
+                  <span class="widget-opt-badge badge-explore">COMPARE</span>
+                </div>
+              </div>
+            </div>
+            <div class="widget-opt" onclick="startFlow('learn')">
+              <div class="widget-opt-icon" style="background:var(--coral)"><i class="fas fa-book-open"></i></div>
+              <div class="widget-opt-text">
+                <h4>I just want to understand</h4>
+                <div class="widget-opt-row">
+                  <p>Learn about Medicare options.</p>
+                  <span class="widget-opt-badge badge-help">LEARN</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+        
+        <div class="widget-step" id="flow-first-time"></div>
+        <div class="widget-step" id="flow-moving"></div>
+        <div class="widget-step" id="flow-better"></div>
+        <div class="widget-step" id="flow-learn"></div>
       </div>
-      
-      <div class="chat-messages" id="chatMessages"></div>
-      
-      <div class="chat-input-area" id="chatInputArea">
-        <input type="text" class="chat-input" id="chatInput" placeholder="Type your question..." aria-label="Type your Medicare question" data-placeholder-en="Type your question..." data-placeholder-es="Escribe tu pregunta..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChatMessage();}">
-        <button class="chat-send-btn" onclick="sendChatMessage()" id="chatSendBtn" aria-label="Send message">
-          <i class="fas fa-paper-plane"></i>
-        </button>
-      </div>
-      <div class="chat-input-hint" id="chatInputHint"></div>
     </div>
   </div>
 </section>
@@ -1497,7 +1617,7 @@ footer { background: #0a1628 !important; }
 
     <!-- CTA under steps -->
     <div style="text-align:center;margin-top:48px">
-      <a href="#guide-section" style="display:inline-block;background:var(--coral);color:white;padding:1rem 2rem;border-radius:8px;font-weight:700;font-size:1.05rem;text-decoration:none;box-shadow:0 4px 16px rgba(249,115,22,.3)">Chat with Your Guide — It's Free →</a>
+      <a href="#guide-section" style="display:inline-block;background:var(--coral);color:white;padding:1rem 2rem;border-radius:8px;font-weight:700;font-size:1.05rem;text-decoration:none;box-shadow:0 4px 16px rgba(249,115,22,.3)">Find the Right Plan — It's Free →</a>
     </div>
 
   </div>
@@ -1894,1168 +2014,704 @@ footer { background: #0a1628 !important; }
     return '';
   }
 
-  // ============================================================
-  // CHAT AGENT STATE MACHINE
-  // ============================================================
-  
-  const agentStates = {
-    welcome: 'welcome',
-    menu: 'menu',
-    qa: 'qa',
-    plan_finder: 'plan_finder',
-    consent_offer: 'consent_offer',
-    lead_capture: 'lead_capture',
-    confirmation: 'confirmation'
-  };
-  
-  let chatState = {
-    currentState: agentStates.welcome,
-    language: 'en',
-    messageCount: 0,
-    planFinderStep: 0,
-    planFinderAnswers: {},
-    leadData: {},
-    pendingFieldCapture: null
-  };
-  
-  // Agent message translations
-  const agentMessages = {
-    welcome_1: {
-      en: "Hi! I'm your California Medicare Guide.",
-      es: "¡Hola! Soy tu Guía Medicare de California."
-    },
-    welcome_2: {
-      en: "I help families in California understand Medicare and find the right plan for their parent or grandparent.",
-      es: "Ayudo a las familias en California a entender Medicare y encontrar el plan correcto para sus padres o abuelos."
-    },
-    welcome_3: {
-      en: "What would you like help with today?",
-      es: "¿Con qué necesitas ayuda hoy?"
-    },
-    
-    // Quick reply buttons
-    quick_explain: {
-      en: "Explain Medicare basics",
-      es: "Explica los conceptos básicos de Medicare"
-    },
-    quick_find: {
-      en: "Find the right plan type",
-      es: "Encuentra el tipo de plan correcto"
-    },
-    quick_talk: {
-      en: "Talk to Alejandra →",
-      es: "Habla directamente con Alejandra"
-    },
-    
-    // QA Responses
-    part_a_title: {
-      en: "Medicare Part A: Hospital Insurance",
-      es: "Medicare Parte A: Seguro Hospitalario"
-    },
-    part_a_text: {
-      en: "Covers hospital stays, skilled nursing, hospice<br/>Premium: Free for most people (paid via Medicare taxes)<br/>You pay a deductible when hospitalized",
-      es: "Cubre hospitalizaciones, enfermería especializada, cuidados paliativos<br/>Prima: Gratis para la mayoría (pagado a través de impuestos Medicare)<br/>Pagas un deducible si estás hospitalizado"
-    },
-    
-    part_b_title: {
-      en: "Medicare Part B: Medical Insurance",
-      es: "Medicare Parte B: Seguro Médico"
-    },
-    part_b_text: {
-      en: "Covers doctor visits, outpatient care, lab tests, equipment<br/>Premium: ~$185/month (higher if income is above certain levels)<br/>You pay 20% coinsurance after meeting your deductible",
-      es: "Cubre visitas al médico, atención ambulatoria, pruebas de laboratorio, equipo<br/>Prima: ~$185/mes (más alta si el ingreso está por encima de ciertos niveles)<br/>Pagas 20% de coaseguro después de cumplir tu deducible"
-    },
-    
-    advantage_title: {
-      en: "Medicare Advantage (Part C): All-in-One Plans",
-      es: "Medicare Advantage (Parte C): Planes Todo en Uno"
-    },
-    advantage_text: {
-      en: "Private plan that replaces Parts A and B<br/>Often $0/month premium with dental, vision, Rx included<br/>Must use in-network doctors (HMO or PPO)<br/>Annual out-of-pocket cap protects you from big bills",
-      es: "Plan privado que reemplaza las Partes A y B<br/>A menudo prima de $0/mes con dental, visión, medicamentos incluidos<br/>Debes usar médicos dentro de la red (HMO o PPO)<br/>Límite anual de gastos de bolsillo te protege de facturas grandes"
-    },
-    
-    medigap_title: {
-      en: "Medigap (Supplement Insurance)",
-      es: "Medigap (Seguro Suplementario)"
-    },
-    medigap_text: {
-      en: "Covers what Original Medicare doesn't: copays, coinsurance, deductibles<br/>Higher monthly premium, but predictable costs<br/>See any Medicare-accepting doctor nationwide<br/>No network restrictions",
-      es: "Cubre lo que Medicare Original no cubre: copagos, coaseguro, deducibles<br/>Prima mensual más alta, pero costos predecibles<br/>Ve a cualquier médico que acepte Medicare a nivel nacional<br/>Sin restricciones de red"
-    },
-    
-    part_d_title: {
-      en: "Medicare Part D: Prescription Drug Coverage",
-      es: "Medicare Parte D: Cobertura de Medicamentos"
-    },
-    part_d_text: {
-      en: "Covers prescription medications (standalone or bundled into Advantage)<br/>Premiums vary: typically $5 to $100+/month<br/>You pay out-of-pocket until you hit your annual deductible",
-      es: "Cubre medicamentos recetados (independiente o incluido en Advantage)<br/>Las primas varían: típicamente $5 a $100+/mes<br/>Pagas de bolsillo hasta alcanzar tu deducible anual"
-    },
-    
-    cost_breakdown_title: {
-      en: "Cost Breakdown",
-      es: "Desglose de Costos"
-    },
-    cost_breakdown_text: {
-      en: "Original Medicare path: Part A (free) + Part B (~$185/mo) + Part D (~$30/mo) + Medigap ($150-$300+/mo)<br/>Advantage path: Often $0/mo premium with built-in drug, dental, vision coverage<br/>Best option depends on doctors, medications, and budget",
-      es: "Ruta Original Medicare: Parte A (gratis) + Parte B (~$185/mes) + Parte D (~$30/mes) + Medigap ($150-$300+/mes)<br/>Ruta Advantage: A menudo prima de $0/mes con medicamentos, dental, visión incluidos<br/>La mejor opción depende de médicos, medicamentos y presupuesto"
-    },
-    
-    enrollment_title: {
-      en: "Enrollment Periods",
-      es: "Períodos de Inscripción"
-    },
-    enrollment_text: {
-      en: "Initial Enrollment: 3 months before and after turning 65<br/>Annual Enrollment: October 15 through December 7<br/>Special Enrollment: After losing coverage or a major life event<br/>Missing your window means late penalties for life",
-      es: "Inscripción Inicial: 3 meses antes y después de cumplir 65<br/>Inscripción Anual: 15 de octubre al 7 de diciembre<br/>Inscripción Especial: Después de perder cobertura o evento importante<br/>Perder tu ventana significa multas tardías de por vida"
-    },
-    
-    ca_info_title: {
-      en: "California Medicare Info",
-      es: "Información de Medicare en California"
-    },
-    ca_info_text: {
-      en: "California has the largest Medicare population in the US (8M+)<br/>Top carriers: Kaiser, SCAN, Humana, UnitedHealthcare, Anthem, Aetna, Alignment<br/>HICAP offers free counseling alongside agents like us",
-      es: "California tiene la población de Medicare más grande en EE.UU. (8M+)<br/>Principales transportistas: Kaiser, SCAN, Humana, UnitedHealthcare, Anthem, Aetna, Alignment<br/>HICAP ofrece asesoramiento gratuito junto con agentes como nosotros"
-    },
-    
-    comparison_title: {
-      en: "Original Medicare vs Medicare Advantage",
-      es: "Medicare Original vs Medicare Advantage"
-    },
-    comparison_text: {
-      en: "Original Medicare + Medigap: Any doctor nationwide, higher monthly cost, predictable copays<br/>Medicare Advantage: $0-$100/mo premium, includes dental/vision/Rx, network-based, out-of-pocket cap<br/>Best choice depends on your specific situation",
-      es: "Medicare Original + Medigap: Cualquier médico a nivel nacional, costo mensual más alto, copagos predecibles<br/>Medicare Advantage: Prima de $0-$100/mes, incluye dental/visión/medicamentos, basado en red, límite de gastos de bolsillo<br/>La mejor opción depende de tu situación específica"
-    },
-    
-    follow_up_prompt: {
-      en: "By the way — Alejandra can review this specific Medicare situation for free. Want me to connect you?",
-      es: "Por cierto, Alejandra puede revisar esta situación específica de Medicare gratis. ¿Quieres que te conecte?"
-    },
-    
-    // Plan Finder
-    plan_finder_intro: {
-      en: "Let me ask a few quick questions so Alejandra can give you the most accurate recommendation.",
-      es: "Permíteme hacer unas preguntas rápidas para que Alejandra pueda darte la recomendación más precisa."
-    },
-    plan_finder_q0_text: {
-      en: "Let me ask a few quick questions so Alejandra can give you the most accurate recommendation.",
-      es: "Permíteme hacer unas preguntas rápidas para que Alejandra pueda darte la recomendación más precisa."
-    },
-    plan_finder_q0_go: {
-      en: "Let's go!",
-      es: "¡Vamos!"
-    },
-    plan_finder_q0_later: {
-      en: "Actually, I have a question first",
-      es: "Tengo una pregunta primero"
-    },
-    
-    plan_finder_q1: {
-      en: "Is the person needing coverage already enrolled in Medicare Part A and Part B?",
-      es: "¿La persona que necesita cobertura ya está inscrita en Medicare Parte A y Parte B?"
-    },
-    plan_finder_q1_a: {
-      en: "Yes, both",
-      es: "Sí, ambos"
-    },
-    plan_finder_q1_b: {
-      en: "Turning 65 soon",
-      es: "Cumpliendo 65 pronto"
-    },
-    plan_finder_q1_c: {
-      en: "Under 65 with disability",
-      es: "Menores de 65 con discapacidad"
-    },
-    plan_finder_q1_d: {
-      en: "Not sure",
-      es: "No estoy seguro"
-    },
-    
-    plan_finder_q2: {
-      en: "Are there doctors or specialists they want to keep seeing?",
-      es: "¿Hay médicos o especialistas que quieran seguir viendo?"
-    },
-    plan_finder_q2_a: {
-      en: "Yes, very important",
-      es: "Sí, muy importante"
-    },
-    plan_finder_q2_b: {
-      en: "Somewhat important",
-      es: "Algo importante"
-    },
-    plan_finder_q2_c: {
-      en: "No strong preference",
-      es: "Sin preferencia fuerte"
-    },
-    
-    plan_finder_q3: {
-      en: "Do they take regular prescription medications?",
-      es: "¿Toman medicamentos recetados regularmente?"
-    },
-    plan_finder_q3_a: {
-      en: "Yes, several",
-      es: "Sí, varios"
-    },
-    plan_finder_q3_b: {
-      en: "Just 1-2",
-      es: "Solo 1-2"
-    },
-    plan_finder_q3_c: {
-      en: "No medications",
-      es: "Sin medicamentos"
-    },
-    
-    plan_finder_q4: {
-      en: "Which matters most?",
-      es: "¿Qué es lo más importante?"
-    },
-    plan_finder_q4_a: {
-      en: "Lowest monthly cost",
-      es: "Costo mensual más bajo"
-    },
-    plan_finder_q4_b: {
-      en: "Lowest out-of-pocket costs",
-      es: "Costos de bolsillo más bajos"
-    },
-    plan_finder_q4_c: {
-      en: "Keeping their specific doctors",
-      es: "Mantener a sus médicos específicos"
-    },
-    plan_finder_q4_d: {
-      en: "Extra benefits (dental, vision, gym)",
-      es: "Beneficios adicionales (dental, visión, gimnasio)"
-    },
-    
-    plan_finder_result_doctors: {
-      en: "Based on what you've shared, <strong>Original Medicare + Medigap</strong> may be the best fit. It offers the most flexibility to see any doctor who accepts Medicare — nationwide. The monthly premium is higher, but out-of-pocket costs are more predictable.",
-      es: "Basado en lo que compartiste, <strong>Medicare Original + Medigap</strong> puede ser la mejor opción. Ofrece la máxima flexibilidad para ver a cualquier médico que acepte Medicare a nivel nacional. La prima mensual es más alta, pero los costos de bolsillo son más predecibles."
-    },
-    plan_finder_result_cost: {
-      en: "<strong>Medicare Advantage</strong> plans in California often have $0/month premiums and include dental, vision, and prescription coverage — all in one plan. Alejandra can show you the top-rated plans in your area.",
-      es: "Los planes de <strong>Medicare Advantage</strong> en California frecuentemente tienen primas de $0/mes e incluyen cobertura dental, visión y de medicamentos, todo en un plan. Alejandra puede mostrarte los planes mejor calificados en tu área."
-    },
-    plan_finder_result_65: {
-      en: "The 6-month window around turning 65 is the most important enrollment period. Missing it can mean higher premiums for life. Let's make sure this gets done right.",
-      es: "La ventana de 6 meses al cumplir 65 es el período de inscripción más importante. Perderlo puede significar primas más altas de por vida. Asegurémonos de hacerlo bien."
-    },
-    plan_finder_result_default: {
-      en: "This situation sounds like it needs a personalized review. There's no one-size-fits-all answer — it really depends on the doctors, medications, and budget involved.",
-      es: "Esta situación parece necesitar una revisión personalizada. No hay una solución única — realmente depende de los médicos, medicamentos y presupuesto involucrados."
-    },
-    plan_finder_offer: {
-      en: "Would you like Alejandra to do a free personalized review? No cost, no pressure.",
-      es: "¿Te gustaría que Alejandra haga una revisión personalizada gratuita? Sin costo, sin presión."
-    },
-    plan_finder_yes: {
-      en: "Yes, I'd like that →",
-      es: "Sí, me gustaría →"
-    },
-    plan_finder_no: {
-      en: "Not right now",
-      es: "No ahora"
-    },
-    
-    // Consent
-    consent_1: {
-      en: "Before I get your info, I want to be upfront:",
-      es: "Antes de obtener tu información, quiero ser honesto:"
-    },
-    consent_2: {
-      en: "By sharing your contact details, you're agreeing to be contacted by Alejandra Brizuela Marcos (Licensed California Medicare Insurance Agent, Susana Marcos LLC). She will not sell your data or spam you. This is a one-on-one conversation with a real person.",
-      es: "Al compartir tus datos de contacto, aceptas ser contactado por Alejandra Brizuela Marcos (Agente de Seguros Medicare Licenciada en California, Susana Marcos LLC). No venderá tus datos ni te spamea. Esta es una conversación uno a uno con una persona real."
-    },
-    consent_3: {
-      en: "Do you give your consent to be contacted?",
-      es: "¿Das tu consentimiento para ser contactado?"
-    },
-    consent_yes: {
-      en: "Yes, I consent",
-      es: "Sí, doy mi consentimiento"
-    },
-    consent_no: {
-      en: "No thanks",
-      es: "No, gracias"
-    },
-    
-    // Lead Capture
-    lead_name_prompt: {
-      en: "What's your name?",
-      es: "¿Cuál es tu nombre?"
-    },
-    lead_phone_prompt: {
-      en: "What's a good phone number?",
-      es: "¿Cuál es un buen número de teléfono?"
-    },
-    lead_email_prompt: {
-      en: "And your email?",
-      es: "¿Y tu correo electrónico?"
-    },
-    lead_dob_prompt: {
-      en: "What's the date of birth of the person needing coverage?",
-      es: "¿Cuál es la fecha de nacimiento de la persona que necesita cobertura?"
-    },
-    lead_zip_prompt: {
-      en: "What's the ZIP code where they live?",
-      es: "¿Cuál es el código postal donde viven?"
-    },
-    lead_dob_error: {
-      en: "Please enter a valid date of birth (MM/DD/YYYY). For example: 07/15/1958",
-      es: "Por favor ingrese una fecha válida (MM/DD/AAAA). Por ejemplo: 07/15/1958"
-    },
-    lead_time_prompt: {
-      en: "Best time to reach you?",
-      es: "¿Mejor momento para comunicarse contigo?"
-    },
-    lead_time_morning: {
-      en: "Morning (9am-12pm)",
-      es: "Mañana (9am-12pm)"
-    },
-    lead_time_afternoon: {
-      en: "Afternoon (12-4pm)",
-      es: "Tarde (12-4pm)"
-    },
-    lead_time_evening: {
-      en: "Evening (4-7pm)",
-      es: "Noche (4-7pm)"
-    },
-    lead_time_anytime: {
-      en: "Just Email Me",
-      es: "Solo por correo"
-    },
-    
-    // Confirmation
-    confirmation_prefix: {
-      en: "Perfect",
-      es: "Perfecto"
-    },
-    confirmation_intro: {
-      en: "Alejandra will reach out to you",
-      es: "Alejandra se comunicará contigo"
-    },
-    confirmation_body: {
-      en: "She'll review the specific Medicare situation, compare every plan option, and recommend the best fit — all at no cost to you.",
-      es: "Revisará la situación específica de Medicare, comparará cada opción de plan y recomendará la mejor — todo sin costo para ti."
-    },
-    confirmation_call: {
-      en: "Call now:",
-      es: "Llama ahora:"
-    },
-    confirmation_schedule: {
-      en: "Schedule a call",
-      es: "Agendar una llamada"
-    },
-    confirmation_whatsapp: {
-      en: "WhatsApp Alejandra",
-      es: "WhatsAppea a Alejandra"
-    },
-    confirmation_done: {
-      en: "We'll be in touch soon!",
-      es: "¡Nos comunicaremos pronto!"
-    }
-  };
-  
-  // Initialize chat on page load
-  window.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-      startWelcomeFlow();
-    }, 500);
-  });
-  
-  function getMsg(key) {
-    const lang = document.body.classList.contains('lang-es') ? 'es' : 'en';
-    if (agentMessages[key]) {
-      return agentMessages[key][lang] || agentMessages[key]['en'];
-    }
-    return key;
-  }
-  
-  function addAgentMessage(text, buttons = null) {
-    const messagesDiv = document.getElementById('chatMessages');
-    
-    // Add typing indicator
-    const typingDiv = document.createElement('div');
-    typingDiv.className = 'message agent';
-    const typingAvatar = document.createElement('div');
-    typingAvatar.className = 'message-avatar';
-    typingAvatar.style.cssText = 'background:var(--teal);color:white;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0';
-    typingAvatar.textContent = 'G';
-    const typingBubble = document.createElement('div');
-    typingBubble.className = 'message-bubble';
-    typingBubble.innerHTML = '<div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
-    typingDiv.appendChild(typingAvatar);
-    typingDiv.appendChild(typingBubble);
-    messagesDiv.appendChild(typingDiv);
-    messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    
-    setTimeout(() => {
-      typingDiv.remove();
-      
-      const msgDiv = document.createElement('div');
-      msgDiv.className = 'message agent';
-      
-      const bubble = document.createElement('div');
-      bubble.className = 'message-bubble';
-      bubble.innerHTML = text;
-      
-      const time = document.createElement('div');
-      time.className = 'message-time';
-      time.textContent = 'Just now';
-      
-      const wrapper = document.createElement('div');
-      wrapper.appendChild(bubble);
-      wrapper.appendChild(time);
-      
-      const avatarDiv = document.createElement('div');
-      avatarDiv.className = 'message-avatar';
-      avatarDiv.style.cssText = 'background:var(--teal);color:white;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0';
-      avatarDiv.textContent = 'G';
-      msgDiv.appendChild(avatarDiv);
-      msgDiv.appendChild(wrapper);
-      
-      messagesDiv.appendChild(msgDiv);
-      
-      if (buttons && buttons.length > 0) {
-        const quickReplies = document.createElement('div');
-        quickReplies.className = 'quick-replies';
-        buttons.forEach(btn => {
-          const btnEl = document.createElement('button');
-          btnEl.className = 'quick-reply-btn';
-          btnEl.textContent = btn.text;
-          btnEl.onclick = () => {
-            handleQuickReply(btn.action, btn.text);
-            quickReplies.remove();
-          };
-          if (btn.action === 'back_to_menu' || btn.action.startsWith('plan_finder_back')) {
-            btnEl.style.cssText = 'background:transparent;color:var(--slate);border:1px dashed var(--slate);font-size:0.85rem;opacity:0.7';
-          }
-          quickReplies.appendChild(btnEl);
-        });
-        msgDiv.appendChild(quickReplies);
-      }
-      
-      messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    }, 600);
-  }
-  
-  function addUserMessage(text) {
-    const messagesDiv = document.getElementById('chatMessages');
-    const msgDiv = document.createElement('div');
-    msgDiv.className = 'message user';
-    
-    const bubble = document.createElement('div');
-    bubble.className = 'message-bubble';
-    bubble.textContent = text;
-    
-    const time = document.createElement('div');
-    time.className = 'message-time';
-    time.textContent = 'Just now';
-    
-    const wrapper = document.createElement('div');
-    wrapper.appendChild(bubble);
-    wrapper.appendChild(time);
-    
-    msgDiv.appendChild(wrapper);
-    messagesDiv.appendChild(msgDiv);
-    messagesDiv.scrollTop = messagesDiv.scrollHeight;
-  }
-  
-  function startWelcomeFlow() {
-    setTimeout(() => {
-      addAgentMessage(getMsg('welcome_1'));
-    }, 0);
-    
-    setTimeout(() => {
-      addAgentMessage(getMsg('welcome_2'));
-    }, 300);
-    
-    setTimeout(() => {
-      addAgentMessage(getMsg('welcome_3'), [
-        { text: getMsg('quick_explain'), action: 'explain' },
-        { text: getMsg('quick_find'), action: 'find_plan' }
-      ]);
-    }, 600);
-  }
-  
-  function handleQAIntent(intent) {
-    let title = '', text = '', followUps = [];
+  // ═══════════════════════════════════════════════════════════
+  // WIDGET SYSTEM — California Seniors Benefits
+  // Adapted from beneficiosmedicare.com widget
+  // ═══════════════════════════════════════════════════════════
+  let wData = {};
+  let widgetHistory = [];
 
-    switch (intent) {
-      case 'basics':
-        title = getMsg('part_a_title');
-        text = getMsg('part_a_text');
-        followUps = [
-          { text: 'What about Part B?', action: 'part_b' },
-          { text: 'Help me understand my options', action: 'find_plan' },
-          { text: 'Back to menu', action: 'back_to_menu' }
-        ];
-        break;
-      case 'part_b':
-        title = getMsg('part_b_title');
-        text = getMsg('part_b_text');
-        followUps = [
-          { text: 'What about Medicare Advantage?', action: 'advantage' },
-          { text: 'Help me understand my options', action: 'find_plan' },
-          { text: 'Back to menu', action: 'back_to_menu' }
-        ];
-        break;
-      case 'advantage':
-        title = getMsg('advantage_title');
-        text = getMsg('advantage_text');
-        followUps = [
-          { text: 'What about Medigap?', action: 'medigap' },
-          { text: 'Help me choose', action: 'find_plan' },
-          { text: 'Back to menu', action: 'back_to_menu' }
-        ];
-        break;
-      case 'medigap':
-        title = getMsg('medigap_title');
-        text = getMsg('medigap_text');
-        followUps = [
-          { text: 'Still confused. Help me choose!', action: 'find_plan' },
-          { text: 'Back to menu', action: 'back_to_menu' }
-        ];
-        break;
-      case 'cost':
-        title = getMsg('cost_breakdown_title');
-        text = getMsg('cost_breakdown_text');
-        followUps = [
-          { text: 'Advantage vs. Original?', action: 'comparison' },
-          { text: 'Help me choose', action: 'find_plan' },
-          { text: 'Back to menu', action: 'back_to_menu' }
-        ];
-        break;
-      case 'part_d':
-        title = getMsg('part_d_title');
-        text = getMsg('part_d_text');
-        followUps = [
-          { text: 'How much does all this cost?', action: 'cost' },
-          { text: 'Help me choose', action: 'find_plan' },
-          { text: 'Back to menu', action: 'back_to_menu' }
-        ];
-        break;
-      case 'enrollment':
-        title = getMsg('enrollment_title');
-        text = getMsg('enrollment_text');
-        followUps = [
-          { text: 'Help me find the right plan', action: 'find_plan' },
-          { text: 'Back to menu', action: 'back_to_menu' }
-        ];
-        break;
-      case 'ca_info':
-        title = getMsg('ca_info_title');
-        text = getMsg('ca_info_text');
-        followUps = [
-          { text: 'Help me find the right plan', action: 'find_plan' },
-          { text: 'Back to menu', action: 'back_to_menu' }
-        ];
-        break;
-      case 'comparison':
-        title = getMsg('comparison_title');
-        text = getMsg('comparison_text');
-        followUps = [
-          { text: 'Help me choose the best fit', action: 'find_plan' },
-          { text: 'Back to menu', action: 'back_to_menu' }
-        ];
-        break;
-    }
+  function wPush(fn) { widgetHistory.push(fn); }
 
-    const fullMsg = title ? '<strong>' + title + '</strong><br/><br/>' + text : text;
+  const CHRONIC_CONDITIONS = [
+    { group: 'Cardiovascular', items: [
+      { v: 'heart_failure', en: 'Chronic Heart Failure' },
+      { v: 'arrhythmia', en: 'Cardiac Arrhythmia' },
+      { v: 'cad', en: 'Coronary Artery Disease' },
+      { v: 'pvd', en: 'Peripheral Vascular Disease' },
+    ]},
+    { group: 'Diabetes', items: [
+      { v: 'diabetes1', en: 'Diabetes Type 1' },
+      { v: 'diabetes2', en: 'Diabetes Type 2' },
+    ]},
+    { group: 'Respiratory', items: [
+      { v: 'asthma', en: 'Asthma' },
+      { v: 'copd', en: 'COPD / Chronic Bronchitis' },
+      { v: 'emphysema', en: 'Emphysema' },
+      { v: 'pul_hyp', en: 'Pulmonary Hypertension' },
+    ]},
+    { group: 'Neurological', items: [
+      { v: 'dementia', en: "Dementia / Alzheimer's" },
+      { v: 'parkinsons', en: "Parkinson's Disease" },
+      { v: 'ms', en: 'Multiple Sclerosis' },
+      { v: 'stroke', en: 'Stroke-Related Deficits' },
+      { v: 'epilepsy', en: 'Epilepsy' },
+      { v: 'als', en: 'ALS' },
+    ]},
+    { group: 'Cancer', items: [
+      { v: 'cancer', en: 'Cancer (active)' },
+    ]},
+    { group: 'Kidney / Liver', items: [
+      { v: 'esrd', en: 'End-Stage Renal Disease (dialysis)' },
+      { v: 'esld', en: 'End-Stage Liver Disease' },
+    ]},
+    { group: 'Mental Health', items: [
+      { v: 'depression', en: 'Major Depression' },
+      { v: 'bipolar', en: 'Bipolar Disorder' },
+      { v: 'schizo', en: 'Schizophrenia / Schizoaffective' },
+    ]},
+    { group: 'Autoimmune', items: [
+      { v: 'ra', en: 'Rheumatoid Arthritis' },
+      { v: 'lupus', en: 'Lupus (SLE)' },
+    ]},
+    { group: 'Blood / Other', items: [
+      { v: 'sickle', en: 'Sickle-Cell Disease' },
+      { v: 'hiv', en: 'HIV/AIDS' },
+      { v: 'alcohol_drug', en: 'Chronic Alcohol/Drug Dependence' },
+    ]},
+  ];
 
-    addAgentMessage(fullMsg, followUps);
-  }
-  
-  function startPlanFinder() {
-    chatState.currentState = agentStates.plan_finder;
-    chatState.planFinderStep = 0;
-    chatState.planFinderAnswers = {};
-    
-    addAgentMessage(getMsg('plan_finder_intro'), [
-      { text: getMsg('plan_finder_q0_go'), action: 'plan_finder_go' },
-      { text: getMsg('plan_finder_q0_later'), action: 'qa' }
-    ]);
-  }
-  
-  function handleQuickReply(action, text) {
-    addUserMessage(text);
-    chatState.messageCount++;
-
-    if (action === 'back_to_menu') {
-      addAgentMessage(getMsg('welcome_3'), [
-        { text: getMsg('quick_explain'), action: 'explain' },
-        { text: getMsg('quick_find'), action: 'find_plan' }
-      ]);
-    } else if (action === 'plan_finder_go') {
-      planFinderStep1();
-    } else if (action === 'plan_finder_back_to_step1') {
-      planFinderStep1();
-    } else if (action === 'plan_finder_back_to_step2') {
-      planFinderStep2();
-    } else if (action === 'plan_finder_back_to_step3') {
-      planFinderStep3();
-    } else if (action === 'plan_finder_step1_a') {
-      chatState.planFinderAnswers.enrolled = 'yes';
-      planFinderStep2();
-    } else if (action === 'plan_finder_step1_b') {
-      chatState.planFinderAnswers.enrolled = '65soon';
-      planFinderStep2();
-    } else if (action === 'plan_finder_step1_c') {
-      chatState.planFinderAnswers.enrolled = 'disabled';
-      planFinderStep2();
-    } else if (action === 'plan_finder_step1_d') {
-      chatState.planFinderAnswers.enrolled = 'unsure';
-      planFinderStep2();
-    } else if (action === 'plan_finder_step2_a') {
-      chatState.planFinderAnswers.doctors = 'very';
-      planFinderStep3();
-    } else if (action === 'plan_finder_step2_b') {
-      chatState.planFinderAnswers.doctors = 'some';
-      planFinderStep3();
-    } else if (action === 'plan_finder_step2_c') {
-      chatState.planFinderAnswers.doctors = 'none';
-      planFinderStep3();
-    } else if (action === 'plan_finder_step3_a') {
-      chatState.planFinderAnswers.meds = 'several';
-      planFinderStep4();
-    } else if (action === 'plan_finder_step3_b') {
-      chatState.planFinderAnswers.meds = 'few';
-      planFinderStep4();
-    } else if (action === 'plan_finder_step3_c') {
-      chatState.planFinderAnswers.meds = 'none';
-      planFinderStep4();
-    } else if (action === 'plan_finder_step4_a') {
-      chatState.planFinderAnswers.priority = 'cost';
-      planFinderResult();
-    } else if (action === 'plan_finder_step4_b') {
-      chatState.planFinderAnswers.priority = 'oop';
-      planFinderResult();
-    } else if (action === 'plan_finder_step4_c') {
-      chatState.planFinderAnswers.priority = 'doctors';
-      planFinderResult();
-    } else if (action === 'plan_finder_step4_d') {
-      chatState.planFinderAnswers.priority = 'benefits';
-      planFinderResult();
-    } else if (action === 'plan_result_yes') {
-      offerConsent();
-    } else if (action === 'plan_result_no') {
-      addAgentMessage('No worries — you can always come back to this when you\'re ready. In the meantime, explore any topic below!', [
-        { text: 'What about costs?', action: 'cost' },
-        { text: 'Advantage vs. Original Medicare?', action: 'comparison' },
-        { text: 'Back to menu', action: 'back_to_menu' }
-      ]);
-    } else if (action === 'explain') {
-      handleQAIntent('basics');
-    } else if (action === 'part_b') {
-      handleQAIntent('part_b');
-    } else if (action === 'advantage') {
-      handleQAIntent('advantage');
-    } else if (action === 'medigap') {
-      handleQAIntent('medigap');
-    } else if (action === 'part_d') {
-      handleQAIntent('part_d');
-    } else if (action === 'enrollment') {
-      handleQAIntent('enrollment');
-    } else if (action === 'ca_info') {
-      handleQAIntent('ca_info');
-    } else if (action === 'comparison') {
-      handleQAIntent('comparison');
-    } else if (action === 'cost') {
-      handleQAIntent('cost');
-    } else if (action === 'find_plan') {
-      startPlanFinder();
-    } else if (action === 'understand_costs') {
-      handleQAIntent('cost');
-    } else if (action === 'talk_alejandra') {
-      offerConsent();
-    } else if (action === 'consent_yes') {
-      startLeadCapture();
-    } else if (action === 'consent_no') {
-      addAgentMessage('No problem at all! I\'m still here to help you learn. Ask me anything about Medicare — plans, costs, enrollment — whenever you\'re ready.', [
-        { text: 'What is Medicare Advantage?', action: 'advantage' },
-        { text: 'How much does Medicare cost?', action: 'cost' },
-        { text: 'Back to menu', action: 'back_to_menu' }
-      ]);
-    } else if (action.startsWith('lead_')) {
-      handleLeadCapture(action, text);
-    } else if (action.startsWith('confirm_')) {
-      handleConfirmation(action);
+  function showWidgetStep(id) {
+    document.querySelectorAll('.widget-step').forEach(s => s.classList.remove('active'));
+    const el = document.getElementById(id);
+    if (el) {
+      el.classList.add('active');
+      const widget = document.getElementById('widget-anchor') || document.querySelector('.widget-container');
+      if (widget) { widget.scrollIntoView({behavior:'smooth', block:'start'}); }
     }
   }
-  
-  function planFinderStep1() {
-    addAgentMessage(getMsg('plan_finder_q1'), [
-      { text: getMsg('plan_finder_q1_a'), action: 'plan_finder_step1_a' },
-      { text: getMsg('plan_finder_q1_b'), action: 'plan_finder_step1_b' },
-      { text: getMsg('plan_finder_q1_c'), action: 'plan_finder_step1_c' },
-      { text: getMsg('plan_finder_q1_d'), action: 'plan_finder_step1_d' },
-      { text: 'Back to menu', action: 'back_to_menu' }
-    ]);
-  }
-  
-  function planFinderStep2() {
-    addAgentMessage(getMsg('plan_finder_q2'), [
-      { text: getMsg('plan_finder_q2_a'), action: 'plan_finder_step2_a' },
-      { text: getMsg('plan_finder_q2_b'), action: 'plan_finder_step2_b' },
-      { text: getMsg('plan_finder_q2_c'), action: 'plan_finder_step2_c' },
-      { text: 'Back', action: 'plan_finder_back_to_step1' }
-    ]);
-  }
-  
-  function planFinderStep3() {
-    addAgentMessage(getMsg('plan_finder_q3'), [
-      { text: getMsg('plan_finder_q3_a'), action: 'plan_finder_step3_a' },
-      { text: getMsg('plan_finder_q3_b'), action: 'plan_finder_step3_b' },
-      { text: getMsg('plan_finder_q3_c'), action: 'plan_finder_step3_c' },
-      { text: 'Back', action: 'plan_finder_back_to_step2' }
-    ]);
-  }
-  
-  function planFinderStep4() {
-    addAgentMessage(getMsg('plan_finder_q4'), [
-      { text: getMsg('plan_finder_q4_a'), action: 'plan_finder_step4_a' },
-      { text: getMsg('plan_finder_q4_b'), action: 'plan_finder_step4_b' },
-      { text: getMsg('plan_finder_q4_c'), action: 'plan_finder_step4_c' },
-      { text: getMsg('plan_finder_q4_d'), action: 'plan_finder_step4_d' },
-      { text: 'Back', action: 'plan_finder_back_to_step3' }
-    ]);
-  }
-  
-  function planFinderResult() {
-    let resultMsg = '';
-    
-    if (chatState.planFinderAnswers.doctors === 'very') {
-      resultMsg = getMsg('plan_finder_result_doctors');
-    } else if (chatState.planFinderAnswers.priority === 'cost') {
-      resultMsg = getMsg('plan_finder_result_cost');
-    } else if (chatState.planFinderAnswers.enrolled === '65soon') {
-      resultMsg = getMsg('plan_finder_result_65');
+
+  function wBack() {
+    if (widgetHistory.length > 1) {
+      widgetHistory.pop();
+      var prev = widgetHistory.pop();
+      prev();
     } else {
-      resultMsg = getMsg('plan_finder_result_default');
+      widgetHistory = [];
+      showWidgetStep('w-step-0');
+      updateWidgetProgress(0);
     }
-    
-    addAgentMessage(resultMsg);
-    
-    setTimeout(() => {
-      addAgentMessage(getMsg('plan_finder_offer'), [
-        { text: getMsg('plan_finder_yes'), action: 'plan_result_yes' },
-        { text: getMsg('plan_finder_no'), action: 'plan_result_no' },
-        { text: 'Back to menu', action: 'back_to_menu' }
-      ]);
-    }, 300);
   }
-  
-  function offerConsent() {
-    chatState.currentState = agentStates.consent_offer;
-    addAgentMessage(getMsg('consent_1'));
-    
-    setTimeout(() => {
-      addAgentMessage(getMsg('consent_2'));
-    }, 300);
-    
-    setTimeout(() => {
-      addAgentMessage(getMsg('consent_3'), [
-        { text: getMsg('consent_yes'), action: 'consent_yes' },
-        { text: getMsg('consent_no'), action: 'consent_no' },
-        { text: 'Back to menu', action: 'back_to_menu' }
-      ]);
-    }, 600);
-  }
-  
-  function startLeadCapture() {
-    chatState.currentState = agentStates.lead_capture;
-    chatState.leadData = {};
-    chatState.pendingFieldCapture = 'name';
-    addAgentMessage(getMsg('lead_name_prompt'));
-    setInputMode('name');
-  }
-  
-  const leadSteps = ['name','phone','email','dob','zip','time'];
 
-  function updateLeadProgress(currentField) {
-    const es = document.body.classList.contains('lang-es');
-    const idx = leadSteps.indexOf(currentField);
-    if (idx < 0) return;
-    // Remove old progress bar
-    document.querySelectorAll('.lead-progress').forEach(el => el.remove());
-    const bar = document.createElement('div');
-    bar.className = 'lead-progress';
-    const labels = es
-      ? ['Nombre','Tel','Email','Fecha','ZIP','Hora']
-      : ['Name','Phone','Email','DOB','ZIP','Time'];
-    leadSteps.forEach((s, i) => {
-      const dot = document.createElement('div');
-      dot.className = 'lead-progress-step' + (i < idx ? ' done' : i === idx ? ' active' : '');
-      bar.appendChild(dot);
+  function startFlow(type) {
+    widgetHistory = [];
+    updateWidgetProgress(10);
+    if (type === 'first-time') { wData = { flow: type }; renderFT_Step1(); }
+    else if (type === 'moving') { wData = { flow: type }; renderMV_Step1(); }
+    else if (type === 'better') { wData = { flow: 'better', forWhom: 'family' }; renderBT_Step1(); }
+    else if (type === 'learn') { wData = { flow: 'learn' }; renderLearnStep1(); }
+  }
+
+  // ── SHARED HELPERS ────────────────────────────────────────
+  function shell(containerId, backId, iconCls, bgColor, question, subtitle, body) {
+    document.getElementById(containerId).innerHTML =
+      '<button class="widget-back" onclick="wBack()"><i class="fas fa-arrow-left"></i> Back</button>' +
+      '<div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">' +
+        '<div style="width:40px;height:40px;border-radius:10px;background:' + bgColor + ';display:flex;align-items:center;justify-content:center;color:white;font-size:18px;flex-shrink:0"><i class="' + iconCls + '"></i></div>' +
+        '<div class="widget-q" style="margin:0">' + question + '</div>' +
+      '</div>' +
+      '<div class="widget-qsub">' + subtitle + '</div>' +
+      body;
+  }
+
+  function opt(label, onclick_fn, note) {
+    note = note || '';
+    return '<button onclick="' + onclick_fn + '" style="width:100%;text-align:left;padding:14px 18px;margin-bottom:10px;border:2px solid var(--lt-gray);border-radius:10px;background:white;font-size:15px;font-family:inherit;cursor:pointer;color:var(--dark);transition:all 0.15s" onmouseover="this.style.borderColor='var(--teal)';this.style.background='var(--lt-blue)'" onmouseout="this.style.borderColor='var(--lt-gray)';this.style.background='white'">' +
+      label + (note ? '<br><span style="font-size:12px;color:var(--gray)">' + note + '</span>' : '') +
+    '</button>';
+  }
+
+  function inp(id, label, type, placeholder, req) {
+    type = type || 'text';
+    placeholder = placeholder || '';
+    req = req || false;
+    var isZip = id.includes('zip');
+    var isPhone = id.includes('phone') || id.includes('tel');
+    var isName = id.includes('name');
+    var isEmail = id.includes('email');
+    var imode = isZip ? 'numeric' : isPhone ? 'tel' : isEmail ? 'email' : 'text';
+    var acomp = isName ? 'name' : isPhone ? 'tel' : isEmail ? 'email' : isZip ? 'postal-code' : 'off';
+    return '<div style="margin-bottom:14px">' +
+      '<label style="display:block;font-size:15px;font-weight:700;color:var(--navy);margin-bottom:8px">' + label + (req ? ' <span style="color:#DC2626">*</span>' : '') + '</label>' +
+      '<input id="' + id + '" type="' + type + '" inputmode="' + imode + '" autocomplete="' + acomp + '" placeholder="' + placeholder + '"' +
+      ' style="width:100%;padding:14px 16px;border:2px solid var(--lt-gray);border-radius:10px;font-size:16px;font-family:inherit;outline:none;min-height:52px"' +
+      ' onfocus="this.style.borderColor='var(--teal)';this.style.boxShadow='0 0 0 3px rgba(13,148,136,0.15)'"' +
+      ' onblur="this.style.borderColor='var(--lt-gray)';this.style.boxShadow='none'">' +
+    '</div>';
+  }
+
+  function sel(id, label, optionsHtml) {
+    return '<div style="margin-bottom:14px">' +
+      '<label style="display:block;font-size:15px;font-weight:700;color:var(--navy);margin-bottom:8px">' + label + '</label>' +
+      '<select id="' + id + '"' +
+      ' style="width:100%;padding:14px 16px;border:2px solid var(--lt-gray);border-radius:10px;font-size:16px;font-family:inherit;color:var(--dark);outline:none;min-height:52px;-webkit-appearance:auto"' +
+      ' onfocus="this.style.borderColor='var(--teal)';this.style.boxShadow='0 0 0 3px rgba(13,148,136,0.15)'"' +
+      ' onblur="this.style.borderColor='var(--lt-gray)';this.style.boxShadow='none'">' +
+      optionsHtml +
+      '</select>' +
+    '</div>';
+  }
+
+  function nextBtn(label, fn) {
+    return '<button onclick="' + fn + '" style="width:100%;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;font-size:17px;padding:17px;min-height:54px;font-weight:700;letter-spacing:0.02em;background:var(--teal);color:white;border:none;border-radius:var(--radius-btn);cursor:pointer;font-family:inherit;transition:background 0.2s" onmouseover="this.style.background='var(--teal-dark)'" onmouseout="this.style.background='var(--teal)'">' + label + ' <i class="fas fa-arrow-right"></i></button>';
+  }
+
+  function getVal(id) { var el=document.getElementById(id); return el?el.value.trim():''; }
+  function getChecked(name) {
+    return Array.from(document.querySelectorAll('input[name="' + name + '"]:checked')).map(function(c){return c.value;});
+  }
+
+  function carrierSel(id) {
+    var carriers = ['Kaiser Permanente','UnitedHealthcare (AARP)','Aetna / CVS Health','Humana','Anthem Blue Cross','Blue Shield of California','Molina Healthcare'];
+    var opts = carriers.map(function(c){ return '<option value="' + c + '">' + c + '</option>'; }).join('');
+    return '<div style="margin-bottom:14px">' +
+      '<label style="display:block;font-size:14px;font-weight:600;color:var(--navy);margin-bottom:6px">What is their current insurance carrier?</label>' +
+      '<select id="' + id + '" onchange="toggleOtherCarrier('' + id + '')" style="width:100%;padding:13px 16px;border:2px solid var(--lt-gray);border-radius:10px;font-size:16px;font-family:inherit;color:var(--dark);outline:none">' +
+        '<option value="">Select carrier</option>' + opts +
+        '<option value="other">Other carrier</option>' +
+      '</select>' +
+      '<input id="' + id + '-other" type="text" placeholder="Type the carrier name" style="display:none;width:100%;margin-top:8px;padding:13px 16px;border:2px solid var(--lt-gray);border-radius:10px;font-size:16px;font-family:inherit;outline:none">' +
+    '</div>';
+  }
+
+  function toggleOtherCarrier(id) {
+    var s = document.getElementById(id);
+    var other = document.getElementById(id + '-other');
+    if (other) other.style.display = (s && s.value === 'other') ? 'block' : 'none';
+  }
+
+  function chronicPanel() {
+    var html = '<div style="margin-bottom:20px">' +
+      '<label style="display:block;font-size:14px;font-weight:600;color:var(--navy);margin-bottom:10px">Does your parent have any of these chronic conditions? (Select all that apply)</label>' +
+      '<div style="border:2px solid var(--lt-blue);border-radius:10px;padding:16px;background:white;max-height:280px;overflow-y:auto">';
+    CHRONIC_CONDITIONS.forEach(function(group) {
+      html += '<div style="margin-bottom:12px"><div style="font-size:12px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">' + group.group + '</div>';
+      group.items.forEach(function(item) {
+        html += '<label style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--dark);margin-bottom:4px;cursor:pointer"><input type="checkbox" name="chronic" value="' + item.v + '" style="width:16px;height:16px;accent-color:var(--navy)"> ' + item.en + '</label>';
+      });
+      html += '</div>';
     });
-    const lbl = document.createElement('span');
-    lbl.className = 'lead-progress-label';
-    lbl.textContent = (es ? 'Paso ' : 'Step ') + (idx+1) + '/6';
-    bar.appendChild(lbl);
-    const messages = document.getElementById('chatMessages');
-    messages.appendChild(bar);
-    messages.scrollTop = messages.scrollHeight;
+    html += '</div><label style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--gray);margin-top:8px;cursor:pointer"><input type="checkbox" name="chronic" value="none" id="chronic-none" style="width:16px;height:16px;accent-color:var(--teal)"> <em>None of the above</em></label></div>';
+    return html;
   }
 
-  function clearInputError() {
-    document.getElementById('chatInput').classList.remove('input-error');
-    const hint = document.getElementById('chatInputHint');
-    if (hint) { hint.classList.remove('visible'); hint.textContent = ''; }
+  function partABQuestion() {
+    return sel('partab', 'Does your parent already have Medicare Part A and Part B?',
+      '<option value="both">Yes, they have both (Part A and B)</option>' +
+      '<option value="a_only">Part A only</option>' +
+      '<option value="neither">No, they don't have either yet</option>' +
+      '<option value="unsure">Not sure</option>'
+    );
   }
 
-  function showInputError(msg) {
-    document.getElementById('chatInput').classList.add('input-error');
-    const hint = document.getElementById('chatInputHint');
-    if (hint) { hint.textContent = msg; hint.classList.add('visible'); }
+  function updateWidgetProgress(pct) {
+    var fill = document.getElementById('widget-progress-fill');
+    if (fill) fill.style.width = Math.min(100, Math.max(0, pct)) + '%';
   }
 
-  function validateField(field, value) {
-    const es = document.body.classList.contains('lang-es');
-    if (field === 'phone') {
-      const digits = value.replace(/\D/g, '');
-      if (digits.length < 10) {
-        showInputError(es ? 'Ingresa un número de 10 dígitos' : 'Enter a 10-digit phone number');
-        return false;
+  // ══════════════════════════════════════════════════
+  // FLOW 1 — PARENT TURNING 65
+  // ══════════════════════════════════════════════════
+  function renderFT_Step1() {
+    wPush(function(){ renderFT_Step1(); });
+    var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var currentYear = new Date().getFullYear();
+    var monthOpts = '<option value="">Month</option>' + months.map(function(m,i){ return '<option value="' + (i+1) + '">' + m + '</option>'; }).join('');
+    var yearOpts = '<option value="">Year</option>';
+    for(var y=currentYear-64; y>=currentYear-100; y--) yearOpts += '<option value="' + y + '">' + y + '</option>';
+    var dayOpts = '<option value="">Day</option>';
+    for(var d=1; d<=31; d++) dayOpts += '<option value="' + d + '">' + d + '</option>';
+
+    document.getElementById('flow-first-time').innerHTML =
+      '<button class="widget-back" onclick="wBack()"><i class="fas fa-arrow-left"></i> Back</button>' +
+      '<div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">' +
+        '<div style="width:40px;height:40px;border-radius:10px;background:var(--navy);display:flex;align-items:center;justify-content:center;color:white;font-size:18px;flex-shrink:0"><i class="fas fa-birthday-cake"></i></div>' +
+        '<div class="widget-q" style="margin:0">When will your parent turn 65?</div>' +
+      '</div>' +
+      '<div class="widget-qsub">Their date of birth helps us calculate exactly when their enrollment window opens.</div>' +
+      '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px">' +
+        '<div><label style="display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:6px">Month*</label><select id="ft-month" style="width:100%;padding:12px 8px;border:2px solid var(--lt-gray);border-radius:10px;font-size:15px;font-family:inherit">' + monthOpts + '</select></div>' +
+        '<div><label style="display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:6px">Day*</label><select id="ft-day" style="width:100%;padding:12px 8px;border:2px solid var(--lt-gray);border-radius:10px;font-size:15px;font-family:inherit">' + dayOpts + '</select></div>' +
+        '<div><label style="display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:6px">Year*</label><select id="ft-year" style="width:100%;padding:12px 8px;border:2px solid var(--lt-gray);border-radius:10px;font-size:15px;font-family:inherit">' + yearOpts + '</select></div>' +
+      '</div>' +
+      '<div style="display:grid;grid-template-columns:2fr 1fr;gap:12px;align-items:start">' + inp('ft-zip','Zip code','text','E.g. 90028',true) + inp('ft-state','State','text','CA',false) + '</div>' +
+      nextBtn('Continue','ft_step2()');
+    showWidgetStep('flow-first-time');
+    setTimeout(function() {
+      var zipEl = document.getElementById('ft-zip');
+      var stEl = document.getElementById('ft-state');
+      if (zipEl && stEl) {
+        zipEl.addEventListener('input', function() {
+          var st = zipToState(this.value);
+          if (st && !stEl._touched) { stEl.value = st; stEl.style.color='var(--teal)'; }
+        });
+        stEl.addEventListener('input', function() { this._touched = true; this.style.color='var(--dark)'; });
       }
-    } else if (field === 'email') {
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-        showInputError(es ? 'Ingresa un correo válido' : 'Enter a valid email address');
-        return false;
-      }
-    } else if (field === 'zip') {
-      if (!/^\d{5}$/.test(value.trim())) {
-        showInputError(es ? 'Ingresa un código postal de 5 dígitos' : 'Enter a 5-digit ZIP code');
-        return false;
-      }
-    } else if (field === 'name') {
-      if (value.trim().length < 2) {
-        showInputError(es ? 'Ingresa tu nombre' : 'Please enter your name');
-        return false;
-      }
-    }
-    clearInputError();
-    return true;
+      if (wData.dob) { var m=document.getElementById('ft-month'),d=document.getElementById('ft-day'),y=document.getElementById('ft-year'); if(m)m.value=wData.dob.month;if(d)d.value=wData.dob.day;if(y)y.value=wData.dob.year; }
+      if (wData.zip) { var z=document.getElementById('ft-zip');if(z)z.value=wData.zip; }
+      if (wData.state) { var s=document.getElementById('ft-state');if(s)s.value=wData.state; }
+    }, 0);
   }
 
-  function setInputMode(field) {
-    const inp = document.getElementById('chatInput');
-    const es = document.body.classList.contains('lang-es');
-    const modes = {
-      name:  { type:'text',  inputmode:'text',    placeholder: es?'Tu nombre completo':'Your full name', autocomplete:'name' },
-      phone: { type:'tel',   inputmode:'tel',     placeholder: es?'(310) 555-1234':'(310) 555-1234', autocomplete:'tel' },
-      email: { type:'email', inputmode:'email',   placeholder: es?'tucorreo@ejemplo.com':'you@example.com', autocomplete:'email' },
-      zip:   { type:'text',  inputmode:'numeric', placeholder: es?'Ej: 90210':'e.g. 90210', autocomplete:'postal-code' },
+  function ft_step2() { updateWidgetProgress(30);
+    var month=getVal('ft-month'),day=getVal('ft-day'),year=getVal('ft-year'),zip=getVal('ft-zip');
+    var ok=true;
+    if(!month){document.getElementById('ft-month').style.borderColor='#DC2626';ok=false;}
+    if(!day){document.getElementById('ft-day').style.borderColor='#DC2626';ok=false;}
+    if(!year){document.getElementById('ft-year').style.borderColor='#DC2626';ok=false;}
+    if(!zip){document.getElementById('ft-zip').style.borderColor='#DC2626';ok=false;}
+    if(!ok) return;
+    var dobTest = new Date(year, month-1, day);
+    if(dobTest.getMonth() !== parseInt(month)-1){ document.getElementById('ft-day').style.borderColor='#DC2626'; return; }
+    wData.dob = { month:month, day:day, year:year, formatted: String(month).padStart(2,'0')+'/'+String(day).padStart(2,'0')+'/'+year };
+    wData.zip = zip; wData.state = getVal('ft-state');
+    function _show(){ wPush(_show); shell('flow-first-time','flow-first-time','fas fa-briefcase','var(--navy)',
+      'Is your parent currently still working?',
+      'If they have active employer coverage, there are important rules about when to enroll.',
+      opt('Yes, they work and have employer insurance',"ft_work('yes-employer')",'They may qualify to delay Medicare') +
+      opt('Yes, they work but with no employer insurance',"ft_work('yes-noinsurance')") +
+      opt('No, they are retired',"ft_work('retired')") +
+      opt("They're on their spouse's employer plan","ft_work('spouse-plan')")
+    );} _show();
+  }
+
+  function ft_work(w) {
+    wData.workStatus = w;
+    wPush(function(){ ft_work(w); });
+    shell('flow-first-time','flow-first-time','fas fa-id-card','var(--navy)',
+      'Does your parent already have Medicare Part A and Part B?',
+      'This changes the process significantly. If they already have both, we focus on choosing the right plan.',
+      partABQuestion() + nextBtn('Continue','ft_step3()')
+    );
+  }
+
+  function ft_step3() { updateWidgetProgress(55);
+    wData.partAB = getVal('partab');
+    function _show(){ wPush(_show); shell('flow-first-time','flow-first-time','fas fa-pills','var(--navy)',
+      'Does your parent take prescription medications regularly?',
+      'The type and quantity of medications affects which Part D or Medicare Advantage plan is best.',
+      opt('No prescription medications',"ft_meds('none')") +
+      opt('1 to 3 medications',"ft_meds('few')") +
+      opt('4 or more medications',"ft_meds('many')") +
+      opt('Expensive or brand-name medications',"ft_meds('expensive')",'More than $100/month')
+    );} _show();
+  }
+
+  function ft_meds(m) {
+    wData.meds = m;
+    wPush(function(){ ft_meds(m); });
+    document.getElementById('flow-first-time').innerHTML =
+      '<button class="widget-back" onclick="wBack()"><i class="fas fa-arrow-left"></i> Back</button>' +
+      '<div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">' +
+        '<div style="width:40px;height:40px;border-radius:10px;background:var(--teal);display:flex;align-items:center;justify-content:center;color:white;font-size:18px;flex-shrink:0"><i class="fas fa-heartbeat"></i></div>' +
+        '<div class="widget-q" style="margin:0">Health Conditions</div>' +
+      '</div>' +
+      '<div class="widget-qsub">If your parent has chronic conditions, there may be special plans (C-SNPs) designed exactly for their situation.</div>' +
+      chronicPanel() + nextBtn('Continue','ft_step4()');
+  }
+
+  function ft_step4() { updateWidgetProgress(75);
+    wData.chronic = getChecked('chronic');
+    renderUrgencyStep('flow-first-time', 'first-time');
+  }
+
+  // ══════════════════════════════════════════════════
+  // FLOW 2 — PARENT MOVING
+  // ══════════════════════════════════════════════════
+  function renderMV_Step1() {
+    wPush(function(){ renderMV_Step1(); });
+    document.getElementById('flow-moving').innerHTML =
+      '<button class="widget-back" onclick="wBack()"><i class="fas fa-arrow-left"></i> Back</button>' +
+      '<div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">' +
+        '<div style="width:40px;height:40px;border-radius:10px;background:var(--teal);display:flex;align-items:center;justify-content:center;color:white;font-size:18px;flex-shrink:0"><i class="fas fa-truck-moving"></i></div>' +
+        '<div class="widget-q" style="margin:0">Tell us about the move</div>' +
+      '</div>' +
+      '<div class="widget-qsub">When your parent moves, they qualify for a Special Enrollment Period (SEP). Timing matters.</div>' +
+      '<div style="display:grid;grid-template-columns:2fr 1fr;gap:12px;align-items:start">' + inp('mv-zip-from','Origin zip','text','E.g. 60601',true) + inp('mv-state-from','State','text','IL',false) + '</div>' +
+      '<div style="display:grid;grid-template-columns:2fr 1fr;gap:12px;align-items:start">' + inp('mv-zip-to','Destination zip','text','E.g. 90028',true) + inp('mv-state-to','New state','text','CA',false) + '</div>' +
+      sel('mv-when','When is the move?',
+        '<option value="moved">Already moved (within last 60 days)</option>' +
+        '<option value="30d">Moving within the next 30 days</option>' +
+        '<option value="90d">Moving in 1-3 months</option>' +
+        '<option value="planning">Just planning ahead</option>'
+      ) + nextBtn('Continue','mv_step2()');
+    showWidgetStep('flow-moving');
+    setTimeout(function() {
+      [['mv-zip-from','mv-state-from'],['mv-zip-to','mv-state-to']].forEach(function(pair) {
+        var zipEl=document.getElementById(pair[0]),stEl=document.getElementById(pair[1]);
+        if(zipEl&&stEl) zipEl.addEventListener('input',function(){var st=zipToState(this.value);if(st)stEl.value=st;});
+      });
+      if(wData.zipFrom){var z=document.getElementById('mv-zip-from');if(z)z.value=wData.zipFrom;}
+      if(wData.stateFrom){var s=document.getElementById('mv-state-from');if(s)s.value=wData.stateFrom;}
+      if(wData.zipTo){var z=document.getElementById('mv-zip-to');if(z)z.value=wData.zipTo;}
+      if(wData.stateTo){var s=document.getElementById('mv-state-to');if(s)s.value=wData.stateTo;}
+      if(wData.moveWhen){var w=document.getElementById('mv-when');if(w)w.value=wData.moveWhen;}
+    }, 0);
+  }
+
+  function mv_step2() { updateWidgetProgress(40);
+    var zf=getVal('mv-zip-from'),zt=getVal('mv-zip-to');
+    if(!zf||!zt){if(!zf)document.getElementById('mv-zip-from').style.borderColor='#DC2626';if(!zt)document.getElementById('mv-zip-to').style.borderColor='#DC2626';return;}
+    wData.zipFrom=zf;wData.stateFrom=getVal('mv-state-from');wData.zipTo=zt;wData.stateTo=getVal('mv-state-to');wData.moveWhen=getVal('mv-when');
+    function _show(){ wPush(_show); shell('flow-moving','flow-moving','fas fa-file-medical','var(--teal)',
+      'What type of Medicare plan does your parent have now?',
+      'Medicare Advantage plans are local. Crossing county or state lines may invalidate their current plan.',
+      opt('Medicare Advantage (Part C)',"mv_plan('advantage')") +
+      opt('Original Medicare + Supplement (Medigap)',"mv_plan('medigap')") +
+      opt('Original Medicare only (no supplement)',"mv_plan('original')") +
+      opt("Don't know / Not sure","mv_plan('unknown')")
+    );} _show();
+  }
+
+  function mv_plan(p) {
+    wData.plantype = p;
+    wPush(function(){ mv_plan(p); });
+    shell('flow-moving','flow-moving','fas fa-id-card','var(--teal)',
+      'Does your parent already have Medicare Part A and Part B?',
+      'We need to know this to ensure coverage continuity during the move.',
+      partABQuestion() + nextBtn('Continue','mv_step3()')
+    );
+  }
+
+  function mv_step3() { updateWidgetProgress(70);
+    wData.partAB = getVal('partab');
+    function _show(){ wPush(_show);
+      document.getElementById('flow-moving').innerHTML =
+        '<button class="widget-back" onclick="wBack()"><i class="fas fa-arrow-left"></i> Back</button>' +
+        '<div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">' +
+          '<div style="width:40px;height:40px;border-radius:10px;background:var(--teal);display:flex;align-items:center;justify-content:center;color:white;font-size:18px;flex-shrink:0"><i class="fas fa-heartbeat"></i></div>' +
+          '<div class="widget-q" style="margin:0">Health Conditions</div>' +
+        '</div>' +
+        '<div class="widget-qsub">When changing plans, it's key to ensure your parent's conditions and medications are covered.</div>' +
+        chronicPanel() + nextBtn('Continue','mv_step4()');
+    } _show();
+  }
+
+  function mv_step4() { updateWidgetProgress(85);
+    wData.chronic = getChecked('chronic');
+    renderUrgencyStep('flow-moving', 'moving');
+  }
+
+  // ══════════════════════════════════════════════════
+  // FLOW 3 — BETTER OPTIONS FOR PARENT
+  // ══════════════════════════════════════════════════
+  function renderBT_Step1() {
+    wPush(function(){ renderBT_Step1(); });
+    shell('flow-better','flow-better','fas fa-balance-scale','var(--teal-dark)',
+      "Tell us about your parent's current insurance",
+      "We need their starting point to find something better.",
+      carrierSel('bt-carrier') +
+      '<div style="display:grid;grid-template-columns:2fr 1fr;gap:12px;align-items:start">' +
+      inp('bt-zip','Their zip code','text','E.g. 90028',true) +
+      inp('bt-state','Their state','text','CA',false) +
+      '</div>' +
+      sel('bt-plantype','What type of plan do they have?',
+        '<option value="advantage">Medicare Advantage (Part C)</option>' +
+        '<option value="medigap">Original Medicare + Medigap Supplement</option>' +
+        '<option value="original">Original Medicare only</option>' +
+        '<option value="unknown">Not sure</option>'
+      ) + nextBtn('Continue','bt_step2()')
+    );
+    showWidgetStep('flow-better');
+    setTimeout(function() {
+      var zipEl=document.getElementById('bt-zip'),stEl=document.getElementById('bt-state');
+      if(zipEl&&stEl) zipEl.addEventListener('input',function(){var st=zipToState(this.value);if(st)stEl.value=st;});
+      if(wData.zip){var z=document.getElementById('bt-zip');if(z)z.value=wData.zip;}
+      if(wData.state){var s=document.getElementById('bt-state');if(s)s.value=wData.state;}
+      if(wData.carrier){var c=document.getElementById('bt-carrier');if(c)c.value=wData.carrier;}
+      if(wData.plantype){var p=document.getElementById('bt-plantype');if(p)p.value=wData.plantype;}
+    }, 0);
+  }
+
+  function bt_step2() {
+    var zip=getVal('bt-zip');
+    if(!zip){document.getElementById('bt-zip').style.borderColor='#DC2626';return;}
+    var carrierEl=document.getElementById('bt-carrier');
+    var carrier=carrierEl?carrierEl.value:'';
+    if(carrier==='other'){var oth=document.getElementById('bt-carrier-other');carrier=oth?oth.value.trim()||'Other':'Other';}
+    wData.carrier=carrier;wData.zip=zip;wData.state=getVal('bt-state');wData.plantype=getVal('bt-plantype');
+    function _show(){ wPush(_show); shell('flow-better','flow-better','fas fa-exclamation-circle','var(--teal-dark)',
+      "What is the main issue with your parent's current plan?",
+      'Be specific. This helps us know exactly what to focus on.',
+      opt('Costs are too high (premium, copays, deductibles)',"bt_issue('cost')") +
+      opt('Their doctors are no longer in the plan network',"bt_issue('doctors')") +
+      opt('Their medications cost too much with this plan',"bt_issue('drugs')") +
+      opt('Missing dental, vision, or hearing coverage',"bt_issue('extras')") +
+      opt('Received a letter saying the plan is changing or cancelled',"bt_issue('cancelled')",'Act fast!')
+    );} _show();
+  }
+
+  function bt_issue(i) {
+    wData.issue = i;
+    wPush(function(){ bt_issue(i); });
+    shell('flow-better','flow-better','fas fa-id-card','var(--teal-dark)',
+      'Does your parent already have Medicare Part A and Part B?',
+      'We need to confirm this to compare the right options available in their area.',
+      partABQuestion() + nextBtn('Continue','bt_step3()')
+    );
+  }
+
+  function bt_step3() {
+    wData.partAB = getVal('partab');
+    wPush(function(){ bt_step3(); });
+    document.getElementById('flow-better').innerHTML =
+      '<button class="widget-back" onclick="wBack()"><i class="fas fa-arrow-left"></i> Back</button>' +
+      '<div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">' +
+        '<div style="width:40px;height:40px;border-radius:10px;background:var(--teal);display:flex;align-items:center;justify-content:center;color:white;font-size:18px;flex-shrink:0"><i class="fas fa-heartbeat"></i></div>' +
+        '<div class="widget-q" style="margin:0">Your parent's health conditions</div>' +
+      '</div>' +
+      '<div class="widget-qsub">If there are chronic conditions, there are C-SNP plans with extra benefits designed exactly for that situation.</div>' +
+      chronicPanel() + nextBtn('Continue','bt_step4()');
+  }
+
+  function bt_step4() { updateWidgetProgress(85);
+    wData.chronic = getChecked('chronic');
+    renderUrgencyStep('flow-better', 'better');
+  }
+
+  // ══════════════════════════════════════════════════
+  // FLOW 4 — JUST WANT TO LEARN
+  // ══════════════════════════════════════════════════
+  function renderLearnStep1() {
+    wPush(function(){ renderLearnStep1(); });
+    shell('flow-learn','flow-learn','fas fa-book-open','var(--coral)',
+      'What would you like to understand?',
+      "We'll connect you with the right resources and guidance.",
+      opt('How Medicare works in general',"learnTopic('how-it-works')") +
+      opt('What plan options are available',"learnTopic('plan-options')") +
+      opt('Help my parent choose the right plan',"learnTopic('help-choose')") +
+      opt('Something else',"learnTopic('other')")
+    );
+    showWidgetStep('flow-learn');
+  }
+
+  function learnTopic(topic) {
+    wData.learnTopic = topic;
+    updateWidgetProgress(40);
+    wPush(function(){ learnTopic(topic); });
+    shell('flow-learn','flow-learn','fas fa-id-card','var(--coral)',
+      'Does your parent have Medicare yet?',
+      'This helps us point you in the right direction.',
+      opt('Yes, they have Medicare',"learnMedicare('yes')") +
+      opt('No, not yet',"learnMedicare('no')") +
+      opt("I'm not sure","learnMedicare('unsure')")
+    );
+  }
+
+  function learnMedicare(val) {
+    wData.parentMedicare = val;
+    updateWidgetProgress(60);
+    wPush(function(){ learnMedicare(val); });
+    document.getElementById('flow-learn').innerHTML =
+      '<button class="widget-back" onclick="wBack()"><i class="fas fa-arrow-left"></i> Back</button>' +
+      '<div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">' +
+        '<div style="width:40px;height:40px;border-radius:10px;background:var(--coral);display:flex;align-items:center;justify-content:center;color:white;font-size:18px;flex-shrink:0"><i class="fas fa-map-marker-alt"></i></div>' +
+        '<div class="widget-q" style="margin:0">Where does your parent live?</div>' +
+      '</div>' +
+      '<div class="widget-qsub">Plan availability depends on location. This is optional but helpful.</div>' +
+      '<div style="display:grid;grid-template-columns:2fr 1fr;gap:12px;align-items:start">' + inp('learn-zip','Zip code (optional)','text','E.g. 90028',false) + inp('learn-state','State','text','CA',false) + '</div>' +
+      nextBtn('Continue','learnStep3()');
+    setTimeout(function() {
+      var zipEl=document.getElementById('learn-zip'),stEl=document.getElementById('learn-state');
+      if(zipEl&&stEl) zipEl.addEventListener('input',function(){var st=zipToState(this.value);if(st)stEl.value=st;});
+    }, 0);
+  }
+
+  function learnStep3() {
+    updateWidgetProgress(80);
+    wData.zip = getVal('learn-zip');
+    wData.state = getVal('learn-state');
+    renderContactForm('flow-learn', 'learn');
+  }
+
+  // ══════════════════════════════════════════════════
+  // URGENCY + CONTACT FORM (all flows)
+  // ══════════════════════════════════════════════════
+  function renderUrgencyStep(containerId, flow) {
+    wPush(function(){ renderUrgencyStep(containerId, flow); });
+    document.getElementById(containerId).innerHTML =
+      '<button class="widget-back" onclick="wBack()"></button>' +
+      '<div class="widget-q" style="margin-bottom:8px">One more question...</div>' +
+      '<div class="widget-qsub" style="margin-bottom:18px">This helps us prioritize your parent's case correctly.</div>' +
+      '<div style="display:flex;flex-direction:column;gap:10px">' +
+        '<button onclick="setUrgency('asap','' + containerId + '','' + flow + '')" style="padding:14px 18px;border:2px solid var(--lt-gray);border-radius:10px;background:white;font-size:15px;font-family:inherit;cursor:pointer;color:var(--dark);text-align:left;transition:all 0.15s" onmouseover="this.style.borderColor='var(--teal)';this.style.background='var(--lt-mint)'" onmouseout="this.style.borderColor='var(--lt-gray)';this.style.background='white'"><strong>As soon as possible</strong><br><span style="font-size:13px;color:var(--gray)">They need to enroll or switch plans soon.</span></button>' +
+        '<button onclick="setUrgency('3months','' + containerId + '','' + flow + '')" style="padding:14px 18px;border:2px solid var(--lt-gray);border-radius:10px;background:white;font-size:15px;font-family:inherit;cursor:pointer;color:var(--dark);text-align:left;transition:all 0.15s" onmouseover="this.style.borderColor='var(--teal)';this.style.background='var(--lt-blue)'" onmouseout="this.style.borderColor='var(--lt-gray)';this.style.background='white'"><strong>Within the next 1-3 months</strong><br><span style="font-size:13px;color:var(--gray)">We're evaluating options with time to spare.</span></button>' +
+        '<button onclick="setUrgency('exploring','' + containerId + '','' + flow + '')" style="padding:14px 18px;border:2px solid var(--lt-gray);border-radius:10px;background:white;font-size:15px;font-family:inherit;cursor:pointer;color:var(--dark);text-align:left;transition:all 0.15s" onmouseover="this.style.borderColor='var(--gray)';this.style.background='var(--lt-gray)'" onmouseout="this.style.borderColor='var(--lt-gray)';this.style.background='white'"><strong>Just exploring for now</strong><br><span style="font-size:13px;color:var(--gray)">No rush. We want to understand the options first.</span></button>' +
+      '</div>';
+  }
+
+  function setUrgency(urgency, containerId, flow) {
+    wData.urgency = urgency;
+    renderContactForm(containerId, flow);
+  }
+
+  function renderContactForm(containerId, flow) {
+    wPush(function(){ renderContactForm(containerId, flow); });
+    var badges = {
+      'first-time': { icon:'🎂', lbl:'Parent Turning 65' },
+      'moving': { icon:'📍', lbl:'Parent Moving' },
+      'better': { icon:'💰', lbl:'Better Plan Options' },
+      'learn': { icon:'📚', lbl:'Learning About Medicare' }
     };
-    const m = modes[field] || { type:'text', inputmode:'text', placeholder: '', autocomplete:'off' };
-    inp.type = m.type;
-    inp.inputMode = m.inputmode;
-    inp.placeholder = m.placeholder;
-    inp.autocomplete = m.autocomplete;
-    clearInputError();
-    inp.focus();
-    updateLeadProgress(field);
+    var b = badges[flow] || { icon:'📋', lbl:'Consultation' };
+    document.getElementById(containerId).innerHTML =
+      '<button class="widget-back" onclick="wBack()"><i class="fas fa-arrow-left"></i> Back</button>' +
+      '<div style="background:var(--lt-green);border-radius:var(--radius);padding:16px;margin-bottom:24px;display:flex;align-items:center;gap:12px">' +
+        '<i class="fas fa-check-circle" style="color:var(--teal);font-size:24px;flex-shrink:0"></i>' +
+        '<div><strong style="color:var(--navy);font-size:15px">' + b.icon + ' ' + b.lbl + '</strong><br><span style="font-size:13px;color:var(--gray)">Answers received. Now we need your info to reach you.</span></div>' +
+      '</div>' +
+      '<div class="widget-q" style="margin-bottom:8px">How do we reach you?</div>' +
+      '<div class="widget-qsub">Alejandra will call you. Free, no obligation.</div>' +
+      inp('cf-name','Your full name','text','E.g. Maria Garcia',true) +
+      inp('cf-phone','Your phone number','tel','E.g. (310) 555-1234',true) +
+      sel('cf-contact','How would you like us to reach you?',
+        '<option value="sms" selected>Text message (SMS)</option>' +
+        '<option value="whatsapp">WhatsApp</option>' +
+        '<option value="email">Email</option>' +
+        '<option value="call">Phone call</option>'
+      ) +
+      sel('cf-time','Best time to reach you',
+        '<option value="morning">Morning (9am-12pm)</option>' +
+        '<option value="afternoon">Afternoon (12pm-3pm)</option>' +
+        '<option value="evening">Evening (3pm-6pm)</option>' +
+        '<option value="anytime">Any time</option>'
+      ) +
+      '<div style="margin-bottom:20px">' +
+        '<label style="display:block;font-size:14px;font-weight:600;color:var(--navy);margin-bottom:6px">Anything else? (optional)</label>' +
+        '<textarea id="cf-notes" rows="3" placeholder="E.g. My mom has Kaiser, wants to keep her doctor. She takes metformin and lisinopril." style="width:100%;padding:13px 16px;border:2px solid var(--lt-gray);border-radius:10px;font-size:16px;font-family:inherit;resize:vertical;outline:none" onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='var(--lt-gray)'"></textarea>' +
+      '</div>' +
+      '<button onclick="submitWidget('' + flow + '')" style="width:100%;display:flex;align-items:center;justify-content:center;gap:8px;font-size:17px;padding:18px;font-weight:700;background:var(--teal);color:white;border:none;border-radius:var(--radius-btn);cursor:pointer;font-family:inherit;transition:background 0.2s" onmouseover="this.style.background='var(--teal-dark)'" onmouseout="this.style.background='var(--teal)'">' +
+        '<i class="fas fa-paper-plane"></i> Submit. Alejandra Will Call Me</button>' +
+      '<p style="text-align:center;font-size:13px;color:var(--gray);margin-top:12px">✓ Free &nbsp; ✓ No obligation &nbsp; ✓ We call you</p>';
   }
 
-  function handleLeadCapture(action, text) {
-    if (action === 'lead_name') {
-      chatState.leadData.name = text;
-      chatState.pendingFieldCapture = 'phone';
-      addAgentMessage(getMsg('lead_phone_prompt'));
-      setInputMode('phone');
-    } else if (action === 'lead_phone') {
-      chatState.leadData.phone = text;
-      chatState.pendingFieldCapture = 'email';
-      addAgentMessage(getMsg('lead_email_prompt'));
-      setInputMode('email');
-    } else if (action === 'lead_email') {
-      chatState.leadData.email = text;
-      chatState.pendingFieldCapture = 'dob';
-      showDobPicker();
-    } else if (action === 'lead_zip') {
-      chatState.leadData.zip = text;
-      chatState.pendingFieldCapture = 'time';
-      addAgentMessage(getMsg('lead_time_prompt'), [
-        { text: getMsg('lead_time_morning'),  action: 'lead_time_morning'  },
-        { text: getMsg('lead_time_afternoon'), action: 'lead_time_afternoon' },
-        { text: getMsg('lead_time_evening'),  action: 'lead_time_evening'  },
-        { text: getMsg('lead_time_anytime'),  action: 'lead_time_anytime'  }
-      ]);
-    } else if (action === 'lead_time_morning' || action === 'lead_time_afternoon' ||
-               action === 'lead_time_evening'  || action === 'lead_time_anytime') {
-      const timeMap = {
-        lead_time_morning:   getMsg('lead_time_morning'),
-        lead_time_afternoon: getMsg('lead_time_afternoon'),
-        lead_time_evening:   getMsg('lead_time_evening'),
-        lead_time_anytime:   getMsg('lead_time_anytime')
-      };
-      chatState.leadData.bestTime = timeMap[action];
-      finalizeLead();
-    }
+  // ══════════════════════════════════════════════════
+  // SUBMIT + ZAPIER
+  // ══════════════════════════════════════════════════
+  function showSuccessState(containerId) {
+    var container = document.getElementById(containerId);
+    container.innerHTML =
+      '<div style="text-align:center;padding:40px 20px">' +
+        '<div style="color:var(--teal);font-size:56px;margin-bottom:20px">✓</div>' +
+        '<h3 style="margin-bottom:15px;color:var(--navy);font-size:24px">Request Started!</h3>' +
+        '<p style="font-size:17px;color:var(--gray);margin-bottom:16px;line-height:1.7">Got it! Alejandra will call you shortly.</p>' +
+        '<p style="background:var(--lt-blue);padding:14px 18px;border-radius:10px;font-size:15px;color:var(--gray);margin-bottom:24px;line-height:1.6"><b>TIP:</b> Add <b>alejamedicare@gmail.com</b> to your contacts so our response doesn't end up in SPAM.</p>' +
+        '<button onclick="location.reload()" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--teal);color:white;border:none;border-radius:var(--radius-btn);font-size:16px;font-weight:700;cursor:pointer;font-family:inherit">← Back to home</button>' +
+      '</div>';
   }
 
-  function showDobPicker() {
-    const es = document.body.classList.contains('lang-es');
-    const messagesDiv = document.getElementById('chatMessages');
-    const msgDiv = document.createElement('div');
-    msgDiv.className = 'message agent';
-    msgDiv.id = 'dob-picker-msg';
-    
-    const bubble = document.createElement('div');
-    bubble.className = 'message-bubble';
-    const months_en = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    const months_es = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
-    const months = es ? months_es : months_en;
-    bubble.innerHTML = `
-      <div class="dob-picker-form">
-        <p style="margin:0 0 10px;font-weight:600">${getMsg('lead_dob_prompt')}</p>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
-          <div>
-            <label>${es?'Mes':'Month'}</label>
-            <select id="dob-month">
-              <option value="">${es?'Mes':'Mo'}</option>
-              ${months.map((m,i)=>`<option value="${i+1}">${m}</option>`).join('')}
-            </select>
-          </div>
-          <div>
-            <label>${es?'Día':'Day'}</label>
-            <select id="dob-day">
-              <option value="">${es?'Día':'Day'}</option>
-              ${Array.from({length:31},(_,i)=>`<option value="${i+1}">${i+1}</option>`).join('')}
-            </select>
-          </div>
-        </div>
-        <div style="margin-bottom:12px">
-          <label>${es?'Año de nacimiento':'Birth Year'}</label>
-          <input type="number" id="dob-year" min="1924" max="2005" placeholder="${es?'Ej: 1955':'e.g. 1955'}" inputmode="numeric">
-        </div>
-        <button onclick="confirmDob()" class="dob-confirm-btn">${es?'Confirmar fecha':'Confirm date'}</button>
-        <div id="dob-error" style="display:none;color:#DC2626;font-size:13px;margin-top:6px"></div>
-      </div>
-    `;
-    
-    const wrapper = document.createElement('div');
-    wrapper.appendChild(bubble);
-    msgDiv.appendChild(wrapper);
-    messagesDiv.appendChild(msgDiv);
-    messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    
-    // Disable text input while showing picker
-    document.getElementById('chatInput').disabled = true;
-    document.getElementById('chatInput').placeholder = es ? 'Use el selector de arriba' : 'Use the picker above';
-  }
-
-  function confirmDob() {
-    const es = document.body.classList.contains('lang-es');
-    const month = document.getElementById('dob-month')?.value;
-    const day   = document.getElementById('dob-day')?.value;
-    const year  = document.getElementById('dob-year')?.value;
-    const errEl = document.getElementById('dob-error');
-    
-    if(!month || !day || !year){
-      errEl.textContent = es ? 'Por favor complete todos los campos.' : 'Please fill in all fields.';
-      errEl.style.display = 'block';
-      return;
-    }
-    // Validate real date
-    const dobTest = new Date(year, month-1, day);
-    if(dobTest.getMonth() !== parseInt(month)-1){
-      errEl.textContent = es ? 'Fecha inválida. Por favor verifique.' : 'Invalid date. Please check the day.';
-      errEl.style.display = 'block';
-      if(!month) document.getElementById('dob-month').style.borderColor='#DC2626';
-      document.getElementById('dob-day').style.borderColor='#DC2626';
-      return;
-    }
-    
-    const formatted = `${String(month).padStart(2,'0')}/${String(day).padStart(2,'0')}/${year}`;
-    chatState.leadData.dob = formatted;
-    
-    // Show user's selection as a message
-    const picker = document.getElementById('dob-picker-msg');
-    if(picker) picker.remove();
-    addUserMessage(formatted);
-    
-    // Re-enable input and proceed to zip
-    const inp = document.getElementById('chatInput');
-    inp.disabled = false;
-
-    chatState.pendingFieldCapture = 'zip';
-    addAgentMessage(getMsg('lead_zip_prompt'));
-    setInputMode('zip');
-  }
-
-  function finalizeLead() {
-    chatState.currentState = agentStates.confirmation;
-
-    const { name, phone, email, dob, zip, bestTime = 'pronto' } = chatState.leadData;
-
-    // Send lead data to Zapier using form-encoded data for reliable field parsing
+  function submitWidget(flow) {
+    var name=getVal('cf-name'),phone=getVal('cf-phone');
+    if(!name||!phone){if(!name)document.getElementById('cf-name').style.borderColor='#DC2626';if(!phone)document.getElementById('cf-phone').style.borderColor='#DC2626';return;}
+    wData.name=name;wData.phone=phone;wData.contactMethod=getVal('cf-contact');wData.callTime=getVal('cf-time');wData.notes=getVal('cf-notes');wData.flow=flow;
+    wData.submittedAt=new Date().toLocaleString('en-US',{timeZone:'America/Los_Angeles',month:'2-digit',day:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
+    var subject = buildEmailSubject();
+    var body = buildEmailBody();
     try {
-      const stateVal = zipToState(zip) || '';
-      const submittedAt = new Date().toLocaleString('en-US',{timeZone:'America/Los_Angeles',month:'2-digit',day:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
-      const subject = 'New Lead - Parent Medicare | ' + (name || 'Unknown');
-      const body = [
-        '=== NEW LEAD from CaliforniaSeniorsBenefits.com ===',
-        '',
-        'Name: ' + (name || ''),
-        'Phone: ' + (phone || ''),
-        'Email: ' + (email || ''),
-        'DOB: ' + (dob || ''),
-        'Zip: ' + (zip || ''),
-        'State: ' + stateVal,
-        'Best Time to Call: ' + (bestTime || ''),
-        '',
-        'Submitted: ' + submittedAt,
-        'Source: californiaseniorsbenefits.com (EN)',
-        '==========================================='
-      ].join('\n');
-
-      const zapPayload = {
-        name: name || '',
-        phone: phone || '',
-        email: email || '',
-        dob: dob || '',
-        zip: zip || '',
-        bestTime: bestTime || '',
-        submittedAt: submittedAt,
-        site: 'californiaseniorsbenefits.com',
-        state: stateVal,
-        consentGiven: 'true',
-        subject: subject,
-        body: body
+      var zapPayload = {
+        name:wData.name||'', phone:wData.phone||'', email:wData.email||'',
+        dob:(wData.dob&&wData.dob.formatted)?wData.dob.formatted:(wData.dob||''),
+        zip:wData.zip||'', state:wData.state||'',
+        subject:subject, body:body,
+        site:'californiaseniorsbenefits.com',
+        submittedAt:wData.submittedAt, language:'en', prefer:wData.contactMethod||'',
+        topic:({'first-time':'Parent Turning 65','moving':'Parent Moving','better':'Better Plan Options','learn':'Learning About Medicare'})[wData.flow]||wData.flow||'',
+        notes:wData.notes||'', flow:wData.flow||'', contactMethod:wData.contactMethod||'', callTime:wData.callTime||'',
+        forWhom:'family', partAB:wData.partAB||'', workStatus:wData.workStatus||'',
+        currentPlan:wData.plantype||'', carrier:wData.carrier||'', issue:wData.issue||'',
+        medications:wData.meds||'', chronic:(wData.chronic&&wData.chronic.length)?wData.chronic.join(', '):'',
+        zipFrom:wData.zipFrom||'', stateFrom:wData.stateFrom||'', zipTo:wData.zipTo||'', stateTo:wData.stateTo||'', moveWhen:wData.moveWhen||'',
+        parentZip:wData.parentZip||'', parentState:wData.parentState||'',
+        parentDob:(wData.parentDob&&wData.parentDob.formatted)?wData.parentDob.formatted:'',
+        parentMedicare:wData.parentMedicare||'', parentLang:'en',
+        learnTopic:wData.learnTopic||'', urgency:wData.urgency||''
       };
-      console.log('[CASB-EN] Zapier payload:', JSON.stringify(zapPayload));
-      const params = new URLSearchParams();
-      Object.entries(zapPayload).forEach(([k,v]) => params.append(k, String(v)));
-      fetch('https://hooks.zapier.com/hooks/catch/26596586/u0mut50/', {
+      console.log('[CaliforniaSeniors] Zapier payload:', JSON.stringify(zapPayload));
+      var params = new URLSearchParams();
+      Object.entries(zapPayload).forEach(function(entry){ params.append(entry[0], entry[1]); });
+      fetch('https://hooks.zapier.com/hooks/catch/26596586/u0m5tqb/', {
         method: 'POST',
         body: params
-      }).then(r => console.log('[CASB-EN] Zapier response:', r.status)).catch(e => console.error('[CASB-EN] Zapier error:', e));
-    } catch(e) { console.error('[CASB-EN] Zapier exception:', e); }
-
-    const lang = document.body.classList.contains('lang-es') ? 'es' : 'en';
-    const timeText = lang === 'es' ? (bestTime.includes('Morning') ? 'por la mañana' : bestTime.includes('Afternoon') ? 'por la tarde' : bestTime.includes('Evening') ? 'por la noche' : 'cuando sea') : bestTime;
-
-    // Remove progress bar
-    document.querySelectorAll('.lead-progress').forEach(el => el.remove());
-
-    const confirmMsg = '<div class="success-check"><i class="fas fa-check"></i></div><br/><strong>' + getMsg('confirmation_prefix') + ', ' + name + '!</strong><br/><br/>' + getMsg('confirmation_intro') + ' ' + timeText + ' to discuss Medicare options. Here\'s what to expect:<br/>' + getMsg('confirmation_body');
-
-    addAgentMessage(confirmMsg, [
-      { text: getMsg('confirmation_schedule'), action: 'confirm_schedule' },
-      { text: getMsg('confirmation_whatsapp'), action: 'confirm_whatsapp' }
-    ]);
-
-    // Reset input state
-    const inp = document.getElementById('chatInput');
-    inp.type = 'text';
-    inp.inputMode = 'text';
-    document.getElementById('chatInputArea').classList.add('disabled');
-    inp.disabled = true;
-    inp.value = getMsg('confirmation_done');
-    clearInputError();
+      }).then(function(r){ console.log('[CaliforniaSeniors] Zapier response:', r.status); }).catch(function(e){ console.error('[CaliforniaSeniors] Zapier error:', e); });
+    } catch(e) { console.error('[CaliforniaSeniors] Zapier exception:', e); }
+    updateWidgetProgress(100);
+    setTimeout(function(){ showSuccessState('widget-box'); }, 400);
   }
-  
-  function handleConfirmation(action) {
-    if (action === 'confirm_schedule') {
-      window.open('https://calendar.app.google/6D4obxzxERQXBpaf7', '_blank');
-    } else if (action === 'confirm_whatsapp') {
-      window.open('https://wa.me/13105979142', '_blank');
-    }
+
+  function buildEmailSubject() {
+    var fl={'first-time':'🎂 PARENT TURNING 65','moving':'📍 PARENT MOVING','better':'💰 BETTER OPTIONS','learn':'📚 LEARNING MEDICARE'};
+    return (fl[wData.flow]||'📋 NEW LEAD') + ': ' + wData.name;
   }
-  
-  function sendChatMessage() {
-    const input = document.getElementById('chatInput');
-    const msg = input.value.trim();
 
-    if (!msg) return;
-
-    // Validate if in lead capture mode
-    if (chatState.pendingFieldCapture) {
-      if (!validateField(chatState.pendingFieldCapture, msg)) return;
-    }
-
-    addUserMessage(msg);
-    input.value = '';
-
-    if (chatState.pendingFieldCapture) {
-      const field = chatState.pendingFieldCapture;
-      chatState.pendingFieldCapture = null;
-      handleLeadCapture(`lead_${field}`, msg);
-    } else {
-      // Detect intent from free-text message
-      const m = msg.toLowerCase();
-
-      // Greeting detection
-      if (/^(hi|hello|hey|hola|buenos|good morning|good afternoon)\b/.test(m)) {
-        addAgentMessage('Hey there! How can I help you with Medicare today?', [
-          { text: getMsg('quick_explain'), action: 'explain' },
-          { text: getMsg('quick_find'), action: 'find_plan' }
-        ]);
-
-      // Part A - Hospital
-      } else if (m.includes('part a') || (m.includes('hospital') && !m.includes('part b'))) {
-        handleQAIntent('basics');
-
-      // Part B - Doctor / Medical
-      } else if (m.includes('part b') || m.includes('doctor') || m.includes('physician') || m.includes('outpatient')) {
-        handleQAIntent('part_b');
-
-      // Part D - Prescriptions (before Advantage since Advantage also mentions drugs)
-      } else if (m.includes('part d') || m.includes('prescription') || m.includes('drug') || m.includes('medication') || m.includes('pharmacy') || m.includes('medicine')) {
-        handleQAIntent('part_d');
-
-      // Medicare Advantage / Part C
-      } else if (m.includes('advantage') || m.includes('part c') || m.includes('hmo') || m.includes('ppo') || m.includes('all-in-one') || m.includes('all in one')) {
-        handleQAIntent('advantage');
-
-      // Medigap / Supplement
-      } else if (m.includes('medigap') || m.includes('supplement') || m.includes('gap insurance')) {
-        handleQAIntent('medigap');
-
-      // Comparison - Advantage vs Original
-      } else if (m.includes('difference') || m.includes('compare') || m.includes(' vs ') || m.includes('versus') || m.includes('which is better') || m.includes('original vs') || m.includes('advantage or')) {
-        handleQAIntent('comparison');
-
-      // Enrollment periods
-      } else if (m.includes('enroll') || m.includes('sign up') || m.includes('deadline') || m.includes('when can i') || m.includes('turning 65') || m.includes('open enrollment') || m.includes('annual enrollment') || m.includes('late penalty') || m.includes('window')) {
-        handleQAIntent('enrollment');
-
-      // California-specific
-      } else if (m.includes('california') || m.includes('kaiser') || m.includes('scan') || m.includes('hicap') || m.includes('anthem') || m.includes('humana') || m.includes('alignment') || m.includes('aetna') || m.includes('united')) {
-        handleQAIntent('ca_info');
-
-      // Cost / Price
-      } else if (m.includes('cost') || m.includes('price') || m.includes('expensive') || m.includes('premium') || m.includes('afford') || m.includes('cheap') || m.includes('how much') || m.includes('pay') || m.includes('free')) {
-        handleQAIntent('cost');
-
-      // Intent to connect with agent
-      } else if (m.includes('call') || m.includes('speak') || m.includes('talk') || m.includes('contact') || m.includes('alejandra') || m.includes('agent') || m.includes('help me') || m.includes('review')) {
-        offerConsent();
-
-      // Help me choose / find a plan
-      } else if (m.includes('plan') || m.includes('choose') || m.includes('find') || m.includes('best') || m.includes('recommend') || m.includes('which')) {
-        startPlanFinder();
-
-      // Fallback with helpful context
-      } else {
-        addAgentMessage('I want to make sure I give you the right info. Here are the topics I know best:', [
-          { text: 'Explain Medicare basics', action: 'explain' },
-          { text: 'Compare plan types', action: 'comparison' },
-          { text: 'Enrollment deadlines', action: 'enrollment' },
-          { text: 'Talk to Alejandra', action: 'talk_alejandra' }
-        ]);
-      }
-    }
-    
-    chatState.messageCount++;
+  function chronicLabel(v) {
+    for(var g=0;g<CHRONIC_CONDITIONS.length;g++){for(var i=0;i<CHRONIC_CONDITIONS[g].items.length;i++){if(CHRONIC_CONDITIONS[g].items[i].v===v)return CHRONIC_CONDITIONS[g].items[i].en;}}
+    return v;
   }
-  
+
+  function buildEmailBody() {
+    var ct={'morning':'Morning 9-12pm','afternoon':'Afternoon 12-3pm','evening':'Evening 3-6pm','anytime':'Any time'};
+    var ab={'both':'Yes, has both (A and B)','a_only':'Part A only','neither':'Does not have either','unsure':'Not sure'};
+    var mv={'moved':'Already moved (last 60 days)','30d':'Moving within 30 days','90d':'Moving in 1-3 months','planning':'Just planning'};
+    var pt={'advantage':'Medicare Advantage (Part C)','medigap':'Original + Medigap','original':'Original only','unknown':'Not sure'};
+    var is={'cost':'Costs too high','doctors':'Doctors out of network','drugs':'Medications too expensive','extras':'Missing dental/vision/hearing','cancelled':'Plan changing/cancelled'};
+    var lt={'how-it-works':'How Medicare works','plan-options':'Plan options available','help-choose':'Help choosing a plan','other':'Other question'};
+    var fl={'first-time':'Parent Turning 65','moving':'Parent Moving','better':'Better Plan Options','learn':'Learning About Medicare'};
+
+    var lines = [
+      '═══════════════════════════════════════════════════',
+      '      NEW LEAD — CALIFORNIA SENIORS BENEFITS',
+      '═══════════════════════════════════════════════════',
+      '',
+      '▸ TYPE:        ' + (fl[wData.flow]||wData.flow),
+      '▸ DATE/TIME:   ' + wData.submittedAt,
+      '',
+      '── CONTACT ────────────────────────────────────────',
+      '▸ NAME:        ' + wData.name,
+      '▸ PHONE:       ' + wData.phone,
+      '▸ CONTACT VIA: ' + (wData.contactMethod||'Not specified'),
+      '▸ BEST TIME:   ' + (ct[wData.callTime]||wData.callTime),
+      '',
+      '── SITUATION ──────────────────────────────────────',
+    ];
+
+    if (wData.dob) lines.push('▸ PARENT DOB:  ' + wData.dob.formatted);
+    if (wData.zip) lines.push('▸ ZIP:         ' + wData.zip);
+    if (wData.state) lines.push('▸ STATE:       ' + wData.state);
+    if (wData.zipFrom) lines.push('▸ FROM (ZIP):  ' + wData.zipFrom + ', ' + (wData.stateFrom||''));
+    if (wData.zipTo) lines.push('▸ TO (ZIP):    ' + wData.zipTo + ', ' + (wData.stateTo||''));
+    if (wData.moveWhen) lines.push('▸ MOVE TIMING: ' + (mv[wData.moveWhen]||wData.moveWhen));
+    if (wData.partAB) lines.push('▸ PART A & B:  ' + (ab[wData.partAB]||wData.partAB));
+    if (wData.workStatus) lines.push('▸ WORK STATUS: ' + wData.workStatus);
+    if (wData.plantype) lines.push('▸ CURRENT PLAN:' + (pt[wData.plantype]||wData.plantype));
+    if (wData.carrier) lines.push('▸ CARRIER:     ' + wData.carrier);
+    if (wData.issue) lines.push('▸ MAIN ISSUE:  ' + (is[wData.issue]||wData.issue));
+    if (wData.meds) lines.push('▸ MEDICATIONS: ' + wData.meds);
+    if (wData.parentMedicare) lines.push('▸ HAS MEDICARE:' + (wData.parentMedicare==='yes'?'Yes':wData.parentMedicare==='no'?'No':'Not sure'));
+    if (wData.learnTopic) lines.push('▸ WANTS TO LEARN: ' + (lt[wData.learnTopic]||wData.learnTopic));
+    if (wData.urgency) lines.push('▸ URGENCY:     ' + wData.urgency);
+
+    if (wData.chronic && wData.chronic.length > 0 && wData.chronic.indexOf('none') === -1) {
+      lines.push('');
+      lines.push('── CHRONIC CONDITIONS ─────────────────────────────');
+      wData.chronic.forEach(function(c){ lines.push('  ✓ ' + chronicLabel(c)); });
+    }
+
+    if (wData.notes) {
+      lines.push('');
+      lines.push('── NOTES ──────────────────────────────────────────');
+      lines.push(wData.notes);
+    }
+
+    lines.push('');
+    lines.push('═══════════════════════════════════════════════════');
+    lines.push('Sent from californiaseniorsbenefits.com');
+    return lines.join('\n');
+  }
+
   // ============================================================
   // GLOBAL FUNCTIONALITY
   // ============================================================
   
-
-
   function toggleNav() {
     const menu = document.getElementById('navMenu');
     menu.classList.toggle('active');

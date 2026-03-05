@@ -28,7 +28,7 @@
 <body>
 <iframe
   id="widget-frame"
-  src="https://beneficiosmedicare.com/index-en.html"
+  src="https://dev.beneficiosmedicare.pages.dev/california/"
   allow="clipboard-write"
   loading="eager"
   title="Medicare California - Find Your Plan">
@@ -39,7 +39,6 @@
     if (e.data && e.data.type === 'widget-resize') {
       var frame = document.getElementById('widget-frame');
       frame.style.height = e.data.height + 'px';
-      // Re-enable scrolling on body when iframe has content
       document.body.style.overflow = 'auto';
     }
   });

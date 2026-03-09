@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Find Medicare plans in Long Beach, California. Free expert guidance from licensed agents. Compare Medicare Advantage and Medigap options in LA County.">
+    <meta name="keywords" content="Medicare Long Beach, Medicare LA County, Medicare plans Long Beach California">
+    <meta property="og:title" content="Medicare Help in Long Beach, California - Free Expert Guidance | Medicare California">
+    <meta property="og:description" content="Free, personalized Medicare guidance for Long Beach and LA County residents. Expert help choosing the right Medicare plan.">
+    <meta property="og:image" content="https://medicare-california.com/og-image.jpg">
+    <meta property="og:url" content="https://medicare-california.com/california/cities/long-beach.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://medicare-california.com/california/cities/long-beach.html">
+    <title>Medicare Help in Long Beach, California - Free Expert Guidance | Medicare California</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --charcoal: #1a1a1a;
+            --terra: #0080D4;
+            --terra-dark: #0068B0;
+            --soft-blue: #3D9BE9;
+            --light-blue: #E8F2FC;
+            --text: #4a4a4a;
+            --white: #FFFFFF;
+            --bg: #F5F8FC;
+            --navy: #0C2340;
+            --radius: 14px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--bg);
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--white);
+            padding: 1.2rem 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav .brand {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--terra);
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--terra);
+        }
+
+        .cta-btn {
+            background-color: var(--terra);
+            color: var(--white);
+            padding: 0.7rem 1.5rem;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            background-color: var(--terra-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #E8F2FC 0%, #F0F4F8 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--text);
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .zip-form {
+            max-width: 500px;
+            margin: 2rem auto;
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .zip-form input {
+            flex: 1;
+            padding: 0.9rem;
+            border: 2px solid var(--terra);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .zip-form button {
+            padding: 0.9rem 2rem;
+            background-color: var(--terra);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .zip-form button:hover {
+            background-color: var(--terra-dark);
+        }
+
+        .trust-checks {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            font-size: 0.9rem;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .trust-item::before {
+            content: "✓ ";
+            color: var(--terra);
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+
+        /* Stats Section */
+        .stats {
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-card {
+            padding: 1.5rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--soft-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #e0e0e0;
+        }
+
+        /* Why Choose Us Section */
+        .why-choose {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 2rem;
+        }
+
+        .why-choose h2 {
+            font-size: 2rem;
+            color: var(--charcoal);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .benefit-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 128, 212, 0.15);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.3rem;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-card p {
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        /* Local Info Section */
+        .local-info {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background-color: var(--white);
+            border-radius: var(--radius);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .local-info h2 {
+            font-size: 2rem;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+        }
+
+        .local-info p {
+            color: var(--text);
+            margin-bottom: 1.2rem;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        /* FAQ Section */
+        .faq {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 2rem;
+        }
+
+        .faq h2 {
+            font-size: 2rem;
+            color: var(--charcoal);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .faq-item {
+            background-color: var(--white);
+            margin-bottom: 1.5rem;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background-color: var(--light-blue);
+            color: var(--charcoal);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: #d4e9f8;
+        }
+
+        .faq-answer {
+            padding: 1.5rem;
+            color: var(--text);
+            display: none;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            color: var(--terra);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #e0e0e0;
+        }
+
+        .cta-section .cta-btn {
+            font-size: 1.1rem;
+            padding: 0.9rem 2.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--charcoal);
+            color: var(--white);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+        }
+
+        .footer-links a {
+            color: var(--soft-blue);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--terra);
+        }
+
+        .disclaimer {
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 1.5rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .zip-form {
+                flex-direction: column;
+            }
+
+            nav .nav-links {
+                gap: 1rem;
+            }
+
+            .trust-checks {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Medicare California - Long Beach",
+        "description": "Free Medicare guidance and plan comparison for Long Beach and LA County residents",
+        "url": "https://medicare-california.com/california/cities/long-beach.html",
+        "areaServed": {
+            "@type": "City",
+            "name": "Long Beach",
+            "addressCountry": "US",
+            "addressRegion": "CA"
+        },
+        "telephone": "+1-800-MEDICARE",
+        "priceRange": "Free",
+        "image": "https://medicare-california.com/logo.png"
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How many Medicare plans are available in Long Beach?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Long Beach residents have access to approximately 50 Medicare Advantage plans and numerous Medigap options. Major carriers include Kaiser Permanente, Blue Shield of California, Humana, UnitedHealthcare, and Alignment Healthcare. The LA County market is one of California's most competitive, offering excellent plan choices. Our agents can help you compare all options for your ZIP code."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I keep my Long Beach Memorial or Los Angeles County+USC Medical Center doctor with Medicare?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Many Medicare Advantage plans in Long Beach include Long Beach Memorial, Providence, and other major healthcare systems in their networks. Kaiser Permanente and Blue Shield offer extensive coverage at Southern California medical centers. Verify your current providers are included in your chosen plan before enrollment."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "When is the best time to enroll in Medicare in Long Beach?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Your Initial Enrollment Period starts 3 months before your 65th birthday and ends 3 months after. Open Enrollment Period is October 15 - December 7 annually. Starting your Medicare coverage on time helps you avoid gaps in healthcare and prevents potential penalties."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://medicare-california.com"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Cities",
+                "item": "https://medicare-california.com/california/cities/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Long Beach",
+                "item": "https://medicare-california.com/california/cities/long-beach.html"
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="brand"><a href="https://medicare-california.com" style="text-decoration:none"><svg viewBox="0 0 260 48" width="195" height="36" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle"><defs><linearGradient id="sg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#0080D4"/><stop offset="100%" style="stop-color:#0071BC"/></linearGradient></defs><path d="M23 2 L43 10 L43 26 C43 37 35 43 23 49 C11 43 3 37 3 26 L3 10 Z" fill="url(#sg)"/><polyline points="14,27 20,33 33,19" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><text y="34" font-family="Open Sans,Segoe UI,Helvetica Neue,Arial,sans-serif"><tspan x="50" font-size="22" font-weight="700" fill="#1a1a1a">Medicare</tspan><tspan dx="5" font-size="22" font-weight="600" fill="#3D9BE9">California</tspan></text></svg></a></div>
+        <div class="nav-links">
+            <a href="https://medicare-california.com/california/cities/">All Cities</a>
+            <button class="cta-btn" onclick="window.location.href='https://medicare-california.com'">Find Your Plan</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Medicare Help in Long Beach</h1>
+        <p class="subtitle">Free, personalized Medicare guidance for Long Beach and Los Angeles County residents</p>
+
+        <div class="zip-form">
+            <input type="text" id="city-zip" placeholder="Enter your ZIP code" maxlength="5" inputmode="numeric">
+            <button onclick="handleZip()">Get Started</button>
+        </div>
+
+        <div class="trust-checks">
+            <div class="trust-item">100% Free</div>
+            <div class="trust-item">Hablamos Español</div>
+            <div class="trust-item">Licensed Agents</div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-number">80K+</div>
+                <div class="stat-label">Medicare Beneficiaries</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">50</div>
+                <div class="stat-label">Medicare Advantage Plans Available</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Serving Long Beach Area</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-choose">
+        <h2>Why Long Beach Residents Choose Us</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">🏥</div>
+                <h3>LA County Expertise</h3>
+                <p>We specialize in Long Beach and LA County Medicare planning. From the waterfront to residential neighborhoods, we know the healthcare options available to you.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🗣️</div>
+                <h3>Bilingual Support</h3>
+                <p>English and Spanish speaking agents ready to help. We serve Long Beach's diverse community with culturally informed guidance.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">💰</div>
+                <h3>Completely Free</h3>
+                <p>Zero cost for our expert help. We're compensated by carriers, so your interests always come first.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Local Info -->
+    <section class="local-info">
+        <h2>Medicare in Long Beach: LA County Healthcare Landscape</h2>
+        <p>Long Beach, California's seventh-largest city with approximately 500,000 residents, is home to over 80,000 Medicare beneficiaries. As a major urban center in Los Angeles County with a thriving port and diverse economy, Long Beach offers one of Southern California's most competitive Medicare markets. The city's robust healthcare infrastructure and numerous medical centers make it essential to understand your coverage options to ensure continuity of care.</p>
+
+        <p>Kaiser Permanente is the largest HMO provider in Long Beach, with multiple medical centers throughout the area and a strong reputation for integrated care. Blue Shield of California and Humana also maintain substantial networks, offering competitive Medicare Advantage plans that include Long Beach Memorial Medical Center and other regional providers. For those seeking more flexibility, Original Medicare combined with a Medigap supplement is increasingly popular among Long Beach seniors. Alignment Healthcare and other regional carriers also provide innovative plan options tailored to the Long Beach area's unique demographics and healthcare needs.</p>
+
+        <p>Long Beach's cultural diversity, with significant Latino, Asian, and African American communities, has led insurers to develop plans with enhanced cultural competency and multilingual services. The city's healthcare ecosystem includes world-class facilities, academic medical centers, and specialty clinics, giving Medicare beneficiaries excellent access to comprehensive care. Whether you're planning for your Medicare transition or looking to change plans during Open Enrollment, our licensed agents understand the nuances of the LA County market and can help you find the plan that best matches your healthcare needs and lifestyle.</p>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>How many Medicare plans are available in Long Beach?</span>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Long Beach residents have access to approximately 50 Medicare Advantage plans and numerous Medigap options. Major carriers include Kaiser Permanente, Blue Shield of California, Humana, UnitedHealthcare, and Alignment Healthcare. The LA County market is one of California's most competitive, offering excellent plan choices. Our agents can help you compare all options for your ZIP code.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>Can I keep my Long Beach Memorial or other local doctor with Medicare?</span>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Many Medicare Advantage plans in Long Beach include Long Beach Memorial, Providence, and other major healthcare systems in their networks. Kaiser Permanente and Blue Shield offer extensive coverage at Southern California medical centers. Verify your current providers are included in your chosen plan before enrollment.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>When is the best time to enroll in Medicare in Long Beach?</span>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Your Initial Enrollment Period starts 3 months before your 65th birthday and ends 3 months after. Open Enrollment Period is October 15 - December 7 annually. Starting your Medicare coverage on time helps you avoid gaps in healthcare and prevents potential penalties.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Ready to Find Your Medicare Plan in Long Beach?</h2>
+        <p>Let our licensed agents guide you through all available options at no cost to you.</p>
+        <button class="cta-btn" onclick="window.location.href='https://medicare-california.com'">Compare Plans Free</button>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>Medicare California</strong> - Your trusted resource for Medicare guidance in California</p>
+        <p>We help California residents navigate Medicare options and find plans that fit their healthcare needs and budget.</p>
+        <div class="footer-links">
+            <a href="https://medicare-california.com">Home</a>
+            <a href="https://medicare-california.com/about">About Us</a>
+            <a href="https://medicare-california.com/contact">Contact</a>
+            <a href="https://medicare-california.com/privacy">Privacy Policy</a>
+            <a href="https://medicare-california.com/terms">Terms of Service</a>
+        </div>
+        <div class="disclaimer">
+            <p>This website is not affiliated with or endorsed by the U.S. government or the federal Medicare program. We are a private organization that helps seniors find Medicare plans. Licensed insurance agents available to help guide your Medicare decisions.</p>
+        </div>
+    </footer>
+
+    <script>
+        function handleZip() {
+            var zip = document.getElementById('city-zip').value.replace(/\D/g,'');
+            if(zip.length === 5) {
+                window.top.location.href = 'https://medicare-california.com/?zip=' + zip;
+            }
+        }
+
+        document.getElementById('city-zip').addEventListener('keypress', function(e) {
+            if(e.key === 'Enter') handleZip();
+        });
+
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const toggle = element.querySelector('.faq-toggle');
+            answer.classList.toggle('active');
+            toggle.textContent = answer.classList.contains('active') ? '−' : '+';
+        }
+    </script>
+</body>
+</html>

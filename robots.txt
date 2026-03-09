@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Sitemap: https://medicare-california.com/sitemap.xml
+
+# AI search engine discovery
+# See https://llmstxt.org for the llms.txt standard
+LLMsTxt: https://medicare-california.com/llms.txt

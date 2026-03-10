@@ -1,7 +1,33 @@
 User-agent: *
 Allow: /
+
+# Explicitly allow AI search crawlers for LLM visibility
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
 Sitemap: https://medicare-california.com/sitemap.xml
 
 # AI search engine discovery
 # See https://llmstxt.org for the llms.txt standard
-LLMsTxt: https://medicare-california.com/llms.txt
+# LLMsTxt: https://medicare-california.com/llms.txt

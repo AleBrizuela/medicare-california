@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 68" width="260" height="68">
+  <defs>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0080D4"/>
+      <stop offset="100%" style="stop-color:#0071BC"/>
+    </linearGradient>
+  </defs>
+  <!-- Shield -->
+  <path d="M32 6 L58 17 L58 38 C58 52 47 61 32 68 C17 61 6 52 6 38 L6 17 Z" fill="url(#shieldGrad)"/>
+  <!-- Checkmark -->
+  <polyline points="20,38 28,46 44,28" fill="none" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Text -->
+  <text x="74" y="32" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="24" font-weight="700" fill="#1a1a1a" letter-spacing="-0.3">Medicare</text>
+  <text x="74" y="55" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="18" font-weight="500" fill="#3D9BE9" letter-spacing="0.5">California</text>
+</svg>

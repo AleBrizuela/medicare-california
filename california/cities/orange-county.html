@@ -24,7 +24,7 @@
     <title>Medicare Help in Orange County, California - Free Expert Guidance | Medicare California</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
     <style>
         :root {
@@ -504,6 +504,7 @@
     </script>
 </head>
 <body>
+<a href="#main-content" class="skip-link" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;padding:8px 16px;background:#002147;color:#fff;font-size:14px;text-decoration:none" onfocus="this.style.position='fixed';this.style.left='8px';this.style.top='8px';this.style.width='auto';this.style.height='auto';this.style.overflow='visible'" onblur="this.style.position='absolute';this.style.left='-9999px';this.style.width='1px';this.style.height='1px';this.style.overflow='hidden'">Skip to main content</a>
 <!-- CMS Disclaimer -->
 <div style="background:#f0f4f8;text-align:center;padding:8px 16px;font-size:11px;color:#6b7280;line-height:1.5">
   Site is not part of the federal government or Medicare. For official information visit Medicare or call 1-800-Medicare.
@@ -518,148 +519,4 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <h1>Medicare Help in Orange County</h1>
-        <p class="subtitle">Free, personalized Medicare guidance for Orange County and Orange County residents</p>
-
-        <div class="zip-form">
-            <input type="text" id="city-zip" placeholder="Enter your ZIP code" maxlength="5" inputmode="numeric">
-            <button onclick="handleZip()">Get Started</button>
-        </div>
-
-        <div class="trust-checks">
-            <div class="trust-item">100% Free</div>
-            <div class="trust-item">Hablamos Español</div>
-            <div class="trust-item">Licensed Agents</div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="stats-container">
-            <div class="stat-card">
-                <div class="stat-number">530K+</div>
-                <div class="stat-label">Medicare Beneficiaries</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">45</div>
-                <div class="stat-label">Medicare Advantage Plans Available</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">15+</div>
-                <div class="stat-label">Serving Orange County</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Choose Us -->
-    <section class="why-choose">
-        <h2>Why Orange County Residents Choose Us</h2>
-        <div class="benefits-grid">
-            <div class="benefit-card">
-                <div class="benefit-icon">🏥</div>
-                <h3>Local Knowledge</h3>
-                <p>We know Orange County's Medicare landscape inside and out. From Huntington Beach to Santa Ana, we understand your area's specific healthcare needs and plan options.</p>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">🗣️</div>
-                <h3>Bilingual Guidance</h3>
-                <p>English and Spanish speaking agents ready to help. We ensure clear communication about your Medicare options in the language you're most comfortable with.</p>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">💰</div>
-                <h3>Completely Free</h3>
-                <p>No cost for our expert help. We're paid by insurance carriers, not by you, so our advice is always in your best interest.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Local Info -->
-    <section class="local-info">
-        <h2>Medicare in Orange County: What You Need to Know</h2>
-        <p>Orange County, home to over 3 million residents and one of California's largest Medicare populations, offers an exceptionally diverse range of healthcare options. The region's well-developed medical infrastructure, including world-renowned healthcare systems and hospitals, makes Medicare planning particularly important to ensure you maintain access to quality care.</p>
-
-        <p>Medicare beneficiaries in Orange County have access to some of California's most comprehensive plan offerings. Kaiser Permanente dominates the HMO market with strong networks throughout the county, while SCAN Health Plan and CalOptima provide competitive Medicare Advantage options with excellent coverage for Orange County-specific healthcare needs. Blue Shield of California, Alignment Healthcare, and other carriers also offer attractive plans with local provider networks. The region's proximity to major medical centers means you'll have excellent access to specialized care regardless of which plan you choose.</p>
-
-        <p>The Orange County healthcare landscape is particularly competitive, with multiple options in coastal areas like Irvine, Laguna Hills, and Huntington Beach, as well as in inland communities like Anaheim and Garden Grove. Whether you're looking for Original Medicare supplemented with a Medigap policy, a Medicare Advantage plan with prescription drug coverage, or a prescription drug plan, our agents understand the nuances of Orange County's market and can match you with the plan that best fits your lifestyle and healthcare preferences.</p>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq">
-        <h2>Frequently Asked Questions</h2>
-
-        <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">
-                <span>How many Medicare plans are available in Orange County?</span>
-                <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-answer">
-                <p>Orange County residents typically have access to approximately 45 Medicare Advantage plans and numerous Medigap supplement options. The availability varies by ZIP code, with popular carriers including Kaiser Permanente, SCAN Health Plan, CalOptima, and Blue Shield of California. Our agents can help you compare all available options for your specific area.</p>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">
-                <span>Can I keep my UCI Health or Hoag Hospital doctors with Medicare?</span>
-                <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-answer">
-                <p>Many Orange County Medicare Advantage plans maintain networks with major healthcare systems including UCI Health and Hoag Hospital. It's important to verify that your preferred doctors and hospitals are included in your chosen plan's network. Our licensed agents can confirm whether your current healthcare providers accept your Medicare coverage.</p>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">
-                <span>When is the best time to enroll in Medicare in Orange County?</span>
-                <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-answer">
-                <p>Your Initial Enrollment Period begins 3 months before your 65th birthday and extends 3 months after. Open Enrollment Period runs from October 15 to December 7 each year, allowing you to make changes. If you miss these windows, late enrollment penalties may apply. Contact our team for guidance on your specific situation.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <h2>Ready to Find Your Medicare Plan in Orange County?</h2>
-        <p>Let our licensed agents guide you through all available options at no cost to you.</p>
-        <button class="cta-btn" onclick="window.location.href='https://medicare-california.com'">Compare Plans Free</button>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p><strong>Medicare California</strong> - Your trusted resource for Medicare guidance in California</p>
-        <p>We help California residents navigate Medicare options and find plans that fit their healthcare needs and budget.</p>
-        <div class="footer-links">
-            <a href="https://medicare-california.com">Home</a>
-            <a href="https://medicare-california.com/about">About Us</a>
-            <a href="https://medicare-california.com/contact">Contact</a>
-            <a href="https://medicare-california.com/privacy">Privacy Policy</a>
-            <a href="https://medicare-california.com/terms">Terms of Service</a>
-        </div>
-        <div class="disclaimer">
-            <p>This website is not affiliated with or endorsed by the U.S. government or the federal Medicare program. We are a private organization that helps seniors find Medicare plans. Licensed insurance agents available to help guide your Medicare decisions.</p>
-        </div>
-    </footer>
-
-    <script>
-        function handleZip() {
-            var zip = document.getElementById('city-zip').value.replace(/\D/g,'');
-            if(zip.length === 5) {
-                window.top.location.href = 'https://medicare-california.com/?zip=' + zip;
-            }
-        }
-
-        document.getElementById('city-zip').addEventListener('keypress', function(e) {
-            if(e.key === 'Enter') handleZip();
-        });
-
-        function toggleFaq(element) {
-            const answer = element.nextElementSibling;
-            const toggle = element.querySelector('.faq-toggle');
-            answer.classList.toggle('active');
-            toggle.textContent = answer.classList.contains('active') ? '−' : '+';
-        }
-    </script>
-</body>
-</html>
+    <section class="hero" id="main-content">

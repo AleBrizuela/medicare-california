@@ -24,7 +24,7 @@
     <title>Medicare Help in San Jose, California - Free Expert Guidance | Medicare California</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
     <style>
         :root {
@@ -504,6 +504,7 @@
     </script>
 </head>
 <body>
+<a href="#main-content" class="skip-link" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;padding:8px 16px;background:#002147;color:#fff;font-size:14px;text-decoration:none" onfocus="this.style.position='fixed';this.style.left='8px';this.style.top='8px';this.style.width='auto';this.style.height='auto';this.style.overflow='visible'" onblur="this.style.position='absolute';this.style.left='-9999px';this.style.width='1px';this.style.height='1px';this.style.overflow='hidden'">Skip to main content</a>
 <!-- CMS Disclaimer -->
 <div style="background:#f0f4f8;text-align:center;padding:8px 16px;font-size:11px;color:#6b7280;line-height:1.5">
   Site is not part of the federal government or Medicare. For official information visit Medicare or call 1-800-Medicare.
@@ -518,148 +519,4 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <h1>Medicare Help in San Jose</h1>
-        <p class="subtitle">Free, personalized Medicare guidance for San Jose and Santa Clara County residents</p>
-
-        <div class="zip-form">
-            <input type="text" id="city-zip" placeholder="Enter your ZIP code" maxlength="5" inputmode="numeric">
-            <button onclick="handleZip()">Get Started</button>
-        </div>
-
-        <div class="trust-checks">
-            <div class="trust-item">100% Free</div>
-            <div class="trust-item">Hablamos Español</div>
-            <div class="trust-item">Licensed Agents</div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="stats-container">
-            <div class="stat-card">
-                <div class="stat-number">280K+</div>
-                <div class="stat-label">Medicare Beneficiaries</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">35</div>
-                <div class="stat-label">Medicare Advantage Plans Available</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">15+</div>
-                <div class="stat-label">Serving Santa Clara County</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Choose Us -->
-    <section class="why-choose">
-        <h2>Why San Jose Residents Choose Us</h2>
-        <div class="benefits-grid">
-            <div class="benefit-card">
-                <div class="benefit-icon">🏥</div>
-                <h3>Local Knowledge</h3>
-                <p>We understand Santa Clara County's healthcare ecosystem. From Downtown San Jose to Cupertino and Morgan Hill, we know which plans work best for your location.</p>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">🗣️</div>
-                <h3>Bilingual Guidance</h3>
-                <p>English and Spanish speaking agents available. Medicare can be complex—we make it clear in the language you understand best.</p>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">💰</div>
-                <h3>Completely Free</h3>
-                <p>Zero cost for our help. Insurance carriers compensate us, so your interests always come first.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Local Info -->
-    <section class="local-info">
-        <h2>Medicare in San Jose: Your Guide to Santa Clara County Options</h2>
-        <p>San Jose, California's third-largest city and the heart of Silicon Valley, is home to nearly 1 million residents and over 280,000 Medicare beneficiaries. The region's booming tech economy has attracted world-class healthcare facilities and created a competitive Medicare market with excellent plan options. Whether you're a long-time Bay Area resident or new to the region, understanding your Medicare choices is essential for maintaining quality healthcare access.</p>
-
-        <p>Kaiser Permanente's strong Bay Area presence makes it the dominant choice for many San Jose Medicare beneficiaries, offering integrated care that appeals to those who prefer coordinated healthcare. However, Blue Shield of California, Humana, and United Healthcare provide competitive Medicare Advantage alternatives with robust provider networks that include Stanford Healthcare, Santa Clara Valley Medical Center, and Good Samaritan Hospital. The county's diverse population means many carriers offer culturally sensitive care and multilingual support. For those who prefer more flexibility, Original Medicare with a Medigap supplement is also popular among San Jose seniors who want to choose their own doctors.</p>
-
-        <p>Santa Clara County's proximity to Stanford University's medical school and renowned healthcare facilities means beneficiaries benefit from access to cutting-edge medical technology and specialist care. The region's growing diversity means Medicare carriers have adapted to serve multilingual communities effectively. Whether you're in downtown San Jose, the suburbs of Sunnyvale, or the rural areas of Morgan Hill and Gilroy, understanding which plans include your preferred providers is critical to making the right Medicare decision.</p>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq">
-        <h2>Frequently Asked Questions</h2>
-
-        <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">
-                <span>How many Medicare plans are available in San Jose?</span>
-                <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-answer">
-                <p>San Jose residents have access to approximately 35 Medicare Advantage plans and numerous Medigap options. Top carriers in Santa Clara County include Kaiser Permanente, Blue Shield of California, Humana, and United Healthcare. Plan availability varies by ZIP code within San Jose and surrounding areas. Our agents can help you identify all plans available at your specific address.</p>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">
-                <span>Can I keep my Stanford Healthcare or Good Samaritan Hospital doctor with Medicare?</span>
-                <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-answer">
-                <p>Many Medicare Advantage plans in San Jose include Stanford Healthcare and Good Samaritan Hospital in their networks. Kaiser Permanente's strong Bay Area presence means excellent coverage if you use their facilities. We recommend confirming your specific doctors and hospitals are included before enrolling in any plan.</p>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">
-                <span>When is the best time to enroll in Medicare in San Jose?</span>
-                <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-answer">
-                <p>Your Initial Enrollment Period is 3 months before and after your 65th birthday. The Open Enrollment Period for Medicare happens October 15 - December 7 each year, when you can switch plans. Special Enrollment Periods apply if you experience qualifying life events. Act early to ensure coverage begins when you need it.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <h2>Ready to Find Your Medicare Plan in San Jose?</h2>
-        <p>Let our licensed agents guide you through all available options at no cost to you.</p>
-        <button class="cta-btn" onclick="window.location.href='https://medicare-california.com'">Compare Plans Free</button>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p><strong>Medicare California</strong> - Your trusted resource for Medicare guidance in California</p>
-        <p>We help California residents navigate Medicare options and find plans that fit their healthcare needs and budget.</p>
-        <div class="footer-links">
-            <a href="https://medicare-california.com">Home</a>
-            <a href="https://medicare-california.com/about">About Us</a>
-            <a href="https://medicare-california.com/contact">Contact</a>
-            <a href="https://medicare-california.com/privacy">Privacy Policy</a>
-            <a href="https://medicare-california.com/terms">Terms of Service</a>
-        </div>
-        <div class="disclaimer">
-            <p>This website is not affiliated with or endorsed by the U.S. government or the federal Medicare program. We are a private organization that helps seniors find Medicare plans. Licensed insurance agents available to help guide your Medicare decisions.</p>
-        </div>
-    </footer>
-
-    <script>
-        function handleZip() {
-            var zip = document.getElementById('city-zip').value.replace(/\D/g,'');
-            if(zip.length === 5) {
-                window.top.location.href = 'https://medicare-california.com/?zip=' + zip;
-            }
-        }
-
-        document.getElementById('city-zip').addEventListener('keypress', function(e) {
-            if(e.key === 'Enter') handleZip();
-        });
-
-        function toggleFaq(element) {
-            const answer = element.nextElementSibling;
-            const toggle = element.querySelector('.faq-toggle');
-            answer.classList.toggle('active');
-            toggle.textContent = answer.classList.contains('active') ? '−' : '+';
-        }
-    </script>
-</body>
-</html>
+    <section class="hero" id="main-content">

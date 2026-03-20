@@ -131,6 +131,7 @@ def generate_sitemap(pages, output_path):
 
     with open(output_path, "w", encoding="utf-8") as f:
         f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+        f.write('<?xml-stylesheet type="text/xsl" href="/sitemap-style.xsl"?>\n')
         tree.write(f, encoding="unicode", xml_declaration=False)
 
     return len(sorted_urls)

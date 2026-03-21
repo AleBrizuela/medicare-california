@@ -1225,6 +1225,7 @@ h1, h2, h3, h4 {
 <!-- Social proof moved inside widget (widget-v4.html) -->
 
 <!-- ═══ HERO ═══ -->
+<div id="hero"></div>
 <section class="hero" id="main-content">
   <h1 class="fade-up"><span data-i18n="hero-h1">Find the Right Medicare Plan</span><br><span style="font-size:0.6em;font-weight:300;font-style:italic;color:#3D9BE9;display:block;margin-top:8px;" data-i18n="hero-h1-sub">for you or someone you love</span></h1>
   <p class="hero-sub fade-up-d1" data-i18n="hero-sub">Honest guidance from a family team.<br>No cost, no pressure.</p>
@@ -1736,7 +1737,7 @@ h1, h2, h3, h4 {
 const zipInput = document.getElementById('zip-input');
 const zipError = document.getElementById('zip-error');
 const zipCard  = document.getElementById('zip-card');
-const heroEl   = document.getElementById('hero');
+const heroEl   = document.querySelector('.hero');
 const widgetC  = document.getElementById('widget-container');
 const frame    = document.getElementById('widget-frame');
 
@@ -1793,7 +1794,7 @@ function handleFinalZipSubmit() {
     return;
   }
   // Scroll to hero and populate the main form
-  document.getElementById('hero').scrollIntoView({ behavior: 'smooth' });
+  document.querySelector('.hero').scrollIntoView({ behavior: 'smooth' });
   zipInput.value = zip;
   setTimeout(handleZipSubmit, 600);
 }

@@ -517,7 +517,150 @@
             <button class="cta-btn" onclick="window.location.href='https://medicare-california.com'">Find Your Plan</button>
         </div>
     </nav>
-    <main>
 
     <!-- Hero Section -->
     <section class="hero" id="main-content">
+        <h1>Medicare Help in Bakersfield</h1>
+        <p class="subtitle">Free, personalized Medicare guidance for Bakersfield and Kern County residents</p>
+
+        <div class="zip-form">
+            <input type="text" id="city-zip" placeholder="Enter your ZIP code" maxlength="5" inputmode="numeric">
+            <button onclick="handleZip()">Get Started</button>
+        </div>
+
+        <div class="trust-checks">
+            <div class="trust-item">100% Free</div>
+            <div class="trust-item">Hablamos Español</div>
+            <div class="trust-item">Licensed Agents</div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-number">130K+</div>
+                <div class="stat-label">Medicare Beneficiaries</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">20</div>
+                <div class="stat-label">Medicare Advantage Plans Available</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Serving Kern County</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-choose">
+        <h2>Why Bakersfield Residents Choose Us</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">🏥</div>
+                <h3>Kern County Expertise</h3>
+                <p>We understand Bakersfield and Kern County's healthcare market. From downtown Bakersfield to Delano and Tehachapi, we know which plans work best locally.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🗣️</div>
+                <h3>Bilingual Support</h3>
+                <p>Spanish-speaking agents available to help. Bakersfield's diverse population deserves culturally aware Medicare guidance.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">💰</div>
+                <h3>Completely Free</h3>
+                <p>No cost for our help. We're here to serve your needs, not the insurance industry.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Local Info -->
+    <section class="local-info">
+        <h2>Medicare in Bakersfield: Kern County Healthcare Guide</h2>
+        <p>Bakersfield, the county seat of Kern County and the ninth-largest city in California, serves as a major hub for healthcare in the southern San Joaquin Valley. With a population of approximately 390,000 and over 130,000 Medicare beneficiaries, Bakersfield's healthcare system has expanded significantly over the past decade. The region's growing population and economic development have attracted major healthcare providers, creating improved Medicare options for local seniors.</p>
+
+        <p>Blue Shield of California is a leading carrier in Bakersfield, offering comprehensive Medicare Advantage plans with strong coverage at Kern Medical Center and other local facilities. Kaiser Permanente maintains a growing presence in the region with its own integrated medical facilities. UnitedHealthcare and other regional carriers also serve Bakersfield beneficiaries, providing competitive plan options. Kern Medical Center, the county's flagship public hospital, is well-integrated into most regional Medicare plans. For beneficiaries who prefer more control over provider selection, Original Medicare with Medigap supplement coverage offers an excellent alternative, particularly attractive to those who work with specialists across the broader Central Valley region.</p>
+
+        <p>Bakersfield's economy, historically based in agriculture and oil production with growing manufacturing and healthcare sectors, means the region has attracted a demographic mix of working retirees and long-time residents. The city's Hispanic population, representing a significant portion of Bakersfield residents, means many carriers have invested in culturally competent care and Spanish-language services. Whether you're a Bakersfield native or a recent arrival to Kern County, our licensed agents understand the specific healthcare landscape and can help you select a Medicare plan that ensures continuity of care and fits your healthcare preferences.</p>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>How many Medicare plans are available in Bakersfield?</span>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Bakersfield residents have access to approximately 20 Medicare Advantage plans and various Medigap options. Major carriers serving Kern County include Blue Shield of California, Kaiser Permanente, UnitedHealthcare, and regional plans focused on the Bakersfield area. Our agents can help you find the best plan available in your specific ZIP code.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>Can I keep my Kern Medical or Bakersfield Heart Hospital doctor with Medicare?</span>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Many Medicare plans in Bakersfield include Kern Medical Center and Bakersfield Heart Hospital in their provider networks. Blue Shield and Kaiser Permanente both maintain strong relationships with major Bakersfield healthcare providers. Confirm your preferred doctors participate in your chosen plan before enrolling.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>When is the best time to enroll in Medicare in Bakersfield?</span>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Your Initial Enrollment Period is 3 months before and after your 65th birthday. The annual Open Enrollment Period runs October 15 - December 7, allowing you to change plans. Early enrollment ensures seamless coverage transition and helps you avoid penalties.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Ready to Find Your Medicare Plan in Bakersfield?</h2>
+        <p>Let our licensed agents guide you through all available options at no cost to you.</p>
+        <button class="cta-btn" onclick="window.location.href='https://medicare-california.com'">Compare Plans Free</button>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>Medicare California</strong> - Your trusted resource for Medicare guidance in California</p>
+        <p>We help California residents navigate Medicare options and find plans that fit their healthcare needs and budget.</p>
+        <div class="footer-links">
+            <a href="https://medicare-california.com">Home</a>
+            <a href="https://medicare-california.com/about">About Us</a>
+            <a href="https://medicare-california.com/contact">Contact</a>
+            <a href="https://medicare-california.com/privacy">Privacy Policy</a>
+            <a href="https://medicare-california.com/terms">Terms of Service</a>
+        </div>
+        <div class="disclaimer">
+            <p>This website is not affiliated with or endorsed by the U.S. government or the federal Medicare program. We are a private organization that helps seniors find Medicare plans. Licensed insurance agents available to help guide your Medicare decisions.</p>
+        </div>
+    </footer>
+
+    <script>
+        function handleZip() {
+            var zip = document.getElementById('city-zip').value.replace(/\D/g,'');
+            if(zip.length === 5) {
+                window.top.location.href = 'https://medicare-california.com/?zip=' + zip;
+            }
+        }
+
+        document.getElementById('city-zip').addEventListener('keypress', function(e) {
+            if(e.key === 'Enter') handleZip();
+        });
+
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const toggle = element.querySelector('.faq-toggle');
+            answer.classList.toggle('active');
+            toggle.textContent = answer.classList.contains('active') ? '−' : '+';
+        }
+    </script>
+</body>
+</html>

@@ -24,24 +24,27 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="/shared-footer.css">
     <style>
         :root {
-            --teal: #0D9488;
-            --teal-dark: #0F766E;
-            --navy: #1E3A5F;
-            --slate: #475569;
-            --light-gray: #F8FAFC;
-            --white: #FFFFFF;
-            --border: #E2E8F0;
-            --text-dark: #1F2937;
-            --text-light: #6B7280;
+            --terra:      #0080D4;
+            --terra-dark: #0068B0;
+            --charcoal:   #1a1a1a;
+            --navy:       #0B2D4F;
+            --text:       #4a4a4a;
+            --soft-blue:  #3D9BE9;
+            --light-blue: #E8F2FC;
+            --white:      #FFFFFF;
+            --radius:     14px;
+            --shadow:     0 4px 24px rgba(0,80,160,0.08);
+            --shadow-lg:  0 12px 48px rgba(0,80,160,0.12);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Inter', sans-serif;
-            color: var(--text-dark);
+            font-family: 'Open Sans', -apple-system, system-ui, sans-serif;
+            color: var(--text);
             background: var(--white);
             line-height: 1.7;
         }
@@ -56,73 +59,38 @@
             line-height: 1.5;
         }
 
-        /* Nav */
-        nav {
+        /* Header */
+        .site-header {
+            padding: 16px 24px;
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
-            padding: 1.2rem 2rem;
-            background: var(--white);
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            max-width: 960px;
+            margin: 0 auto;
         }
 
-        .nav-logo {
-            font-size: 1.5rem;
+        .logo {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 22px;
             font-weight: 700;
-            color: var(--navy);
+            color: var(--charcoal);
             text-decoration: none;
-        }
-
-        .nav-logo span { color: var(--teal); }
-
-        .nav-links {
             display: flex;
-            list-style: none;
-            gap: 2rem;
             align-items: center;
+            gap: 8px;
         }
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--slate);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover { color: var(--teal); }
-
-        .nav-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--slate);
-            cursor: pointer;
-        }
-
-        @media (max-width: 768px) {
-            .nav-toggle { display: block; }
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 60px;
-                left: 0;
-                right: 0;
-                flex-direction: column;
-                gap: 0;
-                background: var(--white);
-                border-bottom: 1px solid var(--border);
-                padding: 1rem 0;
-            }
-            .nav-links.active { display: flex; }
-            .nav-links li { padding: 0.75rem 2rem; border-bottom: 1px solid var(--border); }
+        .logo-full {
+            width: 278px;
+            height: 36px;
+            flex-shrink: 0;
         }
 
         /* Page content */
+        main {
+            min-height: calc(100vh - 200px);
+        }
+
         .page-header {
             background: linear-gradient(135deg, var(--navy), #2d4a6f);
             color: var(--white);
@@ -156,41 +124,25 @@
 
         .content p {
             margin-bottom: 1rem;
-            color: var(--slate);
+            color: var(--text);
             font-size: 0.95rem;
         }
 
         .content ul {
             margin: 0 0 1rem 1.5rem;
-            color: var(--slate);
+            color: var(--text);
             font-size: 0.95rem;
         }
 
         .content ul li { margin-bottom: 0.4rem; }
 
-        /* Footer */
-        footer {
-            background: var(--navy);
-            color: #d1d5db;
-            padding: 2.5rem 2rem 1.5rem;
-            text-align: center;
-            font-size: 0.85rem;
-            line-height: 1.6;
-        }
-
-        footer a {
-            color: #93c5fd;
+        .content a {
+            color: var(--terra);
             text-decoration: none;
         }
 
-        footer a:hover { text-decoration: underline; }
-
-        .footer-copy {
-            margin-top: 1.5rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.8rem;
-            color: #9ca3af;
+        .content a:hover {
+            text-decoration: underline;
         }
     </style>
 <script type="application/ld+json">
@@ -201,19 +153,16 @@
 <a href="#main-content" class="skip-link" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;padding:8px 16px;background:#002147;color:#fff;font-size:14px;text-decoration:none" onfocus="this.style.position='fixed';this.style.left='8px';this.style.top='8px';this.style.width='auto';this.style.height='auto';this.style.overflow='visible'" onblur="this.style.position='absolute';this.style.left='-9999px';this.style.width='1px';this.style.height='1px';this.style.overflow='hidden'">Skip to main content</a>
 
 <!-- CMS Disclaimer -->
-<div class="cms-bar">
+<div class="cms-bar" style="background: #f0f4f8; text-align: center; padding: 8px 16px; font-size: 12px; color: #6b7280; line-height: 1.5;">
     Site is not part of the federal government or Medicare. For official information visit Medicare or call 1-800-Medicare.
 </div>
 
-<nav>
-    <a href="/" class="nav-logo">Medicare<span>California</span></a>
-    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Toggle menu">&#9776;</button>
-    <ul class="nav-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/contact.html">Contact</a></li>
-        <li><a href="/resources.html">Resources</a></li>
-    </ul>
-</nav>
+<header class="site-header" style="padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; max-width: 960px; margin: 0 auto;">
+  <a href="https://medicare-california.com" class="logo" style="font-family: 'Open Sans', sans-serif; font-size: 22px; font-weight: 700; color: #1a1a1a; text-decoration: none; display: flex; align-items: center; gap: 8px;">
+    <svg class="logo-full" viewBox="0 0 370 48" width="278" height="36" xmlns="http://www.w3.org/2000/svg" aria-label="Medicare California" role="img"><defs><linearGradient id="navShieldGradCA" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#0080D4"/><stop offset="100%" style="stop-color:#0071BC"/></linearGradient></defs><path d="M23 2 L43 10 L43 26 C43 37 35 43 23 49 C11 43 3 37 3 26 L3 10 Z" fill="url(#navShieldGradCA)"/><polyline points="14,27 20,33 33,19" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><text y="34" font-family="'Open Sans','Segoe UI','Helvetica Neue',Arial,sans-serif"><tspan x="54" font-size="26" font-weight="700" fill="#1a1a1a">Medicare</tspan><tspan dx="6" font-size="26" font-weight="600" fill="#3D9BE9">California</tspan></text></svg>
+  </a>
+  <div class="lang-pill" id="header-lang-pill" style="display: inline-flex; border: 2px solid #0B2D4F; border-radius: 999px; overflow: hidden; flex-shrink: 0;"><button class="lp-active" onclick="setLang('en')" style="background: none; border: none; padding: 5px 14px; font-size: 0.82rem; font-weight: 700; cursor: pointer; color: #0B2D4F; letter-spacing: 0.04em; transition: background 0.18s, color 0.18s; line-height: 1; background: #0B2D4F; color: #fff;">EN</button><button onclick="setLang('es')" style="background: none; border: none; padding: 5px 14px; font-size: 0.82rem; font-weight: 700; cursor: pointer; color: #0B2D4F; letter-spacing: 0.04em; transition: background 0.18s, color 0.18s; line-height: 1;">ES</button></div>
+</header>
     <main>
 
 <div class="page-header">
@@ -267,14 +216,70 @@
 
     </main>
 
-<footer>
-    <p>We do not offer every plan available in your area. Currently we represent organizations which offer products in your area. Please contact Medicare.gov, call 1-800-MEDICARE, or your local State Health Insurance Program (SHIP) to get information on all of your options.</p>
-    <div class="footer-copy">
-        &copy; 2026 Medicare California. All rights reserved. |
-        <a href="/privacy.html">Privacy Policy</a> |
-        <a href="/contact.html">Contact Us</a>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>About Medicare California</h4>
+        <p>We're a California-based family team with over 15 years of experience helping seniors navigate Medicare with honesty and care. We've guided over 2,000 families to plans that fit their needs and budget. Our licensed advisors take pride in making complex Medicare information simple and accessible.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="https://medicare-california.com/">Home</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+          <li><a href="/resources.html">Resources</a></li>
+          <li><a href="https://medicare-california.com/blog/">Blog & Guides</a></li>
+          <li><a href="/careers.html">Careers</a></li>
+          <li><a href="https://www.medicare.gov" target="_blank" rel="noopener">Medicare.gov</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Get In Touch</h4>
+        <p style="margin-bottom:12px;">We're here to answer your Medicare questions.</p>
+        <p style="margin-bottom:4px;"><strong>Phone:</strong></p>
+        <p style="margin-bottom:12px;">(310) 597-9142</p>
+        <p style="margin-bottom:4px;"><strong>Email:</strong></p>
+        <p>alejamedicare@gmail.com</p>
+      </div>
     </div>
+
+    <div class="footer-contact" style="border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;margin-bottom:24px;text-align:center;">
+      <p style="font-size:13px;margin-bottom:12px;">Connect with us for personalized guidance. Licensed advisors available to help you understand your Medicare options.</p>
+    </div>
+
+    <p class="footer-disclaimer">
+      We do not offer every plan available in your area. Currently we represent organizations which offer products in your area. Please contact Medicare.gov, call 1-800-MEDICARE (1-800-633-4227), or your local State Health Insurance Program (SHIP) to get information on all of your options. This website is not part of the federal government or the Medicare program. Not affiliated with or endorsed by Medicare or any government agency. Medicare is a registered trademark of the Department of Health and Human Services.
+    </p>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Medicare California. All rights reserved.</span>
+      <a href="/privacy.html">Privacy Policy</a>
+      <button type="button" style="background:none;border:none;color:inherit;cursor:pointer;font:inherit;padding:0;text-decoration:underline" onclick="document.getElementById('footer-terms').style.display=document.getElementById('footer-terms').style.display==='block'?'none':'block'">Terms of Service</button>
+    </div>
+    <div id="footer-terms" style="display:none;padding:16px 0;font-size:12px;color:#9ca3af;line-height:1.6;border-top:1px solid rgba(255,255,255,0.1);margin-top:12px">
+      <strong style="color:#d1d5db">Terms of Service</strong><br>
+      This website provides Medicare plan information and guidance from licensed insurance agents. Plan details, premiums, and benefits shown are based on publicly available CMS data and may change. We strive for accuracy but cannot guarantee all information is current. Our service is free to consumers. By using this site, you acknowledge that final plan details should be verified with the insurance carrier before enrollment. This site is not connected to or endorsed by the federal government or Medicare program.
+    </div>
+  </div>
 </footer>
 
+<script>
+let currentLang = 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-pill button').forEach(function(btn) {
+    btn.classList.toggle('lp-active', (lang === 'en' && btn.textContent.trim() === 'EN') || (lang === 'es' && btn.textContent.trim() === 'ES'));
+  });
+  // You can add i18n logic here if needed for dynamic content
+}
+
+// Initialize language selector
+document.querySelectorAll('.lang-pill button').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    setLang(this.textContent.trim().toLowerCase());
+  });
+});
+</script>
 </body>
 </html>

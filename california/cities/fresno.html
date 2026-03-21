@@ -517,7 +517,150 @@
             <button class="cta-btn" onclick="window.location.href='https://medicare-california.com'">Find Your Plan</button>
         </div>
     </nav>
-    <main>
 
     <!-- Hero Section -->
     <section class="hero" id="main-content">
+        <h1>Medicare Help in Fresno</h1>
+        <p class="subtitle">Free, personalized Medicare guidance for Fresno County and Central Valley residents</p>
+
+        <div class="zip-form">
+            <input type="text" id="city-zip" placeholder="Enter your ZIP code" maxlength="5" inputmode="numeric">
+            <button onclick="handleZip()">Get Started</button>
+        </div>
+
+        <div class="trust-checks">
+            <div class="trust-item">100% Free</div>
+            <div class="trust-item">Hablamos Español</div>
+            <div class="trust-item">Licensed Agents</div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-number">170K+</div>
+                <div class="stat-label">Medicare Beneficiaries</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">25</div>
+                <div class="stat-label">Medicare Advantage Plans Available</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Serving Fresno County</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-choose">
+        <h2>Why Fresno Residents Choose Us</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">🏥</div>
+                <h3>Central Valley Knowledge</h3>
+                <p>We understand Fresno County's unique healthcare landscape. From downtown Fresno to Clovis and Visalia, we know the region's plans and providers.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🗣️</div>
+                <h3>Bilingual Guidance</h3>
+                <p>Spanish-speaking agents ready to help. We serve Fresno's diverse community with clear, accessible Medicare guidance.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">💰</div>
+                <h3>Completely Free</h3>
+                <p>No charges for our help. We work for you, not the insurance companies.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Local Info -->
+    <section class="local-info">
+        <h2>Medicare in Fresno: Central Valley Healthcare Options</h2>
+        <p>Fresno County, located in the heart of California's Central Valley, is home to over 500,000 residents with more than 170,000 Medicare beneficiaries. As one of California's most rapidly growing regions, Fresno has developed a strong healthcare infrastructure to serve its aging population. Understanding your Medicare options in Fresno is essential for accessing quality care in this dynamic region.</p>
+
+        <p>Valley Health Plan is the dominant regional carrier in Fresno, offering Medicare Advantage plans specifically designed for Central Valley residents. Kaiser Permanente maintains a strong presence with facilities throughout Fresno, while Blue Shield of California and United Healthcare provide additional competitive options. Community Medical Centers, the county's major healthcare provider system, is well-integrated into most regional Medicare plans, ensuring beneficiaries can access quality primary and specialty care. The Central Valley's agricultural heritage means many residents work in farming and related industries, making healthcare continuity particularly important for Medicare planning.</p>
+
+        <p>Fresno's diverse population, with significant Hispanic, Armenian, and Asian communities, has led insurance carriers to develop culturally tailored plans and multilingual support services. Whether you're in downtown Fresno, the growing Clovis area, or surrounding communities, our agents understand the specific healthcare needs and plan options available to Central Valley Medicare beneficiaries. We can help you navigate the transition to Medicare with a plan that fits your lifestyle and healthcare preferences.</p>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>How many Medicare plans are available in Fresno?</span>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Fresno County residents have access to approximately 25 Medicare Advantage plans and numerous Medigap supplements. Major carriers serving the area include Valley Health Plan, Kaiser Permanente, Blue Shield of California, and United Healthcare. Our agents can help identify which plans work best for your specific ZIP code in Fresno County.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>Can I keep my Community Medical Centers or Fresno Regional Medical Center doctor with Medicare?</span>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Many Medicare plans in Fresno include Community Medical Centers and Fresno Regional Medical Center in their networks. Valley Health Plan, a regional leader, offers strong coverage at these major Fresno healthcare providers. Always verify your specific doctors are included before enrolling.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>When is the best time to enroll in Medicare in Fresno?</span>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Your Initial Enrollment Period begins 3 months before your 65th birthday and ends 3 months after. The annual Open Enrollment Period runs October 15 - December 7. Getting covered during your eligibility window is important to avoid late enrollment penalties.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Ready to Find Your Medicare Plan in Fresno?</h2>
+        <p>Let our licensed agents guide you through all available options at no cost to you.</p>
+        <button class="cta-btn" onclick="window.location.href='https://medicare-california.com'">Compare Plans Free</button>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>Medicare California</strong> - Your trusted resource for Medicare guidance in California</p>
+        <p>We help California residents navigate Medicare options and find plans that fit their healthcare needs and budget.</p>
+        <div class="footer-links">
+            <a href="https://medicare-california.com">Home</a>
+            <a href="https://medicare-california.com/about">About Us</a>
+            <a href="https://medicare-california.com/contact">Contact</a>
+            <a href="https://medicare-california.com/privacy">Privacy Policy</a>
+            <a href="https://medicare-california.com/terms">Terms of Service</a>
+        </div>
+        <div class="disclaimer">
+            <p>This website is not affiliated with or endorsed by the U.S. government or the federal Medicare program. We are a private organization that helps seniors find Medicare plans. Licensed insurance agents available to help guide your Medicare decisions.</p>
+        </div>
+    </footer>
+
+    <script>
+        function handleZip() {
+            var zip = document.getElementById('city-zip').value.replace(/\D/g,'');
+            if(zip.length === 5) {
+                window.top.location.href = 'https://medicare-california.com/?zip=' + zip;
+            }
+        }
+
+        document.getElementById('city-zip').addEventListener('keypress', function(e) {
+            if(e.key === 'Enter') handleZip();
+        });
+
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const toggle = element.querySelector('.faq-toggle');
+            answer.classList.toggle('active');
+            toggle.textContent = answer.classList.contains('active') ? '−' : '+';
+        }
+    </script>
+</body>
+</html>

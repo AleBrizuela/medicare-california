@@ -126,6 +126,7 @@ body.es .jc-detail .fit-item.en{display:none}body.es .jc-detail .fit-item.es{dis
   .fw{padding:20px 16px}
 }
 </style>
+<link rel="stylesheet" href="/shared-footer.css">
 </head>
 <body>
 
@@ -153,6 +154,7 @@ body.es .jc-detail .fit-item.en{display:none}body.es .jc-detail .fit-item.es{dis
       <a href="https://medicare-california.com/blog/" class="es">Blog</a>
       <div class="lang-pill"><button class="lp-active" onclick="switchLang('en')" aria-label="English">EN</button><button onclick="switchLang('es')" aria-label="Espa&ntilde;ol">ES</button></div>
     </nav>
+    <main>
     <button class="mob" onclick="document.getElementById('mn').classList.toggle('open')">
       <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
@@ -420,25 +422,40 @@ body.es .jc-detail .fit-item.en{display:none}body.es .jc-detail .fit-item.es{dis
 </section>
 
 <!-- Footer -->
-<footer style="background:var(--charcoal);padding:20px 24px 16px">
-  <div style="max-width:960px;margin:0 auto;text-align:center">
-    <div style="font-family:'Open Sans',sans-serif;font-size:18px;color:rgba(255,255,255,0.85);margin-bottom:10px">Susana Marcos LLC</div>
-    <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:6px;font-size:13px">
-      <a href="/" style="color:#E8F2FC;text-decoration:none"><i class="fas fa-home"></i> <span class="en">Home</span><span class="es">Inicio</span></a>
-      <a href="/resources.html" style="color:#E8F2FC;text-decoration:none"><i class="fas fa-book"></i> <span class="en">Resources</span><span class="es">Recursos</span></a>
-      <a href="/blog/" style="color:#E8F2FC;text-decoration:none"><i class="fas fa-pen"></i> Blog</a>
-      <a href="/careers.html" style="color:#E8F2FC;text-decoration:none"><i class="fas fa-briefcase"></i> <span class="en">Careers</span><span class="es">Carreras</span></a>
-      <a href="https://beneficiosmedicare.com/careers.html" style="color:#E8F2FC;text-decoration:none"><i class="fas fa-globe"></i> <span class="en">Careers (Espa&ntilde;ol)</span><span class="es">Carreras (Espa&ntilde;ol)</span></a>
+    </main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4><span class="en">About Medicare California</span><span class="es">Sobre Medicare California</span></h4>
+        <p><span class="en">We're a California-based family team with over 15 years of experience helping seniors navigate Medicare with honesty and care. Our licensed advisors make complex Medicare information simple and accessible.</span><span class="es">Somos un equipo familiar en California con mas de 15 anos de experiencia ayudando a personas mayores a navegar Medicare con honestidad y cuidado.</span></p>
+      </div>
+      <div class="footer-col">
+        <h4><span class="en">Quick Links</span><span class="es">Enlaces</span></h4>
+        <ul>
+          <li><a href="/"><span class="en">Home</span><span class="es">Inicio</span></a></li>
+          <li><a href="/resources.html"><span class="en">Resources</span><span class="es">Recursos</span></a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/careers.html"><span class="en">Careers</span><span class="es">Carreras</span></a></li>
+          <li><a href="/contact.html"><span class="en">Contact</span><span class="es">Contacto</span></a></li>
+          <li><a href="https://www.medicare.gov" target="_blank" rel="noopener">Medicare.gov</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4><span class="en">Get In Touch</span><span class="es">Contacto</span></h4>
+        <p style="margin-bottom:12px;"><span class="en">We're here to answer your Medicare questions.</span><span class="es">Estamos aqui para responder sus preguntas sobre Medicare.</span></p>
+        <p style="margin-bottom:4px;"><strong><span class="en">Phone:</span><span class="es">Telefono:</span></strong></p>
+        <p style="margin-bottom:12px;">(310) 597-9142</p>
+        <p style="margin-bottom:4px;"><strong>Email:</strong></p>
+        <p>alejamedicare@gmail.com</p>
+      </div>
     </div>
-    <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:10px;font-size:13px">
-      <a href="tel:+13105979142" style="color:#E8F2FC;text-decoration:none"><i class="fas fa-phone-alt"></i> <span class="en">Call</span><span class="es">Llame</span></a>
-      <a href="https://calendar.app.google/6D4obxzxERQXBpaf7" target="_blank" style="color:#E8F2FC;text-decoration:none"><i class="fas fa-video"></i> <span class="en">Schedule Virtual Appointment</span><span class="es">Agende Cita Virtual</span></a>
-      <a href="mailto:alejamedicare@gmail.com" style="color:#E8F2FC;text-decoration:none"><i class="fas fa-envelope"></i> Email</a>
-      <a href="https://wa.me/13105979142" target="_blank" style="color:#E8F2FC;text-decoration:none"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    <p class="footer-disclaimer"><span class="en">We do not offer every plan available in your area. Currently we represent organizations which offer products in your area. Please contact Medicare.gov, call 1-800-MEDICARE (1-800-633-4227), or your local State Health Insurance Program (SHIP) to get information on all of your options. This website is not part of the federal government or the Medicare program.</span><span class="es">No ofrecemos todos los planes disponibles en su area. Visite Medicare.gov o llame al 1-800-MEDICARE (1-800-633-4227) para informacion sobre todas sus opciones. Este sitio no es parte del gobierno federal ni del programa de Medicare.</span></p>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Medicare California.</span>
+      <a href="/privacy.html">Privacy Policy</a>
     </div>
-    <p style="font-size:12px;margin-bottom:8px"><a href="/privacy.html" style="color:rgba(255,255,255,0.5);text-decoration:none"><i class="fas fa-lock" style="font-size:12px"></i> Privacy Policy</a></p>
-    <p class="en" style="font-size:12px;color:rgba(255,255,255,0.3);line-height:1.5;margin:0">We do not offer every plan available in your area. Visit Medicare.gov or call 1-800-Medicare. Site is not part of the federal government or Medicare.</p>
-    <p class="es" style="font-size:12px;color:rgba(255,255,255,0.3);line-height:1.5;margin:0">No ofrecemos todos los planes disponibles en su &aacute;rea. Visite Medicare.gov o llame al 1-800-Medicare. Sitio no es parte del gobierno federal ni del programa de Medicare.</p>
   </div>
 </footer>
 

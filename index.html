@@ -153,23 +153,20 @@ h1, h2, h3, h4 {
   padding: 40px 24px 48px;
 }
 .hero-banner h1 {
-  font-size: 36px;
+  font-size: 42px;
   font-weight: 700;
-  line-height: 1.25;
-  margin-bottom: 12px;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  line-height: 1.15;
+  margin-bottom: 14px;
 }
 .hero-banner h1 em {
   font-style: normal;
-  color: var(--soft-blue);
+  color: #81D4FA;
 }
 .hero-banner p {
   font-size: 16px;
-  color: rgba(255,255,255,0.8);
+  color: #CFD8DC;
   line-height: 1.6;
-  max-width: 480px;
+  max-width: 440px;
   margin: 0 auto;
 }
 .hero-form-area {
@@ -961,7 +958,7 @@ h1, h2, h3, h4 {
     gap: 24px;
   }
   .step-arrow { display: none; }
-  .hero-banner h1 { font-size: 28px; }
+  .hero-banner h1 { font-size: 34px; }
   .hero-banner p { font-size: 15px; }
   .hero-checks { gap: 12px; }
   .testimonials-grid {
@@ -981,7 +978,7 @@ h1, h2, h3, h4 {
 
 @media (max-width: 420px) {
   .hero-banner { padding: 28px 18px 40px; }
-  .hero-banner h1 { font-size: 24px; }
+  .hero-banner h1 { font-size: 30px; }
   .hero-form-area { padding: 0 18px 28px; }
   .zip-card { padding: 24px 20px 22px; }
   .why-us { padding: 48px 18px; }
@@ -1231,7 +1228,7 @@ h1, h2, h3, h4 {
 <div id="hero"></div>
 <section class="hero" id="main-content">
   <div class="hero-banner fade-up">
-    <h1><span data-i18n="hero-h1">Medicare Doesn't Have to Be</span><br><em data-i18n="hero-h1-em">Confusing</em></h1>
+    <h1><span data-i18n="hero-h1">Medicare,</span> <em data-i18n="hero-h1-em">Simplified.</em></h1>
     <p data-i18n="hero-banner-p">We're a mother-daughter team helping California families find the right plan. In English or Spanish, at no cost to you.</p>
   </div>
   <div class="hero-form-area">
@@ -1844,8 +1841,8 @@ function toggleAccordion(button) {
 let currentLang = 'en';
 const I18N = {
   // Hero
-  'hero-h1': { en:'Medicare Doesn\u2019t Have to Be', es:'Medicare No Tiene Que Ser' },
-  'hero-h1-em': { en:'Confusing', es:'Confuso' },
+  'hero-h1': { en:'Medicare,', es:'Medicare,' },
+  'hero-h1-em': { en:'Simplified.', es:'Simplificado.' },
   'hero-banner-p': { en:'We\u2019re a mother-daughter team helping California families find the right plan. In English or Spanish, at no cost to you.', es:'Somos un equipo de madre e hija ayudando a familias de California a encontrar el plan correcto. En ingl\u00e9s o espa\u00f1ol, sin costo para usted.' },
   'zip-label': { en:'Enter your ZIP to see plans near you', es:'Ingrese su c\u00f3digo postal para ver planes' },
   'zip-btn': { en:'Compare Plans Free', es:'Comparar Planes Gratis' },

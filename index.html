@@ -145,39 +145,42 @@ h1, h2, h3, h4 {
 }
 
 /* ── HERO ── */
-.hero {
-  padding: 40px 24px 48px;
+/* ── HERO BANNER (Option C: Empathy-first) ── */
+.hero-banner {
+  background: var(--navy);
+  color: #fff;
   text-align: center;
+  padding: 40px 24px 48px;
+}
+.hero-banner h1 {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 12px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero-banner h1 em {
+  font-style: normal;
+  color: var(--soft-blue);
+}
+.hero-banner p {
+  font-size: 16px;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.6;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.hero-form-area {
+  text-align: center;
+  padding: 0 24px 36px;
   max-width: 640px;
   margin: 0 auto;
 }
-.hero-badge {
-  display: inline-block;
-  background: var(--light-blue);
-  color: var(--soft-blue);
-  font-size: 13px;
-  font-weight: 600;
-  padding: 6px 16px;
-  border-radius: 20px;
-  margin-bottom: 20px;
-  letter-spacing: 0.02em;
-}
-.hero h1 {
-  font-size: 40px;
-  font-weight: 700;
-  margin-bottom: 14px;
-  letter-spacing: -0.01em;
-}
-.hero h1 em {
-  font-style: normal;
-  color: var(--terra);
-}
-.hero-sub {
-  font-size: 18px;
-  color: var(--text);
-  max-width: 440px;
-  margin: 0 auto 32px;
-}
+/* Legacy class kept for JS/i18n compat */
+.hero { padding: 0; }
+.hero-sub { display: none; }
 
 /* ── ZIP FORM CARD ── */
 .zip-card {
@@ -958,8 +961,8 @@ h1, h2, h3, h4 {
     gap: 24px;
   }
   .step-arrow { display: none; }
-  .hero h1 { font-size: 32px; }
-  .hero-sub { font-size: 16px; }
+  .hero-banner h1 { font-size: 28px; }
+  .hero-banner p { font-size: 15px; }
   .hero-checks { gap: 12px; }
   .testimonials-grid {
     grid-template-columns: 1fr;
@@ -977,11 +980,11 @@ h1, h2, h3, h4 {
 }
 
 @media (max-width: 420px) {
-  .hero { padding: 28px 18px 36px; }
+  .hero-banner { padding: 28px 18px 40px; }
+  .hero-banner h1 { font-size: 24px; }
+  .hero-form-area { padding: 0 18px 28px; }
   .zip-card { padding: 24px 20px 22px; }
   .why-us { padding: 48px 18px; }
-  .hero h1 { font-size: 28px; }
-  .hero h1 span { font-size: 14px; }
   .trust-badges { flex-direction: column; align-items: center; gap: 14px; }
   .widget-container { padding: 0 12px; }
   .plans-overview h2 {
@@ -1224,46 +1227,49 @@ h1, h2, h3, h4 {
 
 <!-- Social proof moved inside widget (widget-v4.html) -->
 
-<!-- ═══ HERO ═══ -->
+<!-- ═══ HERO (Option C: Empathy-first) ═══ -->
 <div id="hero"></div>
 <section class="hero" id="main-content">
-  <h1 class="fade-up"><span data-i18n="hero-h1">Find the Right Medicare Plan</span><br><span style="font-size:0.6em;font-weight:300;font-style:italic;color:#3D9BE9;display:block;margin-top:8px;" data-i18n="hero-h1-sub">for you or someone you love</span></h1>
-  <p class="hero-sub fade-up-d1" data-i18n="hero-sub">Honest guidance from a family team.<br>No cost, no pressure.</p>
-
-  <!-- ZIP FORM -->
-  <div class="zip-card fade-up-d2" id="zip-card">
-    <label for="zip-input"><span data-i18n="zip-label">Enter your ZIP code to get started</span></label>
-    <div class="zip-input-wrap">
-      <input
-        type="tel"
-        inputmode="numeric"
-        id="zip-input"
-        class="zip-input"
-        placeholder="e.g. 90001"
-        maxlength="5"
-        autocomplete="postal-code"
-      >
-      <div class="zip-error" id="zip-error" data-i18n="zip-error">Please enter a valid 5-digit California ZIP code.</div>
-    </div>
-    <button class="zip-btn" id="zip-btn" onclick="handleZipSubmit()">
-      <span data-i18n="zip-btn">Get Started</span>
-      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </button>
+  <div class="hero-banner fade-up">
+    <h1><span data-i18n="hero-h1">Medicare Doesn't Have to Be</span><br><em data-i18n="hero-h1-em">Confusing</em></h1>
+    <p data-i18n="hero-banner-p">We're a mother-daughter team helping California families find the right plan. In English or Spanish, at no cost to you.</p>
   </div>
+  <div class="hero-form-area">
+    <!-- ZIP FORM -->
+    <div class="zip-card fade-up-d1" id="zip-card" style="position:relative;margin-top:-24px;box-shadow:0 -4px 32px rgba(0,0,0,0.08),0 8px 32px rgba(0,0,0,0.06);">
+      <label for="zip-input"><span data-i18n="zip-label">Enter your ZIP to see plans near you</span></label>
+      <div class="zip-input-wrap">
+        <input
+          type="tel"
+          inputmode="numeric"
+          id="zip-input"
+          class="zip-input"
+          placeholder="e.g. 90001"
+          maxlength="5"
+          autocomplete="postal-code"
+        >
+        <div class="zip-error" id="zip-error" data-i18n="zip-error">Please enter a valid 5-digit California ZIP code.</div>
+      </div>
+      <button class="zip-btn" id="zip-btn" onclick="handleZipSubmit()">
+        <span data-i18n="zip-btn">Compare Plans Free</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
 
-  <div class="hero-checks fade-up-d3">
-    <span class="hero-check">
-      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-      <span data-i18n="hero-check-0">3 minutes</span>
-    </span>
-    <span class="hero-check">
-      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-      <span data-i18n="hero-check-1">Free personalized guidance</span>
-    </span>
-    <span class="hero-check">
-      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-      <span data-i18n="hero-check-2">Hablamos Espa&ntilde;ol</span>
-    </span>
+    <div class="hero-checks fade-up-d2">
+      <span class="hero-check">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <span data-i18n="hero-check-0">Takes 3 min</span>
+      </span>
+      <span class="hero-check">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        <span data-i18n="hero-check-1">Always free</span>
+      </span>
+      <span class="hero-check">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        <span data-i18n="hero-check-2">Hablamos Espa&ntilde;ol</span>
+      </span>
+    </div>
   </div>
 </section>
 
@@ -1772,13 +1778,17 @@ function handleZipSubmit() {
   }
   submitted = true;
 
-  // Hide the ZIP card, show widget
+  // Hide the ZIP card & checks, show widget
   zipCard.style.display = 'none';
   document.querySelector('.hero-checks').style.display = 'none';
-  document.querySelector('.hero-sub').style.display = 'none';
 
-  // Update heading
-  heroEl.querySelector('h1').textContent = currentLang === 'en' ? "Let\u2019s find your plan" : "Encontremos su plan";
+  // Update banner heading
+  var bannerH1 = document.querySelector('.hero-banner h1');
+  if (bannerH1) {
+    bannerH1.innerHTML = currentLang === 'en' ? "Let\u2019s Find <em>Your Plan</em>" : "Encontremos <em>Su Plan</em>";
+  }
+  var bannerP = document.querySelector('.hero-banner p');
+  if (bannerP) bannerP.style.display = 'none';
 
   // Show widget container
   widgetC.classList.add('active');
@@ -1834,14 +1844,14 @@ function toggleAccordion(button) {
 let currentLang = 'en';
 const I18N = {
   // Hero
-  'hero-h1': { en:'Find the Right Medicare Plan', es:'Encuentre el Plan Medicare Correcto' },
-  'hero-h1-sub': { en:'for you or someone you love', es:'para usted o alguien que quiere' },
-  'hero-sub': { en:'Honest guidance from a family team.<br>No cost, no pressure.', es:'Asesor\u00eda honesta de un equipo familiar.<br>Sin costo, sin presi\u00f3n.' },
-  'zip-label': { en:'Enter your ZIP code to get started', es:'Ingrese su c\u00f3digo postal para comenzar' },
-  'zip-btn': { en:'Get Started', es:'Comenzar' },
+  'hero-h1': { en:'Medicare Doesn\u2019t Have to Be', es:'Medicare No Tiene Que Ser' },
+  'hero-h1-em': { en:'Confusing', es:'Confuso' },
+  'hero-banner-p': { en:'We\u2019re a mother-daughter team helping California families find the right plan. In English or Spanish, at no cost to you.', es:'Somos un equipo de madre e hija ayudando a familias de California a encontrar el plan correcto. En ingl\u00e9s o espa\u00f1ol, sin costo para usted.' },
+  'zip-label': { en:'Enter your ZIP to see plans near you', es:'Ingrese su c\u00f3digo postal para ver planes' },
+  'zip-btn': { en:'Compare Plans Free', es:'Comparar Planes Gratis' },
   'zip-error': { en:'Please enter a valid 5-digit California ZIP code.', es:'Ingrese un c\u00f3digo postal v\u00e1lido de 5 d\u00edgitos.' },
-  'hero-check-0': { en:'3 minutes', es:'3 minutos' },
-  'hero-check-1': { en:'Free personalized guidance', es:'Asesor\u00eda personalizada gratis' },
+  'hero-check-0': { en:'Takes 3 min', es:'Solo 3 min' },
+  'hero-check-1': { en:'Always free', es:'Siempre gratis' },
   'hero-check-2': { en:'Hablamos Espa\u00f1ol', es:'We Speak English' },
   // Social proof (now inside widget-v4.html)
   'social-proof': { en:'Trusted by 2,000+ families', es:'M\u00e1s de 2,000 familias conf\u00edan en nosotros' },

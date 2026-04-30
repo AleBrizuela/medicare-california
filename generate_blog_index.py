@@ -269,9 +269,18 @@ def update_index(index_path: Path, cards_html: str) -> bool:
     return True
 
 
+def detect_site_lang(index_html: str) -> str:
+    """Read the <html lang="..."> attribute from the blog index page itself.
+    That defines the site's primary language. Posts in other languages
+    are accessible directly but do not appear on this listing."""
+    m = re.search(r'<html[^>]*\blang="([a-z]{2})"', index_html, re.IGNORECASE)
+    return m.group(1).lower() if m else ""
+
+
 def main():
     parser = argparse.ArgumentParser(description="Regenerate blog/index.html from /blog/*.html metadata")
     parser.add_argument("--dir", default=".", help="Site root containing blog/ subfolder")
+    parser.add_argument("--lang", default=None, help="Filter posts to this language (overrides auto-detect)")
     args = parser.parse_args()
 
     site_root = Path(args.dir).resolve()
@@ -282,8 +291,17 @@ def main():
         print(f"ERROR: {index_path} not found")
         return 1
 
+    site_lang = (args.lang or detect_site_lang(index_path.read_text(encoding="utf-8"))).lower()
+    if not site_lang:
+        print("WARN: no <html lang=...> found and no --lang flag, listing all posts")
+
     posts = collect_metadata(blog_dir)
     print(f"Found {len(posts)} posts in {blog_dir}")
+
+    if site_lang:
+        before = len(posts)
+        posts = [p for p in posts if p["lang"].lower().startswith(site_lang)]
+        print(f"Filtered to lang='{site_lang}': {len(posts)} posts (dropped {before - len(posts)})")
 
     cards_html = "\n".join(build_card(p) for p in posts)
     update_index(index_path, cards_html)

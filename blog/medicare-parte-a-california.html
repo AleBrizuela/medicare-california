@@ -73,28 +73,25 @@
     .cta a { color: #fff; font-weight: bold; text-decoration: underline; }
     .lang-toggle { text-align: right; margin-bottom: 1rem; font-size: 0.9rem; }
     .lang-toggle a { color: var(--teal); cursor: pointer; }
-    .es { display: none; }
     a { color: var(--teal); }
     .check { color: #27ae60; font-weight: bold; }
     .x { color: #c0392b; font-weight: bold; }
   </style>
-
-  <script>
-    function switchLang(lang) {
-      document.querySelectorAll('.en').forEach(el => el.style.display = lang === 'en' ? '' : 'none');
-      document.querySelectorAll('.es').forEach(el => el.style.display = lang === 'es' ? '' : 'none');
-    }
-  </script>
+<style>
+.lang-cta { background: #E8F2FA; border-left: 4px solid #007B7B; padding: 14px 18px; margin: 20px 0; border-radius: 6px; font-size: 15px; }
+.lang-cta a { color: #002147; font-weight: 600; text-decoration: none; }
+.lang-cta a:hover { text-decoration: underline; }
+.lang-cta .lang-cta-icon { font-weight: 700; color: #007B7B; margin-right: 6px; }
+</style>
 </head>
 <body>
-
-  <div class="lang-toggle">
-    <a onclick="switchLang('en')">English</a> | <a onclick="switchLang('es')">Espa&ntilde;ol</a>
+  <!-- LANG-CTA-TOP-START -->
+  <div class="lang-cta">
+    <span class="lang-cta-icon">ES</span> Este art&iacute;culo tambi&eacute;n est&aacute; disponible en espa&ntilde;ol. <a href="https://beneficiosmedicare.com/blog/medicare-parte-a-california.html">L&eacute;alo en Beneficios Medicare &rarr;</a>
   </div>
+  <!-- LANG-CTA-TOP-END -->
 
-  <div class="en">
-
-    <h1>Medicare Part A in California 2026: Hospital Coverage, Costs, and How to Qualify</h1>
+<h1>Medicare Part A in California 2026: Hospital Coverage, Costs, and How to Qualify</h1>
     <p class="byline">Published April 14, 2026 &bull; Susana Marcos LLC, Licensed Medicare Insurance Agent &bull; California</p>
 
     <p>When someone turns 65 in California, the first piece of Medicare they touch is almost always Part A. It is the foundation of the program, the piece that pays for the hospital, and the piece most people get without paying a premium. Understanding what Part A does and does not do is critical for avoiding medical bill surprises later. This guide explains in plain language how Part A works in California in 2026, what it costs, how to qualify, and how it fits with the other parts of Medicare.</p>
@@ -198,7 +195,13 @@
       <p style="font-size: 0.95rem;">Share this with someone you love. A family member or friend approaching 65 needs to understand Medicare Part A before their birthday.</p>
     </div>
 
-  </div>
+  
 
+
+  <!-- LANG-CTA-BOTTOM-START -->
+  <div class="lang-cta">
+    <span class="lang-cta-icon">ES</span> Este art&iacute;culo tambi&eacute;n est&aacute; disponible en espa&ntilde;ol. <a href="https://beneficiosmedicare.com/blog/medicare-parte-a-california.html">L&eacute;alo en Beneficios Medicare &rarr;</a>
+  </div>
+  <!-- LANG-CTA-BOTTOM-END -->
 </body>
 </html>

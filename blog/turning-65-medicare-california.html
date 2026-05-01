@@ -128,25 +128,24 @@
     .cta a { color: #fff; font-weight: bold; text-decoration: underline; }
     .lang-toggle { text-align: right; margin-bottom: 1rem; font-size: 0.9rem; }
     .lang-toggle a { color: var(--teal); cursor: pointer; }
-    .es { display: none; }
     a { color: var(--teal); }
   </style>
-
-  <script>
-    function switchLang(lang) {
-      document.querySelectorAll('.en').forEach(el => el.style.display = lang === 'en' ? '' : 'none');
-      document.querySelectorAll('.es').forEach(el => el.style.display = lang === 'es' ? '' : 'none');
-    }
-  </script>
+<style>
+.lang-cta { background: #E8F2FA; border-left: 4px solid #007B7B; padding: 14px 18px; margin: 20px 0; border-radius: 6px; font-size: 15px; }
+.lang-cta a { color: #002147; font-weight: 600; text-decoration: none; }
+.lang-cta a:hover { text-decoration: underline; }
+.lang-cta .lang-cta-icon { font-weight: 700; color: #007B7B; margin-right: 6px; }
+</style>
 </head>
 <body>
-
-  <div class="lang-toggle">
-    <a onclick="switchLang('en')">English</a> | <a onclick="switchLang('es')">Espanol</a>
+  <!-- LANG-CTA-TOP-START -->
+  <div class="lang-cta">
+    <span class="lang-cta-icon">ES</span> Este art&iacute;culo tambi&eacute;n est&aacute; disponible en espa&ntilde;ol. <a href="https://beneficiosmedicare.com/blog/cumplir-65-anos-medicare-california.html">L&eacute;alo en Beneficios Medicare &rarr;</a>
   </div>
+  <!-- LANG-CTA-TOP-END -->
 
-  <!-- ═══════════════════════════════════════════════════════ ENGLISH VERSION -->
-  <div class="en">
+<!-- ═══════════════════════════════════════════════════════ ENGLISH VERSION -->
+  
 
     <h1>Turning 65 in California: Your Complete Medicare Enrollment Guide</h1>
     <p class="byline">Published March 24, 2026 &bull; Susana Marcos LLC, Licensed Medicare Insurance Agent &bull; California</p>
@@ -300,32 +299,14 @@
       <p style="font-size: 0.95rem;">Share this with someone you love who is approaching 65 and has questions about Medicare.</p>
     </div>
 
-  </div><!-- /.en -->
+  <!-- /.en -->
+<!-- /.es -->
 
-  <!-- ═══════════════════════════════════════════════════════ SPANISH VERSION -->
-  <div class="es">
 
-    <h1>Va a Cumplir 65 Anos en California? Guia Completa de Inscripcion en Medicare</h1>
-    <p class="byline">Publicado el 24 de marzo de 2026 &bull; Susana Marcos LLC, Agente de Seguros de Medicare con Licencia &bull; California</p>
-
-    <p>Cumplir 65 es un hito importante, y en California tambien marca el inicio de una de las decisiones de salud mas importantes de su vida: inscribirse en Medicare. Para la guia completa en espanol, visite <a href="https://beneficiosmedicare.com/cumplir-65-anos-medicare-california">beneficiosmedicare.com/cumplir-65-anos-medicare-california</a>.</p>
-
-    <h2>Puntos Clave</h2>
-
-    <p>Tiene una ventana de 7 meses (el Periodo de Inscripcion Inicial) para inscribirse. Inscribase durante los 3 meses antes de su cumpleanos para que la cobertura comience a tiempo. Si se tarda mas, puede quedarse sin cobertura temporalmente o pagar penalidades de por vida en la Parte B y la Parte D.</p>
-
-    <p>Sus dos grandes opciones son el Medicare Original (con o sin un suplemento Medigap) o un plan de Medicare Advantage. California tiene programas de asistencia como QMB, SLMB y Extra Help que pueden cubrir sus primas y copagos si sus ingresos son limitados.</p>
-
-    <p>Nuestros agentes bilingues en Susana Marcos LLC le guian en todo el proceso en espanol, sin costo.</p>
-
-    <div class="cta">
-      <p><strong>Va a cumplir 65 pronto?</strong> Nuestros agentes bilingues de Medicare en California pueden guiarle en cada paso, en ingles o espanol, sin costo para usted.</p>
-      <p><a href="https://beneficiosmedicare.com/contacto">Programe una Llamada Gratuita &rarr;</a></p>
-      <hr style="border-color: rgba(255,255,255,0.3); margin: 1rem 0;" />
-      <p style="font-size: 0.95rem;">Comparte esto con alguien que quieres que se acerque a los 65 anos y tenga preguntas sobre Medicare.</p>
-    </div>
-
-  </div><!-- /.es -->
-
+  <!-- LANG-CTA-BOTTOM-START -->
+  <div class="lang-cta">
+    <span class="lang-cta-icon">ES</span> Este art&iacute;culo tambi&eacute;n est&aacute; disponible en espa&ntilde;ol. <a href="https://beneficiosmedicare.com/blog/cumplir-65-anos-medicare-california.html">L&eacute;alo en Beneficios Medicare &rarr;</a>
+  </div>
+  <!-- LANG-CTA-BOTTOM-END -->
 </body>
 </html>

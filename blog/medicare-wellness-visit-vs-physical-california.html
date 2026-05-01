@@ -73,27 +73,26 @@
     .cta a { color: #fff; font-weight: bold; text-decoration: underline; }
     .lang-toggle { text-align: right; margin-bottom: 1rem; font-size: 0.9rem; }
     .lang-toggle a { color: var(--terra); cursor: pointer; }
-    .es { display: none; }
     a { color: var(--terra); }
     .check { color: #27ae60; font-weight: bold; }
     .x { color: #c0392b; font-weight: bold; }
   </style>
-
-  <script>
-    function switchLang(lang) {
-      document.querySelectorAll('.en').forEach(el => el.style.display = lang === 'en' ? '' : 'none');
-      document.querySelectorAll('.es').forEach(el => el.style.display = lang === 'es' ? '' : 'none');
-    }
-  </script>
+<style>
+.lang-cta { background: #E8F2FA; border-left: 4px solid #007B7B; padding: 14px 18px; margin: 20px 0; border-radius: 6px; font-size: 15px; }
+.lang-cta a { color: #002147; font-weight: 600; text-decoration: none; }
+.lang-cta a:hover { text-decoration: underline; }
+.lang-cta .lang-cta-icon { font-weight: 700; color: #007B7B; margin-right: 6px; }
+</style>
 </head>
 <body>
-
-  <div class="lang-toggle">
-    <a onclick="switchLang('en')">English</a> | <a onclick="switchLang('es')">Espa&ntilde;ol</a>
+  <!-- LANG-CTA-TOP-START -->
+  <div class="lang-cta">
+    <span class="lang-cta-icon">ES</span> Este art&iacute;culo tambi&eacute;n est&aacute; disponible en espa&ntilde;ol. <a href="https://beneficiosmedicare.com/blog/medicare-wellness-visit-vs-physical-california.html">L&eacute;alo en Beneficios Medicare &rarr;</a>
   </div>
+  <!-- LANG-CTA-TOP-END -->
 
-  <!-- ENGLISH VERSION -->
-  <div class="en">
+<!-- ENGLISH VERSION -->
+  
 
     <h1>Medicare Annual Wellness Visit vs Annual Physical in California 2026: What Is Covered and What Is Not</h1>
     <p class="byline">Published April 21, 2026 &bull; Susana Marcos LLC, Licensed Medicare Insurance Agent &bull; California</p>
@@ -169,86 +168,14 @@
       <p style="font-size: 0.95rem;">Share this with someone you love. A parent, neighbor, or friend on Medicare in California deserves to know the difference before they walk into the exam room.</p>
     </div>
 
-  </div><!-- /.en -->
+  <!-- /.en -->
+<!-- /.es -->
 
-  <!-- SPANISH VERSION -->
-  <div class="es">
 
-    <h1>Visita Anual de Bienestar de Medicare vs Examen Fisico Anual en California 2026: Que Cubre y Que No</h1>
-    <p class="byline">Publicado el 21 de abril de 2026 &bull; Susana Marcos LLC, Agente de Seguros de Medicare con Licencia &bull; California</p>
-
-    <p>Cada primavera recibimos la misma llamada en nuestra oficina de California. Un nuevo beneficiario de Medicare fue a su doctor de cabecera pensando que era un examen fisico anual gratis, y semanas despues llego una factura. El doctor ordeno analisis, hablo de un sintoma nuevo o hizo un examen completo, y el paciente descubrio de la manera dificil que Medicare no cubre el examen fisico anual tradicional. Cubre algo distinto llamado Visita Anual de Bienestar. Entender la diferencia ahorra dinero, evita facturas sorpresa, y ayuda a aprovechar el cuidado preventivo que usted ya paga a traves de la Parte B.</p>
-
-    <h2>Los Tres Tipos de Visitas Preventivas que Medicare Cubre</h2>
-
-    <p>Medicare cubre tres tipos distintos de visitas preventivas, cada una con sus propias reglas y tiempos. Ninguna es el examen fisico anual tradicional con el que muchos californianos crecieron durante su seguro del empleador.</p>
-
-    <p>La primera es la Visita de Bienvenida a Medicare, tambien llamada Examen Fisico Preventivo Inicial. Se programa una sola vez, dentro de los primeros 12 meses con la Parte B. La segunda es la Visita Anual de Bienestar, disponible cada 12 meses despues de tener la Parte B por al menos un ano. La tercera es una serie de examenes preventivos individuales como mamografias, colonoscopias, vacunas contra la influenza y pruebas de diabetes, que se cubren sin costo cuando son medicamente apropiados. Para la lista completa, vea nuestra guia de <a href="https://medicare-california.com/blog/free-medicare-preventive-services-california">servicios preventivos gratis de Medicare en California</a>.</p>
-
-    <h2>Que Pasa Durante la Visita Anual de Bienestar</h2>
-
-    <p>La Visita Anual de Bienestar es una visita de planificacion, no de examen. El proveedor revisa su historia medica y familiar, actualiza la lista de medicamentos, mide presion, altura, peso e indice de masa corporal, y hace una breve evaluacion cognitiva. Usted completa un cuestionario de riesgo que mira habitos, animo, riesgo de caidas y seguridad en casa. El proveedor arma un plan de prevencion por escrito: que examenes programar, que vacunas actualizar, que especialistas consultar este ano.</p>
-
-    <p>Lo que no incluye la Visita de Bienestar es un examen fisico profundo. El proveedor no escucha a fondo el corazon y los pulmones, no revisa el abdomen, no examina la piel de arriba a abajo y no evalua un sintoma nuevo. Si usted menciona dolor de rodilla o un sarpullido, la visita cambia de preventiva a enfocada en el problema, y esa parte se factura como una consulta regular, con el deducible de Parte B y el coseguro de 20 por ciento.</p>
-
-    <div class="callout">
-      <strong>Consejo para California:</strong> Para mantener la Visita Anual de Bienestar gratis, guarde los sintomas nuevos y las preocupaciones de medicamentos para una cita separada. Diga a la recepcion que esta reservando solo la Visita de Bienestar y programe una segunda cita si surge un sintoma.
-    </div>
-
-    <h2>Que Cubre y Que No Cubre Medicare Original</h2>
-
-    <table class="comparison-table">
-      <thead>
-        <tr>
-          <th>Servicio</th>
-          <th>Medicare Original</th>
-          <th>Medicare Advantage tipico en California</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>Visita de Bienvenida a Medicare (ano 1)</td><td class="check">Cubierto a $0</td><td class="check">Cubierto a $0</td></tr>
-        <tr><td>Visita Anual de Bienestar</td><td class="check">Cubierto a $0</td><td class="check">Cubierto a $0</td></tr>
-        <tr><td>Examen fisico anual tradicional</td><td class="x">No cubierto</td><td class="check">Usualmente incluido a $0</td></tr>
-        <tr><td>Examenes preventivos (mamografia, colonoscopia)</td><td class="check">Cubierto a $0 cuando es preventivo</td><td class="check">Cubierto a $0 cuando es preventivo</td></tr>
-        <tr><td>Consulta enfocada en un problema</td><td class="x">Aplica costo compartido de Parte B</td><td class="x">Aplica copago</td></tr>
-        <tr><td>Analisis de laboratorio de rutina sin diagnostico</td><td class="x">No cubierto</td><td class="x">Usualmente no cubierto</td></tr>
-      </tbody>
-    </table>
-
-    <h2>Por Que los Planes Medicare Advantage de California Agregan un Fisico</h2>
-
-    <p>La mayoria de los planes Medicare Advantage que se venden en California incluyen un examen fisico anual completo ademas de la Visita Anual de Bienestar. Los HMO grandes, como Kaiser Permanente Senior Advantage, Blue Shield 65 Plus, SCAN Health Plan y Health Net Seniority Plus, lo ofrecen como beneficio suplementario. Para muchos jubilados, la combinacion de Visita de Bienestar mas examen fisico reemplaza el cuidado de rutina que tenian con el seguro del empleador. Si eso le importa, compare contra un plan Suplemento de Medicare, que deja el fisico sin cubrir pero da acceso mas amplio a medicos. Vea nuestro analisis de <a href="https://medicare-california.com/blog/medicare-hmo-vs-ppo-california">Medicare HMO vs PPO en California</a>.</p>
-
-    <h2>Como Evitar Facturas Sorpresa en la Visita</h2>
-
-    <p>Tres pasos sencillos lo protegen de cargos inesperados. Antes de la visita, diga a la recepcion que esta reservando una Visita Anual de Bienestar, no un fisico, y pida que se codifique asi. Durante la visita, si el proveedor empieza a tratar un sintoma nuevo, pregunte si esa parte se facturara aparte. Despues de la visita, revise el Resumen de Medicare o la explicacion de beneficios del plan Advantage en 30 dias. Si algo se ve mal, llame a la oficina de facturacion y mencione el codigo preventivo correcto antes de que la cuenta pase a cobros.</p>
-
-    <h2>Familias Hispanohablantes que Ayudan a un Padre</h2>
-
-    <p>Si esta ayudando a un padre hispanohablante a navegar su primera Visita de Bienestar, nuestro sitio hermano <a href="https://beneficiosmedicare.com/blog/medicare-viajes-fuera-estados-unidos-california" target="_blank">BeneficiosMedicare.com</a> ofrece guias de Medicare en California en espanol, con el mismo detalle local para familias que prefieren leer y preguntar en su primer idioma.</p>
-
-    <h2>Preguntas Frecuentes</h2>
-
-    <h3>La Visita Anual de Bienestar es realmente gratis en California?</h3>
-    <p>Si, cuando se codifica correctamente como preventiva y sin servicios enfocados en un problema. $0 de deducible y $0 de copago, tanto en Medicare Original como en los planes Medicare Advantage de California.</p>
-
-    <h3>Mi doctor puede hacer un examen fisico real durante la Visita de Bienestar?</h3>
-    <p>Solo uno muy limitado. Si quiere un examen fisico completo, inscribase en un plan Medicare Advantage que lo incluya, o reserve una consulta aparte y espere el costo compartido normal.</p>
-
-    <h3>Cada cuanto puedo tener una Visita Anual de Bienestar?</h3>
-    <p>Cada 12 meses, empezando despues de tener la Parte B por un ano. Los 12 meses se cuentan desde la fecha de su ultima Visita de Bienestar, no por ano calendario.</p>
-
-    <h3>Necesito un doctor de cabecera si tengo Medicare Original?</h3>
-    <p>Si. Muchos californianos omiten el doctor de cabecera en Medicare Original porque se sienten bien, y luego les cuesta encontrar uno cuando aparece un problema. Use la Visita Anual de Bienestar como el ancla que mantiene abierta la relacion con su proveedor.</p>
-
-    <div class="cta">
-      <p><strong>No esta seguro si su plan de Medicare en California incluye un examen fisico completo?</strong> Una revision gratuita de 15 minutos con un agente de Medicare con licencia en California puede comparar sus beneficios de Visita Anual de Bienestar con los de un plan que si incluye el fisico completo.</p>
-      <p><a href="https://medicare-california.com/contact">Solicite una Revision Gratuita &rarr;</a></p>
-      <hr style="border-color: rgba(255,255,255,0.3); margin: 1rem 0;" />
-      <p style="font-size: 0.95rem;">Comparte esto con alguien que quieres. Un padre, vecino o amigo con Medicare en California merece saber la diferencia antes de entrar al consultorio.</p>
-    </div>
-
-  </div><!-- /.es -->
-
+  <!-- LANG-CTA-BOTTOM-START -->
+  <div class="lang-cta">
+    <span class="lang-cta-icon">ES</span> Este art&iacute;culo tambi&eacute;n est&aacute; disponible en espa&ntilde;ol. <a href="https://beneficiosmedicare.com/blog/medicare-wellness-visit-vs-physical-california.html">L&eacute;alo en Beneficios Medicare &rarr;</a>
+  </div>
+  <!-- LANG-CTA-BOTTOM-END -->
 </body>
 </html>

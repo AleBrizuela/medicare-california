@@ -73,27 +73,26 @@
     .cta a { color: #fff; font-weight: bold; text-decoration: underline; }
     .lang-toggle { text-align: right; margin-bottom: 1rem; font-size: 0.9rem; }
     .lang-toggle a { color: var(--terra); cursor: pointer; }
-    .es { display: none; }
     a { color: var(--terra); }
     .check { color: #27ae60; font-weight: bold; }
     .x { color: #c0392b; font-weight: bold; }
   </style>
-
-  <script>
-    function switchLang(lang) {
-      document.querySelectorAll('.en').forEach(el => el.style.display = lang === 'en' ? '' : 'none');
-      document.querySelectorAll('.es').forEach(el => el.style.display = lang === 'es' ? '' : 'none');
-    }
-  </script>
+<style>
+.lang-cta { background: #E8F2FA; border-left: 4px solid #007B7B; padding: 14px 18px; margin: 20px 0; border-radius: 6px; font-size: 15px; }
+.lang-cta a { color: #002147; font-weight: 600; text-decoration: none; }
+.lang-cta a:hover { text-decoration: underline; }
+.lang-cta .lang-cta-icon { font-weight: 700; color: #007B7B; margin-right: 6px; }
+</style>
 </head>
 <body>
-
-  <div class="lang-toggle">
-    <a onclick="switchLang('en')">English</a> | <a onclick="switchLang('es')">Espa&ntilde;ol</a>
+  <!-- LANG-CTA-TOP-START -->
+  <div class="lang-cta">
+    <span class="lang-cta-icon">ES</span> Este art&iacute;culo tambi&eacute;n est&aacute; disponible en espa&ntilde;ol. <a href="https://beneficiosmedicare.com/blog/medicare-part-b-irmaa-california.html">L&eacute;alo en Beneficios Medicare &rarr;</a>
   </div>
+  <!-- LANG-CTA-TOP-END -->
 
-  <!-- ENGLISH VERSION -->
-  <div class="en">
+<!-- ENGLISH VERSION -->
+  
 
     <h1>Medicare Part B Premium and IRMAA in California 2026: What You Really Pay</h1>
     <p class="byline">Published April 14, 2026 &bull; Susana Marcos LLC, Licensed Medicare Insurance Agent &bull; California</p>
@@ -187,104 +186,14 @@
       <p style="font-size: 0.95rem;">Share this with someone you love. A parent or friend about to turn 65 in California deserves to see the IRMAA brackets before their first Part B letter arrives.</p>
     </div>
 
-  </div><!-- /.en -->
+  <!-- /.en -->
+<!-- /.es -->
 
-  <!-- SPANISH VERSION -->
-  <div class="es">
 
-    <h1>Prima de Medicare Parte B e IRMAA en California 2026: Lo Que Realmente Paga</h1>
-    <p class="byline">Publicado el 14 de abril de 2026 &bull; Susana Marcos LLC, Agente de Seguros de Medicare con Licencia &bull; California</p>
-
-    <p>Si acaba de entrar a Medicare en California o recibio una carta del Seguro Social que ajusto su prima, es muy probable que las tres letras que lo confunden sean IRMAA. El Monto de Ajuste Mensual Basado en Ingresos es una de las piezas mas mal entendidas de Medicare. No es una multa y no es un plan aparte. Es un recargo basado en ingresos que se suma a la prima de la Parte B, y para muchos californianos aparece como una sorpresa el primer ano. Esta guia explica los rangos de 2026, como el Seguro Social decide lo que usted paga, y como apelar si su situacion cambio.</p>
-
-    <h2>La Prima Estandar de Parte B en 2026</h2>
-
-    <p>La prima estandar de Medicare Parte B para 2026 es de $206.50 al mes. El deducible anual de la Parte B es de $257. Todo californiano con Medicare paga esta base, a menos que su ingreso sea bajo y califique para un Programa de Ahorros de Medicare, o lo suficientemente alto para activar IRMAA. Por lo general, la prima se descuenta directamente del beneficio del Seguro Social, asi que quizas nunca vea una factura.</p>
-
-    <p>Como Medicare es un programa federal, los $206.50 no cambian si vive en Los Angeles, Fresno o el condado de Humboldt. Lo que cambia por codigo postal es el panorama de planes Medicare Advantage y Medigap. Para entender como se superponen, vea nuestra guia de <a href="https://medicare-california.com/blog/medicare-supplement-plans-california">Planes de Suplemento de Medicare en California</a>.</p>
-
-    <h2>Que es IRMAA y Como Funciona</h2>
-
-    <p>IRMAA es un recargo mensual que se activa cuando su ingreso bruto ajustado modificado (MAGI) cruza un umbral federal. El MAGI es su ingreso bruto ajustado mas los intereses exentos de impuestos. El Seguro Social saca este numero de su declaracion de impuestos de dos anos antes del ano de la prima. Es decir, su IRMAA de 2026 se basa en su declaracion de impuestos de 2024.</p>
-
-    <p>Esa ventana de dos anos es la parte que mas sorprende. Un profesional de California que se jubilo en 2025 podria seguir pagando IRMAA en 2026 basado en el ano que aun recibia sueldo completo. La buena noticia es que se puede apelar.</p>
-
-    <div class="callout">
-      <strong>Definicion rapida:</strong> IRMAA aplica tanto a la Parte B como a la Parte D. Si esta en un rango de IRMAA, vera dos recargos: uno sumado a su prima de Parte B y otro sumado a la prima de su plan de medicamentos de Parte D o de su Medicare Advantage con medicamentos.
-    </div>
-
-    <h2>Rangos de IRMAA de Parte B en 2026</h2>
-
-    <table class="comparison-table">
-      <thead>
-        <tr>
-          <th>Declaracion Individual (MAGI 2024)</th>
-          <th>Declaracion Conjunta (MAGI 2024)</th>
-          <th>Prima Mensual Total de Parte B</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>$109,000 o menos</td><td>$218,000 o menos</td><td>$206.50</td></tr>
-        <tr><td>$109,001 a $137,000</td><td>$218,001 a $274,000</td><td>$289.10</td></tr>
-        <tr><td>$137,001 a $171,000</td><td>$274,001 a $342,000</td><td>$412.90</td></tr>
-        <tr><td>$171,001 a $205,000</td><td>$342,001 a $410,000</td><td>$536.70</td></tr>
-        <tr><td>$205,001 a $499,999</td><td>$410,001 a $749,999</td><td>$660.50</td></tr>
-        <tr><td>$500,000 o mas</td><td>$750,000 o mas</td><td>$701.80</td></tr>
-      </tbody>
-    </table>
-
-    <p>El IRMAA de Parte D es un recargo separado y mas pequeno que se suma a la prima del plan de Parte D que elija. En 2026 va desde unos $13.70 al mes en el primer rango hasta $85.80 en el rango mas alto.</p>
-
-    <h2>Por que California Activa IRMAA con Mas Frecuencia</h2>
-
-    <p>California es el estado con la mayor proporcion de nuevos inscritos en Medicare pagando IRMAA. Tres razones explican esto. Primero, los sueldos en areas metropolitanas empujan a los jubilados a rangos altos en sus ultimos anos de trabajo. Segundo, la venta de bienes raices, especialmente una casa de muchos anos en el Area de la Bahia o Los Angeles, puede agregar cientos de miles en ganancias de capital en un solo ano. Tercero, conversiones a Roth y distribuciones minimas requeridas de cuentas de retiro grandes pueden subir el MAGI mas de lo esperado.</p>
-
-    <p>Ninguna de estas situaciones es permanente. Vender una casa suele ser un evento unico. Ganar un sueldo completo termina en la jubilacion. Por eso existe el proceso de apelacion.</p>
-
-    <h2>Como Apelar IRMAA con el Formulario SSA-44</h2>
-
-    <p>Si tuvo un evento de vida calificado, puede pedir al Seguro Social que use un estimado mas reciente en lugar de su declaracion de dos anos atras. Los eventos que califican incluyen matrimonio, divorcio, muerte de un conyuge, parar o reducir el trabajo, perdida de una pension, o perdida de propiedad que generaba ingresos y no fue una venta voluntaria.</p>
-
-    <h3>Pasos para Apelar</h3>
-
-    <p>Primero, descargue el Formulario SSA-44 del sitio web del Seguro Social. Segundo, complete la seccion del evento y adjunte prueba: acta de matrimonio, sentencia de divorcio, acta de defuncion, carta de jubilacion de su empleador, o documentacion del fin de la pension. Tercero, incluya un estimado de su MAGI esperado para el ano actual. Cuarto, entregue el formulario en persona en una oficina del Seguro Social en California o por correo. El Seguro Social suele decidir en 30 a 60 dias y reembolsa los meses pagados de mas si la decision es a su favor.</p>
-
-    <div class="callout">
-      <strong>Consejo para California:</strong> La venta de la residencia principal no esta en la lista de eventos calificados, aunque es el disparador mas comun de IRMAA en California. Planifique la venta con un contador para que entienda el impacto de dos anos sobre Medicare antes de cerrar.
-    </div>
-
-    <h2>Ayuda para Californianos de Bajos Ingresos</h2>
-
-    <p>En el otro extremo, California ofrece Programas de Ahorros de Medicare a traves de Medi-Cal que pueden pagar toda su prima de Parte B. Los limites de ingreso en 2026 son aproximadamente $1,325 al mes para el programa QMB y $1,585 para SLMB en una persona sola, con limites mas altos para parejas. Estos programas tambien cubren costos compartidos y, en el caso de QMB, eliminan la mayoria de los copagos de hospital y doctor. Si su ingreso esta cerca de esos limites, vale la pena aplicar. Para entender como encajan Medicare y Medi-Cal, vea nuestra guia sobre <a href="https://medicare-california.com/blog/medi-cal-y-medicare-beneficios-dobles-california">beneficios dobles de Medi-Cal y Medicare</a>.</p>
-
-    <h2>Que Hacer Ahora</h2>
-
-    <p>Si apenas esta entrando a Medicare, revise la tabla de rangos con su declaracion de 2024 antes de que se descuente su primera prima. Si ya paga IRMAA y tuvo un cambio de vida reciente, empiece la apelacion SSA-44 lo antes posible. Y si esta comparando planes de Parte D o Medicare Advantage, recuerde que el IRMAA de Parte D lo sigue sin importar el plan, asi que elegir un plan un poco mas barato no reduce el recargo.</p>
-
-    <p>Para familiares hispanohablantes que administran el Medicare de sus padres, nuestro sitio hermano <a href="https://beneficiosmedicare.com/blog/medicare-para-residentes-permanentes-california" target="_blank">BeneficiosMedicare.com</a> cubre estas reglas en espanol con detalle para California.</p>
-
-    <h2>Preguntas Frecuentes</h2>
-
-    <h3>Cuanto cuesta Medicare Parte B en California en 2026?</h3>
-    <p>$206.50 al mes es la prima estandar. Los declarantes de mayores ingresos pagan un recargo IRMAA encima.</p>
-
-    <h3>Que ingreso cuenta para IRMAA?</h3>
-    <p>El ingreso bruto ajustado modificado, que es su AGI mas intereses exentos de impuestos. El Seguro Social usa la declaracion presentada dos anos antes.</p>
-
-    <h3>Puedo apelar IRMAA?</h3>
-    <p>Si, con el Formulario SSA-44, si tuvo un evento de vida calificado como jubilacion, divorcio o muerte del conyuge.</p>
-
-    <h3>Vender mi casa en California activa IRMAA?</h3>
-    <p>Puede hacerlo. Las ganancias de capital de una venta cuentan como ingreso y pueden subirlo de rango por dos anos. La venta de una casa no es un evento calificado para apelar con SSA-44.</p>
-
-    <div class="cta">
-      <p><strong>Preocupado por una sorpresa en su prima de Medicare en 2026?</strong> Una revision gratuita de 15 minutos con un agente de Medicare con licencia en California puede comparar su ingreso de 2024 con los rangos y senalar oportunidades de apelacion antes de su primera factura.</p>
-      <p><a href="https://medicare-california.com/contact">Solicite una Revision de Plan Gratuita &rarr;</a></p>
-      <hr style="border-color: rgba(255,255,255,0.3); margin: 1rem 0;" />
-      <p style="font-size: 0.95rem;">Comparte esto con alguien que quieres. Un padre o amigo que esta por cumplir 65 en California merece ver los rangos de IRMAA antes de que llegue su primera carta de Parte B.</p>
-    </div>
-
-  </div><!-- /.es -->
-
+  <!-- LANG-CTA-BOTTOM-START -->
+  <div class="lang-cta">
+    <span class="lang-cta-icon">ES</span> Este art&iacute;culo tambi&eacute;n est&aacute; disponible en espa&ntilde;ol. <a href="https://beneficiosmedicare.com/blog/medicare-part-b-irmaa-california.html">L&eacute;alo en Beneficios Medicare &rarr;</a>
+  </div>
+  <!-- LANG-CTA-BOTTOM-END -->
 </body>
 </html>

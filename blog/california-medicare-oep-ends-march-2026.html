@@ -65,10 +65,18 @@
     .blog-article-body ul, .blog-article-body ol { padding-left: 24px; margin: 16px 0; }
     .blog-article-body li { margin: 8px 0; }
     .blog-article-body a { color: #0080D4; }
-    .quick-facts { background: #ECFDF5; border-left: 4px solid #0080D4; padding: 18px 24px; border-radius: 6px; margin: 24px 0 32px 0; }
-    .quick-facts h3 { margin: 0 0 12px 0; color: #0080D4; font-size: 18px; }
-    .quick-facts ul { margin: 0; padding-left: 20px; }
-    .quick-facts li { margin: 6px 0; font-size: 15px; }
+    .quick-facts, .callout { background: #E8F2FA; border-left: 4px solid #0080D4; padding: 18px 24px; border-radius: 6px; margin: 24px 0 32px 0; }
+    .quick-facts h3, .callout h3 { margin: 0 0 12px 0; color: #0080D4; font-size: 18px; }
+    .quick-facts ul, .callout ul { margin: 0; padding-left: 20px; }
+    .quick-facts li, .callout li { margin: 6px 0; font-size: 15px; }
+    .quick-facts strong, .callout strong { color: #0B2D4F; }
+    /* Tables: responsive on mobile via horizontal scroll wrapper */
+    .blog-article-body table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 15px; }
+    .blog-article-body th, .blog-article-body td { padding: 10px 12px; border-bottom: 1px solid #E8F2FA; text-align: left; vertical-align: top; }
+    .blog-article-body th { background: #F7FAFC; font-weight: 600; color: #0B2D4F; }
+    .blog-article-body table tr:hover td { background: #FAFCFE; }
+    .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 24px 0; border-radius: 6px; border: 1px solid #E8F2FA; }
+    .table-wrap table { margin: 0 !important; min-width: 480px; }
     .blog-cta-box { background: #0B2D4F; color: white; padding: 28px 32px; border-radius: 8px; margin: 32px 0; text-align: center; }
     .blog-cta-box h3 { color: white; margin: 0 0 12px 0; font-size: 22px; }
     .blog-cta-box p { color: #B2DFDB; margin: 0 0 16px 0; }
@@ -85,6 +93,17 @@
     .site-footer-links a { color: #E8F2FA; text-decoration: none; }
     .site-footer-disc { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.5; margin: 0; max-width: 720px; margin: 0 auto; }
     @media (max-width: 900px) { nav.desktop-nav { display: none; } .mobile-menu-btn { display: block; } .header-inner { padding: 0 16px; } .blog-container { padding: 0 16px; } }
+    @media (max-width: 640px) {
+      .blog-article-header { padding: 32px 0 18px 0; }
+      .blog-article-body p, .blog-article-body li { font-size: 16px; }
+      .blog-article-body h2 { font-size: 22px; }
+      .blog-article-body h3 { font-size: 18px; }
+      .blog-cta-box { padding: 22px 18px; }
+      .blog-cta-box h3 { font-size: 19px; }
+      .quick-facts, .callout { padding: 14px 16px; }
+      .blog-article-body table { font-size: 13px; }
+      .blog-article-body th, .blog-article-body td { padding: 8px; }
+    }
     </style>
     <script type="application/ld+json">
     {"@context": "https://schema.org", "@type": "Article", "headline": "Medicare OEP Ends March 31, 2026: California Guide to Switching Plans", "description": "Medicare Advantage Open Enrollment closes March 31, 2026. California seniors: who qualifies, what changes you can make, step-by-step guide, and what if you miss the deadline.", "datePublished": "2026-04-30", "dateModified": "2026-04-30", "inLanguage": "en", "author": {"@type": "Organization", "name": "Medicare California", "url": "https://medicare-california.com"}, "publisher": {"@type": "Organization", "name": "Susana Marcos Insurance LLC", "logo": {"@type": "ImageObject", "url": "https://medicare-california.com/logo.png"}}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://medicare-california.com/blog/california-medicare-oep-ends-march-2026.html"}}

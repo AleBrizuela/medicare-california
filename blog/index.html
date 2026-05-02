@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QT10YEXDCJ"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -11,371 +10,203 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Medicare California Blog - Guides, Tips & Enrollment Updates</title>
-<meta name="description" content="Expert Medicare guides for California seniors. Enrollment period updates, plan comparisons, and tips from a licensed family team.">
+<title>Medicare California Blog</title>
+<meta name="description" content="Seasonal guides, enrollment updates, and honest advice from a licensed California family team.">
 <link rel="canonical" href="https://medicare-california.com/blog/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Medicare California Blog">
-<meta property="og:description" content="Expert Medicare guides for California seniors. Enrollment period updates, plan comparisons, and tips from a licensed family team.">
+<meta property="og:description" content="Seasonal guides, enrollment updates, and honest advice from a licensed California family team.">
 <meta property="og:url" content="https://medicare-california.com/blog/">
-<meta property="og:image" content="https://medicare-california.com/og-california.png">
-<link rel="icon" type="image/svg+xml" href="../favicon-california.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="blog.css">
-    <link rel="icon" type="image/png" href="../favicon-192x192.png">
-    <link rel="apple-touch-icon" href="../favicon-192x192.png">
+<link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/">
+<link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/">
+<link rel="icon" type="image/svg+xml" href="/favicon-california.svg">
+<link rel="icon" type="image/png" href="/favicon-192x192.png">
+<link rel="apple-touch-icon" href="/favicon-192x192.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+  --accent: #0080D4;
+  --button: #0080D4;
+  --dark: #0B2D4F;
+  --callout-bg: #E8F2FA;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #2C3E50; background: #F5F8FC; line-height: 1.6; }
+a { color: var(--accent); }
+.header { position: sticky; top: 0; z-index: 1000; background: rgba(255,255,255,0.97); backdrop-filter: blur(8px); border-bottom: 1px solid #f0f0f0; }
+.header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; height: 70px; }
+.site-logo { text-decoration: none; }
+nav.desktop-nav { display: flex; align-items: center; gap: 8px; }
+nav.desktop-nav a { text-decoration: none; font-size: 14px; font-weight: 500; color: #5A6577; padding: 8px 14px; border-radius: 8px; transition: all 0.2s; }
+nav.desktop-nav a:hover, nav.desktop-nav a.active { color: var(--dark); background: var(--callout-bg); }
+.mobile-menu-btn { display: none; background: none; border: none; font-size: 24px; color: var(--dark); cursor: pointer; }
+.mobile-nav { display: none; position: fixed; top: 70px; left: 0; right: 0; background: white; padding: 16px; box-shadow: 0 4px 24px rgba(30,58,95,0.10); z-index: 999; flex-direction: column; gap: 4px; }
+.mobile-nav.open { display: flex; }
+.mobile-nav a { font-size: 17px; padding: 14px 16px; display: block; border-radius: 10px; font-weight: 600; color: var(--dark); text-decoration: none; }
+.mobile-nav a:hover { background: var(--callout-bg); }
+
+.blog-hero { background: linear-gradient(135deg, #E8F2FA 0%, #F0F4F8 100%); padding: 72px 24px 56px; text-align: center; }
+.blog-hero h1 { font-size: clamp(28px, 4vw, 42px); font-weight: 800; color: var(--dark); margin: 0 0 14px 0; line-height: 1.2; }
+.blog-hero p { font-size: 18px; color: #5A6577; max-width: 600px; margin: 0 auto; }
+
+.filter-bar { max-width: 1100px; margin: 32px auto 0; padding: 0 24px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.filter-pill { background: white; border: 1.5px solid #E1E8ED; color: #5A6577; padding: 8px 18px; border-radius: 20px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.18s; }
+.filter-pill:hover { border-color: var(--accent); color: var(--accent); }
+.filter-pill.active { background: var(--accent); border-color: var(--accent); color: white; }
+
+.blog-grid-wrap { max-width: 1100px; margin: 32px auto 64px; padding: 0 24px; }
+.blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+.blog-card { background: white; border-radius: 14px; overflow: hidden; text-decoration: none; color: inherit; box-shadow: 0 2px 14px rgba(0,80,160,0.06); border: 1px solid #EEF1F5; transition: all 0.2s; display: block; }
+.blog-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,80,160,0.12); border-color: var(--accent); }
+.blog-card.featured { grid-column: 1 / -1; background: linear-gradient(135deg, white 0%, var(--callout-bg) 100%); border-left: 6px solid var(--accent); }
+.blog-card.featured h2 { font-size: clamp(22px, 3vw, 30px); }
+.blog-card.featured .blog-card-content { padding: 36px 40px; }
+.blog-card-content { padding: 24px 26px; }
+.blog-tag { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; margin-bottom: 12px; letter-spacing: 0.3px; text-transform: uppercase; }
+.blog-tag.tag-aep { background: #FEF3C7; color: #92400E; }
+.blog-tag.tag-iep { background: #E0F2F1; color: #00796B; }
+.blog-tag.tag-oep { background: #E0F2FF; color: #0068B0; }
+.blog-tag.tag-comparar { background: #F3E8FF; color: #7C3AED; }
+.blog-tag.tag-checklist { background: #ECFDF5; color: #059669; }
+.blog-tag.tag-consejos { background: #FEE2E2; color: #DC2626; }
+.blog-tag.tag-guia { background: var(--callout-bg); color: var(--accent); }
+.blog-card h2 { font-size: 19px; color: var(--dark); margin: 0 0 10px 0; line-height: 1.3; font-weight: 700; }
+.blog-card p { color: #5A6577; font-size: 14.5px; margin: 0 0 16px 0; line-height: 1.55; }
+.blog-card-meta { color: #94A3B8; font-size: 13px; display: flex; gap: 8px; align-items: center; }
+.blog-card-meta span { white-space: nowrap; }
+
+.empty-state { text-align: center; padding: 64px 24px; color: #5A6577; font-size: 16px; display: none; }
+
+.site-footer { background: #002147; padding: 32px 24px 22px; text-align: center; margin-top: 48px; }
+.site-footer-inner { max-width: 960px; margin: 0 auto; }
+.site-footer-brand { font-size: 18px; color: #B2DFDB; margin-bottom: 10px; font-weight: 600; }
+.site-footer-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; font-size: 13px; }
+.site-footer-links a { color: #E8F2FA; text-decoration: none; }
+.site-footer-disc { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.5; margin: 0; max-width: 720px; margin: 0 auto; }
+
+@media (max-width: 900px) { nav.desktop-nav { display: none; } .mobile-menu-btn { display: block; } .header-inner { padding: 0 16px; } }
+@media (max-width: 640px) {
+  .blog-hero { padding: 48px 20px 36px; }
+  .blog-grid-wrap { padding: 0 16px; }
+  .blog-card.featured .blog-card-content { padding: 24px 22px; }
+  .blog-card-content { padding: 20px 22px; }
+  .filter-bar { padding: 0 16px; gap: 6px; }
+  .filter-pill { padding: 7px 14px; font-size: 13px; }
+}
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Blog", "name": "Medicare California Blog", "description": "Seasonal guides, enrollment updates, and honest advice from a licensed California family team.", "url": "https://medicare-california.com/blog/", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "Susana Marcos Insurance LLC", "url": "https://medicare-california.com"}}
+</script>
 </head>
 <body>
-<a href="#main-content" class="skip-link" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;padding:8px 16px;background:#002147;color:#fff;font-size:14px;text-decoration:none" onfocus="this.style.position='fixed';this.style.left='8px';this.style.top='8px';this.style.width='auto';this.style.height='auto';this.style.overflow='visible'" onblur="this.style.position='absolute';this.style.left='-9999px';this.style.width='1px';this.style.height='1px';this.style.overflow='hidden'">Skip to main content</a>
-
-<!-- CMS Disclaimer -->
-<div style="background:#f0f4f8;text-align:center;padding:8px 16px;font-size:12px;color:#6b7280;line-height:1.5">
-  Site is not part of the federal government or Medicare. For official information visit Medicare or call 1-800-Medicare.
+<div id="cms-disclaimer" style="background:#fff;text-align:center;font-size:11px;padding:6px 16px;color:#9CA3AF;border-bottom:1px solid #f0f0f0;line-height:1.4">
+  This site is not part of the federal government or the Medicare program. For official information visit Medicare.gov or call 1-800-Medicare.
 </div>
-
-<nav class="blog-nav">
-  <div class="blog-nav-inner">
-    <a href="https://medicare-california.com" class="blog-nav-brand"><svg viewBox="0 0 370 48" width="278" height="36" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="navShieldGradCA" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#0080D4"/><stop offset="100%" style="stop-color:#0071BC"/></linearGradient></defs><path d="M23 2 L43 10 L43 26 C43 37 35 43 23 49 C11 43 3 37 3 26 L3 10 Z" fill="url(#navShieldGradCA)"/><polyline points="14,27 20,33 33,19" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><text y="34" font-family="'Open Sans','Segoe UI','Helvetica Neue',Arial,sans-serif"><tspan x="54" font-size="26" font-weight="700" fill="#1a1a1a">Medicare</tspan><tspan dx="6" font-size="26" font-weight="600" fill="#3D9BE9">California</tspan></text></svg></a>
-    <div class="blog-nav-links">
-      <a href="https://medicare-california.com">Home</a>
-      <a href="https://medicare-california.com" class="blog-nav-cta">Find Your Plan</a>
-    </div>
+<header class="header" id="header">
+  <div class="header-inner">
+    <a href="/" class="site-logo"><svg viewBox="0 0 370 48" width="278" height="36" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="navShieldGradCA" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#0080D4"/><stop offset="100%" style="stop-color:#0071BC"/></linearGradient></defs><path d="M23 2 L43 10 L43 26 C43 37 35 43 23 49 C11 43 3 37 3 26 L3 10 Z" fill="url(#navShieldGradCA)"/><polyline points="14,27 20,33 33,19" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><text y="34" font-family="'Open Sans',sans-serif"><tspan x="54" font-size="26" font-weight="700" fill="#1a1a1a">Medicare</tspan><tspan dx="6" font-size="26" font-weight="600" fill="#3D9BE9">California</tspan></text></svg></a>
+    <nav class="desktop-nav">
+      <a href="/">Home</a>
+      <a href="/blog/" class="active">Blog</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+    <button class="mobile-menu-btn" onclick="document.getElementById('mobile-nav').classList.toggle('open')" aria-label="Menu"><i class="fas fa-bars"></i></button>
   </div>
-</nav>
-
+</header>
+<div class="mobile-nav" id="mobile-nav">
+  <a href="/">Home</a>
+  <a href="/blog/">Blog</a>
+  <a href="/about.html">About</a>
+  <a href="/contact.html">Contact</a>
+</div>
 <section class="blog-hero" id="main-content">
   <h1>Medicare California Blog</h1>
   <p>Seasonal guides, enrollment updates, and honest advice from a licensed California family team.</p>
 </section>
 
-<div class="blog-grid">
-            <!-- BLOG-CARDS-START -->
-            <a href="new-year-medicare-checklist-california.html" class="blog-card">
-                <div class="blog-card-content">
-                    <span class="blog-tag tag-checklist">Checklist</span>
-                    <h2>New Year Medicare Checklist: What California Seniors Should Do in January</h2>
-                    <p>New Year Medicare checklist for California seniors. 8 essential tasks to complete in January to make sure your plan is set up right.</p>
-                    <div class="blog-card-meta">
-                        <span>January 1, 2027</span>
-                        <span>&middot;</span>
-                        <span>2 min read</span>
-                    </div>
-                </div>
-            </a>
-            <a href="medicare-enrollment-mistakes-california.html" class="blog-card">
-                <div class="blog-card-content">
-                    <span class="blog-tag tag-guia">Guide</span>
-                    <h2>7 Medicare Enrollment Mistakes California Families Make</h2>
-                    <p>Avoid the 7 most common Medicare enrollment mistakes that California families make. Learn what to do instead and get free plan review help.</p>
-                    <div class="blog-card-meta">
-                        <span>December 1, 2026</span>
-                        <span>&middot;</span>
-                        <span>2 min read</span>
-                    </div>
-                </div>
-            </a>
-            <a href="medicare-advantage-vs-medigap-california.html" class="blog-card">
-                <div class="blog-card-content">
-                    <span class="blog-tag tag-comparar">Compare</span>
-                    <h2>Medicare Advantage vs. Medigap in California: How to Choose</h2>
-                    <p>Complete comparison of Medicare Advantage vs. Medigap plans in California. Learn the differences in costs, coverage, doctors, benefits, and which plan type is best for your situation.</p>
-                    <div class="blog-card-meta">
-                        <span>November 1, 2026</span>
-                        <span>&middot;</span>
-                        <span>2 min read</span>
-                    </div>
-                </div>
-            </a>
-            <a href="medicare-aep-2027-california-changes.html" class="blog-card">
-                <div class="blog-card-content">
-                    <span class="blog-tag tag-aep">AEP</span>
-                    <h2>Medicare Annual Enrollment 2026: What's Changing for California Seniors</h2>
-                    <p>Learn about Medicare Annual Enrollment Period 2026 changes affecting California seniors, including new CMS rules, Part D drug cost caps, and plan availability updates.</p>
-                    <div class="blog-card-meta">
-                        <span>October 1, 2026</span>
-                        <span>&middot;</span>
-                        <span>2 min read</span>
-                    </div>
-                </div>
-            </a>
-            <a href="5-things-before-medicare-aep-california.html" class="blog-card">
-                <div class="blog-card-content">
-                    <span class="blog-tag tag-aep">AEP</span>
-                    <h2>5 Things California Seniors Should Do Before Medicare Annual Enrollment</h2>
-                    <p>Prepare for Medicare Annual Enrollment before October 15. Check your coverage, review medications, and find a trusted agent. Smart planning saves stress and money.</p>
-                    <div class="blog-card-meta">
-                        <span>September 1, 2026</span>
-                        <span>&middot;</span>
-                        <span>2 min read</span>
-                    </div>
-                </div>
-            </a>
-            <a href="medicare-guide-for-adult-children-california.html" class="blog-card">
-                <div class="blog-card-content">
-                    <span class="blog-tag tag-guia">Guide</span>
-                    <h2>Helping Your Parents with Medicare in California: A Guide for Adult Children</h2>
-                    <p>A practical guide for adult children helping their aging parents navigate Medicare in California. Learn how to check current plans, ask the right questions, and find professional help.</p>
-                    <div class="blog-card-meta">
-                        <span>June 1, 2026</span>
-                        <span>&middot;</span>
-                        <span>2 min read</span>
-                    </div>
-                </div>
-            </a>
-            <a href="california-medicare-oep-ends-march-2026.html" class="blog-card">
-                <div class="blog-card-content">
-                    <span class="blog-tag tag-oep">OEP</span>
-                    <h2>Medicare OEP Ends March 31, 2026: California Guide to Switching Plans</h2>
-                    <p>Medicare Advantage Open Enrollment closes March 31, 2026. California seniors: who qualifies, what changes you can make, step-by-step guide, and what if you miss the deadline.</p>
-                    <div class="blog-card-meta">
-                        <span>April 30, 2026</span>
-                        <span>&middot;</span>
-                        <span>4 min read</span>
-                    </div>
-                </div>
-            </a>
-            <a href="turning-65-california-medicare-iep-guide.html" class="blog-card">
-                <div class="blog-card-content">
-                    <span class="blog-tag tag-iep">Turning 65</span>
-                    <h2>Turning 65 in California: Your Complete Medicare Enrollment Guide</h2>
-                    <p>Turning 65 in California? Complete guide to Medicare: IEP, Parts, options, California-specific assistance programs, late penalties, and step-by-step enrollment.</p>
-                    <div class="blog-card-meta">
-                        <span>April 30, 2026</span>
-                        <span>&middot;</span>
-                        <span>6 min read</span>
-                    </div>
-                </div>
-            </a>
-            <a href="medicare-jubilacion-familias-hispanas-california.html" class="blog-card">
-                <div class="blog-card-content">
-                    <span class="blog-tag tag-guia">Guide</span>
-                    <h2>How to Coordinate Medicare with Retirement in California for Hispanic Families 2026</h2>
-                    <p>2026 guide for Hispanic families in California approaching retirement. When to enroll in Medicare, how to combine it with Social Security, what happens with employer coverage, and how to avoid penalties.</p>
-                    <div class="blog-card-meta">
-                        <span>April 28, 2026</span>
-                        <span>&middot;</span>
-                        <span>7 min read</span>
-                    </div>
-                </div>
-            </a>
-            <a href="medicare-vaccine-coverage-california.html" class="blog-card">
-                <div class="blog-card-content">
-                    <span class="blog-tag tag-guia">Health</span>
-                    <h2>Medicare Vaccine Coverage in California 2026: Shingles, RSV, Flu and Other Shots Covered at $0</h2>
-                    <p>Which vaccines are covered by Medicare in California in 2026 and how much you pay. Shingles, RSV, flu, COVID, pneumonia and Tdap explained for Original Medicare, Medicare Advantage and Part D.</p>
-                    <div class="blog-card-meta">
-                        <span>April 28, 2026</span>
-                        <span>&middot;</span>
-                        <span>6 min read</span>
-                    </div>
-                </div>
-            </a>
-            <a href="medicare-viajes-fuera-estados-unidos-california.html" class="blog-card">
-                <div class="blog-card-content">
-                    <span class="blog-tag tag-guia">Guide</span>
-                    <h2>Medicare and International Travel for Californians 2026: What Is Covered and How to Protect Yourself</h2>
-                    <p>Complete guide to Medicare coverage when traveling outside the United States from California in 2026. Learn what is and is not covered, Medigap and Medicare Advantage options, and how to avoid large bills in Mexico, Colombia, or Peru.</p>
-                    <div class="blog-card-meta">
-                        <span>April 21, 2026</span>
-                        <span>&middot;</span>
-                        <span>7 min read</span>
-                    </div>
-                </div>
-            </a>
-            <a href="medicare-wellness-visit-vs-physical-california.html" class="blog-card">
-                <div class="blog-card-content">
-                    <span class="blog-tag tag-comparar">Compare</span>
-                    <h2>Medicare Annual Wellness Visit vs Annual Physical in California 2026: What Is Covered and What Is Not</h2>
-                    <p>The Medicare Annual Wellness Visit and the traditional Annual Physical are not the same in California. See what each one covers in 2026, what you pay, and how to avoid surprise bills from your doctor.</p>
-                    <div class="blog-card-meta">
-                        <span>April 21, 2026</span>
-                        <span>&middot;</span>
-                        <span>6 min read</span>
-                    </div>
-                </div>
-            </a>
-            <a href="medicare-para-residentes-permanentes-california.html" class="blog-card">
-                <div class="blog-card-content">
-                    <span class="blog-tag tag-consejos">Tips</span>
-                    <h2>Medicare for Permanent Residents in California 2026: Requirements and How to Enroll</h2>
-                    <p>Complete guide to Medicare for green card holders in California in 2026. Learn the 5-year residency rule, how to qualify, costs, and steps to enroll.</p>
-                    <div class="blog-card-meta">
-                        <span>April 15, 2026</span>
-                        <span>&middot;</span>
-                        <span>7 min read</span>
-                    </div>
-                </div>
-            </a>
-            <a href="medicare-hmo-vs-ppo-california.html" class="blog-card">
-                <div class="blog-card-content">
-                    <span class="blog-tag tag-comparar">Compare</span>
-                    <h2>Medicare HMO vs PPO in California 2026: How to Choose the Right Medicare Advantage Plan</h2>
-                    <p>Compare Medicare HMO and PPO plans in California for 2026. Learn the differences in networks, referrals, out-of-network coverage, and monthly costs so you can pick the right Medicare Advantage plan.</p>
-                    <div class="blog-card-meta">
-                        <span>April 14, 2026</span>
-                        <span>&middot;</span>
-                        <span>7 min read</span>
-                    </div>
-                </div>
-            </a>
-            <a href="medicare-part-b-irmaa-california.html" class="blog-card">
-                <div class="blog-card-content">
-                    <span class="blog-tag tag-guia">Coverage</span>
-                    <h2>Medicare Part B Premium and IRMAA in California 2026: What You Really Pay</h2>
-                    <p>How Medicare Part B premiums and IRMAA work in California for 2026. See the 2026 income brackets, how Social Security calculates your premium, and how to appeal if your income has dropped.</p>
-                    <div class="blog-card-meta">
-                        <span>April 14, 2026</span>
-                        <span>&middot;</span>
-                        <span>7 min read</span>
-                    </div>
-                </div>
-            </a>
-            <a href="medicare-parte-a-california.html" class="blog-card">
-                <div class="blog-card-content">
-                    <span class="blog-tag tag-guia">Coverage</span>
-                    <h2>Medicare Part A in California 2026: Hospital Coverage, Costs, and How to Qualify</h2>
-                    <p>Complete guide to Medicare Part A in California for 2026. Learn what Part A covers, how much it costs, how to qualify premium-free, and which California hospitals accept Medicare.</p>
-                    <div class="blog-card-meta">
-                        <span>April 14, 2026</span>
-                        <span>&middot;</span>
-                        <span>7 min read</span>
-                    </div>
-                </div>
-            </a>
-            <a href="medicare-dental-vision-hearing-california.html" class="blog-card">
-                <div class="blog-card-content">
-                    <span class="blog-tag tag-guia">Health</span>
-                    <h2>Does Medicare Cover Dental, Vision, and Hearing in California 2026?</h2>
-                    <p>Original Medicare rarely covers dental, vision, or hearing. Learn what California Medicare beneficiaries can do in 2026 to get this coverage through Medicare Advantage, standalone plans, or state programs.</p>
-                    <div class="blog-card-meta">
-                        <span>April 8, 2026</span>
-                        <span>&middot;</span>
-                        <span>8 min read</span>
-                    </div>
-                </div>
-            </a>
-            <a href="medicare-parte-d-medicamentos-california.html" class="blog-card">
-                <div class="blog-card-content">
-                    <span class="blog-tag tag-guia">Coverage</span>
-                    <h2>Medicare Part D Drug Coverage in California: Complete Guide 2026</h2>
-                    <p>Learn how Medicare Part D works in California in 2026. What drugs it covers, how much it costs, how to enroll, and how to avoid the late enrollment penalty.</p>
-                    <div class="blog-card-meta">
-                        <span>April 8, 2026</span>
-                        <span>&middot;</span>
-                        <span>9 min read</span>
-                    </div>
-                </div>
-            </a>
-            <a href="medicare-seguro-empleador-california.html" class="blog-card">
-                <div class="blog-card-content">
-                    <span class="blog-tag tag-guia">Coverage</span>
-                    <h2>How Medicare Works with Employer Insurance in California 2026</h2>
-                    <p>If you have employer health insurance and are turning 65, learn how to coordinate Medicare with your employer plan in California. When to enroll, who pays first, and how to avoid costly penalties.</p>
-                    <div class="blog-card-meta">
-                        <span>April 8, 2026</span>
-                        <span>&middot;</span>
-                        <span>8 min read</span>
-                    </div>
-                </div>
-            </a>
-            <a href="medicare-supplement-plans-california.html" class="blog-card">
-                <div class="blog-card-content">
-                    <span class="blog-tag tag-guia">Coverage</span>
-                    <h2>Medicare Supplement Plans in California 2026: Complete Medigap Guide</h2>
-                    <p>Compare Medicare Supplement plans in California for 2026. Learn how Medigap Plan G, Plan N, and other options work, what they cost, and how to choose the right one.</p>
-                    <div class="blog-card-meta">
-                        <span>April 8, 2026</span>
-                        <span>&middot;</span>
-                        <span>8 min read</span>
-                    </div>
-                </div>
-            </a>
-            <a href="medi-cal-y-medicare-beneficios-dobles-california.html" class="blog-card">
-                <div class="blog-card-content">
-                    <span class="blog-tag tag-guia">Guide</span>
-                    <h2>Medi-Cal and Medicare in California: How Dual Benefits Work Together</h2>
-                    <p>Do you have both Medi-Cal and Medicare? Learn how dual eligibility works in California, what each program covers, and how to get the most from both programs.</p>
-                    <div class="blog-card-meta">
-                        <span>April 7, 2026</span>
-                        <span>&middot;</span>
-                        <span>8 min read</span>
-                    </div>
-                </div>
-            </a>
-            <a href="medicare-late-enrollment-penalties-california.html" class="blog-card">
-                <div class="blog-card-content">
-                    <span class="blog-tag tag-consejos">Tips</span>
-                    <h2>Medicare Late Enrollment Penalties in California: How to Avoid Extra Costs</h2>
-                    <p>Learn about Medicare Part A, Part B, and Part D late enrollment penalties in California. Find out who is at risk, how much penalties cost, and how to avoid them.</p>
-                    <div class="blog-card-meta">
-                        <span>April 7, 2026</span>
-                        <span>&middot;</span>
-                        <span>8 min read</span>
-                    </div>
-                </div>
-            </a>
-            <a href="medicare-diabetes-cobertura-california.html" class="blog-card">
-                <div class="blog-card-content">
-                    <span class="blog-tag tag-guia">Health</span>
-                    <h2>Medicare and Diabetes in California: Benefits, Coverage, and Programs You Should Know</h2>
-                    <p>Have diabetes and Medicare in California? Learn about covered supplies, insulin cost caps, prevention programs, and how to reduce your out-of-pocket diabetes costs.</p>
-                    <div class="blog-card-meta">
-                        <span>March 31, 2026</span>
-                        <span>&middot;</span>
-                        <span>7 min read</span>
-                    </div>
-                </div>
-            </a>
-            <a href="medicare-special-enrollment-periods-california.html" class="blog-card">
-                <div class="blog-card-content">
-                    <span class="blog-tag tag-iep">SEP</span>
-                    <h2>Medicare Special Enrollment Periods in California: When You Can Still Change Plans</h2>
-                    <p>Missed the Medicare Open Enrollment deadline? California residents may still qualify for a Special Enrollment Period. Learn who qualifies, when, and how to switch plans.</p>
-                    <div class="blog-card-meta">
-                        <span>March 31, 2026</span>
-                        <span>&middot;</span>
-                        <span>7 min read</span>
-                    </div>
-                </div>
-            </a>
-            <a href="free-medicare-preventive-services-california.html" class="blog-card">
-                <div class="blog-card-content">
-                    <span class="blog-tag tag-guia">Health</span>
-                    <h2>Free Medicare Preventive Services in California You Should Be Using in 2026</h2>
-                    <p>Medicare covers dozens of preventive services at no cost in California. Learn which screenings, vaccines, and wellness visits are free under Original Medicare and Medicare Advantage.</p>
-                    <div class="blog-card-meta">
-                        <span>March 24, 2026</span>
-                        <span>&middot;</span>
-                        <span>8 min read</span>
-                    </div>
-                </div>
-            </a>
-            <!-- BLOG-CARDS-END -->
-        </div>
+<div class="filter-bar" role="tablist">
+<button class="filter-pill active" data-tag="all">All</button>
+<button class="filter-pill" data-tag="AEP">AEP</button>
+<button class="filter-pill" data-tag="Tips">Tips</button>
+<button class="filter-pill" data-tag="OEP">OEP</button>
+<button class="filter-pill" data-tag="Turning 65">Turning 65</button>
+<button class="filter-pill" data-tag="Guide">Guide</button>
+<button class="filter-pill" data-tag="Health">Health</button>
+<button class="filter-pill" data-tag="Compare">Compare</button>
+<button class="filter-pill" data-tag="Checklist">Checklist</button>
+<button class="filter-pill" data-tag="Coverage">Coverage</button>
+<button class="filter-pill" data-tag="SEP">SEP</button>
+</div>
 
-<footer class="blog-footer">
-  <div class="blog-footer-inner">
-    <p>&copy; 2026 Medicare California. A family-owned agency. <a href="https://medicare-california.com">medicare-california.com</a></p>
-    <p class="blog-footer-disclaimer">We do not offer every plan available in your area. Currently we represent organizations which offer products in your area. Please contact Medicare.gov or call 1-800-MEDICARE for information on all options. Not affiliated with or endorsed by Medicare or any government agency.</p>
+<div class="blog-grid-wrap">
+<div class="blog-grid">
+<a href="5-things-before-medicare-aep-california.html" class="blog-card featured" data-tag="AEP"><div class="blog-card-content"><span class="blog-tag tag-aep">AEP</span><h2>5 Things California Seniors Should Do Before Medicare Annual Enrollment</h2><p>Prepare for Medicare Annual Enrollment before October 15. Check your coverage, review medications, and find a trusted agent. Smart planning saves stress and money.</p><div class="blog-card-meta"><span>September 1, 2026</span><span>&middot;</span><span>2 min read</span></div></div></a><a href="medicare-guide-for-adult-children-california.html" class="blog-card" data-tag="Tips"><div class="blog-card-content"><span class="blog-tag tag-consejos">Tips</span><h2>Helping Your Parents with Medicare in California: A Guide for Adult Children</h2><p>A practical guide for adult children helping their aging parents navigate Medicare in California. Learn how to check current plans, ask the right questions, and find professional help.</p><div class="blog-card-meta"><span>June 1, 2026</span><span>&middot;</span><span>2 min read</span></div></div></a>
+<a href="california-medicare-oep-ends-march-2026.html" class="blog-card" data-tag="OEP"><div class="blog-card-content"><span class="blog-tag tag-oep">OEP</span><h2>Medicare OEP Ends March 31, 2026: California Guide to Switching Plans</h2><p>Medicare Advantage Open Enrollment closes March 31, 2026. California seniors: who qualifies, what changes you can make, step-by-step guide, and what if you miss the deadline.</p><div class="blog-card-meta"><span>April 30, 2026</span><span>&middot;</span><span>4 min read</span></div></div></a>
+<a href="turning-65-california-medicare-iep-guide.html" class="blog-card" data-tag="Turning 65"><div class="blog-card-content"><span class="blog-tag tag-iep">Turning 65</span><h2>Turning 65 in California: Your Complete Medicare Enrollment Guide</h2><p>Turning 65 in California? Complete guide to Medicare: IEP, Parts, options, California-specific assistance programs, late penalties, and step-by-step enrollment.</p><div class="blog-card-meta"><span>April 30, 2026</span><span>&middot;</span><span>6 min read</span></div></div></a>
+<a href="medicare-jubilacion-familias-hispanas-california.html" class="blog-card" data-tag="Guide"><div class="blog-card-content"><span class="blog-tag tag-guia">Guide</span><h2>How to Coordinate Medicare with Retirement in California for Hispanic Families 2026</h2><p>2026 guide for Hispanic families in California approaching retirement. When to enroll in Medicare, how to combine it with Social Security, what happens with employer coverage, and how to avoid penalties.</p><div class="blog-card-meta"><span>April 28, 2026</span><span>&middot;</span><span>7 min read</span></div></div></a>
+<a href="medicare-vaccine-coverage-california.html" class="blog-card" data-tag="Health"><div class="blog-card-content"><span class="blog-tag tag-guia">Health</span><h2>Medicare Vaccine Coverage in California 2026: Shingles, RSV, Flu and Other Shots Covered at $0</h2><p>Which vaccines are covered by Medicare in California in 2026 and how much you pay. Shingles, RSV, flu, COVID, pneumonia and Tdap explained for Original Medicare, Medicare Advantage and Part D.</p><div class="blog-card-meta"><span>April 28, 2026</span><span>&middot;</span><span>6 min read</span></div></div></a>
+<a href="medicare-viajes-fuera-estados-unidos-california.html" class="blog-card" data-tag="Guide"><div class="blog-card-content"><span class="blog-tag tag-guia">Guide</span><h2>Medicare and International Travel for Californians 2026: What Is Covered and How to Protect Yourself</h2><p>Complete guide to Medicare coverage when traveling outside the United States from California in 2026. Learn what is and is not covered, Medigap and Medicare Advantage options, and how to avoid large bills in Mexico, Colombia, or Peru.</p><div class="blog-card-meta"><span>April 21, 2026</span><span>&middot;</span><span>7 min read</span></div></div></a>
+<a href="medicare-wellness-visit-vs-physical-california.html" class="blog-card" data-tag="Compare"><div class="blog-card-content"><span class="blog-tag tag-comparar">Compare</span><h2>Medicare Annual Wellness Visit vs Annual Physical in California 2026: What Is Covered and What Is Not</h2><p>The Medicare Annual Wellness Visit and the traditional Annual Physical are not the same in California. See what each one covers in 2026, what you pay, and how to avoid surprise bills from your doctor.</p><div class="blog-card-meta"><span>April 21, 2026</span><span>&middot;</span><span>6 min read</span></div></div></a>
+<a href="medicare-advantage-vs-medigap-california.html" class="blog-card" data-tag="Compare"><div class="blog-card-content"><span class="blog-tag tag-comparar">Compare</span><h2>Medicare Advantage vs. Medigap in California: How to Choose</h2><p>Complete comparison of Medicare Advantage vs. Medigap plans in California. Learn the differences in costs, coverage, doctors, benefits, and which plan type is best for your situation.</p><div class="blog-card-meta"><span>April 15, 2026</span><span>&middot;</span><span>2 min read</span></div></div></a>
+<a href="medicare-aep-2027-california-changes.html" class="blog-card" data-tag="AEP"><div class="blog-card-content"><span class="blog-tag tag-aep">AEP</span><h2>Medicare Annual Enrollment 2026: What's Changing for California Seniors</h2><p>Learn about Medicare Annual Enrollment Period 2026 changes affecting California seniors, including new CMS rules, Part D drug cost caps, and plan availability updates.</p><div class="blog-card-meta"><span>April 15, 2026</span><span>&middot;</span><span>2 min read</span></div></div></a>
+<a href="medicare-enrollment-mistakes-california.html" class="blog-card" data-tag="Tips"><div class="blog-card-content"><span class="blog-tag tag-consejos">Tips</span><h2>7 Medicare Enrollment Mistakes California Families Make</h2><p>Avoid the 7 most common Medicare enrollment mistakes that California families make. Learn what to do instead and get free plan review help.</p><div class="blog-card-meta"><span>April 15, 2026</span><span>&middot;</span><span>2 min read</span></div></div></a>
+<a href="medicare-para-residentes-permanentes-california.html" class="blog-card" data-tag="Tips"><div class="blog-card-content"><span class="blog-tag tag-consejos">Tips</span><h2>Medicare for Permanent Residents in California 2026: Requirements and How to Enroll</h2><p>Complete guide to Medicare for green card holders in California in 2026. Learn the 5-year residency rule, how to qualify, costs, and steps to enroll.</p><div class="blog-card-meta"><span>April 15, 2026</span><span>&middot;</span><span>7 min read</span></div></div></a>
+<a href="new-year-medicare-checklist-california.html" class="blog-card" data-tag="Checklist"><div class="blog-card-content"><span class="blog-tag tag-checklist">Checklist</span><h2>New Year Medicare Checklist: What California Seniors Should Do in January</h2><p>New Year Medicare checklist for California seniors. 8 essential tasks to complete in January to make sure your plan is set up right.</p><div class="blog-card-meta"><span>April 15, 2026</span><span>&middot;</span><span>2 min read</span></div></div></a>
+<a href="medicare-hmo-vs-ppo-california.html" class="blog-card" data-tag="Compare"><div class="blog-card-content"><span class="blog-tag tag-comparar">Compare</span><h2>Medicare HMO vs PPO in California 2026: How to Choose the Right Medicare Advantage Plan</h2><p>Compare Medicare HMO and PPO plans in California for 2026. Learn the differences in networks, referrals, out-of-network coverage, and monthly costs so you can pick the right Medicare Advantage plan.</p><div class="blog-card-meta"><span>April 14, 2026</span><span>&middot;</span><span>7 min read</span></div></div></a>
+<a href="medicare-part-b-irmaa-california.html" class="blog-card" data-tag="Coverage"><div class="blog-card-content"><span class="blog-tag tag-guia">Coverage</span><h2>Medicare Part B Premium and IRMAA in California 2026: What You Really Pay</h2><p>How Medicare Part B premiums and IRMAA work in California for 2026. See the 2026 income brackets, how Social Security calculates your premium, and how to appeal if your income has dropped.</p><div class="blog-card-meta"><span>April 14, 2026</span><span>&middot;</span><span>7 min read</span></div></div></a>
+<a href="medicare-parte-a-california.html" class="blog-card" data-tag="Coverage"><div class="blog-card-content"><span class="blog-tag tag-guia">Coverage</span><h2>Medicare Part A in California 2026: Hospital Coverage, Costs, and How to Qualify</h2><p>Complete guide to Medicare Part A in California for 2026. Learn what Part A covers, how much it costs, how to qualify premium-free, and which California hospitals accept Medicare.</p><div class="blog-card-meta"><span>April 14, 2026</span><span>&middot;</span><span>7 min read</span></div></div></a>
+<a href="medicare-dental-vision-hearing-california.html" class="blog-card" data-tag="Health"><div class="blog-card-content"><span class="blog-tag tag-guia">Health</span><h2>Does Medicare Cover Dental, Vision, and Hearing in California 2026?</h2><p>Original Medicare rarely covers dental, vision, or hearing. Learn what California Medicare beneficiaries can do in 2026 to get this coverage through Medicare Advantage, standalone plans, or state programs.</p><div class="blog-card-meta"><span>April 8, 2026</span><span>&middot;</span><span>8 min read</span></div></div></a>
+<a href="medicare-parte-d-medicamentos-california.html" class="blog-card" data-tag="Coverage"><div class="blog-card-content"><span class="blog-tag tag-guia">Coverage</span><h2>Medicare Part D Drug Coverage in California: Complete Guide 2026</h2><p>Learn how Medicare Part D works in California in 2026. What drugs it covers, how much it costs, how to enroll, and how to avoid the late enrollment penalty.</p><div class="blog-card-meta"><span>April 8, 2026</span><span>&middot;</span><span>9 min read</span></div></div></a>
+<a href="medicare-seguro-empleador-california.html" class="blog-card" data-tag="Coverage"><div class="blog-card-content"><span class="blog-tag tag-guia">Coverage</span><h2>How Medicare Works with Employer Insurance in California 2026</h2><p>If you have employer health insurance and are turning 65, learn how to coordinate Medicare with your employer plan in California. When to enroll, who pays first, and how to avoid costly penalties.</p><div class="blog-card-meta"><span>April 8, 2026</span><span>&middot;</span><span>8 min read</span></div></div></a>
+<a href="medicare-supplement-plans-california.html" class="blog-card" data-tag="Coverage"><div class="blog-card-content"><span class="blog-tag tag-guia">Coverage</span><h2>Medicare Supplement Plans in California 2026: Complete Medigap Guide</h2><p>Compare Medicare Supplement plans in California for 2026. Learn how Medigap Plan G, Plan N, and other options work, what they cost, and how to choose the right one.</p><div class="blog-card-meta"><span>April 8, 2026</span><span>&middot;</span><span>8 min read</span></div></div></a>
+<a href="medi-cal-y-medicare-beneficios-dobles-california.html" class="blog-card" data-tag="Guide"><div class="blog-card-content"><span class="blog-tag tag-guia">Guide</span><h2>Medi-Cal and Medicare in California: How Dual Benefits Work Together</h2><p>Do you have both Medi-Cal and Medicare? Learn how dual eligibility works in California, what each program covers, and how to get the most from both programs.</p><div class="blog-card-meta"><span>April 7, 2026</span><span>&middot;</span><span>8 min read</span></div></div></a>
+<a href="medicare-late-enrollment-penalties-california.html" class="blog-card" data-tag="Tips"><div class="blog-card-content"><span class="blog-tag tag-consejos">Tips</span><h2>Medicare Late Enrollment Penalties in California: How to Avoid Extra Costs</h2><p>Learn about Medicare Part A, Part B, and Part D late enrollment penalties in California. Find out who is at risk, how much penalties cost, and how to avoid them.</p><div class="blog-card-meta"><span>April 7, 2026</span><span>&middot;</span><span>8 min read</span></div></div></a>
+<a href="medicare-diabetes-cobertura-california.html" class="blog-card" data-tag="Health"><div class="blog-card-content"><span class="blog-tag tag-guia">Health</span><h2>Medicare and Diabetes in California: Benefits, Coverage, and Programs You Should Know</h2><p>Have diabetes and Medicare in California? Learn about covered supplies, insulin cost caps, prevention programs, and how to reduce your out-of-pocket diabetes costs.</p><div class="blog-card-meta"><span>March 31, 2026</span><span>&middot;</span><span>7 min read</span></div></div></a>
+<a href="medicare-special-enrollment-periods-california.html" class="blog-card" data-tag="SEP"><div class="blog-card-content"><span class="blog-tag tag-iep">SEP</span><h2>Medicare Special Enrollment Periods in California: When You Can Still Change Plans</h2><p>Missed the Medicare Open Enrollment deadline? California residents may still qualify for a Special Enrollment Period. Learn who qualifies, when, and how to switch plans.</p><div class="blog-card-meta"><span>March 31, 2026</span><span>&middot;</span><span>7 min read</span></div></div></a>
+<a href="free-medicare-preventive-services-california.html" class="blog-card" data-tag="Health"><div class="blog-card-content"><span class="blog-tag tag-guia">Health</span><h2>Free Medicare Preventive Services in California You Should Be Using in 2026</h2><p>Medicare covers dozens of preventive services at no cost in California. Learn which screenings, vaccines, and wellness visits are free under Original Medicare and Medicare Advantage.</p><div class="blog-card-meta"><span>March 24, 2026</span><span>&middot;</span><span>8 min read</span></div></div></a>
+</div>
+<div class="empty-state" id="empty-state">No articles in this category.</div>
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-brand">Susana Marcos LLC</div>
+    <div class="site-footer-links">
+      <a href="/"><i class="fas fa-home"></i> Home</a>
+      <a href="/blog/"><i class="fas fa-pen"></i> Blog</a>
+      <a href="/about.html"><i class="fas fa-info-circle"></i> About</a>
+      <a href="/contact.html"><i class="fas fa-phone-alt"></i> Contact</a>
+    </div>
+    <div class="site-footer-links">
+      <a href="tel:+13105979142"><i class="fas fa-phone-alt"></i> Call</a>
+      <a href="https://calendar.app.google/6D4obxzxERQXBpaf7" target="_blank"><i class="fas fa-video"></i> Book a Meeting</a>
+      <a href="mailto:alejamedicare@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+    </div>
+    <p style="font-size:12px;margin-bottom:8px"><a href="/privacy.html" style="color:rgba(255,255,255,0.55);text-decoration:none"><i class="fas fa-lock"></i> Privacy Policy</a></p>
+    <p class="site-footer-disc">We do not offer every plan available in your area. Visit Medicare.gov or call 1-800-MEDICARE for information on all options. Site is not part of the federal government or the Medicare program.</p>
   </div>
 </footer>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Blog",
-  "name": "Medicare California Blog",
-  "description": "Expert Medicare guides for California seniors",
-  "url": "https://medicare-california.com/blog/",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Medicare California",
-    "url": "https://medicare-california.com"
-  }
-}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var pills = document.querySelectorAll('.filter-pill');
+  var cards = document.querySelectorAll('.blog-card');
+  var empty = document.getElementById('empty-state');
+  pills.forEach(function(p) {
+    p.addEventListener('click', function() {
+      pills.forEach(function(pp) { pp.classList.toggle('active', pp === p); });
+      var tag = p.dataset.tag;
+      var visible = 0;
+      cards.forEach(function(c) {
+        var match = (tag === 'all' || c.dataset.tag === tag);
+        c.style.display = match ? '' : 'none';
+        if (match) visible++;
+      });
+      empty.style.display = visible === 0 ? 'block' : 'none';
+    });
+  });
+  window.addEventListener('scroll', function() { document.getElementById('header').classList.toggle('scrolled', window.scrollY > 10); });
+});
 </script>
-
 </body>
 </html>

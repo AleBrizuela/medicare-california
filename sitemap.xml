@@ -5,16 +5,32 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://medicare-california.com/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/about.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/nosotros.html" />
+    <lastmod>2026-05-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://medicare-california.com/authors.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/authors.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/authors.html" />
+    <lastmod>2026-05-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://medicare-california.com/best-medicare-advantage-california-es.html</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://medicare-california.com/best-medicare-advantage-california-es.html" />
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/best-medicare-advantage-california.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/best-medicare-advantage-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -23,13 +39,15 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/best-medicare-advantage-california.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://medicare-california.com/best-medicare-advantage-california-es.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/best-medicare-advantage-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://medicare-california.com/blog/</loc>
-    <lastmod>2026-05-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/" />
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -37,7 +55,7 @@
     <loc>https://medicare-california.com/blog/5-things-before-medicare-aep-california.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/5-things-before-medicare-aep-california.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/blog/5-things-before-medicare-aep-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -45,7 +63,7 @@
     <loc>https://medicare-california.com/blog/california-medicare-oep-ends-march-2026.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/california-medicare-oep-ends-march-2026.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/oep-termina-marzo-2026.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -53,7 +71,7 @@
     <loc>https://medicare-california.com/blog/free-medicare-preventive-services-california.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/free-medicare-preventive-services-california.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/free-medicare-preventive-services-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -61,7 +79,7 @@
     <loc>https://medicare-california.com/blog/medi-cal-y-medicare-beneficios-dobles-california.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medi-cal-y-medicare-beneficios-dobles-california.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/medi-cal-y-medicare-beneficios-dobles-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -69,7 +87,7 @@
     <loc>https://medicare-california.com/blog/medicare-advantage-vs-medigap-california.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-advantage-vs-medigap-california.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/blog/medicare-advantage-vs-medigap-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -77,7 +95,7 @@
     <loc>https://medicare-california.com/blog/medicare-aep-2027-california-changes.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-aep-2027-california-changes.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/blog/medicare-aep-2027-california-changes.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -85,7 +103,7 @@
     <loc>https://medicare-california.com/blog/medicare-dental-vision-hearing-california.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-dental-vision-hearing-california.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/medicare-dental-vision-hearing-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -93,7 +111,7 @@
     <loc>https://medicare-california.com/blog/medicare-diabetes-cobertura-california.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-diabetes-cobertura-california.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/medicare-diabetes-cobertura-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -101,7 +119,7 @@
     <loc>https://medicare-california.com/blog/medicare-enrollment-mistakes-california.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-enrollment-mistakes-california.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/blog/medicare-enrollment-mistakes-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -109,7 +127,7 @@
     <loc>https://medicare-california.com/blog/medicare-guide-for-adult-children-california.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-guide-for-adult-children-california.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/blog/medicare-guide-for-adult-children-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -117,7 +135,7 @@
     <loc>https://medicare-california.com/blog/medicare-hmo-vs-ppo-california.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-hmo-vs-ppo-california.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/medicare-hmo-vs-ppo-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -125,7 +143,7 @@
     <loc>https://medicare-california.com/blog/medicare-jubilacion-familias-hispanas-california.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-jubilacion-familias-hispanas-california.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/medicare-jubilacion-familias-hispanas-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -133,7 +151,7 @@
     <loc>https://medicare-california.com/blog/medicare-late-enrollment-penalties-california.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-late-enrollment-penalties-california.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/medicare-late-enrollment-penalties-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -141,7 +159,7 @@
     <loc>https://medicare-california.com/blog/medicare-para-residentes-permanentes-california.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-para-residentes-permanentes-california.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/medicare-para-residentes-permanentes-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -149,7 +167,7 @@
     <loc>https://medicare-california.com/blog/medicare-part-b-irmaa-california.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-part-b-irmaa-california.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/medicare-part-b-irmaa-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -157,7 +175,7 @@
     <loc>https://medicare-california.com/blog/medicare-parte-a-california.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-parte-a-california.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/medicare-parte-a-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -165,7 +183,7 @@
     <loc>https://medicare-california.com/blog/medicare-parte-d-medicamentos-california.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-parte-d-medicamentos-california.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/medicare-parte-d-medicamentos-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -173,7 +191,7 @@
     <loc>https://medicare-california.com/blog/medicare-seguro-empleador-california.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-seguro-empleador-california.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/medicare-seguro-empleador-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -181,7 +199,7 @@
     <loc>https://medicare-california.com/blog/medicare-special-enrollment-periods-california.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-special-enrollment-periods-california.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/medicare-special-enrollment-periods-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -189,7 +207,7 @@
     <loc>https://medicare-california.com/blog/medicare-supplement-plans-california.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-supplement-plans-california.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/medicare-supplement-plans-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -197,7 +215,7 @@
     <loc>https://medicare-california.com/blog/medicare-vaccine-coverage-california.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-vaccine-coverage-california.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/medicare-vaccine-coverage-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -205,7 +223,7 @@
     <loc>https://medicare-california.com/blog/medicare-viajes-fuera-estados-unidos-california.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-viajes-fuera-estados-unidos-california.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/medicare-viajes-fuera-estados-unidos-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -213,7 +231,7 @@
     <loc>https://medicare-california.com/blog/medicare-wellness-visit-vs-physical-california.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-wellness-visit-vs-physical-california.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/medicare-wellness-visit-vs-physical-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -221,7 +239,7 @@
     <loc>https://medicare-california.com/blog/new-year-medicare-checklist-california.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/new-year-medicare-checklist-california.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/blog/new-year-medicare-checklist-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -229,19 +247,19 @@
     <loc>https://medicare-california.com/blog/turning-65-california-medicare-iep-guide.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/turning-65-california-medicare-iep-guide.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/inscripcion-inicial-cumplir-65.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://medicare-california.com/bot-evals.html</loc>
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://medicare-california.com/california/cities/</loc>
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -249,7 +267,7 @@
     <loc>https://medicare-california.com/california/cities/bakersfield.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/california/cities/bakersfield.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/california/cities/bakersfield.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -257,7 +275,7 @@
     <loc>https://medicare-california.com/california/cities/fresno.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/california/cities/fresno.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/california/cities/fresno.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -265,7 +283,7 @@
     <loc>https://medicare-california.com/california/cities/long-beach.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/california/cities/long-beach.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/california/cities/long-beach.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -273,7 +291,7 @@
     <loc>https://medicare-california.com/california/cities/los-angeles.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/california/cities/los-angeles.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/california/cities/los-angeles.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -281,7 +299,7 @@
     <loc>https://medicare-california.com/california/cities/orange-county.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/california/cities/orange-county.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/california/cities/orange-county.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -289,7 +307,7 @@
     <loc>https://medicare-california.com/california/cities/riverside.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/california/cities/riverside.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/california/cities/riverside.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -297,7 +315,7 @@
     <loc>https://medicare-california.com/california/cities/sacramento.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/california/cities/sacramento.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/california/cities/sacramento.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -305,7 +323,7 @@
     <loc>https://medicare-california.com/california/cities/san-diego.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/california/cities/san-diego.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/california/cities/san-diego.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -313,7 +331,7 @@
     <loc>https://medicare-california.com/california/cities/san-francisco.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/california/cities/san-francisco.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/california/cities/san-francisco.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -321,7 +339,7 @@
     <loc>https://medicare-california.com/california/cities/san-jose.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/california/cities/san-jose.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/california/cities/san-jose.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -330,7 +348,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/careers.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/careers.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/careers.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -338,7 +356,7 @@
     <loc>https://medicare-california.com/contact-es.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://californiaseniorsbenefits.com/contact.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://californiaseniorsbenefits.com/contact-es.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -346,7 +364,7 @@
     <loc>https://medicare-california.com/contact.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://californiaseniorsbenefits.com/contact.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://californiaseniorsbenefits.com/contact-es.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -355,7 +373,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/dual-eligibility-medicare-medi-cal.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://medicare-california.com/dual-eligibility-medicare-medi-cal-es.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/dual-eligibility-medicare-medi-cal.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -364,7 +382,15 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/dual-eligibility-medicare-medi-cal.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://medicare-california.com/dual-eligibility-medicare-medi-cal-es.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/dual-eligibility-medicare-medi-cal.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://medicare-california.com/editorial-policy.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/editorial-policy.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/politica-editorial.html" />
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -373,7 +399,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/how-to-enroll-medicare-california.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://medicare-california.com/how-to-enroll-medicare-california-es.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/how-to-enroll-medicare-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -382,7 +408,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/how-to-enroll-medicare-california.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://medicare-california.com/how-to-enroll-medicare-california-es.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/how-to-enroll-medicare-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -390,7 +416,7 @@
     <loc>https://medicare-california.com/index-es.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://californiaseniorsbenefits.com/index.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://californiaseniorsbenefits.com/index-es.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -398,7 +424,7 @@
     <loc>https://medicare-california.com/index-widget.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://californiaseniorsbenefits.com/index.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://californiaseniorsbenefits.com/index-es.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -407,7 +433,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/medicare-costs-california.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://medicare-california.com/medicare-costs-california-es.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/medicare-costs-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -416,7 +442,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/medicare-costs-california.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://medicare-california.com/medicare-costs-california-es.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/medicare-costs-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -424,7 +450,7 @@
     <loc>https://medicare-california.com/medicare-in-california-es.html</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://medicare-california.com/medicare-in-california-es.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/medicare-in-california-es.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -433,7 +459,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/medicare-in-california.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://medicare-california.com/medicare-in-california-es.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/medicare-in-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -442,7 +468,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/medigap-california.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://medicare-california.com/medigap-california-es.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/medigap-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -451,7 +477,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/medigap-california.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://medicare-california.com/medigap-california-es.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/medigap-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -460,7 +486,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/open-enrollment-california.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://medicare-california.com/open-enrollment-california-es.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/open-enrollment-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -469,7 +495,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/open-enrollment-california.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://medicare-california.com/open-enrollment-california-es.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/open-enrollment-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -478,7 +504,7 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://medicare-california.com/part-d-california-es.html" />
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/part-d-california.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/part-d-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -487,7 +513,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/part-d-california.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://medicare-california.com/part-d-california-es.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/part-d-california.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -495,7 +521,7 @@
     <loc>https://medicare-california.com/privacy.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/privacy.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/privacidad.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -503,7 +529,7 @@
     <loc>https://medicare-california.com/resources-es.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://californiaseniorsbenefits.com/resources.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://californiaseniorsbenefits.com/resources-es.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -511,7 +537,7 @@
     <loc>https://medicare-california.com/resources.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://californiaseniorsbenefits.com/resources.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://californiaseniorsbenefits.com/resources-es.html" />
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

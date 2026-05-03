@@ -1,0 +1,10 @@
+{
+  "name": "medicare-california",
+  "version": "1.0.0",
+  "description": "Medicare California - English Medicare guidance for California seniors",
+  "scripts": {
+    "build": "python3 generate_sitemap.py --domain https://medicare-california.com --dir . && python3 generate_blog_index.py --dir .",
+    "build:sitemap": "python3 generate_sitemap.py --domain https://medicare-california.com --dir .",
+    "build:blog-index": "python3 generate_blog_index.py --dir ."
+  }
+}

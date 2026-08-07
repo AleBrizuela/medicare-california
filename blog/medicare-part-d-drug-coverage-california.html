@@ -112,12 +112,12 @@
 
 :root {
   --navy: #002147;
-  --teal: #007B7B;
-  --teal-dark: #005C5C;
+  --teal: #0080D4;
+  --teal-dark: #0068B0;
   --mint: #A8D8B9;
   --lt-blue: #E8F2FA;
-  --lt-green: #E0F2F1;
-  --lt-mint: #EDF8F7;
+  --lt-green: #E8F2FC;
+  --lt-mint: #E8F2FC;
   --lt-gray: #F0F3F6;
   --gray: #4A5568;
   --dark: #1a202c;
@@ -130,9 +130,10 @@ body { font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif; 
 .header { position: sticky; top: 0; z-index: 1000; background: rgba(255,255,255,0.97); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(0,33,71,0.08); }
 .header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; height: 70px; }
 .site-logo { font-family: 'Open Sans',sans-serif; font-size: 22px; font-weight: 700; color: var(--teal); text-decoration: none; display: flex; align-items: center; }
-#blog-desktop-nav { display: flex; align-items: center; gap: 8px; }
-#blog-desktop-nav a { text-decoration: none; font-size: 14px; font-weight: 500; color: var(--gray); padding: 8px 14px; border-radius: 8px; transition: all 0.2s; }
-#blog-desktop-nav a:hover { color: var(--navy); background: var(--lt-blue); }
+.desktop-nav { display: flex; align-items: center; gap: 8px; }
+.desktop-nav a { text-decoration: none; font-size: 14px; font-weight: 500; color: var(--gray); padding: 8px 14px; border-radius: 8px; transition: all 0.2s; }
+.desktop-nav a:hover { color: var(--navy); background: var(--lt-blue); }
+.nav-cta { background: var(--teal) !important; color: white !important; font-weight: 700 !important; }
 .lang-pill { display: inline-flex; border: 2px solid var(--lt-blue); border-radius: 20px; overflow: hidden; margin-left: 4px; }
 .lang-pill button { background: transparent; border: none; padding: 6px 12px; font-size: 13px; font-weight: 600; cursor: pointer; color: var(--gray); transition: all 0.2s; }
 .lang-pill button.lp-active { background: var(--navy); color: white; }
@@ -188,10 +189,9 @@ footer.blog-footer { text-align: center; padding: 40px 24px; font-size: 13px; co
   <div class="header-inner">
     <a href="https://medicare-california.com" class="site-logo"><svg viewBox="0 0 370 48" width="278" height="36" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="navShieldGradCA2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#0080D4"/><stop offset="100%" style="stop-color:#0071BC"/></linearGradient></defs><path d="M23 2 L43 10 L43 26 C43 37 35 43 23 49 C11 43 3 37 3 26 L3 10 Z" fill="url(#navShieldGradCA2)"/><polyline points="14,27 20,33 33,19" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><text y="34" font-family="'Open Sans',sans-serif"><tspan x="54" font-size="26" font-weight="700" fill="#1a1a1a">Medicare</tspan><tspan dx="6" font-size="26" font-weight="600" fill="#3D9BE9">California</tspan></text></svg></a>
     <nav class="desktop-nav">
-      <a href="https://medicare-california.com">Home</a>
-      <a href="https://medicare-california.com/blog/" class="active">Blog</a>
-      <a href="https://medicare-california.com/about.html">About</a>
-      <a href="https://medicare-california.com/contact.html">Contact</a>
+      <a href="https://medicare-california.com/blog/">All Articles</a>
+      <a href="https://beneficiosmedicare.com/blog/medicamentos-medicare-parte-d-california">En Espanol</a>
+      <a href="https://medicare-california.com/contact.html" class="nav-cta">Find Your Plan</a>
     </nav>
   </div>
 </header>
@@ -367,17 +367,10 @@ footer.blog-footer { text-align: center; padding: 40px 24px; font-size: 13px; co
 </article>
 </main>
 
-<footer class="site-footer" style="background:#0B2D4F;padding:28px 24px 18px;text-align:center;margin-top:48px">
-  <div style="max-width:960px;margin:0 auto">
-    <div style="font-size:18px;color:#B2DFDB;margin-bottom:10px;font-weight:600">Susana Marcos LLC</div>
-    <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:8px;font-size:13px">
-      <a href="https://medicare-california.com" style="color:#E8F2FA;text-decoration:none">Home</a>
-      <a href="https://medicare-california.com/blog/" style="color:#E8F2FA;text-decoration:none">Blog</a>
-      <a href="https://medicare-california.com/about.html" style="color:#E8F2FA;text-decoration:none">About</a>
-      <a href="https://medicare-california.com/contact.html" style="color:#E8F2FA;text-decoration:none">Contact</a>
-    </div>
-    <p style="font-size:12px;color:rgba(255,255,255,0.45);line-height:1.5;max-width:720px;margin:0 auto">We do not offer every plan available in your area. Visit Medicare.gov or call 1-800-MEDICARE for information on all options. Site is not part of the federal government or the Medicare program.</p>
-  </div>
+<footer class="blog-footer">
+  <p>Medicare California &middot; Susana Marcos LLC &middot; Licensed Insurance Agent</p>
+  <p style="margin-top:8px"><a href="https://medicare-california.com" style="color:#0080D4;text-decoration:none">medicare-california.com</a> &middot; <a href="https://medicare-california.com/blog/" style="color:#0080D4;text-decoration:none">All Articles</a></p>
+  <p style="margin-top:16px;font-size:12px">We are not affiliated with or endorsed by Medicare or any government agency. Information is for educational purposes only.</p>
 </footer>
 
 </body>

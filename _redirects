@@ -5,3 +5,28 @@
 /blog/como-prepararse-medicare-65-california           /blog/turning-65-california-medicare-iep-guide.html  301
 /blog/oep-ending-california-2026.html                  /blog/california-medicare-oep-ends-march-2026.html   301
 /blog/oep-ending-california-2026                       /blog/california-medicare-oep-ends-march-2026.html   301
+
+# 301 redirects: Spanish pages that were wrongly hosted same-domain (violates the
+# cross-site bilingual rule) now point to their real Spanish home on beneficiosmedicare.com.
+# Preserves existing organic ranking/impressions instead of 404ing them.
+/best-medicare-advantage-california-es.html  https://beneficiosmedicare.com/medicare-advantage-california.html      301
+/best-medicare-advantage-california-es       https://beneficiosmedicare.com/medicare-advantage-california.html      301
+/contact-es.html                             https://beneficiosmedicare.com/contacto.html                           301
+/contact-es                                  https://beneficiosmedicare.com/contacto.html                           301
+/dual-eligibility-medicare-medi-cal-es.html  https://beneficiosmedicare.com/doble-elegibilidad-medicare-medicaid.html 301
+/dual-eligibility-medicare-medi-cal-es       https://beneficiosmedicare.com/doble-elegibilidad-medicare-medicaid.html 301
+/how-to-enroll-medicare-california-es.html   https://beneficiosmedicare.com/como-inscribirse-medicare.html          301
+/how-to-enroll-medicare-california-es        https://beneficiosmedicare.com/como-inscribirse-medicare.html          301
+/index-es.html                               https://beneficiosmedicare.com/                                        301
+/medicare-costs-california-es.html           https://beneficiosmedicare.com/costos-medicare-2026.html               301
+/medicare-costs-california-es                https://beneficiosmedicare.com/costos-medicare-2026.html               301
+/medicare-in-california-es.html              https://beneficiosmedicare.com/que-es-medicare.html                    301
+/medicare-in-california-es                   https://beneficiosmedicare.com/que-es-medicare.html                    301
+/medigap-california-es.html                  https://beneficiosmedicare.com/medigap-suplementos-california.html     301
+/medigap-california-es                       https://beneficiosmedicare.com/medigap-suplementos-california.html     301
+/open-enrollment-california-es.html          https://beneficiosmedicare.com/inscripcion-anual-aep.html              301
+/open-enrollment-california-es               https://beneficiosmedicare.com/inscripcion-anual-aep.html              301
+/part-d-california-es.html                   https://beneficiosmedicare.com/partes-medicare.html                    301
+/part-d-california-es                        https://beneficiosmedicare.com/partes-medicare.html                    301
+/resources-es.html                           https://beneficiosmedicare.com/                                        301
+/resources-es                                https://beneficiosmedicare.com/                                        301

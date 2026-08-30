@@ -1368,6 +1368,31 @@ h1, h2, h3, h4 {
 
 <!-- Social proof moved inside widget (widget-v4.html) -->
 
+<!-- AEP 2027 Countdown Banner -->
+<div id="aep-banner" style="background:linear-gradient(135deg,#0B2D4F 0%,#0080D4 100%);color:#fff;text-align:center;padding:18px 24px;position:relative;z-index:50">
+  <div style="max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px 24px">
+    <div style="font-size:15px;font-weight:600;letter-spacing:0.5px">
+      <span style="background:rgba(255,255,255,0.18);padding:4px 12px;border-radius:20px;font-size:13px;margin-right:8px">AEP 2027</span>
+      Open Enrollment starts <strong>Oct 15</strong>
+      <span id="aep-countdown" style="margin-left:6px;color:#FFD54F;font-weight:700"></span>
+    </div>
+    <a href="/blog/medicare-aep-2027-california-changes.html" style="background:#FFD54F;color:#0B2D4F;padding:8px 20px;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none;white-space:nowrap">See What's New for 2027 &rarr;</a>
+  </div>
+</div>
+<script>
+(function(){
+  var target=new Date('2026-10-15T00:00:00');
+  var el=document.getElementById('aep-countdown');
+  function update(){
+    var now=new Date();var diff=target-now;
+    if(diff<=0){el.textContent='- Enrollment is OPEN!';return;}
+    var days=Math.ceil(diff/864e5);
+    el.textContent='- '+days+' day'+(days!==1?'s':'')+' away';
+  }
+  update();setInterval(update,36e5);
+})();
+</script>
+
 <!-- ═══ HERO (Option C: Empathy-first) ═══ -->
 <div id="hero"></div>
 <section class="hero" id="main-content">

@@ -15,6 +15,11 @@
     <title>Medicare Help by City in California - Find Local Guidance | Medicare California</title>
     <link rel="canonical" href="https://medicare-california.com/california/cities/">
 
+    <!-- hreflang -->
+    <link rel="alternate" hreflang="en" href="https://medicare-california.com/california/cities/">
+    <link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/california/cities/">
+    <link rel="alternate" hreflang="x-default" href="https://medicare-california.com/california/cities/">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,336 +61,69 @@
             --border: #E0E0E0;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; }
+        body { font-family: 'Open Sans', sans-serif; color: var(--charcoal); line-height: 1.6; background-color: var(--white); }
 
-        html, body {
-            height: 100%;
-        }
+        header { background-color: var(--white); border-bottom: 1px solid var(--border); padding: 1rem 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        nav { max-width: 1200px; margin: 0 auto; padding: 0 1rem; display: flex; justify-content: space-between; align-items: center; }
+        .nav-links { list-style: none; display: flex; align-items: center; gap: 1.5rem; }
+        .nav-links a { text-decoration: none; color: var(--charcoal); font-weight: 500; transition: color 0.3s ease; }
+        .nav-links a:hover { color: var(--terra); }
+        .cta-button { display: inline-block; padding: 0.75rem 1.5rem; background-color: var(--terra); color: var(--white) !important; border-radius: 6px; text-decoration: none; font-weight: 600; transition: background-color 0.3s ease; }
+        .cta-button:hover { background-color: var(--terra-dark); }
 
-        body {
-            font-family: 'Open Sans', sans-serif;
-            color: var(--charcoal);
-            line-height: 1.6;
-            background-color: var(--white);
-        }
+        .hero { background: linear-gradient(135deg, var(--light-blue) 0%, #f0f7ff 100%); padding: 3rem 1rem; text-align: center; }
+        .hero h1 { font-size: 2.5rem; color: var(--charcoal); margin-bottom: 1rem; font-weight: 700; }
+        .hero p { font-size: 1.1rem; color: var(--gray-dark); max-width: 700px; margin: 0 auto; }
 
-        /* Header & Navigation */
-        header {
-            background-color: var(--white);
-            border-bottom: 1px solid var(--border);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-        }
+        .breadcrumb { max-width: 1200px; margin: 0.75rem auto; padding: 0 1rem; font-size: 0.9rem; color: var(--gray-dark); }
+        .breadcrumb a { color: var(--terra); text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
 
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        main { max-width: 1200px; margin: 0 auto; padding: 3rem 1rem; }
+        .section-title { font-size: 1.8rem; text-align: center; margin-bottom: 0.5rem; color: var(--charcoal); }
+        .section-subtitle { text-align: center; color: var(--gray-dark); margin-bottom: 2rem; font-size: 1rem; }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--terra);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+        .cities-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+        .city-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .city-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .city-card h3 { font-size: 1.25rem; color: var(--charcoal); margin-bottom: 0.25rem; }
+        .county { font-size: 0.85rem; color: var(--terra); font-weight: 600; margin-bottom: 0.75rem; }
+        .city-description { font-size: 0.95rem; color: var(--gray-dark); margin-bottom: 1rem; line-height: 1.5; }
+        .learn-more { color: var(--terra); font-weight: 600; text-decoration: none; }
+        .learn-more:hover { text-decoration: underline; }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-            list-style: none;
-        }
+        .cta-section { background: linear-gradient(135deg, var(--terra) 0%, var(--soft-blue) 100%); color: var(--white); padding: 3rem 1rem; text-align: center; border-radius: 8px; margin-bottom: 4rem; }
+        .cta-section h2 { font-size: 1.8rem; margin-bottom: 1rem; font-weight: 700; }
+        .cta-section p { font-size: 1rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .cta-section .cta-button { background-color: var(--white); color: var(--terra); font-weight: 700; }
+        .cta-section .cta-button:hover { background-color: var(--light-blue); }
 
-        .nav-links a {
-            color: var(--charcoal);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
+        footer { background-color: var(--navy); color: var(--white); padding: 2rem 1rem; margin-top: 3rem; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+        .footer-section h4 { margin-bottom: 1rem; font-weight: 600; }
+        .footer-section ul { list-style: none; }
+        .footer-section ul li { margin-bottom: 0.5rem; }
+        .footer-section a { color: #B0B0B0; text-decoration: none; transition: color 0.3s ease; }
+        .footer-section a:hover { color: var(--white); }
+        .disclaimer { border-top: 1px solid rgba(255,255,255,0.2); padding-top: 2rem; font-size: 0.85rem; color: #B0B0B0; line-height: 1.6; max-width: 1200px; margin: 2rem auto 0; }
 
-        .nav-links a:hover {
-            color: var(--terra);
-        }
-
-        .cta-button {
-            background-color: var(--terra);
-            color: var(--white);
-            padding: 0.75rem 1.5rem;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-            border: none;
-            cursor: pointer;
-            display: inline-block;
-        }
-
-        .cta-button:hover {
-            background-color: var(--terra-dark);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--light-blue) 0%, var(--white) 100%);
-            padding: 4rem 1rem;
-            text-align: center;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            color: var(--navy);
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: var(--gray-dark);
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        /* Main Content */
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 1rem;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            color: var(--navy);
-            margin-bottom: 3rem;
-            text-align: center;
-            font-weight: 700;
-        }
-
-        /* Cities Grid */
-        .cities-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .city-card {
-            background-color: var(--white);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        .city-card:hover {
-            box-shadow: 0 8px 16px rgba(0, 128, 212, 0.15);
-            transform: translateY(-4px);
-            border-color: var(--terra);
-        }
-
-        .city-card h3 {
-            font-size: 1.5rem;
-            color: var(--navy);
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .county {
-            font-size: 0.9rem;
-            color: var(--soft-blue);
-            font-weight: 600;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .city-description {
-            color: var(--gray-dark);
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .learn-more {
-            color: var(--terra);
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: gap 0.3s ease;
-        }
-
-        .learn-more:hover {
-            gap: 0.75rem;
-        }
-
-        .learn-more::after {
-            content: "→";
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, var(--terra) 0%, var(--soft-blue) 100%);
-            color: var(--white);
-            padding: 3rem 1rem;
-            text-align: center;
-            border-radius: 8px;
-            margin-bottom: 4rem;
-        }
-
-        .cta-section h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .cta-section p {
-            font-size: 1rem;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-section .cta-button {
-            background-color: var(--white);
-            color: var(--terra);
-            font-weight: 700;
-        }
-
-        .cta-section .cta-button:hover {
-            background-color: var(--light-blue);
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--navy);
-            color: var(--white);
-            padding: 2rem 1rem;
-            margin-top: 3rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h4 {
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-section a {
-            color: #B0B0B0;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-section a:hover {
-            color: var(--white);
-        }
-
-        .disclaimer {
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            padding-top: 2rem;
-            font-size: 0.85rem;
-            color: #B0B0B0;
-            line-height: 1.6;
-            max-width: 1200px;
-            margin: 2rem auto 0;
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            .nav-links {
-                gap: 1rem;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .cities-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .cta-section h2 {
-                font-size: 1.5rem;
-            }
-
-            .section-title {
-                font-size: 1.5rem;
-            }
+            .nav-links { gap: 1rem; }
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            .cities-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .cta-section h2 { font-size: 1.5rem; }
+            .section-title { font-size: 1.5rem; }
         }
-
         @media (max-width: 480px) {
-            nav {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .nav-links {
-                flex-direction: column;
-                width: 100%;
-                gap: 0.5rem;
-            }
-
-            .hero h1 {
-                font-size: 1.5rem;
-            }
-
-            .hero p {
-                font-size: 0.95rem;
-            }
-
-            .hero {
-                padding: 2rem 1rem;
-            }
-
-            main {
-                padding: 2rem 1rem;
-            }
+            nav { flex-direction: column; gap: 1rem; }
+            .nav-links { flex-direction: column; width: 100%; gap: 0.5rem; }
+            .hero h1 { font-size: 1.5rem; }
+            .hero p { font-size: 0.95rem; }
+            .hero { padding: 2rem 1rem; }
+            main { padding: 2rem 1rem; }
         }
     </style>
 </head>
@@ -400,12 +138,240 @@
         <nav>
             <a href="https://medicare-california.com" class="logo"><svg viewBox="0 0 370 48" width="278" height="36" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle"><defs><linearGradient id="sg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#0080D4"/><stop offset="100%" style="stop-color:#0071BC"/></linearGradient></defs><path d="M23 2 L43 10 L43 26 C43 37 35 43 23 49 C11 43 3 37 3 26 L3 10 Z" fill="url(#sg)"/><polyline points="14,27 20,33 33,19" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><text y="34" font-family="'Open Sans','Segoe UI','Helvetica Neue',Arial,sans-serif"><tspan x="54" font-size="26" font-weight="700" fill="#1a1a1a">Medicare</tspan><tspan dx="6" font-size="26" font-weight="600" fill="#3D9BE9">California</tspan></text></svg></a>
             <ul class="nav-links">
-                <li><a href="https://medicare-california.com">Home</a></li>
+                <li><a href="https://medicare-california.com/california/cities/">All Cities</a></li>
                 <li><a href="https://medicare-california.com/find-your-plan" class="cta-button">Find Your Plan</a></li>
             </ul>
         </nav>
-    <main>
     </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="https://medicare-california.com">Home</a> &rsaquo; Cities
+    </div>
 
     <!-- Hero Section -->
     <section class="hero" id="main-content">
+        <h1>Medicare Help by City in California</h1>
+        <p>Find free, bilingual Medicare guidance in your area. Our licensed counselors serve communities across California.</p>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <h2 class="section-title">Find Medicare Help Near You</h2>
+        <p class="section-subtitle">Select your city for local Medicare guidance and enrollment support.</p>
+
+        <!-- Cities Grid -->
+        <div class="cities-grid">
+            <!-- Los Angeles -->
+            <div class="city-card">
+                <h3>Los Angeles</h3>
+                <div class="county">LA County</div>
+                <p class="city-description">Expert Medicare guidance in the nation's largest metro area. Navigate enrollment, benefits, and coverage options.</p>
+                <a href="los-angeles.html" class="learn-more">Learn More</a>
+            </div>
+
+            <!-- San Diego -->
+            <div class="city-card">
+                <h3>San Diego</h3>
+                <div class="county">San Diego County</div>
+                <p class="city-description">Medicare counseling for Southern California's second-largest city. Free assistance with plans and enrollment.</p>
+                <a href="san-diego.html" class="learn-more">Learn More</a>
+            </div>
+
+            <!-- San Francisco -->
+            <div class="city-card">
+                <h3>San Francisco</h3>
+                <div class="county">SF County</div>
+                <p class="city-description">Bay Area Medicare expertise. Bilingual counselors help you find the right coverage for your needs.</p>
+                <a href="san-francisco.html" class="learn-more">Learn More</a>
+            </div>
+
+            <!-- Sacramento -->
+            <div class="city-card">
+                <h3>Sacramento</h3>
+                <div class="county">Sacramento County</div>
+                <p class="city-description">California's capital city Medicare assistance. Licensed counselors guide you through enrollment and benefits.</p>
+                <a href="sacramento.html" class="learn-more">Learn More</a>
+            </div>
+
+            <!-- Riverside & Inland Empire -->
+            <div class="city-card">
+                <h3>Riverside & Inland Empire</h3>
+                <div class="county">Riverside County</div>
+                <p class="city-description">Medicare help for the Inland Empire region. Expert guidance on plans, costs, and coverage options.</p>
+                <a href="riverside.html" class="learn-more">Learn More</a>
+            </div>
+
+            <!-- Orange County -->
+            <div class="city-card">
+                <h3>Orange County</h3>
+                <div class="county">Orange County</div>
+                <p class="city-description">Southern California Medicare counseling. Free bilingual support to understand your coverage options.</p>
+                <a href="orange-county.html" class="learn-more">Learn More</a>
+            </div>
+
+            <!-- San Jose -->
+            <div class="city-card">
+                <h3>San Jose</h3>
+                <div class="county">Santa Clara County</div>
+                <p class="city-description">Silicon Valley Medicare assistance. Bilingual experts help you navigate enrollment and plan selection.</p>
+                <a href="san-jose.html" class="learn-more">Learn More</a>
+            </div>
+
+            <!-- Fresno -->
+            <div class="city-card">
+                <h3>Fresno</h3>
+                <div class="county">Fresno County</div>
+                <p class="city-description">Central Valley Medicare guidance. Free counseling on plans, enrollment deadlines, and benefits.</p>
+                <a href="fresno.html" class="learn-more">Learn More</a>
+            </div>
+
+            <!-- Long Beach -->
+            <div class="city-card">
+                <h3>Long Beach</h3>
+                <div class="county">LA County</div>
+                <p class="city-description">Southern California Medicare expertise. Licensed counselors assist with coverage and enrollment questions.</p>
+                <a href="long-beach.html" class="learn-more">Learn More</a>
+            </div>
+
+            <!-- Bakersfield -->
+            <div class="city-card">
+                <h3>Bakersfield</h3>
+                <div class="county">Kern County</div>
+                <p class="city-description">Kern County Medicare assistance. Bilingual counselors guide you through the Medicare process.</p>
+                <a href="bakersfield.html" class="learn-more">Learn More</a>
+            </div>
+
+            <!-- Culver City -->
+            <div class="city-card">
+                <h3>Culver City</h3>
+                <div class="county">LA County</div>
+                <p class="city-description">Medicare guidance for Culver City residents. Free, personalized help finding the right plan near you.</p>
+                <a href="culver-city.html" class="learn-more">Learn More</a>
+            </div>
+
+            <!-- Beverly Hills -->
+            <div class="city-card">
+                <h3>Beverly Hills</h3>
+                <div class="county">LA County</div>
+                <p class="city-description">Expert Medicare counseling in Beverly Hills. Navigate your coverage options with licensed, bilingual agents.</p>
+                <a href="beverly-hills.html" class="learn-more">Learn More</a>
+            </div>
+
+            <!-- Santa Monica -->
+            <div class="city-card">
+                <h3>Santa Monica</h3>
+                <div class="county">LA County</div>
+                <p class="city-description">Medicare help in Santa Monica. Free, local guidance on plans, enrollment, and benefits for Westside residents.</p>
+                <a href="santa-monica.html" class="learn-more">Learn More</a>
+            </div>
+
+            <!-- Marina Del Rey -->
+            <div class="city-card">
+                <h3>Marina Del Rey</h3>
+                <div class="county">LA County</div>
+                <p class="city-description">Medicare assistance for Marina Del Rey. Bilingual counselors help you compare plans and enroll with confidence.</p>
+                <a href="marina-del-rey.html" class="learn-more">Learn More</a>
+            </div>
+
+            <!-- Mar Vista -->
+            <div class="city-card">
+                <h3>Mar Vista</h3>
+                <div class="county">LA County</div>
+                <p class="city-description">Local Medicare support in Mar Vista. Free, personalized help understanding your coverage options.</p>
+                <a href="mar-vista.html" class="learn-more">Learn More</a>
+            </div>
+
+            <!-- Playa Del Rey -->
+            <div class="city-card">
+                <h3>Playa Del Rey</h3>
+                <div class="county">LA County</div>
+                <p class="city-description">Medicare guidance for Playa Del Rey. Licensed agents help you find the best plan for your needs.</p>
+                <a href="playa-del-rey.html" class="learn-more">Learn More</a>
+            </div>
+
+            <!-- Playa Vista -->
+            <div class="city-card">
+                <h3>Playa Vista</h3>
+                <div class="county">LA County</div>
+                <p class="city-description">Medicare help in Playa Vista. Free, bilingual assistance with enrollment and plan comparison.</p>
+                <a href="playa-vista.html" class="learn-more">Learn More</a>
+            </div>
+
+            <!-- Del Rey -->
+            <div class="city-card">
+                <h3>Del Rey</h3>
+                <div class="county">LA County</div>
+                <p class="city-description">Medicare counseling for Del Rey residents. Expert help navigating enrollment and benefits locally.</p>
+                <a href="del-rey.html" class="learn-more">Learn More</a>
+            </div>
+
+            <!-- Mid-City -->
+            <div class="city-card">
+                <h3>Mid-City</h3>
+                <div class="county">LA County</div>
+                <p class="city-description">Medicare support in Mid-City Los Angeles. Free guidance on plans, costs, and coverage options.</p>
+                <a href="mid-city.html" class="learn-more">Learn More</a>
+            </div>
+
+            <!-- El Segundo -->
+            <div class="city-card">
+                <h3>El Segundo</h3>
+                <div class="county">LA County</div>
+                <p class="city-description">Medicare assistance in El Segundo. Licensed, bilingual counselors ready to help you enroll.</p>
+                <a href="el-segundo.html" class="learn-more">Learn More</a>
+            </div>
+
+            <!-- Westchester -->
+            <div class="city-card">
+                <h3>Westchester</h3>
+                <div class="county">LA County</div>
+                <p class="city-description">Medicare help in Westchester. Free, local guidance for LAX-area seniors on plans and enrollment.</p>
+                <a href="westchester.html" class="learn-more">Learn More</a>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2>Ready to Find the Right Medicare Plan?</h2>
+            <p>Our licensed counselors are ready to help you understand your options and enroll in coverage that fits your needs.</p>
+            <a href="https://medicare-california.com/find-your-plan" class="cta-button">Start Your Search</a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Medicare California</h4>
+                <ul>
+                    <li><a href="https://medicare-california.com">Home</a></li>
+                    <li><a href="https://medicare-california.com/california/cities/">Cities</a></li>
+                    <li><a href="https://medicare-california.com/find-your-plan">Find Your Plan</a></li>
+                    <li><a href="https://medicare-california.com/blog/">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Medicare Resources</h4>
+                <ul>
+                    <li><a href="https://medicare-california.com/how-to-compare-medicare-advantage-plans-california">Compare Plans</a></li>
+                    <li><a href="https://medicare-california.com/medicare-in-california">What is Medicare?</a></li>
+                    <li><a href="https://medicare-california.com/how-to-enroll-medicare-california">Enrollment Help</a></li>
+                    <li><a href="https://medicare-california.com/contact">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="https://medicare-california.com/privacy">Privacy Policy</a></li>
+                    <li><a href="https://medicare-california.com/terms">Terms of Service</a></li>
+                    <li><a href="https://medicare-california.com/accessibility">Accessibility</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="disclaimer">
+            <p><strong>Disclaimer:</strong> Medicare California provides free, unbiased information and counseling about Medicare options. This website is not affiliated with or endorsed by the Centers for Medicare &amp; Medicaid Services (CMS), the Social Security Administration (SSA), or any insurance company. Medicare is a federal program run by CMS. For official Medicare information, visit Medicare.gov. Information provided is general in nature and does not constitute medical or legal advice. Always consult with a licensed healthcare provider or attorney for personalized advice. This site is for informational purposes only.</p>
+        </div>
+    </footer>
+</body>
+</html>

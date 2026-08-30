@@ -760,4 +760,66 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://medicare-california.com/blog/medicare-advantage-doctor-network-check-california.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-advantage-doctor-network-check-california.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/verificar-red-doctores-medicare-advantage-california.html" />
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://medicare-california.com/blog/medicare-advantage-drug-formulary-check-california.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-advantage-drug-formulary-check-california.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/verificar-formulario-medicamentos-medicare-advantage-california.html" />
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://medicare-california.com/blog/medicare-advantage-otc-flex-card-california.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-advantage-otc-flex-card-california.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/tarjeta-flex-otc-medicare-advantage-california.html" />
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://medicare-california.com/blog/medicare-advantage-out-of-pocket-maximum-california.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-advantage-out-of-pocket-maximum-california.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/limite-gastos-bolsillo-medicare-advantage-california.html" />
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://medicare-california.com/blog/medicare-advantage-star-ratings-california.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-advantage-star-ratings-california.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/calificacion-estrellas-medicare-advantage-california.html" />
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://medicare-california.com/blog/medicare-cataract-surgery-california.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-cataract-surgery-california.html" />
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://medicare-california.com/blog/medicare-skin-cancer-screening-california.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-skin-cancer-screening-california.html" />
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://medicare-california.com/blog/medigap-plan-g-vs-plan-n-california.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medigap-plan-g-vs-plan-n-california.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/medigap-plan-g-vs-plan-n-california.html" />
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>

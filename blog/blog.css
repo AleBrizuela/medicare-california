@@ -196,7 +196,7 @@ body {
   font-weight: 600;
 }
 
-.article-body, .blog-article-body {
+.article-body, .blog-article-body, .article-faq {
   max-width: 720px;
   margin: 0 auto;
   padding: 48px 24px;

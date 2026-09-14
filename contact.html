@@ -1754,7 +1754,7 @@ footer .footer-bottom { background: rgba(0,0,0,0.35) !important; color: rgba(255
     try {
         const subject = 'New Contact Form Lead | ' + (formData.name || 'Unknown');
         const body = [
-          '=== NEW CONTACT FORM LEAD from CaliforniaSeniorsBenefits.com ===',
+          '=== NEW CONTACT FORM LEAD from medicare-california.com ===',
           '',
           'Name: ' + (formData.name || ''),
           'Phone: ' + (formData.phone || ''),
@@ -1764,7 +1764,7 @@ footer .footer-bottom { background: rgba(0,0,0,0.35) !important; color: rgba(255
           'State: ' + (formData.state || ''),
           '',
           'Submitted: ' + formData.submittedAt,
-          'Source: californiaseniorsbenefits.com/contact (EN)',
+          'Source: medicare-california.com/contact (EN)',
           '==========================================='
         ].join('\n');
 
@@ -1780,8 +1780,20 @@ footer .footer-bottom { background: rgba(0,0,0,0.35) !important; color: rgba(255
         params.append('subject', subject);
         params.append('body', body);
 
-        console.log('[CASB-Contact-EN] Sending webhook payload:', Object.fromEntries(params));
+        console.log('[MC-Contact-EN] Sending webhook payload:', Object.fromEntries(params));
 
+        // Primary: the same Google Apps Script that beneficiosmedicare.com uses,
+        // so both sites land in one leads sheet. Retries in no-cors on failure.
+        const GS_URL='https://script.google.com/macros/s/AKfycby8F8kXyTGFcCh2bzk92_sZeUKGlQPZ9RR-QmzYV6CfzBDbw6ANNOQ5JpnH2Z9PfJ_dEQ/exec';
+        const gsPayload = Object.assign({}, formData, {
+            language: 'en',
+            site: 'medicare-california.com'
+        });
+        fetch(GS_URL, {method:'POST', headers:{'Content-Type':'text/plain'}, body:JSON.stringify(gsPayload)})
+            .then(r => { if(!r.ok) throw new Error('GS '+r.status); console.log('[MC-Contact-EN] Lead saved to Google Sheets'); })
+            .catch(err => { fetch(GS_URL, {method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'}, body:JSON.stringify(gsPayload)}).catch(()=>{}); });
+
+        // Secondary, kept until the Apps Script path is confirmed receiving:
         fetch('https://hooks.zapier.com/hooks/catch/26596586/u0mut50/', {
             method: 'POST',
             body: params

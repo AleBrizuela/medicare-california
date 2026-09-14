@@ -32,7 +32,7 @@
   <meta name="twitter:description" content="Get a free Medicare plan quote for California. Licensed agent, no cost, no obligation.">
   <meta name="twitter:image" content="https://medicare-california.com/og-image.png">
   <link rel="alternate" hreflang="en" href="https://medicare-california.com/contact">
-  <link rel="alternate" hreflang="es" href="https://medicare-california.com/contact-es">
+  <link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/contacto">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -1805,8 +1805,8 @@ footer .footer-bottom { background: rgba(0,0,0,0.35) !important; color: rgba(255
 
   <script>
     function goLang(lang){
-  localStorage.setItem('casb_lang',lang);
-  if(lang!=='en') window.location.href='contact-es.html';
+  try{localStorage.setItem('mc_lang',lang);}catch(e){}
+  if(lang!=='en') window.location.href='https://beneficiosmedicare.com/contacto';
 }
 function toggleLang(){goLang('es');}
   

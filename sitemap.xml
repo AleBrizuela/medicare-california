@@ -642,8 +642,8 @@
   </url>
   <url>
     <loc>https://medicare-california.com/contact</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/contact.html" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://medicare-california.com/contact-es.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/contact" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://medicare-california.com/contact-es" />
     <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -676,8 +676,8 @@
   </url>
   <url>
     <loc>https://medicare-california.com/index-widget</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/index.html" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://medicare-california.com/index-es.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://medicare-california.com/index-es" />
     <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -737,8 +737,8 @@
   </url>
   <url>
     <loc>https://medicare-california.com/resources</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/resources.html" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://medicare-california.com/resources-es.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/resources" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://medicare-california.com/resources-es" />
     <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

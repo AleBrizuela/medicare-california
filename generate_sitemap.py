@@ -31,6 +31,45 @@ class HreflangExtractor(HTMLParser):
                 self.hreflang[attrs_dict["hreflang"]] = attrs_dict["href"]
 
 
+
+_NON_PUBLIC_PREFIXES = ("index-v", "index-dev", "index-localtest", "index-current")
+
+
+def _is_non_public(url_path):
+    """True for archived experiments and local-only dev/test pages."""
+    name = url_path.rsplit("/", 1)[-1]
+    stem = name[:-len(".html")] if name.endswith(".html") else name
+    return stem.startswith(_NON_PUBLIC_PREFIXES)
+
+
+_REDIRECT_SOURCES = None
+
+
+def _is_redirected(url_path, directory):
+    """True if _redirects has a rule whose source matches this file.
+
+    Pages that 301 away must stay out of the sitemap: Google reports them
+    as "Page with redirect" and they consume crawl budget for nothing.
+    """
+    global _REDIRECT_SOURCES
+    if _REDIRECT_SOURCES is None:
+        _REDIRECT_SOURCES = set()
+        rpath = os.path.join(directory, "_redirects")
+        if os.path.exists(rpath):
+            with open(rpath, "r", encoding="utf-8", errors="replace") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line or line.startswith("#"):
+                        continue
+                    parts = line.split()
+                    if len(parts) >= 2:
+                        _REDIRECT_SOURCES.add(parts[0].rstrip("/") or "/")
+    candidates = {"/" + url_path, "/" + url_path[:-len(".html")]}
+    if url_path.endswith("/index.html"):
+        candidates.add("/" + url_path[:-len("index.html")].rstrip("/"))
+    return any(c.rstrip("/") in _REDIRECT_SOURCES or c in _REDIRECT_SOURCES
+               for c in candidates)
+
 def scan_local_files(directory, domain):
     """
     Scan a directory for HTML files and return a dict of:
@@ -54,12 +93,26 @@ def scan_local_files(directory, domain):
 
             url_path = relpath.replace(os.sep, "/")
 
+            # Cloudflare Pages serves extensionless URLs and 308-redirects the
+            # .html form. Emitting .html here made Google file every sitemap
+            # entry as "Page with redirect" and skip indexing it. Emit the
+            # extensionless URL that actually serves 200.
             if url_path == "index.html":
                 url = f"{domain}/"
             elif url_path.endswith("/index.html"):
                 url = f"{domain}/{url_path[:-len('index.html')]}"
             else:
-                url = f"{domain}/{url_path}"
+                url = f"{domain}/{url_path[:-len('.html')]}"
+
+            # Don't advertise URLs that _redirects sends elsewhere.
+            if _is_redirected(url_path, directory):
+                continue
+
+            # Don't advertise archived experiments or local dev/test pages.
+            # These are kept on disk deliberately but must never be offered
+            # to search engines as indexable content.
+            if _is_non_public(url_path):
+                continue
 
             try:
                 with open(filepath, "r", encoding="utf-8", errors="replace") as f:

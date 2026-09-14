@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "Medicare California - English Medicare guidance for California seniors",
   "scripts": {
-    "build": "python3 generate_sitemap.py --domain https://medicare-california.com --dir . && python3 generate_blog_index.py --dir .",
+    "_comment_build": "Cloudflare does NOT run this file's scripts. Its build command is set in the Cloudflare Pages dashboard and runs generate_sitemap.py only. Verified 2026-09-13: the live blog index matches the committed file, so generate_blog_index.py has never run in production.",
+    "_comment_blog_index": "DO NOT RUN generate_blog_index.py. It rewrites blog/index.html and strips data-tag from every card, breaking the category filter pills. Confirmed 2026-09-13: it cut data-tag from 33 to 8 (BM) and 58 to 11 (MC). Add new cards by hand, matching the live markup including data-tag, until the generator is fixed.",
+    "build": "python3 generate_sitemap.py --domain https://medicare-california.com --dir . && python3 site-check.py --dir . --domain https://medicare-california.com --report",
     "build:sitemap": "python3 generate_sitemap.py --domain https://medicare-california.com --dir .",
-    "build:blog-index": "python3 generate_blog_index.py --dir ."
+    "check": "python3 site-check.py --dir . --domain https://medicare-california.com",
+    "check:report": "python3 site-check.py --dir . --domain https://medicare-california.com --report",
+    "UNSAFE:blog-index": "echo 'Refusing: this generator strips data-tag and breaks the blog filters. See _comment_blog_index.' && exit 1"
   }
 }

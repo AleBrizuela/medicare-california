@@ -1,0 +1,59 @@
+{
+  "_comment": "Official CMS figures. Update every year when CMS publishes (usually mid-November for the following year). Source URLs below. site-check.py fails the build when a page states a retired figure as current.",
+  "_sources": {
+    "parts_a_b": "https://www.cms.gov/newsroom/fact-sheets/2026-medicare-parts-b-premiums-deductibles",
+    "medigap_high_deductible": "https://www.cms.gov/medicare/health-drug-plans/medigap/f-g-j-deductible-announcements"
+  },
+  "current_year": 2026,
+  "figures": {
+    "part_b_premium": {
+      "label": "Part B standard monthly premium",
+      "current": "202.90",
+      "retired": ["185.00", "185", "174.70", "164.90", "170.10"]
+    },
+    "part_b_deductible": {
+      "label": "Part B annual deductible",
+      "current": "283",
+      "retired": ["257", "240", "226", "233"]
+    },
+    "part_a_deductible": {
+      "label": "Part A inpatient deductible per benefit period",
+      "current": "1,736",
+      "retired": ["1,676", "1,632", "1,600", "1,728", "1,556", "1,484"]
+    },
+    "part_a_coins_61_90": {
+      "label": "Part A daily coinsurance, days 61-90",
+      "current": "434",
+      "retired": ["419", "408", "389"]
+    },
+    "part_a_coins_lifetime": {
+      "label": "Part A daily coinsurance, lifetime reserve days",
+      "current": "868",
+      "retired": ["838", "816", "778"]
+    },
+    "snf_coins": {
+      "label": "Skilled nursing facility daily coinsurance, days 21-100",
+      "current": "217.00",
+      "retired": ["209.50", "204.00", "194.50"]
+    },
+    "part_a_premium_full": {
+      "label": "Part A full monthly premium, under 30 quarters",
+      "current": "565",
+      "retired": ["518", "505", "506"]
+    },
+    "part_a_premium_reduced": {
+      "label": "Part A reduced monthly premium, 30+ quarters",
+      "current": "311",
+      "retired": ["285", "278", "279"]
+    },
+    "medigap_hdpg_deductible": {
+      "label": "High-Deductible Plan F/G/J annual deductible",
+      "current": "2,950",
+      "retired": ["2,870", "2,800", "2,700", "2,490"]
+    }
+  },
+  "context_words": [
+    "deducible", "deductible", "prima", "premium", "coaseguro", "coinsurance",
+    "copago", "copay", "parte a", "parte b", "part a", "part b"
+  ]
+}

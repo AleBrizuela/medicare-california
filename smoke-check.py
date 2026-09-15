@@ -245,6 +245,10 @@ def check_assets(base, paths, f, sample=None):
         for path, query in refs:
             if path.startswith(("http://", "https://", "//")):
                 continue
+            # Cloudflare injects its own email-obfuscation script at the edge. It is not
+            # ours, we cannot version it, and warning about it buries the real findings.
+            if path.startswith("/cdn-cgi/"):
+                continue
             # local asset: must exist, and must be versioned or a CSS fix never lands
             abs_url = base + path if path.startswith("/") else base + os.path.normpath(
                 os.path.join(os.path.dirname(p), path)).replace("\\", "/")

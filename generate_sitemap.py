@@ -121,7 +121,20 @@ def scan_local_files(directory, domain):
                 parser.feed(html)
                 hreflang = parser.hreflang
             except Exception:
+                html = ""
                 hreflang = {}
+
+            # A page whose canonical points at a DIFFERENT url is telling Google not to
+            # index it. Listing it in the sitemap at the same time is a contradiction,
+            # and it lands the page in Search Console's "Alternate page with proper
+            # canonical tag" bucket -- which is where most of this site sat before
+            # 2026-09-14. Found by smoke-check.py on 2026-09-16: two duplicate articles
+            # canonicalised to their English-slugged twins and were in the sitemap anyway.
+            m = re.search(r'rel="canonical"[^>]*?href="([^"]+)"', html)
+            if m:
+                canon = m.group(1).rstrip("/")
+                if canon and canon != url.rstrip("/") and domain in canon:
+                    continue
 
             pages[url] = {"hreflang": hreflang}
 

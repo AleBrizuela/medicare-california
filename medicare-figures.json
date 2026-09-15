@@ -9,7 +9,7 @@
     "part_b_premium": {
       "label": "Part B standard monthly premium",
       "current": "202.90",
-      "retired": ["185.00", "185", "174.70", "164.90", "170.10"]
+      "retired": ["206.50", "185.00", "185", "174.70", "164.90", "170.10"]
     },
     "part_b_deductible": {
       "label": "Part B annual deductible",
@@ -19,7 +19,7 @@
     "part_a_deductible": {
       "label": "Part A inpatient deductible per benefit period",
       "current": "1,736",
-      "retired": ["1,676", "1,632", "1,600", "1,728", "1,556", "1,484"]
+      "retired": ["1,612", "1,676", "1,632", "1,600", "1,728", "1,556", "1,484"]
     },
     "part_a_coins_61_90": {
       "label": "Part A daily coinsurance, days 61-90",

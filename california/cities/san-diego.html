@@ -611,16 +611,31 @@
   "@type": "LocalBusiness",
   "name": "Beneficios Medicare",
   "description": "Free Medicare guidance for San Diego County residents",
-  "areaServed": {
-    "@type": "AdministrativeArea",
-    "name": "San Diego County, California"
-  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "San Diego",
+      "containedInPlace": {
+        "@type": "State",
+        "name": "California"
+      }
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "San Diego County",
+      "containedInPlace": {
+        "@type": "State",
+        "name": "California"
+      }
+    }
+  ],
   "url": "https://medicare-california.com/california/cities/san-diego",
   "telephone": "+1-800-MEDICARE",
   "address": {
     "@type": "PostalAddress",
     "addressCountry": "US",
-    "addressRegion": "CA"
+    "addressRegion": "CA",
+    "addressLocality": "Culver City"
   },
   "legalName": "Susana Marcos LLC",
   "alternateName": "Medicare California"

@@ -266,16 +266,31 @@
   "@type": "LocalBusiness",
   "name": "Beneficios Medicare",
   "description": "Free Medicare guidance for Santa Monica residents in Los Angeles County",
-  "areaServed": {
-    "@type": "AdministrativeArea",
-    "name": "Santa Monica, California"
-  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Santa Monica",
+      "containedInPlace": {
+        "@type": "State",
+        "name": "California"
+      }
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Los Angeles County",
+      "containedInPlace": {
+        "@type": "State",
+        "name": "California"
+      }
+    }
+  ],
   "url": "https://medicare-california.com/california/cities/santa-monica",
   "telephone": "+1-310-597-9142",
   "address": {
     "@type": "PostalAddress",
     "addressCountry": "US",
-    "addressRegion": "CA"
+    "addressRegion": "CA",
+    "addressLocality": "Culver City"
   },
   "legalName": "Susana Marcos LLC",
   "alternateName": "Medicare California"

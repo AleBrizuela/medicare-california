@@ -266,16 +266,31 @@
   "@type": "LocalBusiness",
   "name": "Beneficios Medicare",
   "description": "Free Medicare guidance for Westchester residents in Los Angeles County",
-  "areaServed": {
-    "@type": "AdministrativeArea",
-    "name": "Westchester, California"
-  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Westchester",
+      "containedInPlace": {
+        "@type": "State",
+        "name": "California"
+      }
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Los Angeles County",
+      "containedInPlace": {
+        "@type": "State",
+        "name": "California"
+      }
+    }
+  ],
   "url": "https://medicare-california.com/california/cities/westchester",
   "telephone": "+1-310-597-9142",
   "address": {
     "@type": "PostalAddress",
     "addressCountry": "US",
-    "addressRegion": "CA"
+    "addressRegion": "CA",
+    "addressLocality": "Culver City"
   },
   "legalName": "Susana Marcos LLC",
   "alternateName": "Medicare California"

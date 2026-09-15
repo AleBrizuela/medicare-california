@@ -610,16 +610,31 @@
   "@type": "LocalBusiness",
   "name": "Beneficios Medicare",
   "description": "Free Medicare guidance for Riverside County residents",
-  "areaServed": {
-    "@type": "AdministrativeArea",
-    "name": "Riverside County, California"
-  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Riverside",
+      "containedInPlace": {
+        "@type": "State",
+        "name": "California"
+      }
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Riverside County",
+      "containedInPlace": {
+        "@type": "State",
+        "name": "California"
+      }
+    }
+  ],
   "url": "https://medicare-california.com/california/cities/riverside",
   "telephone": "+1-800-MEDICARE",
   "address": {
     "@type": "PostalAddress",
     "addressCountry": "US",
-    "addressRegion": "CA"
+    "addressRegion": "CA",
+    "addressLocality": "Culver City"
   },
   "legalName": "Susana Marcos LLC",
   "alternateName": "Medicare California"

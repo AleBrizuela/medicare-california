@@ -431,17 +431,35 @@
   "name": "Beneficios Medicare",
   "description": "Free Medicare guidance and plan comparison for Bakersfield and Kern County residents",
   "url": "https://medicare-california.com/california/cities/bakersfield",
-  "areaServed": {
-    "@type": "City",
-    "name": "Bakersfield",
-    "addressCountry": "US",
-    "addressRegion": "CA"
-  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Bakersfield",
+      "containedInPlace": {
+        "@type": "State",
+        "name": "California"
+      }
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Kern County",
+      "containedInPlace": {
+        "@type": "State",
+        "name": "California"
+      }
+    }
+  ],
   "telephone": "+1-800-MEDICARE",
   "priceRange": "Free",
   "image": "https://medicare-california.com/logo.png",
   "legalName": "Susana Marcos LLC",
-  "alternateName": "Medicare California"
+  "alternateName": "Medicare California",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Culver City",
+    "addressRegion": "CA",
+    "addressCountry": "US"
+  }
 }</script>
 
     <script type="application/ld+json">{

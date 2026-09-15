@@ -626,16 +626,31 @@
   "@type": "LocalBusiness",
   "name": "Beneficios Medicare",
   "description": "Free Medicare guidance for Los Angeles County residents",
-  "areaServed": {
-    "@type": "AdministrativeArea",
-    "name": "Los Angeles County, California"
-  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Los Angeles",
+      "containedInPlace": {
+        "@type": "State",
+        "name": "California"
+      }
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Los Angeles County",
+      "containedInPlace": {
+        "@type": "State",
+        "name": "California"
+      }
+    }
+  ],
   "url": "https://medicare-california.com/california/cities/los-angeles",
   "telephone": "+1-800-MEDICARE",
   "address": {
     "@type": "PostalAddress",
     "addressCountry": "US",
-    "addressRegion": "CA"
+    "addressRegion": "CA",
+    "addressLocality": "Culver City"
   },
   "legalName": "Susana Marcos LLC",
   "alternateName": "Medicare California"

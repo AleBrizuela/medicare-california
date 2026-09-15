@@ -431,17 +431,27 @@
   "name": "Beneficios Medicare",
   "description": "Free Medicare guidance and plan comparison for Orange County residents",
   "url": "https://medicare-california.com/california/cities/orange-county",
-  "areaServed": {
-    "@type": "City",
-    "name": "Orange County",
-    "addressCountry": "US",
-    "addressRegion": "CA"
-  },
+  "areaServed": [
+    {
+      "@type": "AdministrativeArea",
+      "name": "Orange County",
+      "containedInPlace": {
+        "@type": "State",
+        "name": "California"
+      }
+    }
+  ],
   "telephone": "+1-800-MEDICARE",
   "priceRange": "Free",
   "image": "https://medicare-california.com/logo.png",
   "legalName": "Susana Marcos LLC",
-  "alternateName": "Medicare California"
+  "alternateName": "Medicare California",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Culver City",
+    "addressRegion": "CA",
+    "addressCountry": "US"
+  }
 }</script>
 
     <script type="application/ld+json">{

@@ -54,6 +54,9 @@ URL_ATTRS = [
 
 OUR_DOMAINS = ("beneficiosmedicare.com", "medicare-california.com")
 
+JSONLD_BLOCK = re.compile(r'<script[^>]*application/ld\+json[^>]*>(.*?)</script>',
+                          re.S | re.I)
+
 
 # ---------------------------------------------------------------- helpers
 
@@ -99,8 +102,14 @@ def load_redirect_sources(root):
         if not line or line.startswith("#"):
             continue
         parts = line.split()
-        if len(parts) >= 2:
-            srcs.add(parts[0].rstrip("/") or "/")
+        if len(parts) < 2:
+            continue
+        # A trailing 200 is a REWRITE, not a redirect: Cloudflare serves content at that
+        # URL. Treating it as a redirect would exempt a live, indexable page from every
+        # page-level check. Only 3xx lines make a page unreachable.
+        if len(parts) >= 3 and parts[2].isdigit() and not parts[2].startswith("3"):
+            continue
+        srcs.add(parts[0].rstrip("/") or "/")
     return srcs
 
 
@@ -111,6 +120,24 @@ def visible_text(src):
 
 
 # ---------------------------------------------------------------- checks
+
+def check_exemptions(root, f):
+    """Nothing may be exempt from every other check on the strength of its filename.
+
+    is_non_public() is a prefix match on the basename, so `404-old-plan-list.html` or
+    `index-current-costs.html` would be skipped by every page check while being served
+    at HTTP 200. The exemption is only honest if the page really is non-indexable, so
+    make the gate verify that rather than assume it.
+    """
+    for fp, rel in iter_html(root):
+        if not is_non_public(rel):
+            continue
+        src = open(fp, encoding="utf-8", errors="ignore").read()
+        if not re.search(r'name="robots"[^>]*content="[^"]*noindex', src, re.I):
+            f.error("exempt-but-indexable", rel,
+                    "matches NON_PUBLIC so every check skips it, but it has no "
+                    "noindex — it is served and indexable")
+
 
 def check_urls(root, domain, f):
     """Canonical/hreflang/og:url/JSON-LD must not use .html, and hreflang must
@@ -131,9 +158,25 @@ def check_urls(root, domain, f):
         if 'rel="canonical"' not in src:
             f.warn("missing-canonical", rel, "no canonical tag")
 
+        # URL_ATTRS requires rel= before href= and hreflang= before href=. A <link> with
+        # the attributes the other way round is invisible to every check below AND does
+        # not trip missing-canonical, so it passes twice over. Catch the ordering itself.
+        for tag in re.findall(r"<link\b[^>]*>", src):
+            if ("canonical" in tag or "hreflang=" in tag) and "href=" in tag:
+                if not (URL_ATTRS[0][1].search(tag) or URL_ATTRS[1][1].search(tag)):
+                    f.error("unparseable-link-tag", rel,
+                            "href before rel/hreflang — the URL checks cannot read this: "
+                            + tag[:100])
+
         for kind, rx in URL_ATTRS:
             for u in rx.findall(src):
+                # A canonical or og:url on a domain that is neither of ours hands the page
+                # to someone else. Six MC files canonicalised to the abandoned
+                # californiaseniorsbenefits.com until 2026-09-13; this `continue` is why
+                # the gate could not have found them.
                 if not any(d in u for d in OUR_DOMAINS):
+                    if kind in ("canonical", "og:url") and u.startswith("http"):
+                        f.error("foreign-canonical", rel, f"{kind} -> {u} (not our domain)")
                     continue
                 if re.search(r"\.html($|[#?])", u):
                     f.error("html-url", rel, f"{kind} -> {u}")
@@ -157,12 +200,25 @@ def check_internal_links(root, domain, f):
         if ("/" + rel[:-5]) in redirects:
             continue
         src = open(fp, encoding="utf-8", errors="ignore").read()
-        hits = {}
-        for href in re.findall(r'href="(/[^"]*\.html(?:[#?][^"]*)?)"', src):
-            hits[href] = hits.get(href, 0) + 1
-        for href, n in sorted(hits.items()):
-            f.error("internal-html-link", rel,
-                    f"{href} x{n} — drop .html, it 308s")
+        host = domain.replace("https://", "").replace("http://", "").rstrip("/")
+        same, sister = {}, {}
+        for href in re.findall(r'href="([^"]*\.html(?:[#?][^"]*)?)"', src):
+            target = href.split("#")[0].split("?")[0]
+            if re.match(r"https?://", target):
+                if host in target:
+                    same[href] = same.get(href, 0) + 1
+                elif any(d in target for d in OUR_DOMAINS):
+                    # the sister property: also 308s, but its URL scheme is the other
+                    # repo's business, so report it without failing this repo's build.
+                    sister[href] = sister.get(href, 0) + 1
+                continue
+            # "/x.html" and bare "contact.html" / "../about.html" alike. 73 relative ones
+            # survived the 2026-09-15 rewrite because the old regex required a leading "/".
+            same[href] = same.get(href, 0) + 1
+        for href, n in sorted(same.items()):
+            f.error("internal-html-link", rel, f"{href} x{n} — drop .html, it 308s")
+        for href, n in sorted(sister.items()):
+            f.warn("sister-site-html-link", rel, f"{href} x{n} — 308s on the other domain")
 
 
 def check_figures(root, figures_path, f):
@@ -176,15 +232,26 @@ def check_figures(root, figures_path, f):
     for fp, rel in iter_html(root):
         if is_non_public(rel):
             continue
-        text = visible_text(open(fp, encoding="utf-8", errors="ignore").read())
-        for key, spec in data["figures"].items():
-            for retired in spec["retired"]:
-                for m in re.finditer(r"\$" + re.escape(retired) + r"(?![\d,.])", text):
-                    window = text[max(0, m.start() - 90):m.end() + 90]
-                    if ctx.search(window):
-                        f.error("stale-figure", rel,
-                                f'${retired} as {spec["label"]} — current is ${spec["current"]}')
-                        break
+        src = open(fp, encoding="utf-8", errors="ignore").read()
+        # visible_text() strips <script>, so JSON-LD FAQ answers — which feed Google
+        # snippets and AI retrieval — were never scanned. Scan them as a second pass.
+        for where, text in (("", visible_text(src)),
+                            (" (in JSON-LD)", " ".join(JSONLD_BLOCK.findall(src)))):
+            if not text:
+                continue
+            for key, spec in data["figures"].items():
+                for retired in spec["retired"]:
+                    # (?![\d,.]) also rejected "$257." and "$185," — a figure at the end of
+                    # a sentence or clause, the commonest position in prose. It hid 10 of
+                    # the 14 stale figures on this repo. Only a DIGIT continuation means
+                    # this is really a longer number.
+                    for m in re.finditer(r"\$" + re.escape(retired) + r"(?!\d|[,.]\d)", text):
+                        window = text[max(0, m.start() - 90):m.end() + 90]
+                        if ctx.search(window):
+                            f.error("stale-figure", rel,
+                                    f'${retired} as {spec["label"]}{where} '
+                                    f'— current is ${spec["current"]}')
+                            break
 
 
 def check_brand(root, domain, f):
@@ -212,15 +279,40 @@ def check_sitemap(root, domain, f):
         return
     src = open(p, encoding="utf-8", errors="ignore").read()
     locs = [re.sub(r"<[^>]*>", "", m) for m in re.findall(r"<loc>[^<]*</loc>", src)]
+    # <loc> was validated; the xhtml:link alternates beside it never were. 9 of them
+    # point at -es URLs that _redirects 301s away, which is the same defect as
+    # url-points-at-redirect on a page — Google drops the language pairing either way.
+    alts = re.findall(r'<xhtml:link[^>]*hreflang="([^"]*)"[^>]*href="([^"]*)"', src)
     redirects = load_redirect_sources(root)
+    on_disk = {rel for _, rel in iter_html(root)}
+
+    def path_of(u):
+        return u[len(domain):].rstrip("/") if u.startswith(domain) else u
+
     for u in locs:
         if u.endswith(".html"):
             f.error("sitemap-html-url", "sitemap.xml", u)
-        path = u[len(domain):].rstrip("/") if u.startswith(domain) else u
+        path = path_of(u)
         if path in redirects or (path + ".html") in redirects:
             f.error("sitemap-redirecting-url", "sitemap.xml", u)
         if is_non_public(path.lstrip("/")):
             f.error("sitemap-non-public-url", "sitemap.xml", u)
+        # reverse drift: a <loc> with no file behind it is a 404 handed to Google.
+        # Nothing checked this direction — only served-but-unlisted.
+        if u.startswith(domain):
+            stem = path.lstrip("/")
+            cands = {"index.html"} if stem == "" else {stem + ".html", stem + "/index.html"}
+            if not (cands & on_disk):
+                f.error("sitemap-url-has-no-page", "sitemap.xml",
+                        f"{u} — no file on disk ({' or '.join(sorted(cands))})")
+
+    for lang, u in alts:
+        if u.endswith(".html"):
+            f.error("sitemap-alternate-html-url", "sitemap.xml", f'hreflang="{lang}" -> {u}')
+        path = path_of(u)
+        if path in redirects or (path + ".html") in redirects:
+            f.error("sitemap-alternate-redirects", "sitemap.xml",
+                    f'hreflang="{lang}" -> {u}')
 
     # every served public page should be listed
     listed = {u[len(domain):].rstrip("/") or "/" for u in locs if u.startswith(domain)}
@@ -261,19 +353,38 @@ def check_content_loss(root, base, f):
 
 
 def check_bodies(root, f):
-    """Article pages must still contain real prose."""
+    """Served pages must still contain real prose.
+
+    Two holes this closes, both of which hid `index-widget.html` and
+    `resources.html` — blank, HTTP 200 and sitemapped — for six months:
+      * scope: only blog/ was inspected, so no root or city page was ever looked at;
+      * `if not m: continue`: a page with no <main>/<article> AT ALL passed silently,
+        which is precisely what a deleted body looks like.
+    """
+    redirects = load_redirect_sources(root)
     for fp, rel in iter_html(root):
-        if is_non_public(rel) or not rel.startswith("blog/") or rel.endswith("index.html"):
+        if is_non_public(rel):
+            continue
+        if ("/" + rel[:-5]) in redirects:
             continue
         src = open(fp, encoding="utf-8", errors="ignore").read()
+        page_words = len(visible_text(src).split())
+        if page_words < 120:
+            f.error("empty-page", rel,
+                    f"{page_words} visible words on the whole page — blank or gutted")
         m = re.search(r"<(main|article)\b.*?</\1>", src, re.S | re.I)
         if not m:
+            # no landmark: nothing for the article check to measure, and a WCAG 2.4.1
+            # defect in its own right. Never report this as a pass.
+            f.warn("no-main-landmark", rel,
+                   f"no <main> or <article> — body check cannot run ({page_words} words)")
             continue
         body = visible_text(m.group(0))
         words = len(body.split())
         h2 = len(re.findall(r"<h2\b", m.group(0), re.I))
-        if words < 150 or h2 == 0:
-            f.error("empty-article", rel, f"{words} words, {h2} <h2> — looks like a stub")
+        if rel.startswith("blog/") and not rel.endswith("index.html"):
+            if words < 150 or h2 == 0:
+                f.error("empty-article", rel, f"{words} words, {h2} <h2> — looks like a stub")
 
 
 # ---------------------------------------------------------------- output
@@ -322,11 +433,19 @@ def main():
     a = ap.parse_args()
 
     root = os.path.abspath(a.dir)
+    # --domain without a scheme silently disabled check_sitemap: every <loc> starts
+    # "https://", so nothing matched, `listed` came out empty, and all 87 pages warned
+    # page-not-in-sitemap while sitemap-redirecting-url quietly checked nothing. Refuse it.
+    if not a.domain.startswith(("https://", "http://")):
+        print(f"--domain must include the scheme, e.g. https://{a.domain.lstrip('/')}",
+              file=sys.stderr)
+        return 2
     domain = a.domain.rstrip("/")
     figures_path = a.figures if os.path.isabs(a.figures) else os.path.join(root, a.figures)
     f = Findings()
 
     all_checks = {
+        "exemptions": lambda: check_exemptions(root, f),
         "urls": lambda: check_urls(root, domain, f),
         "links": lambda: check_internal_links(root, domain, f),
         "figures": lambda: check_figures(root, figures_path, f),
@@ -341,6 +460,11 @@ def main():
     print(f"site-check — {domain}")
     print(f"  dir: {root}")
     print(f"  checks: {', '.join(selected)}")
+    if not a.base:
+        # The check that exists because of the March 2026 content-loss incident only runs
+        # when --base is given, and no npm script passes it. A clean report used to look
+        # identical to one where content loss had been checked. Say so out loud.
+        print("  content-loss: NOT RUN — pass --base <ref> (e.g. --base origin/main)")
     for name in selected:
         if name not in all_checks:
             print(f"  unknown check: {name}", file=sys.stderr)

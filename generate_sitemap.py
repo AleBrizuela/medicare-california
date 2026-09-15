@@ -32,7 +32,7 @@ class HreflangExtractor(HTMLParser):
 
 
 
-_NON_PUBLIC_PREFIXES = ("index-v", "index-dev", "index-localtest", "index-current")
+_NON_PUBLIC_PREFIXES = ("index-v", "index-dev", "index-localtest", "index-current", "404")
 
 
 def _is_non_public(url_path):

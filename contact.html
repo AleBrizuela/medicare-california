@@ -149,7 +149,7 @@ nav a {
 nav a:hover, nav a.active { color: var(--navy); background: var(--lt-blue); }
 .mobile-menu-btn {
   display: none; background: none; border: none;
-  font-size: 24px; color: var(--navy); cursor: pointer;
+  font-size: 24px; color: var(--navy); cursor: pointer;padding:10px;min-width:44px;min-height:44px;box-sizing:content-box;
 }
 .phone-header {
   display: flex; align-items: center; gap: 6px;
@@ -578,7 +578,7 @@ footer {
 
 @media (max-width: 900px) {
   nav { display: none; }
-  .mobile-menu-btn { display: block; }
+  .mobile-menu-btn { display: inline-flex; align-items: center; justify-content: center; }
   .hero-grid { grid-template-columns: 1fr; gap: 32px; }
   .hero h1 { font-size: 36px; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }

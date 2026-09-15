@@ -1,0 +1,273 @@
+/* medicare-california-brand.css
+   Ported from beneficiosmedicare-brand.css on 2026-09-14.
+   Same structure and variable names; California palette.
+   Source of truth for MC colours: #0080D4 primary, #0071BC dark,
+   #002147 navy. Do not introduce Material defaults (#00897B, #00796B)
+   or the old orange (#F97316, #EA580C). */
+
+/*
+ * ============================================
+ *   GUIA MARCOS — BRAND COMPONENT LIBRARY
+ * ============================================
+ * Edit this file to update styles site-wide.
+ *
+ * SECTIONS:
+ *   0. View Transitions (cross-page smooth nav)
+ *   1. CSS Variables  (colors, fonts, spacing)
+ *   2. Logo & Nav
+ *   3. Buttons
+ *   4. Hero Sections  (ALL pages — one size)
+ *   5. Footer
+ *   6. Cards & Badges
+ * ============================================
+ */
+
+/* ── 0. VIEW TRANSITIONS ────────────────────
+   Keeps header/footer stable across page navigations.
+   Falls back gracefully in older browsers.
+   ─────────────────────────────────────────── */
+@view-transition {
+  navigation: auto;
+}
+
+/* Tag persistent elements so the browser holds them in place */
+#cms-disclaimer { view-transition-name: cms-disc; }
+.header  { view-transition-name: site-header; }
+.wa-float { view-transition-name: wa-float; }
+footer   { view-transition-name: site-footer; }
+
+/* Instant swap for persistent elements (no animation at all) */
+::view-transition-old(cms-disc),
+::view-transition-new(cms-disc),
+::view-transition-old(site-header),
+::view-transition-new(site-header),
+::view-transition-old(site-footer),
+::view-transition-new(site-footer),
+::view-transition-old(wa-float),
+::view-transition-new(wa-float) {
+  animation: none;
+}
+
+/* Fast crossfade for the page content */
+::view-transition-old(root) {
+  animation: fade-out 80ms ease-out;
+}
+::view-transition-new(root) {
+  animation: fade-in 80ms ease-in;
+}
+
+@keyframes fade-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes fade-in  { from { opacity: 0; } to { opacity: 1; } }
+
+/* ── 1. CSS VARIABLES ─────────────────────── */
+:root {
+  /* Brand colors */
+  --navy:     #002147;
+  --green:    #0071BC;
+  --blue:     #0080D4;
+  --teal:     #0080D4;
+  --mint:     #BBDDF5;
+  --lt-blue:  #E6F2FB;
+  --lt-green: #E6F2FB;
+  --lt-mint:  #EFF6FC;
+  --lt-gray:  #F0F3F6;
+  --gray:     #4A5568;
+  --dark:     #1a202c;
+  --white:    #FFFFFF;
+  --wa-green: #25D366;
+
+  /* Radius & shadows */
+  --radius:    12px;
+  --shadow:    0 4px 24px rgba(0,60,113,0.10);
+  --shadow-lg: 0 8px 40px rgba(0,60,113,0.16);
+
+  /* Typography */
+  --font-heading: 'Open Sans', sans-serif;
+  --font-body:    'Open Sans', sans-serif;
+
+  /* ── Hero — edit these two lines to move ALL hero sections at once */
+  --hero-pt:  60px;   /* padding-top — desktop (static header)  */
+  --hero-pb:  60px;   /* padding-bottom */
+
+  /* ── Hero heading — edit this one line to resize ALL hero headings */
+  --hero-h-size: clamp(20px, 4vw, 30px);
+}
+
+/* ── 1b. CMS DISCLAIMER BAR ──────────────── */
+#cms-disclaimer {
+  background: #fff;
+  text-align: center;
+  font-size: 11px;
+  padding: 6px 16px;
+  color: #9CA3AF;
+  border-bottom: 1px solid #f0f0f0;
+  line-height: 1.4;
+  font-weight: 400;
+  position: relative;
+  z-index: 1100;
+}
+@media (max-width: 768px) {
+  #cms-disclaimer { font-size: 10px; padding: 4px 12px; }
+}
+
+/* ── 2. LOGO & NAV ───────────────────────── */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--navy);
+  text-decoration: none;
+}
+.logo span { color: #26A69A; }
+
+/* Active nav indicator — subtle teal underline (header nav only) */
+#desktop-nav a.active,
+#blog-desktop-nav a.active {
+  color: var(--navy) !important;
+  position: relative;
+}
+#desktop-nav a.active::after,
+#blog-desktop-nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 14px;
+  right: 14px;
+  height: 2.5px;
+  background: var(--green);
+  border-radius: 2px;
+}
+
+/* The favicon icon inside the logo */
+.logo-icon {
+  height: 36px;
+  width:  32px;
+  flex-shrink: 0;
+}
+
+/* ── 3. BUTTONS ──────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  text-decoration: none;
+}
+.btn-primary {
+  background: var(--green);
+  color: var(--white);
+  border-color: var(--green);
+}
+.btn-primary:hover {
+  background: #006835;
+  border-color: #006835;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+}
+.btn-secondary {
+  background: transparent;
+  color: var(--navy);
+  border-color: var(--navy);
+}
+.btn-secondary:hover {
+  background: var(--lt-blue);
+}
+
+/* ── 4. HERO SECTIONS ────────────────────── */
+/* All hero variants share the same vertical rhythm */
+.hero,
+.about-hero,
+.page-hero,
+.contact-hero {
+  padding-top:    var(--hero-pt);
+  padding-bottom: var(--hero-pb);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Universal hero heading size — applies to h1 and .section-title inside any hero */
+.hero h1,
+.about-hero h1,
+.page-hero h1,
+.contact-hero h1,
+.hero .section-title,
+.about-hero .section-title,
+.page-hero .section-title,
+.contact-hero .section-title,
+.hero-heading {
+  font-family: var(--font-heading) !important;
+  font-size:   var(--hero-h-size) !important;
+  font-weight: 700 !important;
+  color:       var(--navy) !important;
+  line-height: 1.2 !important;
+  margin-bottom: 16px;
+}
+
+/* ── 5. FOOTER ───────────────────────────── */
+footer {
+  background: var(--navy);
+  color: var(--white);
+}
+
+/* ── 6. CARDS & BADGES ───────────────────── */
+.card {
+  background:    var(--white);
+  border-radius: var(--radius);
+  box-shadow:    var(--shadow);
+  padding: 24px;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background:    var(--lt-mint);
+  color:         var(--navy);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size:  13px;
+  font-weight: 600;
+}
+
+/* ── Language Pill Toggle ──────────────────────────────────────── */
+.lang-pill {
+  display: inline-flex;
+  border: 2px solid var(--navy);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-left: 8px;
+  flex-shrink: 0;
+}
+.lang-pill button {
+  background: none;
+  border: none;
+  padding: 5px 14px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--navy);
+  letter-spacing: 0.04em;
+  transition: background 0.18s, color 0.18s;
+  line-height: 1;
+}
+.lang-pill button.lp-active {
+  background: var(--navy);
+  color: #fff;
+}
+.lang-pill button:not(.lp-active):hover {
+  background: var(--lt-blue);
+}
+/* Mobile: slightly larger touch targets */
+@media (max-width: 900px) {
+  .lang-pill button { padding: 8px 16px; font-size: 0.85rem; }
+  .lang-pill { margin-left: 0; margin-top: 8px; align-self: flex-start; }
+}

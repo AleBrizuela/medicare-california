@@ -133,7 +133,7 @@ def scan_local_files(directory, domain):
             m = re.search(r'rel="canonical"[^>]*?href="([^"]+)"', html)
             if m:
                 canon = m.group(1).rstrip("/")
-                if canon and canon != url.rstrip("/") and domain in canon:
+                if canon and canon.rstrip("/") != url.rstrip("/"):
                     continue
 
             pages[url] = {"hreflang": hreflang}

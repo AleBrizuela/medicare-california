@@ -38,7 +38,7 @@ BRAND = {
     },
 }
 
-NON_PUBLIC = ("index-v", "index-dev", "index-localtest", "index-current")
+NON_PUBLIC = ("index-v", "index-dev", "index-localtest", "index-current", "404", "bot-evals")
 
 SKIP_DIRS = {".git", "node_modules", ".github", "__pycache__", ".cloudflare", "images"}
 
@@ -115,6 +115,8 @@ def check_urls(root, domain, f):
     redirects = load_redirect_sources(root)
     for fp, rel in iter_html(root):
         if is_non_public(rel):
+            continue
+        if ("/" + rel[:-5]) in redirects or ("/" + rel) in redirects:
             continue
         src = open(fp, encoding="utf-8", errors="ignore").read()
 
@@ -198,6 +200,9 @@ def check_sitemap(root, domain, f):
     listed = {u[len(domain):].rstrip("/") or "/" for u in locs if u.startswith(domain)}
     for fp, rel in iter_html(root):
         if is_non_public(rel) or rel.startswith("blog/index"):
+            continue
+        # pages that _redirects sends elsewhere are correctly absent
+        if ("/" + rel[:-5]) in redirects or ("/" + rel) in redirects:
             continue
         path = "/" + rel[:-5]
         path = "/" if path == "/index" else (path[:-5] if path.endswith("/index") else path)

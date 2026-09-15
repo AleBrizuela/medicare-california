@@ -428,12 +428,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://medicare-california.com/bot-evals</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://medicare-california.com/california/cities/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/california/cities/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/california/cities/" />

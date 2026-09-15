@@ -170,6 +170,24 @@ footer.blog-footer { text-align: center; padding: 40px 24px; font-size: 13px; co
 .lang-cta a { color: #0B2D4F; font-weight: 600; text-decoration: none; }
 .lang-cta .lang-cta-icon { font-weight: 700; color: #0080D4; margin-right: 6px; }
 .article-meta .byline a { color: #0080D4; text-decoration: none; font-weight: 600; }
+
+/* Responsive header. These pages have a .desktop-nav but no hamburger, so hiding the
+   nav at mobile width would leave no navigation at all -- which is the bug found on
+   dual-eligibility. Wrap it to a second row instead and keep every item tappable. */
+.site-logo svg, .blog-nav-brand svg { max-width: 100%; height: auto; display: block; }
+table { display: block; overflow-x: auto; max-width: 100%; }
+img { max-width: 100%; height: auto; }
+@media (max-width: 900px) {
+  .header-inner { flex-wrap: wrap; height: auto; padding: 10px 16px; row-gap: 8px; justify-content: center; }
+  .site-logo { flex: 0 0 auto; }
+  .site-logo svg { width: 210px; }
+  .desktop-nav { flex: 1 0 100%; justify-content: center; flex-wrap: wrap; gap: 4px 10px; }
+  .desktop-nav a { padding: 8px 10px; }
+}
+@media (max-width: 640px) {
+  .site-logo svg { width: 190px; }
+  .desktop-nav a { font-size: 15px; }
+}
 </style>
 </head>
 <body>

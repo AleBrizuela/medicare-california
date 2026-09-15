@@ -179,6 +179,26 @@ footer.blog-footer { text-align: center; padding: 40px 24px; font-size: 13px; co
 .lang-cta a:hover { text-decoration: underline; }
 .lang-cta .lang-cta-icon { font-weight: 700; color: #0080D4; margin-right: 6px; }
 .blog-article-byline a:hover { text-decoration: underline !important; }
+
+/* Responsive header: the logo is a hardcoded width="278" SVG, and the nav used to
+   hide Guides and En Español on mobile rather than wrap. Scale the logo, wrap the
+   links to a second row, and never let content push the page sideways. */
+.blog-nav-brand svg { max-width: 100%; height: auto; display: block; }
+table { display: block; overflow-x: auto; max-width: 100%; }
+img { max-width: 100%; height: auto; }
+@media (max-width: 900px) {
+  .blog-nav { padding: 12px 16px; }
+  .blog-nav-inner { flex-wrap: wrap; justify-content: center; gap: 10px 0; }
+  .blog-nav-brand { flex: 0 0 auto; }
+  .blog-nav-brand svg { width: 210px; }
+  .blog-nav-links { flex: 1 0 100%; justify-content: center; gap: 16px; }
+  .blog-nav-links a:not(.blog-nav-cta) { display: inline-block; }
+}
+@media (max-width: 640px) {
+  .blog-nav-links { gap: 14px; }
+  .blog-nav-links a { font-size: 15px; }
+  .blog-nav-brand svg { width: 190px; }
+}
 </style>
 </head>
 <body>

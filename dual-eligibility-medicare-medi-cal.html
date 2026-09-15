@@ -56,7 +56,9 @@
     #blog-desktop-nav{display:flex;align-items:center;gap:8px}
     #blog-desktop-nav a{text-decoration:none;font-size:14px;font-weight:500;color:#5A6577;padding:8px 14px;border-radius:8px;transition:all 0.2s}
     #blog-desktop-nav a:hover,#blog-desktop-nav a.active{color:var(--navy);background:#E3F2FD}
-    .mobile-menu-btn{display:none;background:none;border:none;font-size:24px;color:var(--navy);cursor:pointer}
+    .mobile-menu-btn{display:none;background:none;border:none;font-size:26px;line-height:1;color:var(--navy);cursor:pointer;padding:8px 10px;min-width:44px;min-height:44px}
+    .mobile-menu-btn i{display:none}
+    .mobile-menu-btn::before{content:"\2630"}
     .lang-pill{display:inline-flex;border:2px solid #E3F2FD;border-radius:20px;overflow:hidden;margin-left:4px}
     .lang-pill button{background:transparent;border:none;padding:6px 12px;font-size:13px;font-weight:600;cursor:pointer;color:#5A6577;transition:all 0.2s}
     .lang-pill button.lp-active{background:var(--navy);color:white}

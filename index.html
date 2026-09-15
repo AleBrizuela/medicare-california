@@ -105,6 +105,12 @@ h1, h2, h3, h4 {
   max-width: 960px;
   margin: 0 auto;
 }
+
+.site-nav { display: flex; align-items: center; gap: 4px; margin-left: auto; margin-right: 12px; }
+.site-nav a { text-decoration: none; font-size: 14px; font-weight: 500; color: #5A6577; padding: 8px 14px; border-radius: 6px; white-space: nowrap; }
+.site-nav a:hover { color: var(--navy); background: #E8F2FA; }
+@media (max-width: 720px) { .site-nav a { padding: 8px 9px; font-size: 13px; } }
+@media (max-width: 520px) { .site-nav { gap: 0; margin-right: 4px; } .site-nav a { padding: 6px 6px; font-size: 11.5px; } }
 .logo {
   font-family: 'Open Sans', sans-serif;
   font-size: 22px;
@@ -1363,6 +1369,11 @@ h1, h2, h3, h4 {
   <a href="/" class="logo">
     <svg class="logo-full" viewBox="0 0 370 48" width="278" height="36" xmlns="http://www.w3.org/2000/svg" aria-label="Medicare California" role="img"><defs><linearGradient id="navShieldGradCA" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#0080D4"/><stop offset="100%" style="stop-color:#0071BC"/></linearGradient></defs><path d="M23 2 L43 10 L43 26 C43 37 35 43 23 49 C11 43 3 37 3 26 L3 10 Z" fill="url(#navShieldGradCA)"/><polyline points="14,27 20,33 33,19" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><text y="34" font-family="'Open Sans','Segoe UI','Helvetica Neue',Arial,sans-serif"><tspan x="54" font-size="26" font-weight="700" fill="#1a1a1a">Medicare</tspan><tspan dx="6" font-size="26" font-weight="600" fill="#3D9BE9">California</tspan></text></svg>
   </a>
+  <nav class="site-nav" aria-label="Main navigation">
+    <a href="/blog/">All Articles</a>
+    <a href="https://beneficiosmedicare.com">En Español</a>
+    <a href="/contact">Contact Us</a>
+  </nav>
   <div class="lang-pill" id="header-lang-pill"><button class="lp-active" onclick="setLang('en')">EN</button><button onclick="setLang('es')">ES</button></div>
 </header>
 

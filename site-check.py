@@ -34,7 +34,10 @@ BRAND = {
     },
     "medicare-california.com": {
         "correct": {"#0080D4", "#0071BC"},
-        "wrong": {"#00897B": "#0080D4", "#00796B": "#0080D4"},
+        # the Material defaults, plus BM's own palette leaking onto MC pages
+        "wrong": {"#00897B": "#0080D4", "#00796B": "#0080D4",
+                  "#A8D8B9": "#BBDDF5", "#007B40": "#0071BC",
+                  "#007B7B": "#0080D4", "#005C5C": "#0071BC"},
     },
 }
 
@@ -116,7 +119,10 @@ def check_urls(root, domain, f):
     for fp, rel in iter_html(root):
         if is_non_public(rel):
             continue
-        if ("/" + rel[:-5]) in redirects or ("/" + rel) in redirects:
+        # Cloudflare serves the extensionless url, so only THAT form deciding to
+        # redirect makes a page unreachable. Keying on the .html form instead let
+        # index-es.html -- live at 200, self-canonical -- skip three real errors.
+        if ("/" + rel[:-5]) in redirects:
             continue
         src = open(fp, encoding="utf-8", errors="ignore").read()
 
@@ -137,6 +143,26 @@ def check_urls(root, domain, f):
                         path = u[len(marker):].split("#")[0].split("?")[0].rstrip("/") or "/"
                         if path in redirects or (path + ".html") in redirects:
                             f.error("url-points-at-redirect", rel, f"{kind} -> {u}")
+
+
+def check_internal_links(root, domain, f):
+    """Internal <a href> must not carry .html. Cloudflare 308s every .html url to
+    its extensionless form, so an internal .html link spends a redirect hop on
+    every crawl and every click, and passes its signal through a 301 instead of
+    directly. Same defect class as the canonical .html problem, one layer up."""
+    redirects = load_redirect_sources(root)
+    for fp, rel in iter_html(root):
+        if is_non_public(rel):
+            continue
+        if ("/" + rel[:-5]) in redirects:
+            continue
+        src = open(fp, encoding="utf-8", errors="ignore").read()
+        hits = {}
+        for href in re.findall(r'href="(/[^"]*\.html(?:[#?][^"]*)?)"', src):
+            hits[href] = hits.get(href, 0) + 1
+        for href, n in sorted(hits.items()):
+            f.error("internal-html-link", rel,
+                    f"{href} x{n} — drop .html, it 308s")
 
 
 def check_figures(root, figures_path, f):
@@ -202,7 +228,7 @@ def check_sitemap(root, domain, f):
         if is_non_public(rel) or rel.startswith("blog/index"):
             continue
         # pages that _redirects sends elsewhere are correctly absent
-        if ("/" + rel[:-5]) in redirects or ("/" + rel) in redirects:
+        if ("/" + rel[:-5]) in redirects:
             continue
         path = "/" + rel[:-5]
         path = "/" if path == "/index" else (path[:-5] if path.endswith("/index") else path)
@@ -302,6 +328,7 @@ def main():
 
     all_checks = {
         "urls": lambda: check_urls(root, domain, f),
+        "links": lambda: check_internal_links(root, domain, f),
         "figures": lambda: check_figures(root, figures_path, f),
         "brand": lambda: check_brand(root, domain, f),
         "sitemap": lambda: check_sitemap(root, domain, f),

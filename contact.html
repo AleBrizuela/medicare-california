@@ -742,9 +742,9 @@ a[href^="tel"] { white-space: nowrap; }
   .phone-header { font-size: 16px !important; padding: 8px 0; }
 }
 </style>
-  <link rel="icon" type="image/svg+xml" href="favicon-beneficios.svg">
+  <link rel="icon" type="image/svg+xml" href="favicon-california.svg">
   <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png">
-  <link rel="shortcut icon" href="favicon-beneficios.svg">
+  <link rel="shortcut icon" href="favicon-california.svg">
   <link rel="apple-touch-icon" href="favicon-192x192.png">
 </head>
 
@@ -2092,10 +2092,10 @@ async function submitForm(e) {
         params.append('language', formData.language);
         params.append('site', formData.site);
 
-        console.log('[GM-Contact-ES] Sending lead to Google Sheets');
+        console.log('[Contact] Sending lead to Google Sheets');
         const GS_URL='https://script.google.com/macros/s/AKfycby8F8kXyTGFcCh2bzk92_sZeUKGlQPZ9RR-QmzYV6CfzBDbw6ANNOQ5JpnH2Z9PfJ_dEQ/exec';
         fetch(GS_URL, {method:'POST', headers:{'Content-Type':'text/plain'}, body:JSON.stringify(formData)})
-          .then(r => { if(!r.ok) throw new Error('GS '+r.status); console.log('[Contact-ES] Lead saved to Google Sheets'); })
+          .then(r => { if(!r.ok) throw new Error('GS '+r.status); console.log('[Contact] Lead saved to Google Sheets'); })
           .catch(err => { fetch(GS_URL, {method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'}, body:JSON.stringify(formData)}).catch(()=>{}); });
     } catch(err) { console.warn('[Contact] Submit error:', err); }
     
@@ -2135,6 +2135,5 @@ document.getElementById('contact-form').querySelectorAll('input, select').forEac
   }
 })();
 </script>
-<script src="/shared-footer.js"></script>
 </body>
 </html>

@@ -58,7 +58,13 @@
     table th { background: var(--navy); color: white; padding: 12px; text-align: left; }
     table td { padding: 12px; border-bottom: 1px solid #e5e7eb; }
     table tr:nth-child(even) { background: var(--light-blue); }
-    </style>
+    
+/* Wide tables scroll inside their own container. The scroll must go on the
+   PARENT: overflow-x on the table itself loses to its min-content width, and
+   display:block on a table strips its semantics from screen readers. */
+table { display: table; width: 100%; max-width: 100%; }
+*:has(> table) { overflow-x: auto; max-width: 100%; }
+</style>
 
     <!-- JSON-LD Schema Markup -->
     <script type="application/ld+json">

@@ -131,7 +131,11 @@
            zoomed the whole page out. Scale the logo, wrap the links to a second row, and
            guard tables and images so nothing pushes the page sideways. */
         .nav-brand svg { max-width: 100%; height: auto; display: block; }
-        table { display: block; overflow-x: auto; max-width: 100%; }
+        /* Wide tables scroll inside their own container. The scroll must go on the
+   PARENT: overflow-x on the table itself loses to its min-content width, and
+   display:block on a table strips its semantics from screen readers. */
+table { display: table; width: 100%; max-width: 100%; }
+*:has(> table) { overflow-x: auto; max-width: 100%; }
         img { max-width: 100%; height: auto; }
         @media (max-width: 900px) {
             nav { flex-wrap: wrap; justify-content: center; padding: 0.75rem 1rem; row-gap: 0.6rem; }

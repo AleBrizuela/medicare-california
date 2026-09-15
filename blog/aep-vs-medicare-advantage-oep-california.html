@@ -179,7 +179,11 @@ footer.blog-footer { text-align: center; padding: 40px 24px; font-size: 13px; co
    nav at mobile width would leave no navigation at all -- which is the bug found on
    dual-eligibility. Wrap it to a second row instead and keep every item tappable. */
 .site-logo svg, .blog-nav-brand svg { max-width: 100%; height: auto; display: block; }
-table { display: block; overflow-x: auto; max-width: 100%; }
+/* Wide tables scroll inside their own container. The scroll must go on the
+   PARENT: overflow-x on the table itself loses to its min-content width, and
+   display:block on a table strips its semantics from screen readers. */
+table { display: table; width: 100%; max-width: 100%; }
+*:has(> table) { overflow-x: auto; max-width: 100%; }
 img { max-width: 100%; height: auto; }
 @media (max-width: 900px) {
   .header-inner { flex-wrap: wrap; height: auto; padding: 10px 16px; row-gap: 8px; justify-content: center; }

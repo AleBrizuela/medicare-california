@@ -105,7 +105,13 @@
       .blog-article-body table { font-size: 13px; }
       .blog-article-body th, .blog-article-body td { padding: 8px; }
     }
-    </style>
+    
+/* Wide tables scroll inside their own container. The scroll must go on the
+   PARENT: overflow-x on the table itself loses to its min-content width, and
+   display:block on a table strips its semantics from screen readers. */
+table { display: table; width: 100%; max-width: 100%; }
+*:has(> table) { overflow-x: auto; max-width: 100%; }
+</style>
     <script type="application/ld+json">
     {"@context": "https://schema.org", "@type": "Article", "headline": "Medicare for Permanent Residents in California 2026: Requirements and How to Enroll", "description": "Complete guide to Medicare for green card holders in California in 2026. Learn the 5-year residency rule, how to qualify, costs, and steps to enroll.", "datePublished": "2026-04-15", "dateModified": "2026-04-30", "inLanguage": "en", "author": {"@type": "Person", "name": "Susana Marcos", "url": "https://medicare-california.com/authors#susana", "jobTitle": "Licensed Medicare Agent", "worksFor": {"@type": "Organization", "name": "Susana Marcos LLC"}}, "publisher": {"@type": "Organization", "name": "Susana Marcos LLC", "logo": {"@type": "ImageObject", "url": "https://medicare-california.com/logo.png"}}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://medicare-california.com/blog/medicare-para-residentes-permanentes-california"}}
     </script>

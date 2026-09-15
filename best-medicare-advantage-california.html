@@ -49,7 +49,13 @@
     .comparison-table th { background: var(--light-blue); padding: 14px; text-align: left; border: 1px solid #E5E7EB; font-weight: 600; }
     .comparison-table td { padding: 12px 14px; border: 1px solid #E5E7EB; }
     .comparison-table tr:nth-child(even) { background: #F9FAFB; }
-    </style>
+    
+/* Wide tables scroll inside their own container. The scroll must go on the
+   PARENT: overflow-x on the table itself loses to its min-content width, and
+   display:block on a table strips its semantics from screen readers. */
+table { display: table; width: 100%; max-width: 100%; }
+*:has(> table) { overflow-x: auto; max-width: 100%; }
+</style>
 
     <!-- JSON-LD Schema Markup -->
     <script type="application/ld+json">

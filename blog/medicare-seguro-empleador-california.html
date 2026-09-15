@@ -105,7 +105,13 @@
       .blog-article-body table { font-size: 13px; }
       .blog-article-body th, .blog-article-body td { padding: 8px; }
     }
-    </style>
+    
+/* Wide tables scroll inside their own container. The scroll must go on the
+   PARENT: overflow-x on the table itself loses to its min-content width, and
+   display:block on a table strips its semantics from screen readers. */
+table { display: table; width: 100%; max-width: 100%; }
+*:has(> table) { overflow-x: auto; max-width: 100%; }
+</style>
     <script type="application/ld+json">
     {"@context": "https://schema.org", "@type": "Article", "headline": "How Medicare Works with Employer Insurance in California 2026", "description": "If you have employer health insurance and are turning 65, learn how to coordinate Medicare with your employer plan in California. When to enroll, who pays first, and how to avoid costly penalties.", "datePublished": "2026-04-08", "dateModified": "2026-04-30", "inLanguage": "en", "author": {"@type": "Person", "name": "Susana Marcos", "url": "https://medicare-california.com/authors#susana", "jobTitle": "Licensed Medicare Agent", "worksFor": {"@type": "Organization", "name": "Susana Marcos LLC"}}, "publisher": {"@type": "Organization", "name": "Susana Marcos LLC", "logo": {"@type": "ImageObject", "url": "https://medicare-california.com/logo.png"}}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://medicare-california.com/blog/medicare-seguro-empleador-california"}}
     </script>

@@ -105,7 +105,13 @@
       .blog-article-body table { font-size: 13px; }
       .blog-article-body th, .blog-article-body td { padding: 8px; }
     }
-    </style>
+    
+/* Wide tables scroll inside their own container. The scroll must go on the
+   PARENT: overflow-x on the table itself loses to its min-content width, and
+   display:block on a table strips its semantics from screen readers. */
+table { display: table; width: 100%; max-width: 100%; }
+*:has(> table) { overflow-x: auto; max-width: 100%; }
+</style>
     <script type="application/ld+json">
     {"@context": "https://schema.org", "@type": "Article", "headline": "Medicare and International Travel for Californians 2026: What Is Covered and How to Protect Yourself", "description": "Complete guide to Medicare coverage when traveling outside the United States from California in 2026. Learn what is and is not covered, Medigap and Medicare Advantage options, and how to avoid large bills in Mexico, Colombia, or Peru.", "datePublished": "2026-04-21", "dateModified": "2026-04-30", "inLanguage": "en", "author": {"@type": "Person", "name": "Susana Marcos", "url": "https://medicare-california.com/authors#susana", "jobTitle": "Licensed Medicare Agent", "worksFor": {"@type": "Organization", "name": "Susana Marcos LLC"}}, "publisher": {"@type": "Organization", "name": "Susana Marcos LLC", "logo": {"@type": "ImageObject", "url": "https://medicare-california.com/logo.png"}}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://medicare-california.com/blog/medicare-viajes-fuera-estados-unidos-california"}}
     </script>

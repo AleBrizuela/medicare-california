@@ -128,7 +128,11 @@ body.es .jc-detail .fit-item.en{display:none}body.es .jc-detail .fit-item.es{dis
 
 /* Nothing may push the page sideways; the logo scales rather than sitting at 278px. */
 .logo-full { max-width: 100%; height: auto; }
-table { display: block; overflow-x: auto; max-width: 100%; }
+/* Wide tables scroll inside their own container. The scroll must go on the
+   PARENT: overflow-x on the table itself loses to its min-content width, and
+   display:block on a table strips its semantics from screen readers. */
+table { display: table; width: 100%; max-width: 100%; }
+*:has(> table) { overflow-x: auto; max-width: 100%; }
 img { max-width: 100%; height: auto; }
 @media (max-width: 640px) { .logo-full { width: 200px; } }
 </style>

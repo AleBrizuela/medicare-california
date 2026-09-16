@@ -464,7 +464,13 @@ class Chrome:
                  (e.className ? '.' + String(e.className).trim().split(/\\s+/)[0] : ''));
           return JSON.stringify({
             deviceW, innerW: innerWidth,
-            overflow: Math.max(d.documentElement.scrollWidth, d.body.scrollWidth, innerWidth) - deviceW,
+            // documentElement.scrollWidth is what the user can actually scroll to.
+            // body.scrollWidth is NOT: with overflow-x:hidden it still reports the
+            // pre-clip content width, which reads as a 14px overflow on a page that
+            // does not scroll sideways at all. Keep the two signals apart -- scrollable
+            // overflow is the error, clipped content is a warning.
+            overflow: Math.max(d.documentElement.scrollWidth, innerWidth) - deviceW,
+            clipped: Math.max(d.body.scrollWidth, d.documentElement.scrollWidth) - deviceW,
             navLinks, hamW, hamH, hamVisible, wide,
             viewportMeta: !!d.querySelector('meta[name="viewport"]')
           });
@@ -499,6 +505,12 @@ def check_layout(base, paths, f):
                         f"lays out {m['deviceW'] + m['overflow']}px wide on a {MOBILE_W}px screen "
                         f"(+{m['overflow']}px)"
                         + (f" — widest: {', '.join(m['wide'])}" if m["wide"] else ""))
+            elif m["clipped"] > 1 and m["wide"]:
+                # overflow-x:hidden is hiding it rather than fixing it: nothing scrolls,
+                # but content is being cut off the side of the screen
+                f.warn("clipped-overflow", p,
+                       f"content runs {m['clipped']}px past a {MOBILE_W}px screen and is "
+                       f"clipped by overflow-x:hidden — widest: {', '.join(m['wide'])}")
             if not m["viewportMeta"]:
                 f.error("no-viewport-meta", p, "page cannot render responsively at all")
             if m["navLinks"] == 0 and not m["hamVisible"]:

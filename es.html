@@ -1349,9 +1349,9 @@ h1, h2, h3, h4 {
   var el=document.getElementById('aep-countdown');
   function update(){
     var now=new Date();var diff=target-now;
-    if(diff<=0){el.textContent='- Enrollment is OPEN!';return;}
+    if(diff<=0){el.textContent='¡La inscripción está ABIERTA!';return;}
     var days=Math.ceil(diff/864e5);
-    el.textContent='- '+days+' day'+(days!==1?'s':'')+' away';
+    el.textContent='- faltan '+days+' día'+(days!==1?'s':'');
   }
   update();setInterval(update,36e5);
 })();
@@ -1374,7 +1374,7 @@ h1, h2, h3, h4 {
           inputmode="numeric"
           id="zip-input"
           class="zip-input"
-          placeholder="e.g. 90001"
+          placeholder="ej. 90001"
           maxlength="5"
           autocomplete="postal-code"
         >
@@ -1794,7 +1794,7 @@ h1, h2, h3, h4 {
         inputmode="numeric"
         id="final-zip-input"
         class="final-cta-zip-input"
-        placeholder="e.g. 90001"
+        placeholder="ej. 90001"
         maxlength="5"
       >
       <button class="final-cta-btn" onclick="handleFinalZipSubmit()" data-i18n="cta-zip-btn">Comenzar</button>

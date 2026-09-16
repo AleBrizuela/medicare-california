@@ -159,6 +159,41 @@ def sitemap_paths(base, f):
     return out
 
 
+NON_PUBLIC = ("index-v", "index-dev", "index-localtest", "index-current", "404",
+              "bot-evals", "widget")
+SKIP_DIRS = {".git", "node_modules", ".github", "__pycache__", ".cloudflare", "images",
+             "tools"}
+
+
+def offsitemap_paths(root, sitemap, redirects):
+    """Pages that are served but deliberately absent from the sitemap.
+
+    A page that canonicals to the other domain is correctly excluded from the sitemap,
+    and was therefore invisible to every check here -- which is how four pages went to
+    staging carrying the other site's stylesheet, favicon and footer links. Anything
+    Cloudflare will serve gets checked, whether or not we advertise it.
+    """
+    have = {p.rstrip("/") or "/" for p in sitemap}
+    red = {s.rstrip("/") for s in redirects}
+    out = []
+    for dirpath, dirs, files in os.walk(root):
+        dirs[:] = [d for d in dirs if d not in SKIP_DIRS]
+        for fn in files:
+            if not fn.endswith(".html"):
+                continue
+            stem = fn[:-5]
+            if stem.startswith(NON_PUBLIC):
+                continue
+            rel = os.path.relpath(os.path.join(dirpath, fn), root).replace(os.sep, "/")
+            url = "/" + (rel[:-len("index.html")] if rel.endswith("index.html")
+                         else rel[:-5])
+            url = url.rstrip("/") or "/"
+            if url in have or url in red:
+                continue
+            out.append(url)
+    return sorted(out)
+
+
 def load_redirect_sources(root):
     p = os.path.join(root, "_redirects")
     if not os.path.exists(p):
@@ -502,6 +537,10 @@ def main():
     print(f"  {len(paths)} URLs in sitemap.xml")
     srcs = load_redirect_sources(os.path.abspath(a.dir))
     print(f"  {len(srcs)} _redirects sources")
+    extra = offsitemap_paths(os.path.abspath(a.dir), paths, srcs)
+    if extra:
+        paths = paths + extra
+        print(f"  {len(extra)} served but not in sitemap (checked anyway)")
 
     checks = {
         "sitemap": lambda: check_sitemap_urls(base, paths, f),

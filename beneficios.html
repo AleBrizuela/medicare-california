@@ -5,12 +5,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VG5N9NKWPF"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QT10YEXDCJ"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-VG5N9NKWPF');
+  gtag('config', 'G-QT10YEXDCJ');
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -803,6 +803,30 @@ a[href^="tel"] { white-space: nowrap; }
 </a>
 
 <main id="main-content">
+<!-- AEP 2027 Countdown Banner -->
+<div id="aep-banner" style="background:linear-gradient(135deg,#002147 0%,#0080D4 100%);color:#fff;text-align:center;padding:18px 24px;position:relative;z-index:50">
+  <div style="max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px 24px">
+    <div style="font-size:15px;font-weight:600;letter-spacing:0.5px">
+      <span style="background:rgba(255,255,255,0.18);padding:4px 12px;border-radius:20px;font-size:13px;margin-right:8px">AEP 2027</span>
+      Inscripci&#xF3;n Anual comienza el <strong>15 de octubre</strong>
+      <span id="aep-countdown" style="margin-left:6px;color:#FFD54F;font-weight:700"></span>
+    </div>
+    <a href="https://beneficiosmedicare.com/inscripcion-anual-aep" style="background:#FFD54F;color:#002147;padding:8px 20px;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none">Cambios para 2027 &rarr;</a>
+  </div>
+</div>
+<script>
+(function(){
+  var target=new Date('2026-10-15T00:00:00');
+  var el=document.getElementById('aep-countdown');
+  function update(){
+    var now=new Date();var diff=target-now;
+    if(diff<=0){el.innerHTML='&iexcl;La inscripci&#xF3;n est&#xE1; ABIERTA!';return;}
+    var days=Math.ceil(diff/864e5);
+    el.textContent='- faltan '+days+' día'+(days!==1?'s':'');
+  }
+  update();setInterval(update,36e5);
+})();
+</script>
 <!-- ═══════════════════════════════════════════════════════ -->
 <!-- MEDICARE 101 PAGE -->
 <!-- ═══════════════════════════════════════════════════════ -->

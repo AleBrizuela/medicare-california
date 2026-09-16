@@ -514,6 +514,46 @@
 
 <!-- Critical CSS for above-fold content (CMS disclaimer, header, hero section) -->
 <style>
+/* floats: these lived in BM styles.css, which this domain does not serve,
+   so the WhatsApp button rendered as the words "WhatsApp" under the header */
+.wa-float {
+  position: fixed; bottom: 24px; right: 16px; z-index: 999;
+  background: var(--wa-green); color: white;
+  height: 48px; border-radius: 28px; padding: 0 18px 0 14px;
+  display: flex; align-items: center; gap: 8px;
+  font-size: 22px; text-decoration: none; white-space: nowrap;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+  transition: transform 0.2s, box-shadow 0.2s;
+  animation: pulse-wa 2.5s infinite;
+  outline: 2px solid rgba(255,255,255,0.6);
+  outline-offset: 2px;
+}
+.wa-float .float-label {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.8px;
+  font-family: 'Open Sans', sans-serif; line-height: 1;
+}
+.wa-float:hover { transform: scale(1.05); box-shadow: 0 6px 28px rgba(37,211,102,0.55); }
+.sms-float {
+  position: fixed; bottom: 84px; right: 16px; z-index: 999;
+  background: var(--blue); color: white;
+  height: 48px; border-radius: 28px; padding: 0 18px 0 14px;
+  display: flex; align-items: center; gap: 8px;
+  font-size: 20px; text-decoration: none; white-space: nowrap;
+  box-shadow: 0 4px 20px rgba(30,136,229,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+  outline: 2px solid rgba(255,255,255,0.6);
+  outline-offset: 2px;
+}
+.sms-float .float-label {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.8px;
+  font-family: 'Open Sans', sans-serif; line-height: 1;
+}
+.sms-float:hover { transform: scale(1.05); box-shadow: 0 6px 28px rgba(30,136,229,0.5); }
+@keyframes pulse-wa {
+  0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.45); }
+  50%      { box-shadow: 0 6px 30px rgba(37,211,102,0.65); }
+}
+
 img{max-width:100%;height:auto}
 
 :root { --navy: #002147; --green: #0071BC; --blue: #0080D4; --teal: #0080D4; --mint: #BBDDF5; --lt-blue: #E6F2FB; --lt-green: #E6F2FB; --lt-mint: #EFF6FC; --lt-gray: #F0F3F6; --gray: #4A5568; --dark: #1a202c; --white: #FFFFFF; --wa-green: #25D366; --radius: 12px; --shadow: 0 4px 24px rgba(0,60,113,0.10); --shadow-lg: 0 8px 40px rgba(0,60,113,0.16); }

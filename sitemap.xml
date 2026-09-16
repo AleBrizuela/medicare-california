@@ -26,6 +26,15 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://medicare-california.com/benefits</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/benefits" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/beneficios" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/benefits" />
+    <lastmod>2026-09-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://medicare-california.com/best-medicare-advantage-california</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/best-medicare-advantage-california" />
     <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/medicare-advantage-california" />

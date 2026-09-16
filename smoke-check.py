@@ -185,10 +185,13 @@ def offsitemap_paths(root, sitemap, redirects):
             if stem.startswith(NON_PUBLIC):
                 continue
             rel = os.path.relpath(os.path.join(dirpath, fn), root).replace(os.sep, "/")
-            url = "/" + (rel[:-len("index.html")] if rel.endswith("index.html")
-                         else rel[:-5])
-            url = url.rstrip("/") or "/"
-            if url in have or url in red:
+            if rel.endswith("index.html"):
+                # a directory index is served at the slashed URL; the bare form 308s
+                url = "/" + rel[:-len("index.html")]
+            else:
+                url = "/" + rel[:-5]
+            if (url.rstrip("/") or "/") in {p.rstrip("/") or "/" for p in have} \
+               or url.rstrip("/") in red:
                 continue
             out.append(url)
     return sorted(out)

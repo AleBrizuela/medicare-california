@@ -229,8 +229,14 @@ def check_figures(root, figures_path, f):
         return
     data = json.load(open(figures_path, encoding="utf-8"))
     ctx = re.compile("|".join(re.escape(w) for w in data["context_words"]), re.I)
+    # check_urls and check_sitemap already skip pages whose SERVED url redirects away.
+    # This check did not, so it reported stale figures on -en stubs nobody can reach,
+    # padding the count with findings that cannot be acted on.
+    redirects = load_redirect_sources(root)
     for fp, rel in iter_html(root):
         if is_non_public(rel):
+            continue
+        if ("/" + rel[:-5]) in redirects:
             continue
         src = open(fp, encoding="utf-8", errors="ignore").read()
         # visible_text() strips <script>, so JSON-LD FAQ answers — which feed Google

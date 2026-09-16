@@ -715,12 +715,4 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://medicare-california.com/resources</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/resources" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/" />
-    <lastmod>2026-09-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
 </urlset>

@@ -31,3 +31,8 @@
 /part-d-california-es                        https://beneficiosmedicare.com/partes-medicare.html                    301
 /resources-es.html                           https://beneficiosmedicare.com/                                        301
 /resources-es                                https://beneficiosmedicare.com/                                        301
+
+# index-widget.html lost 1,275 lines to d4c0569 (March 2026) and has served a
+# 22-word truncated page since. No inbound links, not in the sitemap.
+/index-widget https://medicare-california.com/ 301
+/index-widget.html https://medicare-california.com/ 301

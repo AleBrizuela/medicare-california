@@ -41,9 +41,14 @@ BRAND = {
     },
 }
 
-NON_PUBLIC = ("index-v", "index-dev", "index-localtest", "index-current", "404", "bot-evals")
+# "widget" covers widget.html / widget-v*.html: embedded JS apps, every one noindex
+# and absent from the sitemap. A page whose job is to be an iframe has few words BY
+# DESIGN, and reporting it as "blank or gutted" buried the two pages that really are.
+NON_PUBLIC = ("index-v", "index-dev", "index-localtest", "index-current", "404",
+              "bot-evals", "widget")
 
-SKIP_DIRS = {".git", "node_modules", ".github", "__pycache__", ".cloudflare", "images"}
+SKIP_DIRS = {".git", "node_modules", ".github", "__pycache__", ".cloudflare", "images",
+             "tools"}  # tools/ holds internal scrapers, noindex and unlinked
 
 URL_ATTRS = [
     ("canonical", re.compile(r'rel="canonical"[^>]*?href="([^"]+)"')),
@@ -221,6 +226,15 @@ def check_internal_links(root, domain, f):
             f.warn("sister-site-html-link", rel, f"{href} x{n} — 308s on the other domain")
 
 
+# Which Medicare Part each figure belongs to, so a figure can be rejected when the
+# surrounding text plainly names a different Part. None = not Part-specific.
+PART_OF = {
+    "part_b_premium": "B", "part_b_deductible": "B",
+    "part_a_deductible": "A", "part_a_coins_61_90": "A",
+    "part_a_coins_lifetime": "A", "part_a_premium_full": "A",
+    "part_a_premium_reduced": "A", "snf_coins": "A",
+}
+
 def check_figures(root, figures_path, f):
     """No page may state a retired CMS dollar figure in a cost context."""
     if not os.path.exists(figures_path):
@@ -253,11 +267,30 @@ def check_figures(root, figures_path, f):
                     # this is really a longer number.
                     for m in re.finditer(r"\$" + re.escape(retired) + r"(?!\d|[,.]\d)", text):
                         window = text[max(0, m.start() - 90):m.end() + 90]
-                        if ctx.search(window):
-                            f.error("stale-figure", rel,
-                                    f'${retired} as {spec["label"]}{where} '
-                                    f'— current is ${spec["current"]}')
-                            break
+                        if not ctx.search(window):
+                            continue
+                        # `ctx` is a generic list of cost words, so ANY of "premium",
+                        # "deductible", "part a/b" within 90 chars fired. Two guards, each
+                        # for a mis-attribution seen in the wild:
+                        #
+                        # 1. A range. "premium difference ... often $240 to $600 a year" is
+                        #    not a claim that $240 IS the Part B deductible.
+                        near = text[max(0, m.start() - 12):m.end() + 12]
+                        if re.search(re.escape(retired) + r"\s*(?:to|-|\u2013|\u2014|a)\s*\$", near, re.I) \
+                           or re.search(r"\$[\d,.]+\s*(?:to|-|\u2013|\u2014|a)\s*\$" + re.escape(retired), near, re.I):
+                            continue
+                        # 2. The wrong Part. "Part D ... deductible up to $505" was reported
+                        #    as a stale Part A premium. If the window names a different Part
+                        #    and never this figure's own, it is not this figure.
+                        mine = PART_OF.get(key)
+                        if mine:
+                            named = {p.upper() for p in re.findall(r"[Pp]art[e]?\s+([ABCD])\b", window)}
+                            if named and mine not in named:
+                                continue
+                        f.error("stale-figure", rel,
+                                f'${retired} as {spec["label"]}{where} '
+                                f'— current is ${spec["current"]}')
+                        break
 
 
 def check_brand(root, domain, f):

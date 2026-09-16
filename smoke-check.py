@@ -392,6 +392,10 @@ class Chrome:
         time.sleep(0.4)  # let late CSS settle
         js = """(() => {
           const d = document;
+          // innerWidth is the LAYOUT viewport, and a mobile browser widens it to fit an
+          // overflowing page -- so scrollWidth - innerWidth is always 0 on exactly the
+          // pages this check exists to catch. Measure against the device width instead.
+          const deviceW = 375;
           const navLinks = [...d.querySelectorAll(
             '.blog-nav-links a,.desktop-nav a,.nav-links a,.site-nav a,nav a')]
             .filter(a => a.offsetWidth > 0 && a.offsetHeight > 0).length;
@@ -402,12 +406,13 @@ class Chrome:
           const hamW = hamR ? Math.round(hamR.width) : 0;
           const hamH = hamR ? Math.round(hamR.height) : 0;
           const wide = [...d.querySelectorAll('*')]
-            .filter(e => e.getBoundingClientRect().right > innerWidth + 1)
+            .filter(e => e.getBoundingClientRect().right > deviceW + 1)
             .slice(0, 3)
             .map(e => e.tagName.toLowerCase() +
                  (e.className ? '.' + String(e.className).trim().split(/\\s+/)[0] : ''));
           return JSON.stringify({
-            overflow: d.documentElement.scrollWidth - innerWidth,
+            deviceW, innerW: innerWidth,
+            overflow: Math.max(d.documentElement.scrollWidth, d.body.scrollWidth, innerWidth) - deviceW,
             navLinks, hamW, hamH, hamVisible, wide,
             viewportMeta: !!d.querySelector('meta[name="viewport"]')
           });
@@ -439,7 +444,8 @@ def check_layout(base, paths, f):
                 continue
             if m["overflow"] > 0:
                 f.error("mobile-overflow", p,
-                        f"scrolls {m['overflow']}px sideways at {MOBILE_W}px"
+                        f"lays out {m['deviceW'] + m['overflow']}px wide on a {MOBILE_W}px screen "
+                        f"(+{m['overflow']}px)"
                         + (f" — widest: {', '.join(m['wide'])}" if m["wide"] else ""))
             if not m["viewportMeta"]:
                 f.error("no-viewport-meta", p, "page cannot render responsively at all")

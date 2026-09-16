@@ -708,6 +708,14 @@ a[href^="tel"] { white-space: nowrap; }
 .logo { color: #0080D4 !important; }
 .logo span { color: #0080D4 !important; }
 .logo .logo-icon { width: 48px; height: 48px; margin-right: 6px; vertical-align: middle; }
+
+/* Mobile density. The section padding is an inline style, which no media query can
+   reach, so this overrides it: 60px top and bottom on a 375px screen stacked ~120px
+   of empty band between every section and pushed the form below the fold. */
+@media (max-width: 640px) {
+  main section { padding-top: 32px !important; padding-bottom: 32px !important; }
+  main section.hero { padding-top: 28px !important; padding-bottom: 22px !important; }
+}
 </style>
   <script type="application/ld+json">{
   "@context": "https://schema.org",

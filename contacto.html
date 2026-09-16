@@ -721,6 +721,14 @@ a[href^="tel"] { white-space: nowrap; }
 @media (max-width: 768px) {
   .phone-header { font-size: 16px !important; padding: 8px 0; }
 }
+
+/* Mobile density. The section padding is an inline style, which no media query can
+   reach, so this overrides it: 60px top and bottom on a 375px screen stacked ~120px
+   of empty band between every section and pushed the form below the fold. */
+@media (max-width: 640px) {
+  main section { padding-top: 32px !important; padding-bottom: 32px !important; }
+  main section.hero { padding-top: 28px !important; padding-bottom: 22px !important; }
+}
 </style>
   <link rel="icon" type="image/svg+xml" href="favicon-california.svg">
   <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png">

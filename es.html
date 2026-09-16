@@ -1148,6 +1148,27 @@ h1, h2, h3, h4 {
   main section, body > section { padding-top: 36px !important; padding-bottom: 36px !important; }
   section.hero { padding-top: 0 !important; }
 }
+
+/* Above the fold on a phone. Below 640px the four nav items wrapped onto their own
+   full-width row under the logo, costing ~45px before anyone saw the page. Collapse
+   them into a hamburger, the way every other page on this site already does. The
+   glyph is inline SVG, not a Font Awesome class: this page does not load Font
+   Awesome, and a nav control that depends on a CDN font can measure 0x0. */
+.mobile-menu-btn { display: none; background: none; border: none; color: var(--navy);
+  cursor: pointer; padding: 10px; min-width: 44px; min-height: 44px;
+  align-items: center; justify-content: center; }
+.mobile-nav { display: none; position: fixed; top: 64px; left: 0; right: 0;
+  background: #fff; padding: 12px 16px; box-shadow: var(--shadow); z-index: 999;
+  flex-direction: column; gap: 4px; }
+.mobile-nav.open { display: flex; }
+.mobile-nav a { font-size: 17px; padding: 14px 16px; display: block; border-radius: 10px;
+  font-weight: 600; color: var(--navy); text-decoration: none; }
+.mobile-nav a:hover, .mobile-nav a:focus { background: var(--lt-blue); }
+@media (max-width: 640px) {
+  .site-nav { display: none; }
+  .mobile-menu-btn { display: inline-flex; }
+  .site-header { flex-wrap: nowrap; justify-content: space-between; row-gap: 0; }
+}
 </style>
 <script type="application/ld+json">{
   "@context": "https://schema.org",
@@ -1335,7 +1356,18 @@ h1, h2, h3, h4 {
     <a href="/contacto">Contáctenos</a>
     <a href="/" hreflang="en" lang="en">In English</a>
   </nav>
+  <button class="mobile-menu-btn" onclick="toggleMobile()" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobile-nav">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
       </header>
+
+<!-- Mobile nav -->
+<div class="mobile-nav" id="mobile-nav">
+  <a href="/es">Inicio</a>
+  <a href="/beneficios">Beneficios</a>
+  <a href="/contacto">Contáctenos</a>
+  <a href="/" hreflang="en" lang="en">In English</a>
+</div>
 
 <!-- Social proof moved inside widget (widget-v4.html) -->
 
@@ -2250,6 +2282,13 @@ document.querySelectorAll('.fade-in-up').forEach(el => {
   if(statsSection) statsObs.observe(statsSection);
 })();
 </script>
-<script src="/ab-testing.js?v=20260916" defer></script>
+<script src="/ab-testing.js?v=20260916" defer>
+function toggleMobile() {
+  var n = document.getElementById('mobile-nav');
+  var b = document.querySelector('.mobile-menu-btn');
+  var open = n.classList.toggle('open');
+  if (b) b.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+</script>
 </body>
 </html>

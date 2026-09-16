@@ -116,6 +116,20 @@ def fetch(url, method="GET", redirect=False):
         handlers.append(NoRedirect)
     opener = urllib.request.build_opener(*handlers)
     req = urllib.request.Request(url, method=method, headers={"User-Agent": UA})
+    # Cloudflare throttles a fast sweep with 409/429. Those are about our request rate,
+    # not the site, and reporting them as failures produced false alarms on healthy
+    # pages. Back off and retry before believing them.
+    for attempt in range(3):
+        try:
+            with opener.open(req, timeout=25) as r:
+                return r.status, dict(r.headers), r.read().decode("utf-8", "replace")
+        except urllib.error.HTTPError as e:
+            if e.code in (409, 429, 503) and attempt < 2:
+                time.sleep(2 * (attempt + 1))
+                continue
+            break
+        except Exception:
+            break
     try:
         with opener.open(req, timeout=25) as r:
             return r.status, dict(r.headers), r.read().decode("utf-8", "replace")

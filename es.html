@@ -514,6 +514,8 @@
 
 <!-- Critical CSS for above-fold content (CMS disclaimer, header, hero section) -->
 <style>
+img{max-width:100%;height:auto}
+
 :root { --navy: #002147; --green: #0071BC; --blue: #0080D4; --teal: #0080D4; --mint: #BBDDF5; --lt-blue: #E6F2FB; --lt-green: #E6F2FB; --lt-mint: #EFF6FC; --lt-gray: #F0F3F6; --gray: #4A5568; --dark: #1a202c; --white: #FFFFFF; --wa-green: #25D366; --radius: 12px; --shadow: 0 4px 24px rgba(0,60,113,0.10); --shadow-lg: 0 8px 40px rgba(0,60,113,0.16); }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -877,7 +879,7 @@ main { display: block; }
         <h2 class="section-title">Sencillo como 1, 2, 3</h2>
         <p style="color:var(--gray);font-size:1.05rem;max-width:500px;margin:12px auto 0;text-align:center">Sin formularios. Sin confusión. Sin presión.</p>
       </div>
-      <div class="steps-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative">
+      <div class="steps-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;position:relative">
         <div style="text-align:center;padding:2.5rem 2rem">
           <div style="margin:0 auto 1rem;position:relative;width:88px;height:88px">
             <span style="font-size:4rem;line-height:1">🗣️</span>

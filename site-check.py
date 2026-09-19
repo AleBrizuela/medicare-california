@@ -233,6 +233,9 @@ PART_OF = {
     "part_a_deductible": "A", "part_a_coins_61_90": "A",
     "part_a_coins_lifetime": "A", "part_a_premium_full": "A",
     "part_a_premium_reduced": "A", "snf_coins": "A",
+    "part_d_deductible": "D", "part_d_base_premium": "D", "part_d_penalty_month": "D",
+    "part_d_irmaa": "D", "extra_help_income_single": "D", "extra_help_income_couple": "D",
+    "extra_help_resources_single": "D",
 }
 
 def check_figures(root, figures_path, f):

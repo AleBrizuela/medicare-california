@@ -1820,7 +1820,7 @@ footer.site-footer { padding-bottom: 80px; }
   ]
 }
 </script>
-<link rel="stylesheet" href="/sm-chrome.css?v=20260918o">
+<link rel="stylesheet" href="/sm-chrome.css?v=20260918p">
 </head>
 <body>
 <style>.wa-float{position:fixed;bottom:24px;right:16px;z-index:999;background:#25D366;color:#fff;height:48px;border-radius:28px;padding:0 18px 0 14px;display:flex;align-items:center;gap:8px;font-size:22px;text-decoration:none;white-space:nowrap;box-shadow:0 4px 20px rgba(37,211,102,.45);transition:transform .2s,box-shadow .2s;animation:pulse-wa 2.5s infinite;outline:2px solid rgba(255,255,255,.6);outline-offset:2px}.wa-float svg{width:24px;height:24px;fill:currentColor;flex:none}.wa-float .float-label{font-size:12px;font-weight:700;letter-spacing:.8px;font-family:"Open Sans",sans-serif;line-height:1}.wa-float:hover{transform:scale(1.05);box-shadow:0 6px 28px rgba(37,211,102,.55)}@keyframes pulse-wa{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.45)}50%{box-shadow:0 6px 30px rgba(37,211,102,.65)}}@media(max-width:768px){.wa-float{right:12px!important;bottom:72px!important;padding:0!important;width:48px!important;height:48px!important;border-radius:50%!important;justify-content:center!important;outline:none!important;animation:none!important}.wa-float .float-label{display:none!important}}</style>
@@ -1841,8 +1841,7 @@ footer.site-footer { padding-bottom: 80px; }
       <a href="/es" hreflang="es" lang="es">En Español</a>
       <a href="/contact">Contact Us</a>
   </nav>
-  <!-- sm-call:start --><a href="tel:+13105979142" class="sm-call sm-call-mc" aria-label="Call (310) 597-9142"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a><!-- sm-call:end -->
-  <button class="mobile-menu-btn" onclick="toggleMobile()" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+<button class="mobile-menu-btn" onclick="toggleMobile()" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav">
     <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
   </button>
       </header>
@@ -1892,14 +1891,13 @@ footer.site-footer { padding-bottom: 80px; }
   <div class="hero-form-area">
     <!-- ZIP FORM -->
     <div class="zip-card fade-up-d1" id="zip-card" style="position:relative;margin-top:-24px;box-shadow:0 -4px 32px rgba(0,0,0,0.08),0 8px 32px rgba(0,0,0,0.06);">
-      <label for="zip-input"><span data-i18n="zip-label">Enter your ZIP to see plans near you</span></label>
+      <label for="zip-input"><span data-i18n="zip-label">Enter your ZIP code</span></label>
       <div class="zip-input-wrap">
         <input
           type="tel"
           inputmode="numeric"
           id="zip-input"
           class="zip-input"
-          placeholder="e.g. 90001"
           maxlength="5"
           autocomplete="postal-code"
         >
@@ -1927,24 +1925,6 @@ footer.site-footer { padding-bottom: 80px; }
     </div>
   </div>
 </section>
-
-<!-- ═══ TRUST BADGE STRIP ═══ -->
-<div class="trust-badge-strip">
-  <div class="badge-strip-content">
-    <div class="badge-item">
-      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      <span data-i18n="badge-1">Licensed in CA</span>
-    </div>
-    <div class="badge-item">
-      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
-      <span data-i18n="badge-2">AHIP Certified</span>
-    </div>
-    <div class="badge-item">
-      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-      <span data-i18n="badge-3">Family-Owned</span>
-    </div>
-  </div>
-</div>
 
 <!-- ═══ WIDGET (hidden until ZIP submitted) ═══ -->
 <div id="widget-anchor"></div>
@@ -2331,13 +2311,12 @@ footer.site-footer { padding-bottom: 80px; }
     <h2 data-i18n="cta-h2">Ready to find the perfect Medicare plan?</h2>
     <p class="final-cta-sub" data-i18n="cta-sub">Start your personalized search today. It's free and takes just a few minutes.</p>
     <div class="final-cta-zip-card">
-      <label for="final-zip-input" data-i18n="cta-zip-label">Your ZIP code</label>
+      <label for="final-zip-input" data-i18n="cta-zip-label">Enter your ZIP code</label>
       <input
         type="tel"
         inputmode="numeric"
         id="final-zip-input"
         class="final-cta-zip-input"
-        placeholder="e.g. 90001"
         maxlength="5"
       >
       <button class="final-cta-btn" onclick="handleFinalZipSubmit()" data-i18n="cta-zip-btn">Get Started</button>
@@ -2532,7 +2511,7 @@ const I18N = {
   'hero-h1': { en:'Medicare California,', es:'Medicare California,' },
   'hero-h1-em': { en:'Simplified.', es:'Simplificado.' },
   'hero-banner-p': { en:'We\u2019re a team of agents helping California families find the right plan. In English or Spanish, at no cost to you.', es:'Somos un equipo de agentes ayudando a familias de California a encontrar el plan correcto. En ingl\u00e9s o espa\u00f1ol, sin costo para usted.' },
-  'zip-label': { en:'Enter your ZIP to see plans near you', es:'Ingrese su c\u00f3digo postal para ver planes' },
+  'zip-label': { en:'Enter your ZIP code', es:'Ingrese su c\u00f3digo postal' },
   'zip-btn': { en:'Compare Plans Free', es:'Comparar Planes Gratis' },
   'zip-error': { en:'Please enter a valid 5-digit California ZIP code.', es:'Ingrese un c\u00f3digo postal v\u00e1lido de 5 d\u00edgitos.' },
   'hero-check-0': { en:'3 min', es:'3 min' },
@@ -2626,7 +2605,7 @@ const I18N = {
   // CTA
   'cta-h2': { en:'Ready to find the perfect Medicare plan?', es:'\u00bfLista para encontrar su plan Medicare?' },
   'cta-sub': { en:'Start your personalized search today. It\u2019s free and takes just a few minutes.', es:'Comience su b\u00fasqueda personalizada hoy. Es gratis y toma solo unos minutos.' },
-  'cta-zip-label': { en:'Your ZIP code', es:'Su c\u00f3digo postal' },
+  'cta-zip-label': { en:'Enter your ZIP code', es:'Ingrese su c\u00f3digo postal' },
   'cta-zip-btn': { en:'Get Started', es:'Comenzar' },
   // Section nav
   'nav-top': { en:'Top', es:'Inicio' },

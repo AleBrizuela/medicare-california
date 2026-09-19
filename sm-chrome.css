@@ -1,0 +1,71 @@
+/* Shared header + footer for every page (Beneficios Medicare and Medicare California).
+   Namespaced sm-*. Markup is stamped by stamp_chrome.py. Bump ?v= in the page link when this file changes. */
+
+/* ---------- header ---------- */
+.sm-header{position:sticky;top:0;z-index:1000;display:block;width:auto;height:auto;margin:0;padding:0;
+  background:rgba(255,255,255,.97);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  border:0;border-bottom:1px solid rgba(0,33,71,.08);box-shadow:none;text-align:left;
+  font-family:'Open Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;line-height:1.4}
+.sm-header *{box-sizing:border-box}
+.sm-header-in{max-width:960px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.sm-logo{display:flex;align-items:center;flex:0 1 auto;min-width:0;text-decoration:none;color:inherit;margin:0;padding:0}
+.sm-logo svg{display:block;max-width:100%;height:auto}
+.sm-nav{display:flex;align-items:center;gap:4px;margin:0 0 0 auto;padding:0;background:none;box-shadow:none;position:static}
+.sm-nav a{display:inline-block;text-decoration:none;font-size:14px;font-weight:500;color:#5A6577;padding:8px 14px;border-radius:6px;white-space:nowrap;line-height:1.4;border:0}
+.sm-nav a:hover,.sm-nav a:focus-visible{color:#0B2D4F;background:#E8F2FA}
+.sm-burger{display:none;align-items:center;justify-content:center;flex:0 0 auto;min-width:44px;min-height:44px;padding:10px;margin:0;
+  background:none;border:0;border-radius:8px;color:#0B2D4F;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.sm-burger:focus-visible{outline:2px solid #0080D4;outline-offset:2px}
+.sm-mnav{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;padding:12px 16px 16px;
+  box-shadow:0 10px 24px rgba(0,33,71,.14);flex-direction:column;gap:4px}
+.sm-mnav.open{display:flex}
+.sm-mnav a{display:block;font-size:17px;font-weight:600;padding:14px 16px;border-radius:10px;color:#0B2D4F;text-decoration:none;line-height:1.3}
+.sm-mnav a:hover,.sm-mnav a:focus-visible{background:#E8F2FA}
+@media(max-width:640px){
+  .sm-nav{display:none}
+  .sm-burger{display:inline-flex}
+  .sm-header-in{padding:10px 12px 10px 16px}
+}
+@media(min-width:641px){.sm-mnav,.sm-mnav.open{display:none}}
+
+/* ---------- footer (both sites) ---------- */
+.sm-footer{display:block;position:static;width:auto;height:auto;margin:0;border:0;box-shadow:none;text-align:left;
+  color:#d1d5db;font-size:.95rem;line-height:1.6;
+  font-family:'Open Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif}
+.sm-footer *{box-sizing:border-box}
+.sm-footer .sm-disclaimer p{text-align:left;padding:0}
+
+/* Medicare California */
+.sm-footer.sm-mc{background:#0B2D4F;padding:48px 24px 80px}
+.sm-mc .footer-inner{max-width:1000px;margin:0 auto}
+.sm-mc .footer-top{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-bottom:32px}
+.sm-mc .footer-col{display:flex;flex-direction:column}
+.sm-mc .footer-col h4{color:#f3f4f6;font-size:.95rem;font-weight:700;margin:0 0 16px;letter-spacing:.02em}
+.sm-mc .footer-col p{font-size:.9rem;color:#d1d5db;line-height:1.7;margin:0 0 12px}
+.sm-mc .footer-col ul{list-style:none;padding:0;margin:0}
+.sm-mc .footer-col ul li{margin:0 0 10px;padding:0}
+.sm-mc .footer-col a{color:#93c5fd;text-decoration:none;font-size:.9rem}
+.sm-mc .footer-col a:hover{color:#bfdbfe;text-decoration:underline}
+.sm-mc .footer-contact p{font-size:.85rem;color:#9ca3af;margin:0 0 12px;text-align:center}
+.sm-mc .footer-bottom{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:16px;font-size:.85rem;color:#9ca3af;
+  padding-top:16px;border-top:1px solid rgba(255,255,255,.1);text-align:center}
+.sm-mc .footer-bottom a,.sm-mc .footer-bottom button{color:#93c5fd;text-decoration:underline;cursor:pointer;font-size:inherit}
+.sm-mc .footer-bottom a:hover,.sm-mc .footer-bottom button:hover{color:#bfdbfe}
+@media(max-width:900px){.sm-mc .footer-top{grid-template-columns:repeat(2,1fr);gap:32px}}
+@media(max-width:700px){
+  .sm-mc .footer-top{grid-template-columns:1fr;text-align:center;gap:24px}
+  .sm-mc .footer-bottom{flex-direction:column;gap:12px}
+  .sm-mc .footer-col ul li{margin-bottom:8px}
+}
+
+/* Beneficios Medicare */
+.sm-footer.sm-bm{background:#002147;padding:20px 24px 16px;text-align:center;font-size:13px}
+.sm-bm .sm-bm-in{max-width:960px;margin:0 auto}
+.sm-bm .sm-bm-brand{font-size:18px;color:#B2DFDB;margin:0 0 10px}
+.sm-bm .sm-bm-row{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin:0 0 8px;font-size:13px}
+.sm-bm .sm-bm-row a{color:#E8F2FA;text-decoration:none}
+.sm-bm .sm-bm-row a:hover{text-decoration:underline}
+.sm-bm .sm-bm-priv{font-size:12px;margin:6px 0 8px}
+.sm-bm .sm-bm-priv a{color:rgba(255,255,255,.6);text-decoration:none}
+.sm-bm .sm-bm-priv a:hover{text-decoration:underline}
+.sm-bm .sm-disclaimer{margin-bottom:72px !important}

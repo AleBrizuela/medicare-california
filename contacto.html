@@ -734,27 +734,28 @@ a[href^="tel"] { white-space: nowrap; }
   <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png">
   <link rel="shortcut icon" href="favicon-california.svg">
   <link rel="apple-touch-icon" href="favicon-192x192.png">
+<link rel="stylesheet" href="/sm-chrome.css?v=20260918a">
 </head>
 
 <body>
-<!-- CMS Disclaimer Banner -->
-<div id="cms-disclaimer" style="background:#fff;text-align:center;font-size:11px;padding:6px 16px;color:#9CA3AF;border-bottom:1px solid #f0f0f0;line-height:1.4">
-  Este sitio no es parte del gobierno federal ni del programa de Medicare. Para información oficial visite Medicare.gov o llame al 1-800-Medicare.
-</div>
-<header class="header" id="header">
-  <div class="header-inner">
-    <a href="/es" class="logo"><svg class="logo-full" viewBox="0 0 380 48" width="285" height="36" xmlns="http://www.w3.org/2000/svg" aria-label="Medicare California" role="img"><defs><linearGradient id="navShieldGrad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#0080D4"/><stop offset="100%" style="stop-color:#0071BC"/></linearGradient></defs><path d="M23 2 L43 10 L43 26 C43 37 35 43 23 49 C11 43 3 37 3 26 L3 10 Z" fill="url(#navShieldGrad)"/><polyline points="14,27 20,33 33,19" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><text y="34" font-family="'Open Sans','Segoe UI','Helvetica Neue',Arial,sans-serif"><tspan x="54" font-size="26" font-weight="700" fill="#1a1a1a">Medicare</tspan><tspan dx="6" font-size="26" font-weight="600" fill="#3D9BE9">California</tspan></text></svg></a>
-    <nav id="desktop-nav"><a href="/beneficios">Medicare 101</a>
+<!-- sm-header:start -->
+<header class="sm-header" id="header">
+  <div class="sm-header-in">
+    <a href="/es" class="sm-logo"><svg class="logo-full" viewBox="0 0 370 48" width="278" height="36" xmlns="http://www.w3.org/2000/svg" aria-label="Medicare California" role="img"><defs><linearGradient id="navShieldGradCA" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#0080D4"/><stop offset="100%" style="stop-color:#0071BC"/></linearGradient></defs><path d="M23 2 L43 10 L43 26 C43 37 35 43 23 49 C11 43 3 37 3 26 L3 10 Z" fill="url(#navShieldGradCA)"/><polyline points="14,27 20,33 33,19" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><text y="34" font-family="'Open Sans','Segoe UI','Helvetica Neue',Arial,sans-serif"><tspan x="54" font-size="26" font-weight="700" fill="#1a1a1a">Medicare</tspan><tspan dx="6" font-size="26" font-weight="600" fill="#3D9BE9">California</tspan></text></svg></a>
+    <div class="sm-nav" role="navigation" aria-label="Navegación principal">
+      <a href="/beneficios">Medicare 101</a>
       <a href="/contact" hreflang="en" lang="en">In English</a>
-      <a href="/contacto">Contáctenos</a></nav>
-    <button class="mobile-menu-btn" onclick="toggleMobile()"><i class="fas fa-bars"></i></button>
+      <a href="/contacto">Contáctenos</a>
+    </div>
+    <button type="button" class="sm-burger" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobile-nav" onclick="var m=document.getElementById('mobile-nav');var o=m.classList.toggle('open');this.setAttribute('aria-expanded',o?'true':'false')"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  </div>
+  <div class="sm-mnav" id="mobile-nav">
+    <a href="/beneficios">Medicare 101</a>
+      <a href="/contact" hreflang="en" lang="en">In English</a>
+      <a href="/contacto">Contáctenos</a>
   </div>
 </header>
-
-<!-- Mobile nav -->
-<div class="mobile-nav" id="mobile-nav"><a href="/beneficios">Medicare 101</a>
-      <a href="/contact" hreflang="en" lang="en">In English</a>
-      <a href="/contacto">Contáctenos</a></div>
+<!-- sm-header:end -->
 
 <!-- SMS floating button -->
 <!-- WhatsApp floating button -->
@@ -1060,26 +1061,61 @@ a[href^="tel"] { white-space: nowrap; }
 
 </main>
 
-<footer style="padding:20px 24px 16px">
-  <div style="max-width:960px;margin:0 auto;text-align:center">
-    <div style="font-family:'Open Sans',sans-serif;font-size:18px;color:var(--mint);margin-bottom:10px">Medicare California</div>
-    <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:6px;font-size:13px">
-      <a href="/es" style="color:var(--lt-blue);text-decoration:none"><i class="fas fa-home"></i> Inicio</a>
-      <a href="/beneficios" style="color:var(--lt-blue);text-decoration:none"><i class="fas fa-heart"></i> Beneficios</a>
-      <a href="/california/cities/" style="color:var(--lt-blue);text-decoration:none"><i class="fas fa-map-marked-alt"></i> Ciudades</a>
-      <a href="/blog/" style="color:var(--lt-blue);text-decoration:none"><i class="fas fa-pen"></i> Blog</a>
-      <a href="/careers" style="color:var(--lt-blue);text-decoration:none"><i class="fas fa-briefcase"></i> Carreras</a>
+<!-- sm-footer:start -->
+<footer class="sm-footer sm-mc">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>Sobre Medicare California</h4>
+        <p>Somos un equipo familiar basado en California con más de 15 años de experiencia ayudando a personas mayores a navegar Medicare con honestidad y cuidado. Hemos guiado a más de 2,000 familias a planes que se adaptan a sus necesidades y presupuesto. Nuestras asesoras licenciadas se enorgullecen de hacer la información compleja de Medicare simple y accesible.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Enlaces Rápidos</h4>
+        <ul>
+          <li><a href="/blog/">Guías y Artículos</a></li>
+          <li><a href="/beneficios">Beneficios de Medicare</a></li>
+          <li><a href="/careers">Empleos</a></li>
+          <li><a href="https://www.medicare.gov" target="_blank" rel="noopener">Medicare.gov</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contáctenos</h4>
+        <p style="margin-bottom:12px;">Estamos aquí para responder sus preguntas de Medicare.</p>
+        <p style="margin-bottom:4px;"><strong>Teléfono:</strong></p>
+        <p style="margin-bottom:12px;"><a href="tel:+13105979142">(310) 597-9142</a></p>
+        <p style="margin-bottom:4px;"><strong>Correo:</strong></p>
+        <p><a href="mailto:alejamedicare@gmail.com">alejamedicare@gmail.com</a></p>
+      </div>
     </div>
-    <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:10px;font-size:13px">
-      <a href="tel:+13105979142" style="color:var(--lt-blue);text-decoration:none"><i class="fas fa-phone-alt"></i> Llame</a>
-      <a href="https://calendar.app.google/6D4obxzxERQXBpaf7" target="_blank" style="color:var(--lt-blue);text-decoration:none"><i class="fas fa-video"></i> Agende Cita Virtual</a>
-      <a href="mailto:alejamedicare@gmail.com" style="color:var(--lt-blue);text-decoration:none"><i class="fas fa-envelope"></i> Email</a>
-      <a href="https://wa.me/13105979142" target="_blank" style="color:var(--lt-blue);text-decoration:none"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+
+    <div class="footer-contact" style="border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;margin-bottom:24px;text-align:center;">
+      <p style="font-size:13px;margin-bottom:12px;">Conéctese con nosotras para asesoría personalizada. Asesoras licenciadas disponibles para ayudarle a entender sus opciones de Medicare.</p>
     </div>
-    <p style="font-size:12px;margin-bottom:8px"><a href="/privacy" style="color:rgba(255,255,255,0.5);text-decoration:none"><i class="fas fa-lock" style="font-size:12px"></i> Política de Privacidad</a></p>
-    <p style="font-size:12px;color:rgba(255,255,255,0.3);line-height:1.5;margin:0">No ofrecemos todos los planes disponibles en su área. Visite Medicare.gov o llame al 1-800-Medicare. Sitio no es parte del gobierno federal ni del programa de Medicare.</p>
+
+    <!-- sm-disclaimer:start -->
+<div class="sm-disclaimer" lang="es" style="max-width:960px;margin:20px auto 0;padding:16px 0 0;border-top:1px solid rgba(255,255,255,0.14);text-align:left;font-family:'Open Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:rgba(255,255,255,0.68);">
+    <p style="margin:0 0 8px;font-family:'Open Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-size:12px;line-height:1.6;color:rgba(255,255,255,0.68);font-weight:600;color:rgba(255,255,255,0.82);">Aviso obligatorio de CMS (divulgación TPMO)</p>
+    <p style="margin:0 0 8px;font-family:'Open Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-size:12px;line-height:1.6;color:rgba(255,255,255,0.68);">Medicare California pertenece a Susana Marcos LLC, una agencia de seguros independiente, y es operado por ella.</p>
+    <p class="sm-tpmo" style="margin:0 0 8px;font-family:'Open Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-size:12px;line-height:1.6;color:rgba(255,255,255,0.68);">“No ofrecemos todos los planes disponibles en su área. Actualmente representamos 10 organizaciones que ofrecen 245 productos en su área. Comuníquese con Medicare.gov o llame al <span style="white-space:nowrap">1-800-MEDICARE</span> para obtener información sobre todas sus opciones.”</p>
+    <p style="margin:0 0 4px;font-family:'Open Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-size:11px;line-height:1.6;color:rgba(255,255,255,0.68);margin-top:10px;">No está afiliado ni respaldado por el programa federal Medicare ni por ninguna agencia gubernamental. Medicare es una marca registrada del Departamento de Salud y Servicios Humanos.</p>
+</div>
+<!-- sm-disclaimer:end -->
+    <div class="footer-bottom">
+      <span>© 2026 Medicare California. Todos los derechos reservados.</span>
+      <a href="/privacy">Pol&iacute;tica de Privacidad</a>
+      <button type="button" style="background:none;border:none;color:inherit;cursor:pointer;font:inherit;padding:0;text-decoration:underline" onclick="document.getElementById('footer-terms').style.display=document.getElementById('footer-terms').style.display==='block'?'none':'block'">T&eacute;rminos de Servicio</button>
+    </div>
+    <div id="footer-privacy" style="display:none;padding:16px 0;font-size:12px;color:#9ca3af;line-height:1.6;border-top:1px solid rgba(255,255,255,0.1);margin-top:12px">
+      <strong style="color:#d1d5db">Pol&iacute;tica de Privacidad</strong><br>
+      Solo recopilamos la informaci&oacute;n que usted nos da voluntariamente (nombre, tel&eacute;fono, correo, c&oacute;digo postal, fecha de nacimiento, preferencias de salud) para ayudarle a encontrar un plan de Medicare. No vendemos su informaci&oacute;n personal a terceros. Sus datos se comparten &uacute;nicamente con aseguradoras licenciadas y solo para inscribirle en un plan. Usamos medidas de seguridad est&aacute;ndar de la industria para proteger su informaci&oacute;n. Al usar este sitio, usted acepta esta pol&iacute;tica. Si tiene preguntas, ll&aacute;menos al (310) 597-9142.
+    </div>
+    <div id="footer-terms" style="display:none;padding:16px 0;font-size:12px;color:#9ca3af;line-height:1.6;border-top:1px solid rgba(255,255,255,0.1);margin-top:12px">
+      <strong style="color:#d1d5db">T&eacute;rminos de Servicio</strong><br>
+      Este sitio ofrece informaci&oacute;n sobre planes de Medicare y asesor&iacute;a de agentes de seguros licenciadas. Los detalles, primas y beneficios que se muestran vienen de datos p&uacute;blicos de CMS y pueden cambiar. Procuramos que todo sea exacto, pero no podemos garantizar que cada dato est&eacute; al d&iacute;a. Nuestro servicio es gratuito para usted. Al usar este sitio, usted reconoce que los detalles finales del plan deben confirmarse con la aseguradora antes de inscribirse.
+      </div>
   </div>
 </footer>
+<!-- sm-footer:end -->
 
 <!-- ── MOBILE STICKY CTA ─────────────────────────────── -->
 <div class="mobile-sticky-cta" id="mobile-sticky-cta">

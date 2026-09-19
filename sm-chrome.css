@@ -9,7 +9,10 @@
 .sm-header *{box-sizing:border-box}
 .sm-header-in{max-width:960px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .sm-logo{display:flex;align-items:center;flex:0 1 auto;min-width:0;text-decoration:none;color:inherit;margin:0;padding:0}
-.sm-logo svg{display:block;max-width:100%;height:auto}
+.sm-header{--sm-logo-w:285px}
+.sm-header.sm-mc{--sm-logo-w:278px}
+.sm-header .sm-logo svg{display:block;width:var(--sm-logo-w);max-width:100%;height:auto}
+.sm-header .sm-burger svg{display:block;width:24px;height:24px;max-width:none}
 .sm-nav{display:flex;align-items:center;gap:4px;margin:0 0 0 auto;padding:0;background:none;box-shadow:none;position:static}
 .sm-nav a{display:inline-block;text-decoration:none;font-size:14px;font-weight:500;color:#5A6577;padding:8px 14px;border-radius:6px;white-space:nowrap;line-height:1.4;border:0}
 .sm-nav a:hover,.sm-nav a:focus-visible{color:#0B2D4F;background:#E8F2FA}

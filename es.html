@@ -325,6 +325,12 @@ h1, h2, h3, h4 {
   color: var(--terra);
   flex-shrink: 0;
 }
+@media (max-width: 480px) {
+  .trust-badge-strip { padding: 14px 12px; }
+  .badge-strip-content { gap: 12px; }
+  .badge-item { white-space: nowrap; gap: 4px; }
+  .badge-item svg { width: 14px; height: 14px; }
+}
 
 /* ── WIDGET CONTAINER ── */
 .widget-container {
@@ -1447,7 +1453,7 @@ footer.site-footer { padding-bottom: 80px; }
   <div class="badge-strip-content">
     <div class="badge-item">
       <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      <span data-i18n="badge-1">Licenciadas en California</span>
+      <span data-i18n="badge-1">Licenciadas en CA</span>
     </div>
     <div class="badge-item">
       <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
@@ -1455,7 +1461,7 @@ footer.site-footer { padding-bottom: 80px; }
     </div>
     <div class="badge-item">
       <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-      <span data-i18n="badge-3">Negocio Familiar</span>
+      <span data-i18n="badge-3">De familia</span>
     </div>
   </div>
 </div>
@@ -2051,9 +2057,9 @@ const I18N = {
   'hero-check-2': { en:'Hablamos Espa\u00f1ol', es:'Hablamos Ingl\u00e9s' },
   // Social proof (now inside widget-v4.html)
   // Trust badges
-  'badge-1': { en:'Licensed by California', es:'Licenciadas en California' },
+  'badge-1': { en:'Licensed in CA', es:'Licenciadas en CA' },
   'badge-2': { en:'AHIP Certified', es:'Certificadas AHIP' },
-  'badge-3': { en:'Family-Owned', es:'Negocio Familiar' },
+  'badge-3': { en:'Family-Owned', es:'De familia' },
   // Plan types
   'plans-label': { en:'Medicare Plan Types', es:'Tipos de Planes Medicare' },
   'plans-h2': { en:'Understanding Your Medicare Options', es:'Conozca Sus Opciones de Medicare' },

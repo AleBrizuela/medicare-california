@@ -81,3 +81,11 @@ p,li,blockquote,figcaption{text-wrap:pretty}
   .sm-cred-item{white-space:nowrap;gap:4px}
   .sm-cred-item svg{width:14px;height:14px}
 }
+/* tap-to-call icon in the header, phones only (sits just left of the menu button) */
+.sm-call{display:none;align-items:center;justify-content:center;flex:0 0 auto;width:44px;height:44px;margin:0 2px 0 auto;border-radius:50%;
+  text-decoration:none;-webkit-tap-highlight-color:transparent}
+.sm-call svg{display:block;width:22px;height:22px}
+.sm-bm .sm-call,.sm-call.sm-call-bm{color:#00897B;background:#E0F2F1}
+.sm-mc .sm-call,.sm-call.sm-call-mc{color:#0080D4;background:#E8F2FA}
+@media(max-width:640px){.sm-call{display:inline-flex}}
+@media(max-width:768px){.sm-call.sm-call-768{display:inline-flex}}

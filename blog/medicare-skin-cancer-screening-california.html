@@ -190,7 +190,7 @@ img { max-width: 100%; height: auto; }
   .blog-nav-brand svg { width: 278px; }
 }
 </style>
-<link rel="stylesheet" href="/sm-chrome.css?v=20260918b">
+<link rel="stylesheet" href="/sm-chrome.css?v=20260918c">
 </head>
 <body>
 
@@ -317,35 +317,22 @@ img { max-width: 100%; height: auto; }
 
 <!-- sm-footer:start -->
 <footer class="sm-footer sm-mc">
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-col">
-        <h4>About Medicare California</h4>
-        <p>We're a California-based family team with over 15 years of experience helping seniors navigate Medicare with honesty and care. We've guided over 2,000 families to plans that fit their needs and budget. Our licensed advisors take pride in making complex Medicare information simple and accessible.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="/blog/">Guides &amp; Articles</a></li>
-          <li><a href="/benefits">Medicare Benefits</a></li>
-          <li><a href="/careers">Careers</a></li>
-          <li><a href="https://www.medicare.gov" target="_blank" rel="noopener">Medicare.gov</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Get In Touch</h4>
-        <p style="margin-bottom:12px;">We're here to answer your Medicare questions.</p>
-        <p style="margin-bottom:4px;"><strong>Phone:</strong></p>
-        <p style="margin-bottom:12px;"><a href="tel:+13105979142">(310) 597-9142</a></p>
-        <p style="margin-bottom:4px;"><strong>Email:</strong></p>
-        <p><a href="mailto:alejamedicare@gmail.com">alejamedicare@gmail.com</a></p>
-      </div>
+  <div class="sm-foot-in">
+    <div class="sm-foot-brand">Medicare California</div>
+    <div class="sm-foot-row">
+      <a href="/">Home</a>
+      <a href="/benefits">Medicare 101</a>
+      <a href="/california/cities/">California Cities</a>
+      <a href="/blog/">Blog</a>
+      <a href="/careers">Careers</a>
+      <a href="https://www.medicare.gov" target="_blank" rel="noopener">Medicare.gov</a>
     </div>
-
-    <div class="footer-contact" style="border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;margin-bottom:24px;text-align:center;">
-      <p style="font-size:13px;margin-bottom:12px;">Connect with us for personalized guidance. Licensed advisors available to help you understand your Medicare options.</p>
+    <div class="sm-foot-row">
+      <a href="tel:+13105979142">Call</a>
+      <a href="https://calendar.app.google/6D4obxzxERQXBpaf7" target="_blank" rel="noopener">Book a Video Visit</a>
+      <a href="mailto:alejamedicare@gmail.com">Email</a>
+      <a href="https://wa.me/13105979142" target="_blank" rel="noopener">WhatsApp</a>
     </div>
-
     <!-- sm-disclaimer:start -->
 <div class="sm-disclaimer" lang="en" style="max-width:960px;margin:20px auto 0;padding:16px 0 0;border-top:1px solid rgba(255,255,255,0.14);text-align:left;font-family:'Open Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:rgba(255,255,255,0.68);">
     <p style="margin:0 0 8px;font-family:'Open Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-size:12px;line-height:1.6;color:rgba(255,255,255,0.68);font-weight:600;color:rgba(255,255,255,0.82);">CMS required notice (TPMO disclaimer)</p>
@@ -354,10 +341,10 @@ img { max-width: 100%; height: auto; }
     <p style="margin:0 0 4px;font-family:'Open Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-size:11px;line-height:1.6;color:rgba(255,255,255,0.68);margin-top:10px;">Not affiliated with or endorsed by the federal Medicare program or any government agency. Medicare is a registered trademark of the Department of Health and Human Services.</p>
 </div>
 <!-- sm-disclaimer:end -->
-    <div class="footer-bottom">
+    <div class="sm-foot-bottom">
       <span>&copy; 2026 Medicare California. All rights reserved.</span>
       <a href="/privacy">Privacy Policy</a>
-      <button type="button" style="background:none;border:none;color:inherit;cursor:pointer;font:inherit;padding:0;text-decoration:underline" onclick="document.getElementById('footer-terms').style.display=document.getElementById('footer-terms').style.display==='block'?'none':'block'">Terms of Service</button>
+      <button type="button" class="sm-terms-btn" onclick="var t=document.getElementById('footer-terms');t.style.display=t.style.display==='block'?'none':'block'">Terms of Service</button>
     </div>
     <div id="footer-privacy" style="display:none;padding:16px 0;font-size:12px;color:#9ca3af;line-height:1.6;border-top:1px solid rgba(255,255,255,0.1);margin-top:12px">
       <strong style="color:#d1d5db">Privacy Policy</strong><br>

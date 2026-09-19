@@ -38,14 +38,14 @@
 .sm-footer *{box-sizing:border-box}
 .sm-footer.sm-bm{background:#002147;--sm-accent:#B2DFDB}
 .sm-footer.sm-mc{background:#0B2D4F;--sm-accent:#93c5fd}
-.sm-foot-in{max-width:960px;margin:0 auto}
+.sm-foot-in{max-width:960px;margin:0 auto;padding-bottom:72px}
 .sm-foot-brand{font-size:18px;font-weight:600;color:var(--sm-accent);margin:0 0 10px}
 .sm-foot-row{display:flex;justify-content:center;gap:8px 18px;flex-wrap:wrap;margin:0 0 8px;font-size:13px}
 .sm-foot-row a{color:#E8F2FA;text-decoration:none}
 .sm-foot-row a:hover{text-decoration:underline}
 .sm-footer .sm-disclaimer{margin-bottom:0}
 .sm-footer .sm-disclaimer p{text-align:left;padding:0}
-.sm-foot-bottom{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:6px 16px;margin:16px 0 72px;
+.sm-foot-bottom{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:6px 16px;margin:16px 0 0;
   padding-top:14px;border-top:1px solid rgba(255,255,255,.12);font-size:12px;color:rgba(255,255,255,.6)}
 .sm-foot-bottom a,.sm-foot-bottom .sm-terms-btn{color:rgba(255,255,255,.75);text-decoration:underline;background:none;border:0;padding:0;font:inherit;cursor:pointer}
 .sm-foot-in>#footer-privacy,.sm-foot-in>#footer-terms{text-align:left;margin:0 0 12px;padding:14px 0;font-size:12px;color:#9ca3af;line-height:1.6;border-top:1px solid rgba(255,255,255,.1)}

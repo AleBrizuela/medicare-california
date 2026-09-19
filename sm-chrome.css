@@ -89,3 +89,8 @@ p,li,blockquote,figcaption{text-wrap:pretty}
 .sm-mc .sm-call,.sm-call.sm-call-mc{color:#0080D4;background:#E8F2FA}
 @media(max-width:640px){.sm-call{display:inline-flex}}
 @media(max-width:768px){.sm-call.sm-call-768{display:inline-flex}}
+/* homepages (own headers): let the logo shrink so logo + call icon + menu button always fit on a phone */
+@media(max-width:768px){
+  .site-header>.logo,.header-inner>.logo{min-width:0;flex:0 1 auto}
+  .site-header .logo svg,.header-inner .logo svg{max-width:100%;height:auto;display:block}
+}

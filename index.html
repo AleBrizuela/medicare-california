@@ -2458,8 +2458,13 @@ function handleZipSubmit() {
   // Show widget container
   widgetC.classList.add('active');
 
-  // Load widget with current language, California theme, and zip param
-  frame.src = 'https://beneficiosmedicare.com/widget-v4?lang=' + currentLang + '&theme=california&v=20260308b&zip=' + zip;
+  // Load widget with current language, California theme, and zip param.
+  // Match BM's environment to our own, so staging tests staging and
+  // production tests production instead of staging always borrowing BM prod.
+  var bmHost = window.location.hostname.indexOf('staging') > -1
+    ? 'staging.beneficiosmedicare.pages.dev'
+    : 'beneficiosmedicare.com';
+  frame.src = 'https://' + bmHost + '/widget-v4?lang=' + currentLang + '&theme=california&v=20260308b&zip=' + zip;
 }
 
 function handleFinalZipSubmit() {

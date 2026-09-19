@@ -53,3 +53,11 @@
 .sm-ic.sm-ic-fill{fill:currentColor;stroke:none}
 .sm-foot-row a{display:inline-flex;align-items:center}
 .sm-foot-bottom a{display:inline-flex;align-items:center}
+
+/* ---------- "Or if you prefer: Call · Book a Video Visit" under ZIP buttons (stamp_alt.py) ---------- */
+.sm-alt{display:block;margin:14px 0 0;padding:0;font-size:14px;line-height:1.5;text-align:center;color:#5A6577;font-family:'Open Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;width:100%}
+.sm-alt-links{white-space:nowrap}
+.sm-alt a{display:inline;font-weight:600;text-decoration:underline;padding:0;min-height:0}
+.sm-alt-bm a{color:#007B7B}
+.sm-alt-mc a{color:#0A5FA8}
+.sm-alt svg{display:inline-block;width:14px;height:14px;margin-right:5px;vertical-align:-2px;fill:currentColor;stroke:currentColor;stroke-width:1.5;stroke-linejoin:round}

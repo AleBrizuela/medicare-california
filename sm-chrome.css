@@ -68,3 +68,6 @@
   .sm-footer .sm-foot-row a,.sm-footer .sm-foot-bottom a,.sm-footer .sm-foot-bottom .sm-terms-btn{display:inline-flex !important;align-items:center;padding:6px 4px !important;min-height:0 !important;line-height:1.4 !important}
   .sm-footer .sm-foot-row a,.sm-footer .sm-foot-bottom a,.sm-footer .sm-foot-bottom .sm-terms-btn{font-size:13px !important}
 }
+/* no one-word last lines (widows): balance headings, "pretty" wrapping for paragraphs */
+h1,h2,h3,h4{text-wrap:balance}
+p,li,blockquote,figcaption{text-wrap:pretty}

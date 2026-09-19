@@ -66,5 +66,5 @@
 /* mobile-enhancements.css (a few BM pages) forces "footer a" to 15px/44px; keep footer identical on every page */
 @media(max-width:768px){
   .sm-footer .sm-foot-row a,.sm-footer .sm-foot-bottom a,.sm-footer .sm-foot-bottom .sm-terms-btn{display:inline-flex !important;align-items:center;padding:6px 4px !important;min-height:0 !important;line-height:1.4 !important}
-  .sm-footer .sm-foot-bottom a,.sm-footer .sm-foot-bottom .sm-terms-btn{font-size:13px !important}
+  .sm-footer .sm-foot-row a,.sm-footer .sm-foot-bottom a,.sm-footer .sm-foot-bottom .sm-terms-btn{font-size:13px !important}
 }

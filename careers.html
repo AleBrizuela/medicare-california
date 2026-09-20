@@ -485,7 +485,7 @@ function switchLang(lang) {
 switchLang('en');
 
 // ── Form submission -> Google Sheets ──
-var GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_URL';
+var GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby8F8kXyTGFcCh2bzk92_sZeUKGlQPZ9RR-QmzYV6CfzBDbw6ANNOQ5JpnH2Z9PfJ_dEQ/exec';
 
 function submitForm(e) {
   e.preventDefault();
@@ -533,7 +533,7 @@ function submitForm(e) {
 
 // Header scroll shadow
 window.addEventListener('scroll', function() {
-  document.querySelector('.header').classList.toggle('scrolled', window.scrollY > 0);
+  document.getElementById('header').classList.toggle('scrolled', window.scrollY > 0);
 });
 </script>
 </body>

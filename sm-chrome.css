@@ -87,11 +87,11 @@ p,li,blockquote,figcaption{text-wrap:pretty}
 /* BM: give the logo as much room as possible next to the call icon + menu button (BM logo must not look smaller than MC's) */
 @media(max-width:640px){
   .sm-bm .sm-header-in{padding:10px 8px 10px 12px;gap:4px}
-  .sm-bm .sm-call{width:40px;height:40px;margin-right:0}
-  .sm-bm .sm-burger{min-width:40px;padding:8px}
+  .sm-bm .sm-call{width:44px;height:44px;margin-right:0}
+  .sm-bm .sm-burger{min-width:44px;min-height:44px;padding:8px} /* 44x44 = minimum tap target (65+ audience); was 40 */
 }
 @media(max-width:768px){
   .header-inner{padding-left:12px !important;padding-right:8px !important;gap:4px}
-  .header-inner>.sm-call{width:40px;height:40px;margin-right:0}
-  .header-inner>.mobile-menu-btn{padding:8px !important;min-width:0 !important}
+  .header-inner>.sm-call{width:44px;height:44px;margin-right:0}
+  .header-inner>.mobile-menu-btn{padding:8px !important;min-width:44px !important;min-height:44px !important;box-sizing:border-box !important}
 }

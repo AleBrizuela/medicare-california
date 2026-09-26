@@ -1996,6 +1996,12 @@ window.addEventListener('message', function(e) {
   if (e.origin !== 'https://beneficiosmedicare.com' && e.origin !== 'https://staging.beneficiosmedicare.pages.dev') return;
   if (!e.data || typeof e.data !== 'object') return;
   if (e.data.type === 'widget-resize') {
+    // min-height:500px keeps the frame from collapsing before the widget has
+    // reported a height. Once it has, the floor must go, or every step shorter
+    // than 500px renders padded with dead white space -- the "Do you have a
+    // doctor you want to keep?" step reports 276px and was being stretched to
+    // 500, so 224px of nothing sat under the two answers.
+    frame.style.minHeight = '0px';
     frame.style.height = e.data.height + 'px';
   }
   if (e.data.type === 'widget-scrolltop') {

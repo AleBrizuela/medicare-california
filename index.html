@@ -2484,7 +2484,7 @@ function handleFinalZipSubmit() {
 
 // Auto-resize iframe (only accept messages from widget origin)
 window.addEventListener('message', function(e) {
-  if (e.origin !== 'https://beneficiosmedicare.com') return;
+  if (e.origin !== 'https://beneficiosmedicare.com' && e.origin !== 'https://staging.beneficiosmedicare.pages.dev') return;
   if (!e.data || typeof e.data !== 'object') return;
   if (e.data.type === 'widget-resize') {
     frame.style.height = e.data.height + 'px';

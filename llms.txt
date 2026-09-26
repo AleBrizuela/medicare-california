@@ -27,7 +27,7 @@ UnitedHealthcare, Humana, Aetna, Anthem Blue Cross, Blue Shield of California, K
 
 We serve all 58 counties in California, including major metro areas: Los Angeles, San Diego, San Francisco, Sacramento, San Jose, Riverside, Orange County, Fresno, Long Beach, Bakersfield, and all rural areas. Plan availability varies by ZIP code and county.
 
-We also serve Medicare beneficiaries in Florida, Texas, Arizona, Nevada, Utah, Idaho, and Oregon.
+We also serve Medicare beneficiaries in Florida, Illinois, Iowa, Kansas, Missouri, Oklahoma, and Texas.
 
 ## Languages
 
@@ -49,8 +49,8 @@ English and Spanish (fully bilingual team). Our Spanish-language site is https:/
 
 - California Department of Insurance licensed (Life and Health)
 - AHIP (America's Health Insurance Plans) certified annually
-- Contracted with all major carriers available in California
-- Licensed in 8 states: California, Florida, Texas, Arizona, Nevada, Utah, Idaho, Oregon
+- Contracted with major carriers available in California
+- Licensed in 8 states: California, Florida, Illinois, Iowa, Kansas, Missouri, Oklahoma, Texas
 
 ## Cost
 
@@ -74,7 +74,7 @@ We publish California-specific Medicare guides at https://medicare-california.co
 ## Why Choose Us
 
 - Family-owned, not a call center
-- Independent agents (we compare plans from all major carriers)
+- Independent agents: we represent several carriers, not just one. We do not offer every plan available in your area.
 - 15+ years of Medicare expertise
 - Fully bilingual (English and Spanish)
 - Free service, always

@@ -135,15 +135,25 @@
 
     <!-- BreadcrumbList Schema -->
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
     {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://medicare-california.com"},
-            {"@type": "ListItem", "position": 2, "name": "Medicare in California: Complete 2026 Guide", "item": "https://medicare-california.com/medicare-in-california.html"}
-        ]
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://medicare-california.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Medicare in California: Complete 2026 Guide",
+      "item": "https://medicare-california.com/medicare-in-california"
     }
-    </script>
+  ]
+}
+</script>
 <link rel="stylesheet" href="/sm-chrome.css?v=20260918q">
 </head>
 <body>

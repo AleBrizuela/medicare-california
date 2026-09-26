@@ -169,15 +169,25 @@ table { display: table; width: 100%; max-width: 100%; }
 
     <!-- BreadcrumbList Schema -->
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
     {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://medicare-california.com"},
-            {"@type": "ListItem", "position": 2, "name": "How to Enroll in Medicare in California", "item": "https://medicare-california.com/how-to-enroll-medicare-california.html"}
-        ]
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://medicare-california.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "How to Enroll in Medicare in California",
+      "item": "https://medicare-california.com/how-to-enroll-medicare-california"
     }
-    </script>
+  ]
+}
+</script>
 
     <script type="application/ld+json">
     {

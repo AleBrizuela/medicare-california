@@ -154,15 +154,25 @@ table { display: table; width: 100%; max-width: 100%; }
 
     <!-- BreadcrumbList Schema -->
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
     {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://medicare-california.com"},
-            {"@type": "ListItem", "position": 2, "name": "Medicare Open Enrollment 2027: California Guide", "item": "https://medicare-california.com/open-enrollment-california.html"}
-        ]
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://medicare-california.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Medicare Open Enrollment 2027: California Guide",
+      "item": "https://medicare-california.com/open-enrollment-california"
     }
-    </script>
+  ]
+}
+</script>
 
     <!-- Speakable Schema -->
     <script type="application/ld+json">

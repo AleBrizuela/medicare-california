@@ -451,7 +451,10 @@ class Chrome:
           const navLinks = [...d.querySelectorAll(
             '.blog-nav-links a,.desktop-nav a,.nav-links a,.site-nav a,nav a')]
             .filter(a => a.offsetWidth > 0 && a.offsetHeight > 0).length;
-          const ham = d.querySelector('.mobile-menu-btn,.mob,.hamburger,[aria-label="Menu"]');
+          // .sm-burger is the shared site-chrome header stamped onto most pages on 2026-09-18;
+          // without it this check reported ~95 pages as having no navigation when every
+          // one had a working 44px menu button (verified by hand 2026-09-25).
+          const ham = d.querySelector('.sm-burger,.mobile-menu-btn,.mob,.hamburger,[aria-label="Menu"]');
           const hamR = ham ? ham.getBoundingClientRect() : null;
           const hamVisible = !!(hamR && hamR.width > 0 && hamR.height > 0 &&
                                 getComputedStyle(ham).display !== 'none');

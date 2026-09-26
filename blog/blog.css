@@ -334,3 +334,19 @@ table { display: table; width: 100%; max-width: 100%; }
   .article-body, .blog-article-body { padding: 32px 16px; }
   .article-cta { padding: 28px 20px; }
 }
+
+/* 2026-09-25: FAQ cards. .article-faq .faq-item had no styles at all, so the
+   questions and answers ran together as unspaced grey text on the page. Same card
+   look as the city-page FAQs (white card, blue left rule). */
+.article-faq h2 { font-size: 26px; color: #0B2D4F; margin: 0 0 20px; }
+.article-faq .faq-item {
+  background: #ffffff;
+  border-left: 4px solid #0080D4;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(11, 45, 79, 0.06);
+  padding: 20px 24px;
+  margin: 0 0 16px;
+}
+.article-faq .faq-item h3 { font-size: 18px; line-height: 1.4; color: #0B2D4F; margin: 0 0 10px; }
+.article-faq .faq-item p { font-size: 17px; line-height: 1.7; color: #1f2937; margin: 0; }
+@media (max-width: 640px) { .article-faq .faq-item { padding: 18px 18px; } }

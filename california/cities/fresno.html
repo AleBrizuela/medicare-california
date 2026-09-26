@@ -525,31 +525,31 @@ table { display: table; width: 100%; max-width: 100%; }
 }</script>
 
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
     {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-            {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://medicare-california.com"
-            },
-            {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Cities",
-                "item": "https://medicare-california.com/california/cities/"
-            },
-            {
-                "@type": "ListItem",
-                "position": 3,
-                "name": "Fresno",
-                "item": "https://medicare-california.com/california/cities/fresno.html"
-            }
-        ]
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://medicare-california.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Cities",
+      "item": "https://medicare-california.com/california/cities/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Fresno",
+      "item": "https://medicare-california.com/california/cities/fresno"
     }
-    </script>
+  ]
+}
+</script>
 <link rel="stylesheet" href="/sm-chrome.css?v=20260918q">
 </head>
 <body>
@@ -673,8 +673,14 @@ table { display: table; width: 100%; max-width: 100%; }
             <div class="faq-answer">
                 <p>Your Initial Enrollment Period begins 3 months before your 65th birthday and ends 3 months after. The annual Open Enrollment Period runs October 15 - December 7. Getting covered during your eligibility window is important to avoid late enrollment penalties.</p>
             </div>
-            <div class="faq-item">
-                <h3>How do I find Medicare help near me in Fresno?</h3>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>How do I find Medicare help near me in Fresno?</span>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
                 <p>Finding Medicare help near you in Fresno is easy. Our licensed agents serve the Fresno area with free, personalized plan comparisons. Whether you need Medicare Advantage, Medigap, or Part D coverage, we help you compare options from top carriers available in your ZIP code. Call us or use our online tool to connect with a local Medicare expert near you today.</p>
             </div>
         </div>

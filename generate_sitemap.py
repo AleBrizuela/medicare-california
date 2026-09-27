@@ -70,6 +70,35 @@ def _is_redirected(url_path, directory):
     return any(c.rstrip("/") in _REDIRECT_SOURCES or c in _REDIRECT_SOURCES
                for c in candidates)
 
+
+def _page_lastmod(html, filepath, directory):
+    """Real last-modified date for a page, or None.
+
+    Order: the page's own dateModified/datePublished (JSON-LD or article meta), then
+    the file's last git commit (only in a full clone; a shallow clone would give every
+    file the same date). None means the <lastmod> is omitted, which Google treats
+    better than a date that changes on every build: a lastmod that is always 'today'
+    teaches Google to ignore the field entirely (2026-09-26).
+    """
+    import subprocess
+    dates = re.findall(r'"(?:dateModified|datePublished)"\s*:\s*"(\d{4}-\d{2}-\d{2})', html)
+    dates += re.findall(r'<meta[^>]+(?:article:modified_time|article:published_time)"[^>]+content="(\d{4}-\d{2}-\d{2})', html)
+    if dates:
+        # never advertise a future date (some articles were pre-dated for their season)
+        from datetime import date as _d
+        return min(max(dates), _d.today().isoformat())
+    try:
+        shallow = subprocess.run(["git", "-C", directory, "rev-parse", "--is-shallow-repository"],
+                                 capture_output=True, text=True, timeout=10).stdout.strip()
+        if shallow == "false":
+            out = subprocess.run(["git", "-C", directory, "log", "-1", "--format=%cs", "--", filepath],
+                                 capture_output=True, text=True, timeout=10).stdout.strip()
+            if re.fullmatch(r"\d{4}-\d{2}-\d{2}", out):
+                return out
+    except Exception:
+        pass
+    return None
+
 def scan_local_files(directory, domain):
     """
     Scan a directory for HTML files and return a dict of:
@@ -142,7 +171,7 @@ def scan_local_files(directory, domain):
                 if canon and canon.rstrip("/") != url.rstrip("/"):
                     continue
 
-            pages[url] = {"hreflang": hreflang}
+            pages[url] = {"hreflang": hreflang, "lastmod": _page_lastmod(html, filepath, directory)}
 
     return pages
 
@@ -189,8 +218,9 @@ def generate_sitemap(pages, output_path):
             link.set("hreflang", lang)
             link.set("href", href)
 
-        lastmod = ET.SubElement(url_el, "lastmod")
-        lastmod.text = today
+        if info.get("lastmod"):
+            lastmod = ET.SubElement(url_el, "lastmod")
+            lastmod.text = info["lastmod"]
 
         changefreq = ET.SubElement(url_el, "changefreq")
         changefreq.text = "weekly"

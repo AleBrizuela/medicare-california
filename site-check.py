@@ -54,7 +54,9 @@ URL_ATTRS = [
     ("canonical", re.compile(r'rel="canonical"[^>]*?href="([^"]+)"')),
     ("hreflang", re.compile(r'hreflang="[^"]*"[^>]*?href="([^"]+)"')),
     ("og:url", re.compile(r'(?:property|name)="og:url"[^>]*?content="([^"]+)"')),
-    ("json-ld", re.compile(r'"(?:@id|url)"\s*:\s*"(https://[^"]+)"')),
+    # "item" (BreadcrumbList) and mainEntityOfPage were not scanned until 2026-09-26;
+    # 89 breadcrumb URLs ending in .html slipped past this check as a result.
+    ("json-ld", re.compile(r'"(?:@id|url|item|mainEntityOfPage)"\s*:\s*"(https://[^"]+)"')),
 ]
 
 OUR_DOMAINS = ("beneficiosmedicare.com", "medicare-california.com")
@@ -268,7 +270,11 @@ def check_figures(root, figures_path, f):
                     # a sentence or clause, the commonest position in prose. It hid 10 of
                     # the 14 stale figures on this repo. Only a DIGIT continuation means
                     # this is really a longer number.
-                    for m in re.finditer(r"\$" + re.escape(retired) + r"(?!\d|[,.]\d)", text):
+                    # Also the written-out form ("257 dollars", "257 dólares"): a retired $257
+                    # Part B deductible sat in an MC FAQ, visible and in JSON-LD, as
+                    # "257 dollar deductible" and passed this check (found 2026-09-26).
+                    for m in re.finditer(r"(?:\$" + re.escape(retired) + r"|(?<![\d$.,])" + re.escape(retired)
+                                         + r"\s*(?:dollars?|d[oó]lares))(?!\d|[,.]\d)", text, re.I):
                         window = text[max(0, m.start() - 90):m.end() + 90]
                         if not ctx.search(window):
                             continue

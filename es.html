@@ -529,7 +529,7 @@ h1, h2, h3, h4 {
 
 /* ── HOW IT WORKS ── */
 .how-it-works {
-  background: var(--white);
+  background: #FBF8F3;
   padding: 56px 24px;
 }
 .how-it-works-inner {
@@ -539,7 +539,13 @@ h1, h2, h3, h4 {
 .how-it-works h2 {
   text-align: center;
   font-size: 28px;
-  margin-bottom: 44px;
+  margin-bottom: 10px;
+}
+.how-it-works .how-sub {
+  text-align: center;
+  font-size: 16px;
+  color: var(--text);
+  margin: 0 auto 44px;
 }
 .steps {
   display: flex;
@@ -1370,6 +1376,7 @@ footer.site-footer { padding-bottom: 80px; }
       <a href="/" hreflang="en" lang="en">In English</a>
       <a href="/contacto">Contáctenos</a>
   </nav>
+<!-- sm-call:start --><a href="sms:+13105979142?&amp;body=Hola%2C%20tengo%20una%20pregunta%20sobre%20Medicare" class="sm-call sm-call-mc sm-call-768" aria-label="Envíenos un mensaje de texto al (310) 597-9142"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg></a><!-- sm-call:end -->
 <button class="mobile-menu-btn" onclick="toggleMobile()" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobile-nav">
     <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
   </button>
@@ -1434,7 +1441,7 @@ footer.site-footer { padding-bottom: 80px; }
         <div class="zip-error" id="zip-error" data-i18n="zip-error">Ingrese un código postal válido de 5 dígitos.</div>
       </div>
       <button class="zip-btn" id="zip-btn" onclick="handleZipSubmit()">
-        <span data-i18n="zip-btn">Comparar Planes Gratis</span>
+        <span data-i18n="zip-btn">Compare Planes Gratis</span>
         <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </button>
     </div>
@@ -1466,36 +1473,34 @@ footer.site-footer { padding-bottom: 80px; }
 <section class="how-it-works" id="how-it-works">
   <div class="how-it-works-inner">
     <div class="section-label"><span data-i18n="how-label">Cómo Funciona</span></div>
-    <h2><span data-i18n="how-h2">Tres pasos simples para encontrar su plan</span></h2>
+    <h2><span data-i18n="how-h2">Sencillo como 1, 2, 3</span></h2>
+    <p class="how-sub" data-i18n="how-sub">Sin papeleo. Sin confusión. Sin presión.</p>
     <div class="steps">
       <div class="step fade-in-up">
-        <div class="step-icon" style="background:#FFF0EB">
-          <!-- Map Pin -->
-          <svg aria-hidden="true" viewBox="0 0 24 24" style="stroke:#C4704B"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="none" stroke="currentColor"/><circle cx="12" cy="9" r="2.5" fill="none" stroke="currentColor"/></svg>
-          <span class="step-badge">1</span>
+        <div class="step-icon" style="background:#FBEADF">
+          <svg aria-hidden="true" viewBox="0 0 24 24" style="stroke:#B8623D"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg>
+          <span class="step-badge" style="background:#B8623D">1</span>
         </div>
-        <h4 data-i18n="how-1-h">Ingrese Su Código Postal</h4>
-        <p data-i18n="how-1-p">Los planes y beneficios varían por ubicación. Su código postal nos ayuda a encontrar todas las opciones disponibles.</p>
+        <h4 data-i18n="how-1-h">Asesoría Personal</h4>
+        <p data-i18n="how-1-p">Revisamos sus doctores y medicinas. Identificamos sus necesidades de cobertura en minutos y sin papeleo.</p>
       </div>
       <div class="step-arrow">&rarr;</div>
       <div class="step fade-in-up">
-        <div class="step-icon" style="background:#EBF5F0">
-          <!-- Clipboard Checklist -->
-          <svg aria-hidden="true" viewBox="0 0 24 24" style="stroke:#5A9E78"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" fill="none" stroke="currentColor"/><rect x="9" y="2" width="6" height="4" rx="1" fill="none" stroke="currentColor"/><path d="M9 14l2 2 4-4" fill="none" stroke="currentColor"/></svg>
-          <span class="step-badge" style="background:#5A9E78">2</span>
+        <div class="step-icon" style="background:#E4F0FA">
+          <svg aria-hidden="true" viewBox="0 0 24 24" style="stroke:#0071BC"><rect x="3" y="12" width="4" height="9" rx="1"/><rect x="10" y="6" width="4" height="15" rx="1"/><rect x="17" y="2" width="4" height="19" rx="1"/></svg>
+          <span class="step-badge" style="background:#0071BC">2</span>
         </div>
-        <h4 data-i18n="how-2-h">Responda Unas Preguntas</h4>
-        <p data-i18n="how-2-p">Cuéntenos sobre sus necesidades de salud, medicinas y presupuesto para encontrar las opciones adecuadas.</p>
+        <h4 data-i18n="how-2-h">Comparación Clara</h4>
+        <p data-i18n="how-2-p">Comparamos planes Medicare Advantage y Medigap (Suplementos), con sus redes y costos de farmacia.</p>
       </div>
       <div class="step-arrow">&rarr;</div>
       <div class="step fade-in-up">
-        <div class="step-icon" style="background:#E8F0F6">
-          <!-- Bar Chart / Compare -->
-          <svg aria-hidden="true" viewBox="0 0 24 24" style="stroke:#6B8FAD"><rect x="3" y="12" width="4" height="9" rx="1" fill="none" stroke="currentColor"/><rect x="10" y="6" width="4" height="15" rx="1" fill="none" stroke="currentColor"/><rect x="17" y="2" width="4" height="19" rx="1" fill="none" stroke="currentColor"/></svg>
-          <span class="step-badge" style="background:#6B8FAD">3</span>
+        <div class="step-icon" style="background:#F8EDD6">
+          <svg aria-hidden="true" viewBox="0 0 24 24" style="stroke:#A0731C"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="2" width="6" height="4" rx="1"/><path d="M9 14l2 2 4-4"/></svg>
+          <span class="step-badge" style="background:#A0731C">3</span>
         </div>
-        <h4 data-i18n="how-3-h">Vea Sus Opciones</h4>
-        <p data-i18n="how-3-p">Obtenga una comparación personalizada de planes. Nuestra agente licenciada le ayudará a entender y decidir.</p>
+        <h4 data-i18n="how-3-h">Inscripción y Apoyo</h4>
+        <p data-i18n="how-3-p">Gestionamos su inscripción y el seguimiento. Nuestro compromiso continúa después de activar su plan.</p>
       </div>
     </div>
   </div>
@@ -2036,7 +2041,7 @@ const I18N = {
   'hero-h1-em': { en:'Simplified.', es:'Simplificado.' },
   'hero-banner-p': { en:'We\u2019re a team of agents helping California families find the right plan for them.', es:'Somos un equipo de agentes que ayuda a las familias de California a encontrar el plan que mejor les convenga.' },
   'zip-label': { en:'Enter your ZIP code', es:'Ingrese su c\u00f3digo postal' },
-  'zip-btn': { en:'Compare Plans Free', es:'Comparar Planes Gratis' },
+  'zip-btn': { en:'Compare Plans Free', es:'Compare Planes Gratis' },
   'zip-error': { en:'Please enter a valid 5-digit California ZIP code.', es:'Ingrese un c\u00f3digo postal v\u00e1lido de 5 d\u00edgitos.' },
   'hero-check-0': { en:'3 min', es:'3 min' },
   'hero-check-1': { en:'Free', es:'Gratis' },
@@ -2079,13 +2084,14 @@ const I18N = {
   'team-a-bio': { en:'Alejandra\u2019s mission: make Medicare accessible for every family, especially Spanish-speaking communities and adult children navigating the system for their parents.', es:'La misi\u00f3n de Alejandra: hacer que Medicare sea accesible para cada familia, especialmente las comunidades hispanas y los hijos adultos que ayudan a sus padres.' },
   // How it works
   'how-label': { en:'How It Works', es:'C\u00f3mo Funciona' },
-  'how-h2': { en:'Three simple steps to find your plan', es:'Tres pasos simples para encontrar su plan' },
-  'how-1-h': { en:'Enter Your ZIP', es:'Ingrese Su C\u00f3digo Postal' },
-  'how-1-p': { en:'Plans and benefits vary by location. Your ZIP code helps us find all the options available to you in your area.', es:'Los planes y beneficios var\u00edan por ubicaci\u00f3n. Su c\u00f3digo postal nos ayuda a encontrar todas las opciones disponibles.' },
-  'how-2-h': { en:'Answer a Few Questions', es:'Responda Unas Preguntas' },
-  'how-2-p': { en:'Tell us about your health needs, prescription drugs, and budget preferences so we can match you with the best options.', es:'Cu\u00e9ntenos sobre sus necesidades de salud, medicinas y presupuesto para encontrar las opciones adecuadas.' },
-  'how-3-h': { en:'See Your Options', es:'Vea Sus Opciones' },
-  'how-3-p': { en:'Get a personalized comparison showing plans side-by-side. Our licensed agent will help you understand and decide.', es:'Obtenga una comparaci\u00f3n personalizada de planes. Nuestra agente licenciada le ayudar\u00e1 a entender y decidir.' },
+  'how-h2': { en:'Simple as 1, 2, 3', es:'Sencillo como 1, 2, 3' },
+  'how-sub': { en:'No paperwork. No confusion. No pressure.', es:'Sin papeleo. Sin confusi\u00f3n. Sin presi\u00f3n.' },
+  'how-1-h': { en:'Personal Guidance', es:'Asesor\u00eda Personal' },
+  'how-1-p': { en:'We review your doctors and prescriptions and pinpoint the coverage you need, in minutes and without paperwork.', es:'Revisamos sus doctores y medicinas. Identificamos sus necesidades de cobertura en minutos y sin papeleo.' },
+  'how-2-h': { en:'Clear Comparison', es:'Comparaci\u00f3n Clara' },
+  'how-2-p': { en:'We compare Medicare Advantage and Medigap plans, including their networks and pharmacy costs.', es:'Comparamos planes Medicare Advantage y Medigap (Suplementos), con sus redes y costos de farmacia.' },
+  'how-3-h': { en:'Enrollment & Support', es:'Inscripci\u00f3n y Apoyo' },
+  'how-3-p': { en:'We handle your enrollment and follow-up. Our support continues after your plan starts.', es:'Gestionamos su inscripci\u00f3n y el seguimiento. Nuestro compromiso contin\u00faa despu\u00e9s de activar su plan.' },
   // Trust stats
   'stat-1': { en:'California Families Helped', es:'Familias en California Ayudadas' },
   'stat-2': { en:'Years of Experience', es:'A\u00f1os de Experiencia' },

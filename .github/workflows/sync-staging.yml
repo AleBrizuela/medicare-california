@@ -1,0 +1,63 @@
+# Fast-forward staging to production after every production deploy.
+#
+# Why: on 2026-09-26 a release went straight to production and staging was never brought
+# forward. The next fix was built on a base 12 commits stale and the push was rejected
+# mid-AEP, on the only lead form on either site. The same rot is on record from May at
+# 57 and 73 commits behind. Drift is silent: staging keeps building and looking fine,
+# so "I verified it on staging" stays true while the base under it rots.
+#
+# Doing this server-side means it does not depend on anyone remembering, and it works
+# no matter who pushes or from which machine.
+#
+# It will NOT clobber unshipped work: if staging is ahead of production it warns and stops.
+name: Sync staging to production
+
+on:
+  push:
+    branches: [production]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-staging
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fast-forward staging to production
+        run: |
+          set -euo pipefail
+          git fetch -q origin "+refs/heads/*:refs/remotes/origin/*"
+
+          if ! git show-ref -q --verify refs/remotes/origin/staging; then
+            echo "::warning::no staging branch; creating it from production"
+            git push origin "origin/production:refs/heads/staging"
+            exit 0
+          fi
+
+          ahead=$(git rev-list --count "origin/production..origin/staging")
+          behind=$(git rev-list --count "origin/staging..origin/production")
+
+          if [ "$ahead" != "0" ]; then
+            echo "::warning::staging is $ahead commit(s) AHEAD of production - unshipped work, not syncing"
+            git log --oneline "origin/production..origin/staging"
+            exit 0
+          fi
+
+          if [ "$behind" = "0" ]; then
+            echo "staging already in step with production ($(git rev-parse --short origin/production))"
+            exit 0
+          fi
+
+          echo "staging is $behind commit(s) behind; fast-forwarding"
+          git log --oneline "origin/staging..origin/production"
+          git push origin "origin/production:refs/heads/staging"
+          echo "staging -> $(git rev-parse --short origin/production)"

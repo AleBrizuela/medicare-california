@@ -1200,14 +1200,14 @@ async function submitForm(e) {
     if (!nameEl.value.trim()) { nameEl.classList.add('error'); isValid = false; }
     if (!phoneEl.value.trim()) { phoneEl.classList.add('error'); isValid = false; }
     
-    // Phone: 10 digits minimum
+    // Phone: exactly 10 digits
     const phoneDigits = phoneEl.value.replace(/\D/g, '');
-    if (phoneEl.value.trim() && phoneDigits.length < 10) {
+    if (phoneEl.value.trim() && phoneDigits.length !== 10) {
         phoneEl.classList.add('error');
         const msg = document.createElement('span');
         msg.className = 'field-error';
         msg.style.cssText = 'color:#e53e3e;font-size:0.82rem;display:block;margin-top:4px';
-        msg.textContent = 'Please enter a 10-digit phone number.';
+        msg.textContent = 'Please enter a valid 10-digit US phone number.';
         phoneEl.parentNode.appendChild(msg);
         isValid = false;
     }

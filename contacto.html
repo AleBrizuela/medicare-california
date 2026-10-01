@@ -1164,8 +1164,9 @@ async function submitForm(e) {
     if (!nameEl.value.trim()) { nameEl.classList.add('error'); isValid = false; }
     if (!phoneEl.value.trim()) { phoneEl.classList.add('error'); isValid = false; }
     
-    // Phone: exactly 10 digits
-    const phoneDigits = phoneEl.value.replace(/\D/g, '');
+    // Phone: exactly 10 digits, after dropping a leading US country code
+    let phoneDigits = phoneEl.value.replace(/\D/g, '');
+    if (phoneDigits.length === 11 && phoneDigits.charAt(0) === '1') phoneDigits = phoneDigits.slice(1);
     if (phoneEl.value.trim() && phoneDigits.length !== 10) {
         phoneEl.classList.add('error');
         const msg = document.createElement('span');

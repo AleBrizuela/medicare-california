@@ -38,3 +38,33 @@
 # 22-word truncated page since. No inbound links, not in the sitemap.
 /index-widget https://medicare-california.com/ 301
 /index-widget.html https://medicare-california.com/ 301
+
+# --- Internal tooling and docs: blocked at the edge, not deleted ---------------
+# Cloudflare Pages publishes whatever sits in the repo root, so these returned
+# HTTP 200 on the live domains. They cannot simply be removed: generate_sitemap.py
+# is run by the Cloudflare build, package.json by npm, and .github/workflows must
+# live at that exact path for GitHub to run the job.
+#
+# Status is 301, not 404, and that is deliberate: Pages _redirects does NOT support
+# a 404 status. Rules written that way are silently dropped and the file keeps
+# serving 200 - measured on staging 2026-10-01. A 301 is honoured and does shadow
+# an existing static file.
+#
+# Verified before blocking: none of these are fetched at runtime by any page.
+# NOT blocked, both confirmed fetched at runtime:
+#   sitemap-style.xsl    - referenced by sitemap.xml
+#   data/plan-year.json  - fetched by the plan-finder widget
+/.github/*               /           301
+/site-check.py           /           301
+/smoke-check.py          /           301
+/generate_sitemap.py     /           301
+/generate_blog_index.py  /           301
+/package.json            /           301
+/package-lock.json       /           301
+/medicare-figures.json   /           301
+/README.md               /           301
+/README-AB-TESTING.md    /           301
+/QA-CHECKLIST.md         /           301
+/Widget-QA-Report.docx   /           301
+/.gitignore              /           301
+/CNAME                   /           301

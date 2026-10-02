@@ -13,7 +13,7 @@ Usage:
 
 Exit codes: 0 = clean (or --report), 1 = at least one ERROR.
 
-Owner: 14. CTO. See reference/deploy-flow.md and reference/review-policy.md.
+Owner: SHIP. See reference/deploy-flow.md and reference/review-policy.md.
 """
 
 import argparse
@@ -512,7 +512,7 @@ def main():
         # The check that exists because of the March 2026 content-loss incident only runs
         # when --base is given, and no npm script passes it. A clean report used to look
         # identical to one where content loss had been checked. Say so out loud.
-        print("  content-loss: NOT RUN — pass --base <ref> (e.g. --base origin/main)")
+        print("  content-loss: NOT RUN — pass --base <ref> (e.g. --base origin/production)")
     for name in selected:
         if name not in all_checks:
             print(f"  unknown check: {name}", file=sys.stderr)

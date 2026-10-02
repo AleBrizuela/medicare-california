@@ -10,7 +10,7 @@
     "check": "python3 site-check.py --dir . --domain https://medicare-california.com",
     "check:report": "python3 site-check.py --dir . --domain https://medicare-california.com --report",
     "UNSAFE:blog-index": "echo 'Refusing: this generator strips data-tag and breaks the blog filters. See _comment_blog_index.' && exit 1",
-    "sync-staging": "\"../../../14. CTO/reference/tools/sync-staging.sh\" . production",
-    "sync-staging:check": "\"../../../14. CTO/reference/tools/sync-staging.sh\" . production --check"
+    "sync-staging": "\"../../../SHIP/reference/tools/sync-staging.sh\" . production",
+    "sync-staging:check": "\"../../../SHIP/reference/tools/sync-staging.sh\" . production --check"
   }
 }

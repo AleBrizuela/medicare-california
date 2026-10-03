@@ -2000,6 +2000,26 @@ function handleFinalZipSubmit() {
   // T-017 b16 (AB 2026-10-02): while the widget shows plans, the home-page sections below it step
   // aside, so only the results and the team card inside the widget remain; the footer (and its
   // compliance text) always stays. The widget says when via {type:'widget-view', results}.
+  // T-017 b16 (AB 2026-10-03): while plans show, the hero above the widget becomes a results headline;
+  // the original comes back when the visitor goes back to the questions.
+  var heroSaved = null;
+  function setResultsHero(on){
+    var h1 = document.querySelector('section.hero h1'); if (!h1) return;
+    var p = h1.nextElementSibling && h1.nextElementSibling.tagName === 'P' ? h1.nextElementSibling : null;
+    var label = document.querySelector('section.hero .section-label');
+    var en = (typeof currentLang !== 'undefined' ? currentLang : (document.documentElement.lang || '')).indexOf('en') === 0;
+    if (on) {
+      if (!heroSaved) heroSaved = {h1: h1.innerHTML, p: p ? p.innerHTML : null, pDisp: p ? p.style.display : '', lDisp: label ? label.style.display : ''};
+      h1.textContent = en ? 'Your 2027 plans' : 'Sus planes para 2027';
+      if (p) { p.textContent = en ? 'Compare them at your own pace. If you have questions, we are here to help.' : 'Compárelos con calma. Si tiene dudas, estamos aquí para ayudarle.'; p.style.display = ''; }
+      if (label) label.style.display = 'none';
+    } else if (heroSaved) {
+      h1.innerHTML = heroSaved.h1;
+      if (p) { p.innerHTML = heroSaved.p; p.style.display = heroSaved.pDisp; }
+      if (label) label.style.display = heroSaved.lDisp;
+      heroSaved = null;
+    }
+  }
   function setPlansView(on, start){
     // Walk everything after the widget, climbing out of wrapper divs, until the footer.
     for (var node = start; node && node !== document.body; node = node.parentElement) {
@@ -2029,7 +2049,7 @@ window.addEventListener('message', function(e) {
     frame.style.minHeight = '0px';
     frame.style.height = e.data.height + 'px';
   }
-  if (e.data.type === 'widget-view') setPlansView(!!e.data.results, document.getElementById('widget-container'));
+  if (e.data.type === 'widget-view') { setPlansView(!!e.data.results, document.getElementById('widget-container')); setResultsHero(!!e.data.results); }
   if (e.data.type === 'widget-scrolltop') {
     var a = document.getElementById('widget-anchor') || frame;
     if (a) a.scrollIntoView({behavior:'smooth', block:'start'});

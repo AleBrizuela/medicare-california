@@ -1235,6 +1235,7 @@ function withConsent(d,lang,btn,page){
 }
 function sendLead(d){
   if(!d.leadId) d.leadId='L'+Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+  d.env=leadURL()===LEAD_URL_STAGING?'staging':'production';   // AB 2026-10-03: tell STG leads from PROD
   var ctl=window.AbortController?new AbortController():null;
   var t=setTimeout(function(){if(ctl)ctl.abort();},25000);
   return fetch(leadURL(),{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(d),signal:ctl?ctl.signal:undefined})

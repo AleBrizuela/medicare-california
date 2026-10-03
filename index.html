@@ -2498,6 +2498,26 @@ function handleFinalZipSubmit() {
 }
 
 // Auto-resize iframe (only accept messages from widget origin)
+  // T-017 b16 (AB 2026-10-02): while the widget shows plans, the home-page sections below it step
+  // aside, so only the results and the team card inside the widget remain; the footer (and its
+  // compliance text) always stays. The widget says when via {type:'widget-view', results}.
+  function setPlansView(on, start){
+    // Walk everything after the widget, climbing out of wrapper divs, until the footer.
+    for (var node = start; node && node !== document.body; node = node.parentElement) {
+      for (var el = node.nextElementSibling; el; el = el.nextElementSibling) {
+        var t = el.tagName;
+        if (t === 'FOOTER' || el.querySelector('footer')) return;
+        if (t === 'SCRIPT' || t === 'STYLE' || t === 'NAV' || t === 'LINK' || el.contains(frame)) continue;
+        if (on) {
+          if (!el.hasAttribute('data-wv')) el.setAttribute('data-wv', el.style.display || '');
+          el.style.display = 'none';
+        } else if (el.hasAttribute('data-wv')) {
+          el.style.display = el.getAttribute('data-wv'); el.removeAttribute('data-wv');
+        }
+      }
+    }
+  }
+
 window.addEventListener('message', function(e) {
   if (e.origin !== 'https://beneficiosmedicare.com' && e.origin !== 'https://staging.beneficiosmedicare.pages.dev') return;
   if (!e.data || typeof e.data !== 'object') return;
@@ -2510,6 +2530,7 @@ window.addEventListener('message', function(e) {
     frame.style.minHeight = '0px';
     frame.style.height = e.data.height + 'px';
   }
+  if (e.data.type === 'widget-view') setPlansView(!!e.data.results, document.getElementById('widget-container'));
   if (e.data.type === 'widget-scrolltop') {
     var a = document.getElementById('widget-anchor') || frame;
     if (a) a.scrollIntoView({behavior:'smooth', block:'start'});

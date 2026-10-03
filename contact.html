@@ -1083,7 +1083,8 @@ a[href^="tel"] { white-space: nowrap; }
             <button type="submit" class="btn btn-primary" style="width:100%;font-size:17px;padding:16px">
               <i class="fas fa-paper-plane"></i> <span>Send Message</span>
             </button>
-            <p style="font-size:13px;color:var(--gray);text-align:center;margin-top:12px">By submitting, you agree to be contacted by us.</p>
+            <p class="lead-consent" style="font-size:13px;line-height:1.45;color:var(--gray);text-align:center;margin-top:12px">By tapping Send Message, you agree that we may contact you by call, text or WhatsApp. Not a condition of purchase. Message rates may apply; reply STOP to opt out. <a href="/privacy" style="color:inherit;text-decoration:underline">Privacy</a></p>
+            <div id="leadErr"></div>
             <p style="font-size:13px;color:var(--gray);text-align:center;margin-top:4px">We reply within 24-48 hours, usually much sooner.</p>
             <p style="font-size:0.82rem;color:var(--slate);margin-top:6px;text-align:center">🔒 Your information is secure and will never be sold. <a href="/privacy" style="color:var(--blue);text-decoration:underline">Privacy Policy</a></p>
           </form>
@@ -1244,6 +1245,48 @@ function zipToState(zip) {
 </script>
 
 <script>
+/* T-024 lead-send v1 (signed AB 2026-10-03). The SAME block is on every form on both sites:
+   widget-v4, contacto, contact, careers. "Thank you" only when the leads script confirms the lead
+   was saved AND the alert email went out; anything else gets an honest error with our number. No
+   blind resend: it used to show "thank you" whether or not anything arrived. Staging and preview
+   builds post to the staging copy of the script, so test leads never touch the live sheet setup. */
+var LEAD_URL_PROD='https://script.google.com/macros/s/AKfycby8F8kXyTGFcCh2bzk92_sZeUKGlQPZ9RR-QmzYV6CfzBDbw6ANNOQ5JpnH2Z9PfJ_dEQ/exec';
+var LEAD_URL_STAGING='__LEAD_URL_STAGING__';
+var CONSENT_VERSION='2026-10-03-v1';
+function leadURL(){return /(^|\.)staging\.|\.pages\.dev$|^localhost$|^127\./.test(location.hostname)?LEAD_URL_STAGING:LEAD_URL_PROD;}
+function consentText(lang,btn){
+  return lang==='en'
+    ?'By tapping '+(btn||'Send')+', you agree that we may contact you by call, text or WhatsApp. Not a condition of purchase. Message rates may apply; reply STOP to opt out.'
+    :'Al tocar '+(btn||'Enviar')+', acepta que le contactemos por llamada, texto o WhatsApp. No es condición de compra. Pueden aplicar tarifas de mensajes; responda STOP para cancelar.';
+}
+function consentHTML(lang,btn,privacyUrl){
+  return '<p class="lead-consent" style="font-size:12.5px;line-height:1.45;color:#5f6b75;text-align:center;margin:10px 4px 0">'+consentText(lang,btn)
+    +' <a href="'+privacyUrl+'" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">'+(lang==='en'?'Privacy':'Privacidad')+'</a></p>';
+}
+function withConsent(d,lang,btn,page){
+  d.consentText=consentText(lang,btn); d.consentVersion=CONSENT_VERSION;
+  d.consentAt=new Date().toISOString(); d.consentPage=page||location.href;
+  return d;
+}
+function sendLead(d){
+  if(!d.leadId) d.leadId='L'+Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+  var ctl=window.AbortController?new AbortController():null;
+  var t=setTimeout(function(){if(ctl)ctl.abort();},25000);
+  return fetch(leadURL(),{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(d),signal:ctl?ctl.signal:undefined})
+    .then(function(r){return r.json();})
+    .then(function(j){clearTimeout(t);return !!(j&&j.saved===true&&j.emailed===true);})
+    .catch(function(){clearTimeout(t);return false;});
+}
+function leadErrorHTML(lang){
+  var en=lang==='en', m=encodeURIComponent(en?"Hi, I'd like help with Medicare":'Hola, quiero ayuda con Medicare');
+  return '<div class="lead-err" role="alert" style="background:#fff4f2;border:1px solid #f0c4bc;border-radius:10px;padding:12px 14px;margin:12px 0 0;text-align:center;font-size:15px;line-height:1.45;color:#5a1f14">'
+    +(en?"We couldn't send your details. Message us or call (310) 597-9142.":'No pudimos enviar sus datos. Escríbanos o llámenos al (310) 597-9142.')
+    +'<div style="margin-top:8px;font-weight:700;font-size:15px"><a href="https://wa.me/13105979142?text='+m+'" target="_blank" rel="noopener" style="color:#0b6b56;padding:6px 4px;display:inline-block">WhatsApp</a> · '
+    +'<a href="sms:+13105979142" style="color:#0b6b56;padding:6px 4px;display:inline-block">'+(en?'Text':'Texto')+'</a> · '
+    +'<a href="tel:+13105979142" style="color:#0b6b56;padding:6px 4px;display:inline-block">'+(en?'Call':'Llamar')+'</a></div></div>';
+}
+/* end T-024 lead-send v1 */
+
 async function submitForm(e) {
     e.preventDefault();
     const form = document.getElementById('contact-form');
@@ -1349,29 +1392,20 @@ async function submitForm(e) {
         site: 'medicare-california.com'
     };
     
-    // Silent Zapier webhook
-    try {
-        const params = new URLSearchParams();
-        params.append('name', formData.name);
-        params.append('phone', formData.phone);
-        params.append('email', formData.email);
-        params.append('zip', formData.zip);
-        params.append('state', formData.state);
-        params.append('dob', formData.dob);
-        params.append('prefer', formData.prefer);
-        params.append('topic', formData.topic);
-        params.append('submittedAt', formData.submittedAt);
-        params.append('language', formData.language);
-        params.append('site', formData.site);
-
-        console.log('[Contact] Sending lead to Google Sheets');
-        const GS_URL='https://script.google.com/macros/s/AKfycby8F8kXyTGFcCh2bzk92_sZeUKGlQPZ9RR-QmzYV6CfzBDbw6ANNOQ5JpnH2Z9PfJ_dEQ/exec';
-        fetch(GS_URL, {method:'POST', headers:{'Content-Type':'text/plain'}, body:JSON.stringify(formData)})
-          .then(r => { if(!r.ok) throw new Error('GS '+r.status); console.log('[Contact] Lead saved to Google Sheets'); })
-          .catch(err => { fetch(GS_URL, {method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'}, body:JSON.stringify(formData)}).catch(()=>{}); });
-    } catch(err) { console.warn('[Contact] Submit error:', err); }
-    
-    // Show confirmation
+    // T-024: send, and say "thank you" only when the leads script confirms the lead arrived.
+    formData.url = location.href;
+    withConsent(formData, 'en', 'Send Message', location.href);
+    const sendBtn = form.querySelector('button[type="submit"]');
+    const sendLbl = sendBtn ? sendBtn.innerHTML : '';
+    if (sendBtn) { sendBtn.disabled = true; sendBtn.textContent = 'Sending...'; }
+    const errBox = document.getElementById('leadErr');
+    if (errBox) errBox.innerHTML = '';
+    const ok = await sendLead(formData);
+    if (sendBtn) { sendBtn.disabled = false; sendBtn.innerHTML = sendLbl; }
+    if (!ok) {
+        if (errBox) { errBox.innerHTML = leadErrorHTML('en'); errBox.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+        return;
+    }
     form.style.display = 'none';
     document.getElementById('form-success').style.display = 'block';
 }

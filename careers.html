@@ -492,7 +492,7 @@ switchLang('en');
    blind resend: it used to show "thank you" whether or not anything arrived. Staging and preview
    builds post to the staging copy of the script, so test leads never touch the live sheet setup. */
 var LEAD_URL_PROD='https://script.google.com/macros/s/AKfycby8F8kXyTGFcCh2bzk92_sZeUKGlQPZ9RR-QmzYV6CfzBDbw6ANNOQ5JpnH2Z9PfJ_dEQ/exec';
-var LEAD_URL_STAGING='__LEAD_URL_STAGING__';
+var LEAD_URL_STAGING='https://script.google.com/macros/s/AKfycbwuoMJQEAK5aQ_JRQiAcJrscb0NOqfH9cFgvOKel4UpU_Z2FSiMh4Wd-BWLfTNRDAL5xw/exec';
 var CONSENT_VERSION='2026-10-03-v1';
 function leadURL(){return /(^|\.)staging\.|\.pages\.dev$|^localhost$|^127\./.test(location.hostname)?LEAD_URL_STAGING:LEAD_URL_PROD;}
 function consentText(lang,btn){

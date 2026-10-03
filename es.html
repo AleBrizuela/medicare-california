@@ -2006,7 +2006,7 @@ function handleFinalZipSubmit() {
       for (var el = node.nextElementSibling; el; el = el.nextElementSibling) {
         var t = el.tagName;
         if (t === 'FOOTER' || el.querySelector('footer')) return;
-        if (t === 'SCRIPT' || t === 'STYLE' || t === 'NAV' || t === 'LINK' || el.contains(frame)) continue;
+        if (t === 'SCRIPT' || t === 'STYLE' || t === 'LINK' || el.contains(frame)) continue;  // the section menu goes too: its sections are hidden
         if (on) {
           if (!el.hasAttribute('data-wv')) el.setAttribute('data-wv', el.style.display || '');
           el.style.display = 'none';

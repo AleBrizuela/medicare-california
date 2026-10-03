@@ -95,3 +95,15 @@ p,li,blockquote,figcaption{text-wrap:pretty}
   .header-inner>.sm-call{width:44px;height:44px;margin-right:0}
   .header-inner>.mobile-menu-btn{padding:8px !important;min-width:44px !important;min-height:44px !important;box-sizing:border-box !important}
 }
+
+/* T-023 (2026-10-03, B-003 + B-004). Phones only.
+   (1) The bottom section menu was a sideways strip wider than the screen, so the first and last items were
+       cut off (MC /es: "Inicio" and "Preguntas"). Items now share the width evenly; text scales with the
+       screen and may wrap to two lines ("Cómo / Funciona"), so all of them fit at 320px.
+   (2) At the very end of the page the WhatsApp button sat over the footer's last row ("Términos de
+       Servicio" on MC /es). The footer now ends with room for the button (bottom 72px + 48px + 16px). */
+@media(max-width:767px){
+  nav.section-nav .section-nav-inner{justify-content:stretch;overflow-x:visible}
+  nav.section-nav .section-nav-inner a{flex:1 1 0;min-width:0;padding:8px 2px;font-size:clamp(10px,3vw,12px);white-space:normal;text-align:center;line-height:1.15;letter-spacing:-.1px}
+  .sm-footer{padding-bottom:136px}
+}

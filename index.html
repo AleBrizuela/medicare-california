@@ -2885,7 +2885,7 @@ function toggleMobile() {
 </script>
 <!-- T-031 contact bar (phones only) -->
 <nav class="t31-bar" aria-label="Contact"><a class="t31-fill" href="sms:+13105979142?&amp;body=Hi%2C%20I%20have%20a%20Medicare%20question"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg><span>Text us</span></a><a class="t31-line" href="tel:+13105979142"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Call</span></a><button type="button" class="t31-next"><span>Continue</span> &rarr;</button></nav>
-<script>/* T-031: the bottom contact bar steps aside while the on-screen keyboard is open, so it never sits over a field being typed in, on this page or inside the plan finder. Pinch-zoom is not mistaken for a keyboard. */(function(){var v=window.visualViewport;if(!v)return;function f(){document.body.classList.toggle('t31-kb',v.scale<1.05&&v.height<window.innerHeight*0.75)}v.addEventListener('resize',f);})();</script>
+<script>/* T-031: the bottom contact bar steps aside while the on-screen keyboard is open, so it never sits over a field being typed in, on this page or inside the plan finder. Pinch-zoom is not mistaken for a keyboard. */(function(){var v=window.visualViewport;if(!v)return;function typing(){var a=document.activeElement;return !!a&&(/^(INPUT|TEXTAREA|SELECT|IFRAME)$/.test(a.tagName)||a.isContentEditable);}function f(){document.body.classList.toggle('t31-kb',typing()&&v.scale<1.05&&v.height<window.innerHeight*0.75);if(window.t31Sync)window.t31Sync();}/* a keyboard can only be open while someone is in a field: check on every resize and whenever focus moves, so a resize during page load can never leave the bar hidden */v.addEventListener('resize',f);['focusin','focusout'].forEach(function(t){document.addEventListener(t,function(){setTimeout(f,350);});});['focus','blur'].forEach(function(t){window.addEventListener(t,function(){setTimeout(f,350);});});f();})();</script>
 <script>/* T-031 (b): what the bottom bar and the navy block show while the plan finder is open. The widget reports
 each screen (widget-step). Question 1 and the plans keep the contact buttons; from question 2 on, one big Continuar
 presses the widget's own next button, and a screen with no next button (tap an answer) hides the bar. */
@@ -2911,6 +2911,7 @@ presses the widget's own next button, and a screen with no next button (tap an a
     if(on===hostOn) return; hostOn=on;
     try{frame.contentWindow.postMessage({type:'host-next',on:on},new URL(frame.src,location.href).origin);}catch(err){}
   }
+  window.t31Sync=sync;
   if(window.visualViewport) window.visualViewport.addEventListener('resize',sync);
   window.addEventListener('resize',sync);
   next.addEventListener('click',function(){

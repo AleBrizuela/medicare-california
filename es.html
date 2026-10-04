@@ -1435,6 +1435,10 @@ html body .t31-stats .stat-item p{font-size:16px!important;color:#E8F2FA!importa
   html body{padding-bottom:calc(78px + env(safe-area-inset-bottom))!important}
   html body.t31-kb .t31-bar{display:none}
   html body .section-nav,html body .wa-float{display:none!important}
+  /* the footer's old bottom padding was for the floating WhatsApp, the old sticky button and the section menu,
+     all gone on phones; only the bar's own 78px (body padding above) is still needed */
+  html body footer,html body .sm-footer{padding-bottom:16px!important}
+  html body .sm-foot-in{padding-bottom:0!important}
 }
 
 /* T-031 (b), AB 2026-10-03: a shorter home on phones, a "Continuar" button in the bottom bar while the

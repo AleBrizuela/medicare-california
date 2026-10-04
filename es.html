@@ -1356,30 +1356,94 @@ footer.site-footer { padding-bottom: 80px; }
 }
 </script>
 <link rel="stylesheet" href="/sm-chrome.css?v=20261003">
+<style id="t031">html{--t31-brand:#0071BC;--t31-strip:#00578F;--t31-navy:#0B2D4F;--t31-ink:#0B2D4F;--t31-accent:#81D4FA;--t31-line:#0071BC;--t31-logo-w:222px}
+/* T-031 top of page. This block is identical on beneficiosmedicare.com and medicare-california.com;
+   only the colour line above it differs. Phones <=768px: white header with the name on one line and a
+   "Menu" button, navy headline block with the ZIP card hanging 24px over it, 2-button contact bar fixed
+   at the bottom. Desktop >=769px: same block with more room, contact button in the header, no bar.
+   Selectors start with "html body" and carry !important where an older stylesheet loaded later
+   (mobile-enhancements.css on BM) would otherwise win. */
+html body .t31-head{display:flex!important;align-items:center;gap:12px;flex-wrap:nowrap!important}
+html body .t31-head .logo{flex:0 1 auto;min-width:0}
+html body .t31-head .logo svg{display:block;max-width:100%;height:auto}
+html body .t31-head .t31-nav{flex:0 1 auto!important;flex-wrap:nowrap!important;justify-content:flex-end!important;margin-left:auto!important;margin-right:0!important}
+html body .t31-hcall{display:inline-flex;align-items:center;flex:0 0 auto;margin-left:8px;padding:8px 16px;border:2px solid var(--t31-brand);border-radius:10px;
+  color:var(--t31-brand);background:#fff;font:700 16px/1.3 'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif;text-decoration:none;white-space:nowrap}
+html body .t31-hcall:hover,html body .t31-hcall:focus-visible{background:var(--t31-brand);color:#fff}
+html body .t31-menu{display:none!important;align-items:center;gap:8px;flex:0 0 auto;height:44px;min-height:44px;min-width:44px;margin:0;padding:0 12px!important;
+  background:#fff;border:2px solid #D4DEE8;border-radius:10px;color:var(--t31-ink);cursor:pointer;box-sizing:border-box!important;
+  font:700 16px/1 'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif}
+html body .t31-menu svg{width:20px;height:20px;display:block;flex:none}
+
+html body #aep-banner{background:var(--t31-strip)!important}
+html body #aep-banner>div>a{display:none!important}
+html body #aep-banner .aep-more{display:inline-block!important;color:#FFD54F;font-weight:700;text-decoration:underline;text-underline-offset:3px;margin:0 0 0 10px!important;background:none;padding:0!important}
+
+html body .t31-hero{background:none!important;padding:0!important;margin:0!important;overflow:visible!important}
+html body .t31-band{background:var(--t31-navy);color:#fff;text-align:center;padding:40px 24px 48px!important;margin:0!important}
+html body .t31-band h1{font-family:'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif!important;font-size:42px!important;font-weight:700!important;line-height:1.15!important;
+  color:#fff!important;margin:0 0 14px!important;padding:0!important;white-space:normal!important}
+html body .t31-band h1 em,html body .t31-band h1 .t31-accent{font-style:normal;color:var(--t31-accent)!important}
+html body .t31-band p{font-size:18px!important;line-height:1.55!important;color:#DCE6EF!important;max-width:none!important;margin:0 auto!important;padding:0!important;text-wrap:balance}
+html body .t31-form{text-align:center;max-width:640px;margin:0 auto!important;padding:0 24px!important}
+html body .t31-form #zip-card{position:relative;max-width:400px;margin:-24px auto 0!important;padding:32px 28px 28px!important;box-sizing:border-box}
+html body .t31-form #zip-card label{display:block;font-size:16px!important;line-height:22px!important;font-weight:600;margin:0 0 8px!important}
+html body .t31-form #zip-card #zip-input{height:59px!important;padding:0 18px!important;margin:0!important;box-sizing:border-box!important}
+html body .t31-form #zip-card .t31-zip-wrap{margin:0 0 16px!important}
+html body .t31-form #zip-card #zip-btn{height:52px!important;padding:0 24px!important;box-sizing:border-box!important}
+html body .t31-checks{margin-top:22px!important;padding-top:0!important}
+
+html body .t31-bar{display:none}
+
+@media (min-width:769px) and (max-width:1023px){
+  html body .t31-head .logo svg{width:210px}
+  html body .t31-head .t31-nav{gap:0!important}
+  html body .t31-head .t31-nav a{padding:8px 8px!important}
+}
+
+@media (max-width:768px){
+  html body .t31-head{padding:10px 16px!important;height:64px!important;max-width:none!important;justify-content:space-between!important}
+  html body .t31-head .logo svg{width:var(--t31-logo-w)!important}
+  html body .t31-head .t31-nav,html body .t31-hcall{display:none!important}
+  html body .t31-menu{display:inline-flex!important}
+  html body .mobile-nav{top:64px!important}
+  html body #aep-banner .aep-more{margin-left:4px!important}
+
+  html body .t31-band{padding:28px 18px 40px!important}
+  html body .t31-band h1{font-size:30px!important}
+  html body .t31-form{padding:0 18px!important}
+  html body .t31-form #zip-card{max-width:none;padding:24px 20px 22px!important}
+
+  html body .t31-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:950;gap:10px;margin:0;
+    padding:10px 10px calc(10px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid #D4DEE8;box-shadow:0 -4px 16px rgba(0,33,71,.08)}
+  html body .t31-bar a{flex:1 1 0;min-width:0;height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;box-sizing:border-box;
+    border-radius:12px;text-decoration:none;font:700 16px/1.1 'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif;-webkit-tap-highlight-color:transparent}
+  html body .t31-bar svg{width:22px;height:22px;display:block;flex:none}
+  html body .t31-bar .t31-fill{background:var(--t31-brand);border:2px solid var(--t31-brand);color:#fff}
+  html body .t31-bar .t31-line{background:#fff;border:2px solid var(--t31-line);color:var(--t31-ink)}
+  html body .t31-bar a:focus-visible{outline:3px solid #FFB300;outline-offset:2px}
+  html body{padding-bottom:calc(78px + env(safe-area-inset-bottom))!important}
+  html body.t31-kb .t31-bar{display:none}
+  html body .section-nav,html body .wa-float{display:none!important}
+}
+</style>
 </head>
 <body>
-<style>.wa-float{position:fixed;bottom:24px;right:16px;z-index:999;background:#25D366;color:#fff;height:48px;border-radius:28px;padding:0 18px 0 14px;display:flex;align-items:center;gap:8px;font-size:22px;text-decoration:none;white-space:nowrap;box-shadow:0 4px 20px rgba(37,211,102,.45);transition:transform .2s,box-shadow .2s;animation:pulse-wa 2.5s infinite;outline:2px solid rgba(255,255,255,.6);outline-offset:2px}.wa-float svg{width:24px;height:24px;fill:currentColor;flex:none}.wa-float .float-label{font-size:12px;font-weight:700;letter-spacing:.8px;font-family:"Open Sans",sans-serif;line-height:1}.wa-float:hover{transform:scale(1.05);box-shadow:0 6px 28px rgba(37,211,102,.55)}@keyframes pulse-wa{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.45)}50%{box-shadow:0 6px 30px rgba(37,211,102,.65)}}@media(max-width:768px){.wa-float{right:12px!important;bottom:72px!important;padding:0!important;width:48px!important;height:48px!important;border-radius:50%!important;justify-content:center!important;outline:none!important;animation:none!important}.wa-float .float-label{display:none!important}}</style>
-<!-- WhatsApp floating button -->
-<a href="https://wa.me/13105979142?text=Hola%2C%20necesito%20ayuda%20con%20Medicare" class="wa-float" target="_blank" rel="noopener" title="WhatsApp" aria-label="WhatsApp">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg><span class="float-label">WhatsApp</span>
-</a>
 
 <a href="#main-content" class="skip-link" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;padding:8px 16px;background:#002147;color:#fff;font-size:14px;text-decoration:none" onfocus="this.style.position='fixed';this.style.left='8px';this.style.top='8px';this.style.width='auto';this.style.height='auto';this.style.overflow='visible'" onblur="this.style.position='absolute';this.style.left='-9999px';this.style.width='1px';this.style.height='1px';this.style.overflow='hidden'">Ir al contenido principal</a>
 
 <!-- ═══ HEADER ═══ -->
-<header class="site-header">
+<header class="site-header t31-head">
   <a href="/es" class="logo">
     <svg class="logo-full" viewBox="0 0 370 48" width="278" height="36" xmlns="http://www.w3.org/2000/svg" aria-label="Medicare California" role="img"><defs><linearGradient id="navShieldGradCA" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#0080D4"/><stop offset="100%" style="stop-color:#0071BC"/></linearGradient></defs><path d="M23 2 L43 10 L43 26 C43 37 35 43 23 49 C11 43 3 37 3 26 L3 10 Z" fill="url(#navShieldGradCA)"/><polyline points="14,27 20,33 33,19" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><text y="34" font-family="'Open Sans','Segoe UI','Helvetica Neue',Arial,sans-serif"><tspan x="54" font-size="26" font-weight="700" fill="#1a1a1a">Medicare</tspan><tspan dx="6" font-size="26" font-weight="600" fill="#3D9BE9">California</tspan></text></svg>
   </a>
-  <nav class="site-nav" aria-label="Navegación principal">
+  <nav class="site-nav t31-nav" aria-label="Navegación principal">
     <a href="/beneficios">Medicare 101</a>
       <a href="/" hreflang="en" lang="en">In English</a>
       <a href="/contacto">Contáctenos</a>
   </nav>
-<!-- sm-call:start --><a href="sms:+13105979142?&amp;body=Hola%2C%20tengo%20una%20pregunta%20sobre%20Medicare" class="sm-call sm-call-mc sm-call-768" aria-label="Envíenos un mensaje de texto al (310) 597-9142"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg></a><!-- sm-call:end -->
-<button class="mobile-menu-btn" onclick="toggleMobile()" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobile-nav">
-    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-  </button>
+<a href="sms:+13105979142?&amp;body=Hola%2C%20tengo%20una%20pregunta%20sobre%20Medicare" class="t31-hcall" aria-label="Envíenos un texto al (310) 597-9142">Texto (310) 597-9142</a>
+<button class="mobile-menu-btn t31-menu" onclick="toggleMobile()" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobile-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h16"/></svg><span>Menú</span></button>
       </header>
 
 <!-- Mobile nav -->
@@ -1420,16 +1484,16 @@ footer.site-footer { padding-bottom: 80px; }
 
 <!-- ═══ HERO (Option C: Empathy-first) ═══ -->
 <div id="hero"></div>
-<section class="hero" id="main-content">
-  <div class="hero-banner fade-up">
+<section class="hero t31-hero" id="main-content">
+  <div class="hero-banner t31-band fade-up">
     <h1><span data-i18n="hero-h1">Medicare California,</span> <em data-i18n="hero-h1-em">Simplificado.</em></h1>
-    <p data-i18n="hero-banner-p">Somos una agencia familiar. Le ayudamos a entender los planes de Medicare de su zona, con calma y en español. Sin costo para usted.</p>
+    <p data-i18n="hero-banner-p">Agencia familiar · Sin costo para usted</p>
   </div>
-  <div class="hero-form-area">
+  <div class="hero-form-area t31-form">
     <!-- ZIP FORM -->
     <div class="zip-card fade-up-d1" id="zip-card" style="position:relative;margin-top:-24px;box-shadow:0 -4px 32px rgba(0,0,0,0.08),0 8px 32px rgba(0,0,0,0.06);">
       <label for="zip-input"><span data-i18n="zip-label">Ingrese su código postal</span></label>
-      <div class="zip-input-wrap">
+      <div class="zip-input-wrap t31-zip-wrap">
         <input
           type="tel"
           inputmode="numeric"
@@ -1446,7 +1510,7 @@ footer.site-footer { padding-bottom: 80px; }
       </button>
     </div>
 
-    <div class="hero-checks fade-up-d2">
+    <div class="hero-checks t31-checks fade-up-d2">
       <span class="hero-check">
         <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
         <span data-i18n="hero-check-0">3 min</span>
@@ -2084,7 +2148,7 @@ const I18N = {
   // Hero
   'hero-h1': { en:'Medicare California,', es:'Medicare California,' },
   'hero-h1-em': { en:'Simplified.', es:'Simplificado.' },
-  'hero-banner-p': { en:'We\u2019re a family-run agency. We help you understand the Medicare plans in your area, calmly and in Spanish or English. No cost to you.', es:'Somos una agencia familiar. Le ayudamos a entender los planes de Medicare de su zona, con calma y en español. Sin costo para usted.' },
+  'hero-banner-p': { en:'Family-run agency · No cost to you', es:'Agencia familiar · Sin costo para usted' },
   'zip-label': { en:'Enter your ZIP code', es:'Ingrese su c\u00f3digo postal' },
   'zip-btn': { en:'Compare Plans Free', es:'Compare Planes Gratis' },
   'zip-error': { en:'Please enter a valid 5-digit California ZIP code.', es:'Ingrese un c\u00f3digo postal v\u00e1lido de 5 d\u00edgitos.' },
@@ -2341,5 +2405,8 @@ function toggleMobile() {
   if (b) b.setAttribute('aria-expanded', open ? 'true' : 'false');
 }
 </script>
+<!-- T-031 contact bar (phones only) -->
+<nav class="t31-bar" aria-label="Contacto"><a class="t31-fill" href="sms:+13105979142?&amp;body=Hola%2C%20tengo%20una%20pregunta%20sobre%20Medicare"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg><span>Texto</span></a><a class="t31-line" href="tel:+13105979142"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Llamar</span></a></nav>
+<script>/* T-031: the bottom contact bar steps aside while the on-screen keyboard is open, so it never sits over a field being typed in, on this page or inside the plan finder. Pinch-zoom is not mistaken for a keyboard. */(function(){var v=window.visualViewport;if(!v)return;function f(){document.body.classList.toggle('t31-kb',v.scale<1.05&&v.height<window.innerHeight*0.75)}v.addEventListener('resize',f);})();</script>
 </body>
 </html>

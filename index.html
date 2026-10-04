@@ -2978,7 +2978,18 @@ presses the widget's own next button, and a screen with no next button (tap an a
     b.classList.toggle('t31-qn',(q&&!d.hasNext)||!!d.lead);   /* a lead form: no bar at all, so nothing sits over Enviar */
     if(d.label) label.textContent=d.label;
     next.disabled=!!d.disabled;
+    sync();
   });
+  /* exactly one Continuar on screen: the widget hides its own button only while this bar button is visible
+     (phone width, a question with a next button, keyboard closed); otherwise its own button comes back */
+  var hostOn=false;
+  function sync(){
+    var on=getComputedStyle(bar).display!=='none'&&getComputedStyle(next).display!=='none'&&!b.classList.contains('t31-kb');
+    if(on===hostOn) return; hostOn=on;
+    try{frame.contentWindow.postMessage({type:'host-next',on:on},new URL(frame.src,location.href).origin);}catch(err){}
+  }
+  if(window.visualViewport) window.visualViewport.addEventListener('resize',sync);
+  window.addEventListener('resize',sync);
   next.addEventListener('click',function(){
     if(next.disabled) return;
     try{frame.contentWindow.postMessage({type:'widget-next'},new URL(frame.src,location.href).origin);}catch(err){}

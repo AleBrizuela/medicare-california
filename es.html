@@ -1404,6 +1404,13 @@ html body .t31-bar{display:none}
 /* T-031: plan type icons, the same Font Awesome 6.5.1 glyphs the Partes de Medicare page uses, inlined (no icon font) */
 html body .t31-picon{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
 html body .t31-picon svg{width:28px;height:28px;display:block}
+/* T-031 (AB): the numbers band matches beneficiosmedicare's: navy, three items, same place (after the team) */
+html body .t31-stats{background:#0B2D4F!important;padding:40px 24px!important;margin:0!important}
+html body .t31-stats .trust-stats-inner{max-width:1200px;margin:0 auto;display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:32px!important;text-align:center}
+html body .t31-stats .stat-item{background:none!important;box-shadow:none!important;padding:0!important}
+html body .t31-stats .stat-item h3{font-size:44px!important;font-weight:700!important;color:#81D4FA!important;margin:0!important}
+html body .t31-stats .stat-item p{font-size:16px!important;color:#E8F2FA!important;margin-top:4px!important}
+@media (max-width:768px){html body .t31-stats .trust-stats-inner{grid-template-columns:1fr!important;gap:20px!important}html body .t31-stats .stat-item h3{font-size:34px!important}}
 @media (max-width:768px){
   html body .t31-head{padding:10px 16px!important;height:64px!important;max-width:none!important;justify-content:space-between!important}
   html body .t31-head .logo svg{width:var(--t31-logo-w)!important}
@@ -1659,28 +1666,6 @@ html body .t31-team .team-photo-banner img{object-position:50% 72%!important}
   </div>
 </section>
 
-<!-- ═══ TRUST STATS ═══ -->
-<section class="trust-stats" id="trust-stats">
-  <div class="trust-stats-inner">
-    <div class="stat-item fade-in-up">
-      <h3 class="counter" data-target="2000" data-suffix="+" data-prefix="">0</h3>
-      <p data-i18n="stat-1">Familias en California Ayudadas</p>
-    </div>
-    <div class="stat-item fade-in-up">
-      <h3 class="counter" data-target="15" data-suffix="+" data-prefix="" data-prefix-es="">0</h3>
-      <p data-i18n="stat-2">Años de Experiencia</p>
-    </div>
-    <div class="stat-item fade-in-up">
-      <h3 class="counter" data-target="100" data-suffix="% AHIP" data-prefix="">0</h3>
-      <p data-i18n="stat-3">Profesionales Certificadas</p>
-    </div>
-    <div class="stat-item fade-in-up">
-      <h3 class="counter" data-target="0" data-suffix="" data-prefix="$" data-static="$0 Cost" data-static-es="$0 Costo">Sin costo</h3>
-      <p data-i18n="stat-4">Para las Familias, Siempre</p>
-    </div>
-  </div>
-</section>
-
 <!-- ═══ MEDICARE PLANS OVERVIEW ═══ -->
 <section class="plans-overview t31-sec t31-plans" id="plans-overview">
   <div class="section-label"><span data-i18n="plans-label">Tipos de Planes Medicare</span></div>
@@ -1738,29 +1723,6 @@ html body .t31-team .team-photo-banner img{object-position:50% 72%!important}
   </div>
 </section>
 
-<!-- ═══ TESTIMONIALS ═══ -->
-<section class="testimonials t31-sec t31-reviews" id="testimonials">
-  <div class="testimonials-inner">
-    <div class="section-label"><span data-i18n="test-label">Historias de Clientes</span></div>
-    <h2><span data-i18n="test-h2">Lo Que Dicen las Familias de California</span></h2>
-    <!-- T-031: the real Google rating instead of unverified quotes (D-068). Update the count every Monday from the Business Profile. -->
-    <p class="t31-rating"><span class="t31-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <strong data-i18n="test-rating">5.0 en Google · 9 reseñas</strong> <a href="https://maps.app.goo.gl/wfbQjcZ2C4wkN5E99" target="_blank" rel="noopener" data-i18n="test-rating-cta">Leer las reseñas &rarr;</a></p>
-  </div>
-</section>
-
-<!-- ═══ CARRIER TRUST BAR ═══ -->
-<section class="carrier-trust-bar">
-  <p class="trust-bar-label"><span data-i18n="carrier-label">Representamos a las principales aseguradoras</span></p>
-  <div class="carrier-logos">
-    <img src="images/carriers/unitedhealthcare.svg" alt="UnitedHealthcare" loading="lazy" width="100" height="60">
-    <img src="images/carriers/humana.svg" alt="Humana" loading="lazy" width="100" height="60">
-    <img src="images/carriers/aetna.svg" alt="Aetna" loading="lazy" width="100" height="60">
-    <img src="images/carriers/anthem.png" alt="Anthem Blue Cross" loading="lazy" width="100" height="60">
-    <img src="images/carriers/bcbs.svg" alt="Blue Shield of California" loading="lazy" width="100" height="60">
-    <img src="images/carriers/scan.png" alt="SCAN Health Plan" loading="lazy" width="100" height="60">
-  </div>
-</section>
-
 <!-- ═══ MEET THE TEAM ═══ -->
 <section class="team-section t31-sec t31-team" id="team">
   <div class="section-label"><span data-i18n="team-label">Con Quién Hablará</span></div>
@@ -1805,6 +1767,49 @@ html body .t31-team .team-photo-banner img{object-position:50% 72%!important}
     </div>
   </div>
   <p style="text-align:center;margin:24px 0 0"><a href="https://beneficiosmedicare.com/equipo" data-i18n="team-more" style="display:inline-block;padding:12px 8px;color:#0071BC;font-weight:600;font-size:17px;text-decoration:underline">Conozca más sobre nosotras &rarr;</a></p>
+</section>
+
+<!-- ═══ TRUST STATS ═══ -->
+<div style="background:#0B2D4F;margin-top:-1px"><svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="display:block;width:100%;height:40px" aria-hidden="true"><path d="M0,0 C480,60 960,0 1440,40 L1440,60 L0,60 Z" fill="#0B2D4F"/></svg></div>
+<section class="trust-stats t31-stats" id="trust-stats">
+  <div class="trust-stats-inner">
+    <div class="stat-item fade-in-up">
+      <h3 class="counter" data-target="2000" data-suffix="+" data-prefix="">0</h3>
+      <p data-i18n="stat-1">Familias en California Ayudadas</p>
+    </div>
+    <div class="stat-item fade-in-up">
+      <h3 class="counter" data-target="15" data-suffix="+" data-prefix="" data-prefix-es="">0</h3>
+      <p data-i18n="stat-2">Años de Experiencia</p>
+    </div>
+    <div class="stat-item fade-in-up">
+      <h3 class="counter" data-target="9" data-suffix="" data-prefix="">0</h3>
+      <p data-i18n="stat-3">Estados con Licencia</p>
+    </div>
+  </div>
+</section>
+<div style="background:#0B2D4F;margin-bottom:-1px"><svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="display:block;width:100%;height:40px" aria-hidden="true"><path d="M0,0 L1440,0 L1440,40 C960,60 480,0 0,50 Z" fill="#0B2D4F"/></svg></div>
+
+<!-- ═══ CARRIER TRUST BAR ═══ -->
+<section class="carrier-trust-bar">
+  <p class="trust-bar-label"><span data-i18n="carrier-label">Representamos a las principales aseguradoras</span></p>
+  <div class="carrier-logos">
+    <img src="images/carriers/unitedhealthcare.svg" alt="UnitedHealthcare" loading="lazy" width="100" height="60">
+    <img src="images/carriers/humana.svg" alt="Humana" loading="lazy" width="100" height="60">
+    <img src="images/carriers/aetna.svg" alt="Aetna" loading="lazy" width="100" height="60">
+    <img src="images/carriers/anthem.png" alt="Anthem Blue Cross" loading="lazy" width="600" height="124">
+    <img src="images/carriers/bcbs.svg" alt="Blue Shield of California" loading="lazy" width="100" height="60">
+    <img src="images/carriers/scan.png" alt="SCAN Health Plan" loading="lazy" width="100" height="60">
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section class="testimonials t31-sec t31-reviews" id="testimonials">
+  <div class="testimonials-inner">
+    <div class="section-label"><span data-i18n="test-label">Historias de Clientes</span></div>
+    <h2><span data-i18n="test-h2">Lo Que Dicen las Familias de California</span></h2>
+    <!-- T-031: the real Google rating instead of unverified quotes (D-068). Update the count every Monday from the Business Profile. -->
+    <p class="t31-rating"><span class="t31-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <strong data-i18n="test-rating">5.0 en Google · 9 reseñas</strong> <a href="https://maps.app.goo.gl/wfbQjcZ2C4wkN5E99" target="_blank" rel="noopener" data-i18n="test-rating-cta">Leer las reseñas &rarr;</a></p>
+  </div>
 </section>
 
 <!-- ═══ CITY PAGES ═══ -->
@@ -2224,7 +2229,7 @@ const I18N = {
   // Trust stats
   'stat-1': { en:'California Families Helped', es:'Familias en California Ayudadas' },
   'stat-2': { en:'Years of Experience', es:'A\u00f1os de Experiencia' },
-  'stat-3': { en:'Certified Professionals', es:'Profesionales Certificadas' },
+  'stat-3': { en:'States Licensed', es:'Estados con Licencia' },
   'stat-4': { en:'To Families, Always', es:'Para las Familias, Siempre' },
   // Testimonials
   'test-label': { en:'Client Stories', es:'Historias de Clientes' },

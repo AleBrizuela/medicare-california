@@ -155,23 +155,6 @@ nav a:hover, nav a.active { color: var(--navy); background: var(--lt-blue); }
 }
 
 /* ── WHATSAPP FLOATING ─────────────────────────────────── */
-.wa-float {
-  position: fixed; bottom: 24px; right: 16px; z-index: 999;
-  background: var(--wa-green); color: white;
-  height: 48px; border-radius: 28px; padding: 0 18px 0 14px;
-  display: flex; align-items: center; gap: 8px;
-  font-size: 22px; text-decoration: none; white-space: nowrap;
-  box-shadow: 0 4px 20px rgba(37,211,102,0.45);
-  transition: transform 0.2s, box-shadow 0.2s;
-  animation: pulse-wa 2.5s infinite;
-  outline: 2px solid rgba(255,255,255,0.6);
-  outline-offset: 2px;
-}
-.wa-float .float-label {
-  font-size: 12px; font-weight: 700; letter-spacing: 0.8px;
-  font-family: 'Open Sans', sans-serif; line-height: 1;
-}
-.wa-float:hover { transform: scale(1.05); box-shadow: 0 6px 28px rgba(37,211,102,0.55); }
 .sms-float {
   position: fixed; bottom: 84px; right: 16px; z-index: 999;
   background: var(--blue); color: white;
@@ -210,9 +193,8 @@ nav a:hover, nav a.active { color: var(--navy); background: var(--lt-blue); }
   .contact-methods-grid { grid-template-columns: 1fr !important; }
   .contact-form-grid { grid-template-columns: 1fr !important; }
   .contact-grid { grid-template-columns: 1fr !important; }
-  .wa-float, .sms-float { right: 12px; padding: 0 !important; width: 48px !important; height: 48px !important; border-radius: 50% !important; justify-content: center !important; }
-  .wa-float .float-label, .sms-float .float-label { display: none !important; }
-  .wa-float { bottom: 72px !important; }
+  .sms-float { right: 12px; padding: 0 !important; width: 48px !important; height: 48px !important; border-radius: 50% !important; justify-content: center !important; }
+  .sms-float .float-label { display: none !important; }
   .sms-float { bottom: 128px !important; }
   .footer-grid { grid-template-columns: 1fr !important; }
   section { padding: 40px 16px !important; }
@@ -735,19 +717,124 @@ a[href^="tel"] { white-space: nowrap; }
   <link rel="shortcut icon" href="favicon-california.svg">
   <link rel="apple-touch-icon" href="favicon-192x192.png">
 <link rel="stylesheet" href="/sm-chrome.css?v=20261003">
+<style id="t033">html{--t31-brand:#0071BC;--t31-strip:#00578F;--t31-navy:#0B2D4F;--t31-ink:#0B2D4F;--t31-accent:#81D4FA;--t31-line:#0071BC;--t31-logo-w:222px}
+/* T-033 (AB 2026-10-03): the contact page gets the homes' T-031 top. The shared sm-header is restyled to
+   the T-031 header (white, name on one line, "Menu" button on phones, contact button on desktop); the
+   date strip, the navy headline block and the phone bottom bar use the same rules and sizes as the homes.
+   The form card hangs 24px over the navy block like the homes' ZIP card. Same block on all 4 contact pages;
+   only the colour line and the header width/height (copied from each site's home) differ. */
+html body .sm-header{background:#fff!important;border-bottom:0!important}
+html body .t33-head{max-width:960px!important;min-height:73px;padding:0 24px!important;gap:12px!important;flex-wrap:nowrap!important}
+html body .t33-head .sm-logo svg{display:block;max-width:100%;height:auto}
+html body .t33-head .sm-nav{flex:0 1 auto!important;flex-wrap:nowrap!important;justify-content:flex-end!important;margin-left:auto!important;margin-right:0!important}
+html body .t31-hcall{display:inline-flex;align-items:center;flex:0 0 auto;margin-left:8px;padding:8px 16px;border:2px solid var(--t31-brand);border-radius:10px;
+  color:var(--t31-brand);background:#fff;font:700 16px/1.3 'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif;text-decoration:none;white-space:nowrap}
+html body .t31-hcall:hover,html body .t31-hcall:focus-visible{background:var(--t31-brand);color:#fff}
+html body .t31-menu{display:none!important;align-items:center;gap:8px;flex:0 0 auto;height:44px;min-height:44px;min-width:44px;margin:0;padding:0 12px!important;
+  background:#fff;border:2px solid #D4DEE8;border-radius:10px;color:var(--t31-ink);cursor:pointer;box-sizing:border-box!important;
+  font:700 16px/1 'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif}
+html body .t31-menu svg{width:20px;height:20px;display:block;flex:none}
+
+html body #aep-banner{background:var(--t31-strip)!important;font-size:16px;line-height:1.6}
+html body #aep-banner>div>a{display:none!important}
+html body #aep-banner .aep-more{display:inline-block!important;color:#FFD54F;font-weight:700;text-decoration:underline;text-underline-offset:3px;margin:0 0 0 10px!important;background:none;padding:0!important}
+
+html body .t31-hero{background:none!important;padding:0!important;margin:0!important;overflow:visible!important}
+html body .t31-band{background:var(--t31-navy);color:#fff;text-align:center;padding:40px 24px 48px!important;margin:0!important}
+html body .t31-band h1{font-family:'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif!important;font-size:42px!important;font-weight:700!important;line-height:1.15!important;
+  color:#fff!important;margin:0 0 14px!important;padding:0!important;white-space:normal!important}
+html body .t31-band p{font-size:18px!important;line-height:1.55!important;color:#DCE6EF!important;max-width:none!important;margin:0 auto!important;padding:0!important;text-wrap:balance}
+html body .t31-band p.t33-num{margin:6px auto 0!important}
+html body .t33-num a{display:inline-block;padding:8px 6px;color:#fff;font-weight:700;font-size:20px;line-height:1.3;text-decoration:underline;text-underline-offset:4px}
+html body .t33-num a:focus-visible{outline:3px solid #FFB300;outline-offset:2px}
+
+/* form card hangs 24px over the navy block; the cards column starts below the block */
+html body .t33-grid{padding:0 24px 40px!important;background:#fff!important}
+html body .t33-grid .contact-grid{align-items:start;margin-top:0!important}
+html body .t33-grid .contact-form{position:relative;margin-top:-24px;background:#fff!important;border-radius:16px;box-shadow:0 8px 40px rgba(0,60,113,.16);padding:32px 28px 28px!important}
+html body .t33-grid .contact-methods{padding-top:32px}
+html body .t33-grid .contact-form h3{margin-bottom:6px!important}
+html body .t33-promise{font-size:16px!important;color:var(--t31-ink)!important;font-weight:600;margin:0 0 20px!important;text-wrap:balance}
+html body .t33-secure{font-size:14px;color:#4A5568;text-align:center;margin:8px 0 0}
+
+/* "Para quién es": two big tap buttons */
+html body .t33-who{border:0;margin:0 0 16px;padding:0;min-width:0}
+html body .t33-who legend,html body .t33-label{display:block;font-size:14px;font-weight:600;color:var(--gray);margin:0 0 6px;padding:0}
+html body .t33-who-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+html body .t33-opt{position:relative;display:flex!important;align-items:center;justify-content:center;min-height:52px;margin:0!important;padding:10px 12px;box-sizing:border-box;
+  border:2px solid #D4DEE8;border-radius:12px;background:#fff;color:var(--t31-ink)!important;font-size:16px!important;font-weight:700!important;line-height:1.25;text-align:center;cursor:pointer}
+html body .t33-opt input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
+html body .t33-opt:has(input:checked){border-color:var(--t31-brand);background:var(--t31-brand);color:#fff!important}
+html body .t33-opt:has(input:focus-visible){outline:3px solid #FFB300;outline-offset:2px}
+html body .t33-who.error .t33-opt{border-color:#C0392B}
+html body .t33-hint{display:block;font-size:14px;color:#5f6b75;margin:-2px 0 8px}
+html body .t33-hint[hidden]{display:none}
+html body .t33-err{display:block;color:#B42318;font-size:15px;font-weight:600;margin-top:6px}
+html body .t33-err:empty{display:none}
+
+/* one line instead of the old compare-plans banner */
+html body .t33-zipline{text-align:center;padding:8px 24px 48px;background:#fff;margin:0}
+html body .t33-zipline p{font-size:18px;line-height:1.5;color:var(--t31-ink);margin:0}
+html body .t33-zipline a{color:var(--t31-brand);font-weight:700;text-decoration:underline;text-underline-offset:3px;display:inline-block;padding:8px 4px}
+
+html body .t31-bar{display:none}
+
+@media (min-width:769px) and (max-width:1023px){
+  html body .t33-head .sm-logo svg{width:210px}
+  html body .t33-head .sm-nav{gap:0!important}
+  html body .t33-head .sm-nav a{padding:8px 8px!important}
+}
+@media (max-width:389px){html[lang^="es"] body .t31-band p:not(.t33-num){font-size:17px!important}}
+@media (max-width:768px){
+  html body .t33-head{padding:10px 16px!important;height:64px!important;min-height:64px;max-width:none!important;justify-content:space-between!important}
+  html body .t33-head .sm-logo svg{width:var(--t31-logo-w)!important}
+  html body .t33-head .sm-nav,html body .t31-hcall{display:none!important}
+  html body .t31-menu{display:inline-flex!important;padding:0 12px!important}
+  html body .sm-mnav.open{display:flex!important}
+  html body #aep-banner .aep-more{margin-left:4px!important}
+
+  html body .t31-band{padding:20px 18px 32px!important}
+  html body .t31-band h1{font-size:30px!important}
+  html body .t33-grid{padding:0 18px 32px!important}
+  html body .t33-grid .contact-grid{gap:24px!important}
+  html body .t33-grid .contact-form{padding:24px 20px 22px!important}
+  html body .t33-grid .contact-methods{padding-top:0}
+  html body .t33-grid .contact-methods{gap:10px!important}
+  html body .t33-grid .contact-method{margin:0!important;padding:14px 16px!important;gap:12px!important}
+  html body .t33-grid .contact-method-icon{width:48px!important;height:48px!important;flex:none}
+  html body .t33-zipline{padding:0 18px 32px}
+  html body .t33-who legend,html body .t33-label{font-size:15px!important;font-weight:700!important}
+  /* the Spanish sub-line is 348px at 18px; below 390px wide it drops to 17px so it stays on one row like the homes' */
+
+  html body .t31-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:950;gap:10px;margin:0;
+    padding:10px 10px calc(10px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid #D4DEE8;box-shadow:0 -4px 16px rgba(0,33,71,.08)}
+  html body .t31-bar a{flex:1 1 0;min-width:0;height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;box-sizing:border-box;
+    border-radius:12px;text-decoration:none;font:700 16px/1.1 'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif;-webkit-tap-highlight-color:transparent}
+  html body .t31-bar svg{width:22px;height:22px;display:block;flex:none}
+  html body .t31-bar .t31-fill{background:var(--t31-brand);border:2px solid var(--t31-brand);color:#fff}
+  html body .t31-bar .t31-line{background:#fff;border:2px solid var(--t31-line);color:var(--t31-ink)}
+  html body .t31-bar a:focus-visible{outline:3px solid #FFB300;outline-offset:2px}
+  html body{padding-bottom:calc(78px + env(safe-area-inset-bottom))!important}
+  html body.t31-kb .t31-bar{display:none}
+  html body .mobile-sticky-cta{display:none!important}
+  html body footer,html body .sm-footer{padding-bottom:16px!important}
+  html body .sm-foot-in{padding-bottom:0!important}
+}
+</style>
 </head>
 
 <body>
 <!-- sm-header:start -->
 <header class="sm-header sm-mc" id="header">
-  <div class="sm-header-in">
+  <div class="sm-header-in t33-head">
     <a href="/es" class="sm-logo"><svg class="logo-full" viewBox="0 0 370 48" width="278" height="36" xmlns="http://www.w3.org/2000/svg" aria-label="Medicare California" role="img"><defs><linearGradient id="navShieldGradCA" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#0080D4"/><stop offset="100%" style="stop-color:#0071BC"/></linearGradient></defs><path d="M23 2 L43 10 L43 26 C43 37 35 43 23 49 C11 43 3 37 3 26 L3 10 Z" fill="url(#navShieldGradCA)"/><polyline points="14,27 20,33 33,19" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><text y="34" font-family="'Open Sans','Segoe UI','Helvetica Neue',Arial,sans-serif"><tspan x="54" font-size="26" font-weight="700" fill="#1a1a1a">Medicare</tspan><tspan dx="6" font-size="26" font-weight="600" fill="#3D9BE9">California</tspan></text></svg></a>
     <div class="sm-nav" role="navigation" aria-label="Navegación principal">
       <a href="/beneficios">Medicare 101</a>
       <a href="/contact" hreflang="en" lang="en">In English</a>
       <a href="/contacto">Contáctenos</a>
     </div>
-    <button type="button" class="sm-burger" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobile-nav" onclick="var m=document.getElementById('mobile-nav');var o=m.classList.toggle('open');this.setAttribute('aria-expanded',o?'true':'false')"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    <a href="sms:+13105979142?&amp;body=Hola%2C%20tengo%20una%20pregunta%20sobre%20Medicare" class="t31-hcall" aria-label="Envíenos un texto al (310) 597-9142">Texto (310) 597-9142</a>
+    <button type="button" class="t31-menu" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobile-nav" onclick="var m=document.getElementById('mobile-nav');var o=m.classList.toggle('open');this.setAttribute('aria-expanded',o?'true':'false')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h16"/></svg><span>Menú</span></button>
   </div>
   <div class="sm-mnav" id="mobile-nav">
     <a href="/beneficios">Medicare 101</a>
@@ -758,23 +845,19 @@ a[href^="tel"] { white-space: nowrap; }
 <!-- sm-header:end -->
 
 <!-- SMS floating button -->
-<!-- WhatsApp floating button -->
-<a href="https://wa.me/13105979142?text=Hola%2C%20necesito%20ayuda%20con%20Medicare" class="wa-float" target="_blank" title="WhatsApp" style="position:fixed;bottom:24px;right:16px;z-index:999;display:flex;align-items:center;gap:8px;height:48px;padding:0 18px 0 14px;border-radius:28px;background:#25D366;color:#fff;text-decoration:none;white-space:nowrap">
-  <i class="fab fa-whatsapp"></i><span class="float-label">WhatsApp</span>
-</a>
 
 <main id="main-content">
 <!-- AEP 2027 Countdown Banner -->
 <style>.aep-more{display:none;color:#FFD54F;font-weight:700;text-decoration:underline;margin-left:6px}@media(max-width:480px){#aep-banner{padding:12px 8px!important}#aep-banner>div{gap:8px 12px!important}#aep-banner>div>div{font-size:clamp(11px,3.5vw,14px)!important;letter-spacing:0!important;line-height:1.35;white-space:nowrap}#aep-banner>div>div>span:first-child{padding:3px 8px!important;margin-right:5px!important;font-size:clamp(10px,3vw,12px)!important}#aep-banner>div>a{display:none!important}#aep-countdown{display:none!important}#aep-banner .aep-more{display:inline-block!important;padding:6px 4px;margin:-6px 0 -6px 2px}}</style>
-<div id="aep-banner" style="background:linear-gradient(135deg,#002147 0%,#0080D4 100%);color:#fff;text-align:center;padding:18px 24px;position:relative;z-index:50">
+<div id="aep-banner" style="background:linear-gradient(135deg,#0B2D4F 0%,#0080D4 100%);color:#fff;text-align:center;padding:18px 24px;position:relative;z-index:50">
   <div style="max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px 24px">
     <div style="font-size:15px;font-weight:600;letter-spacing:0.5px">
       <span style="background:rgba(255,255,255,0.18);padding:4px 12px;border-radius:20px;font-size:13px;margin-right:8px">AEP 2027</span>
-      Abre <strong>Oct. 15 a Dic. 7</strong>
+      <strong>Oct. 15 a Dic. 7</strong>
       <span id="aep-countdown" style="margin-left:6px;color:#FFD54F;font-weight:700"></span>
-      <a class="aep-more" href="https://beneficiosmedicare.com/blog/inscripcion-anual-aep-2027-california">Ver cambios &rarr;</a>
+      <a class="aep-more" href="https://beneficiosmedicare.com/blog/inscripcion-anual-aep-2027-california">Cambios &rarr;</a>
     </div>
-    <a href="https://beneficiosmedicare.com/blog/inscripcion-anual-aep-2027-california" style="background:#FFD54F;color:#002147;padding:8px 20px;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none">Ver cambios &rarr;</a>
+    <a href="https://beneficiosmedicare.com/blog/inscripcion-anual-aep-2027-california" style="background:#FFD54F;color:#0B2D4F;padding:8px 20px;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none;white-space:nowrap">Ver cambios &rarr;</a>
   </div>
 </div>
 <script>
@@ -783,7 +866,7 @@ a[href^="tel"] { white-space: nowrap; }
   var el=document.getElementById('aep-countdown');
   function update(){
     var now=new Date();var diff=target-now;
-    if(diff<=0){el.innerHTML='&iexcl;La inscripci&#xF3;n est&#xE1; ABIERTA!';return;}
+    if(diff<=0){el.textContent='¡La inscripción está ABIERTA!';return;}
     var days=Math.ceil(diff/864e5);
     el.textContent='· faltan '+days+' día'+(days!==1?'s':'');
   }
@@ -794,28 +877,36 @@ a[href^="tel"] { white-space: nowrap; }
 <!-- CONTACTO PAGE -->
 <!-- ═══════════════════════════════════════════════════════ -->
 
-  <!-- Hero -->
-  <section class="hero" style="padding-top:60px;padding-bottom:48px">
-    <div class="container" style="text-align:center;position:relative;z-index:2">
-      <div class="section-label">HABLEMOS</div>
-      <h1 class="section-title">Contáctenos</h1>
-      <p class="section-subtitle" style="max-width:600px;margin:0 auto">Comuníquese con nosotros como usted prefiera.</p>
+  <!-- Hero (T-033: navy block like the homes) -->
+  <section class="hero t31-hero">
+    <div class="t31-band">
+      <h1>Contáctenos</h1>
+      <p>Agentes licenciadas · Sin costo para usted</p>
+      <p class="t33-num"><a href="sms:+13105979142?&amp;body=Hola%2C%20tengo%20una%20pregunta%20sobre%20Medicare">Texto (310) 597-9142</a></p>
     </div>
   </section>
 
   <!-- Contact Grid -->
-  <section style="padding:40px 24px 60px;background:white">
+  <section class="t33-grid">
     <div class="container">
       <div class="contact-grid">
 
         <!-- Left: Contact Form -->
         <div class="contact-form">
           <h3 style="color:var(--navy);margin-bottom:8px">Cuéntenos su situación</h3>
-          <p style="font-size:15px;color:var(--gray);margin-bottom:24px">Le contactaremos en el horario que prefiera.</p>
+          <p class="t33-promise">Le respondemos en menos de 24 horas.</p>
           <form id="contact-form" onsubmit="submitForm(event)">
   <input type="hidden" name="subject" value="Nueva Consulta de Medicare - medicare-california.com">
   <input type="hidden" name="from_name" value="Beneficios Medicare Website">
   <input type="hidden" name="redirect" value="false">
+            <fieldset class="form-group t33-who" id="cf2-who">
+              <legend>¿Para quién es? *</legend>
+              <div class="t33-who-opts" role="radiogroup" aria-required="true" aria-describedby="who-error">
+                <label class="t33-opt"><input type="radio" name="para_quien" value="yo"><span>Para mí</span></label>
+                <label class="t33-opt"><input type="radio" name="para_quien" value="familiar"><span>Para un familiar</span></label>
+              </div>
+              <span class="t33-err" id="who-error" role="alert"></span>
+            </fieldset>
             <div class="form-group">
               <label for="cf2-name">Nombre completo *</label>
               <input type="text" name="name" id="cf2-name" required autocomplete="name" inputmode="text" placeholder="Ej: María García" style="font-size:16px;min-height:52px">
@@ -825,9 +916,10 @@ a[href^="tel"] { white-space: nowrap; }
               <input type="tel" name="phone" id="cf2-phone" required autocomplete="tel" inputmode="tel" placeholder="(310) 555-1234" style="font-size:16px;min-height:52px">
             </div>
             <div class="form-group">
-              <label id="dob-label">Fecha de Nacimiento *</label>
-              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
-                <select id="dob-month" name="dob_month" required style="font-size:16px;min-height:52px;padding:12px 8px;border:1px solid #E2E8F0;border-radius:4px;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23475569' d='M6 9L1 4h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 0.5rem center;padding-right:1.5rem">
+              <span class="t33-label" id="dob-label">Fecha de nacimiento *</span>
+              <span class="t33-hint" id="dob-hint">de quien tiene o tendrá Medicare</span>
+              <div role="group" aria-labelledby="dob-label" aria-describedby="dob-hint" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+                <select id="dob-month" aria-label="Mes" name="dob_month" required style="font-size:16px;min-height:52px;padding:12px 8px;border:1px solid #E2E8F0;border-radius:4px;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23475569' d='M6 9L1 4h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 0.5rem center;padding-right:1.5rem">
                   <option value="">Mes</option>
 <option value="01">Enero</option><option value="02">Febrero</option>
 <option value="03">Marzo</option><option value="04">Abril</option>
@@ -836,7 +928,7 @@ a[href^="tel"] { white-space: nowrap; }
 <option value="09">Septiembre</option><option value="10">Octubre</option>
 <option value="11">Noviembre</option><option value="12">Diciembre</option>
                 </select>
-                <select id="dob-day" name="dob_day" required style="font-size:16px;min-height:52px;padding:12px 8px;border:1px solid #E2E8F0;border-radius:4px;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23475569' d='M6 9L1 4h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 0.5rem center;padding-right:1.5rem">
+                <select id="dob-day" aria-label="Día" name="dob_day" required style="font-size:16px;min-height:52px;padding:12px 8px;border:1px solid #E2E8F0;border-radius:4px;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23475569' d='M6 9L1 4h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 0.5rem center;padding-right:1.5rem">
                   <option value="">Día</option>
 <option value="01">1</option>
 <option value="02">2</option>
@@ -870,7 +962,7 @@ a[href^="tel"] { white-space: nowrap; }
 <option value="30">30</option>
 <option value="31">31</option>
                 </select>
-                <select id="dob-year" name="dob_year" required style="font-size:16px;min-height:52px;padding:12px 8px;border:1px solid #E2E8F0;border-radius:4px;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23475569' d='M6 9L1 4h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 0.5rem center;padding-right:1.5rem">
+                <select id="dob-year" aria-label="Año" name="dob_year" required style="font-size:16px;min-height:52px;padding:12px 8px;border:1px solid #E2E8F0;border-radius:4px;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23475569' d='M6 9L1 4h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 0.5rem center;padding-right:1.5rem">
                   <option value="">Año</option>
 <option value="2008">2008</option>
 <option value="2007">2007</option>
@@ -979,10 +1071,10 @@ a[href^="tel"] { white-space: nowrap; }
             </div>
             <div class="form-group">
               <div>
-                <label style="display:block;font-size:14px;font-weight:600;color:var(--navy);margin-bottom:6px">Código postal</label>
+                <label for="cf2-zip" style="display:block;font-size:14px;font-weight:600;color:var(--navy);margin-bottom:6px">Código postal</label>
                 <input type="text" id="cf2-zip" name="zip" maxlength="5" autocomplete="postal-code" inputmode="numeric" style="width:100%;font-size:16px;min-height:52px;padding:12px 16px;border:1px solid #E2E8F0;border-radius:4px;box-sizing:border-box;margin-bottom:10px"
                   oninput="const st=zipToState(this.value);if(st){document.getElementById('cf2-state').value=st;}">
-                <label style="display:block;font-size:14px;font-weight:600;color:var(--navy);margin-bottom:6px">Estado</label>
+                <label for="cf2-state" style="display:block;font-size:14px;font-weight:600;color:var(--navy);margin-bottom:6px">Estado</label>
                 <select id="cf2-state" name="state" style="width:100%;font-size:16px;min-height:52px;padding:12px 16px;border:1px solid #E2E8F0;border-radius:4px;background:white">
                   <option value="">Seleccionar estado...</option>
                   <option value="AL">AL - Alabama</option>
@@ -1051,75 +1143,69 @@ a[href^="tel"] { white-space: nowrap; }
             </div>
             <div class="form-group">
               <label for="cf2-topic">¿En qué le podemos ayudar?</label>
-              <select name="topic" id="cf2-topic" style="font-size:16px;min-height:52px">
+              <select name="topic" id="cf2-topic" aria-required="true" aria-describedby="topic-error" style="font-size:16px;min-height:52px">
+                <option value="">Elija una…</option>
                 <option value="new">Me voy a inscribir por primera vez</option>
                 <option value="change">Quiero cambiar mi plan actual</option>
                 <option value="info">Solo quiero información</option>
                 <option value="other">Otro</option>
               </select>
+              <span class="t33-err" id="topic-error" role="alert"></span>
             </div>
             <button type="submit" class="btn btn-primary" style="width:100%;font-size:17px;padding:16px">
-              <i class="fas fa-paper-plane"></i> <span>Enviar Mensaje</span>
+              <i class="fas fa-paper-plane"></i> <span>Enviar</span>
             </button>
-            <p class="lead-consent" style="font-size:13px;line-height:1.45;color:var(--gray);text-align:center;margin-top:12px">Al tocar Enviar Mensaje, acepta que le contactemos por llamada, texto o WhatsApp. No es condición de compra. Pueden aplicar tarifas de mensajes; responda STOP para cancelar. <a href="/privacidad" style="color:inherit;text-decoration:underline">Privacidad</a></p>
+            <p class="lead-consent" style="font-size:13px;line-height:1.45;color:var(--gray);text-align:center;margin-top:12px">Al tocar Enviar, acepta que le contactemos por llamada, texto o WhatsApp. No es condición de compra. Pueden aplicar tarifas de mensajes; responda STOP para cancelar. <a href="/privacidad" style="color:inherit;text-decoration:underline">Privacidad</a></p>
             <div id="leadErr"></div>
-            <p style="font-size:13px;color:var(--gray);text-align:center;margin-top:12px">Respondemos en 24 - 48 horas (normalmente mucho más rápido).</p>
-            <p style="font-size:0.82rem;color:var(--gray);margin-top:6px;text-align:center">🔒 Su información es segura y nunca será vendida. <a href="/privacidad" style="color:var(--blue);text-decoration:underline">Política de Privacidad</a></p>
+            <p class="t33-secure">🔒 Nunca vendemos sus datos.</p>
           </form>
 <div id="form-success" style="display:none; text-align:center; padding:2.5rem 1.5rem; background:#f0faf4; border-radius:12px; border:2px solid #1a3a5c; margin-top:1rem;">
   <div style="font-size:3rem; margin-bottom:1rem;">✅</div>
   <h3 style="color:#1a3a5c; font-size:1.5rem; margin-bottom:0.75rem;">¡Gracias!</h3>
   <p style="color:#444; font-size:1.1rem; margin-bottom:0.5rem;">Recibimos su mensaje y nos pondremos en contacto pronto.</p>
-  <p style="color:#666; font-size:0.95rem; margin-top:0.75rem;">Recibirá una respuesta por su método de contacto preferido dentro de 24 horas.</p>
+  <p style="color:#666; font-size:0.95rem; margin-top:0.75rem;">Le respondemos en menos de 24 horas.</p>
 </div>
         </div>
 
-        <!-- Right: Contact Methods + Hours -->
-        <div class="contact-methods">
-          <a href="https://wa.me/13105979142?text=Hola%2C%20necesito%20ayuda%20con%20Medicare" target="_blank" class="contact-method">
+        <!-- Right: Contact Methods -->
+        <div class="contact-methods" role="list" aria-label="Otras formas de contactarnos">
+          <a href="sms:+13105979142?&amp;body=Hola%2C%20tengo%20una%20pregunta%20sobre%20Medicare" class="contact-method">
+            <div class="contact-method-icon" style="background:var(--t31-brand)"><i class="fas fa-comment-dots"></i></div>
+            <div>
+              <h4>Mensaje de texto</h4>
+              <p>Escríbanos un texto al (310) 597-9142.</p>
+            </div>
+          </a>
+          <a href="https://wa.me/13105979142?text=Hola%2C%20necesito%20ayuda%20con%20Medicare" target="_blank" rel="noopener" class="contact-method">
             <div class="contact-method-icon" style="background:#25D366"><i class="fab fa-whatsapp"></i></div>
             <div>
               <h4>WhatsApp</h4>
               <p>Escríbanos un mensaje ahora mismo.</p>
             </div>
           </a>
-          <a href="https://calendar.app.google/6D4obxzxERQXBpaf7" target="_blank" class="contact-method">
-            <div class="contact-method-icon" style="background:var(--green)"><i class="fas fa-calendar-check"></i></div>
+          <a href="https://calendar.app.google/6D4obxzxERQXBpaf7" target="_blank" rel="noopener" class="contact-method">
+            <div class="contact-method-icon" style="background:var(--green)"><i class="fas fa-video"></i></div>
             <div>
-              <h4>Agenda una Cita</h4>
-              <p>15 minutos, gratuita. Sin obligación.</p>
+              <h4>Agende 15 minutos por video</h4>
+              <p>Usted elige la hora.</p>
             </div>
           </a>
           <a href="mailto:alejamedicare@gmail.com" class="contact-method">
             <div class="contact-method-icon" style="background:var(--blue)"><i class="fas fa-envelope"></i></div>
             <div>
               <h4>alejamedicare@gmail.com</h4>
-              <p>Respondemos en 24 horas.</p>
+              <p>Le respondemos en menos de 24 horas.</p>
             </div>
           </a>
-
-          <!-- Availability -->
-          <div style="background:var(--lt-mint);border-radius:var(--radius);padding:24px;margin-top:8px">
-            <p style="font-size:13px;color:var(--teal);margin-top:0;margin-bottom:0"><i class="fab fa-whatsapp"></i> También disponibles por WhatsApp.</p>
-          </div>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- Seminar CTA Banner -->
-  <section class="cta-banner">
-    <div class="container" style="position:relative;z-index:2">
-      <div class="section-title" style="color:var(--navy);margin-bottom:8px">¿Listo para encontrar su plan?</div>
-      <p style="color:#5A6577;font-size:18px;margin-bottom:28px">La comparación es gratis y sin compromiso.</p>
-      <div style="display:flex;justify-content:center;margin-bottom:14px">
-        <a href="/es#widget-anchor" class="btn btn-primary" style="background:#0080D4;color:white;border:2px solid #0080D4;font-weight:800;font-size:18px;padding:20px 44px;border-radius:12px;display:inline-flex;align-items:center;gap:10px;text-decoration:none">
-          <i class="fas fa-search"></i> <span>Compare Planes Gratis</span>
-        </a>
-      </div>
-      <div style="display:flex;justify-content:center;width:100%"><span style="font-size:14px;color:#8896A6">O si prefiere: <a href="tel:+13105979142" style="color:#0080D4;text-decoration:underline;font-weight:600"><i class="fas fa-phone-alt" style="display:inline-block;transform:scaleX(-1)"></i> Llame</a> · <a href="https://calendar.app.google/6D4obxzxERQXBpaf7" target="_blank" style="color:#0080D4;text-decoration:underline;font-weight:600"><i class="fas fa-video"></i> Agende Cita Virtual</a></span></div>
-    </div>
+  <!-- T-033: one line instead of the "compare plans" banner -->
+  <section class="t33-zipline">
+    <p>¿Prefiere ver planes primero? <a href="/es#widget-anchor">Busque por código postal →</a></p>
   </section>
 
 </main>
@@ -1306,6 +1392,14 @@ async function submitForm(e) {
     }
     
 
+    // T-033: who it is for and the help topic are required; say so in words.
+    const whoBox = document.getElementById('cf2-who'), whoErr = document.getElementById('who-error');
+    if (!form.querySelector('input[name="para_quien"]:checked')) { whoBox.classList.add('error'); whoErr.textContent = 'Elija para quién es: para usted o para un familiar.'; isValid = false; }
+    else { whoBox.classList.remove('error'); whoErr.textContent = ''; }
+    const topicChk = document.getElementById('cf2-topic'), topicErr = document.getElementById('topic-error');
+    if (!topicChk.value) { topicChk.classList.add('error'); topicErr.textContent = 'Elija en qué le podemos ayudar.'; isValid = false; }
+    else { topicErr.textContent = ''; }
+
     // Validate DOB
     const dobMonthEl = document.getElementById('dob-month');
     const dobDayEl   = document.getElementById('dob-day');
@@ -1363,6 +1457,7 @@ async function submitForm(e) {
         dob: dobMonthEl && dobDayEl && dobYearEl ? `${String(dobMonthEl.value).padStart(2,'0')}/${String(dobDayEl.value).padStart(2,'0')}/${dobYearEl.value}` : '',
         prefer: preferEl ? preferEl.options[preferEl.selectedIndex].text : '',
         topic: topicEl ? topicEl.options[topicEl.selectedIndex].text : '',
+        para_quien: (form.querySelector('input[name="para_quien"]:checked') || {}).value || '',
         submittedAt: new Date().toLocaleString('en-US',{timeZone:'America/Los_Angeles',month:'2-digit',day:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'}),
         language: 'es',
         site: 'medicare-california.com'
@@ -1370,7 +1465,7 @@ async function submitForm(e) {
     
     // T-024: send, and say "thank you" only when the leads script confirms the lead arrived.
     formData.url = location.href;
-    withConsent(formData, 'es', 'Enviar Mensaje', location.href);
+    withConsent(formData, 'es', 'Enviar', location.href);
     const sendBtn = form.querySelector('button[type="submit"]');
     const sendLbl = sendBtn ? sendBtn.innerHTML : '';
     if (sendBtn) { sendBtn.disabled = true; sendBtn.textContent = 'Enviando...'; }
@@ -1393,6 +1488,10 @@ document.getElementById('contact-form').querySelectorAll('input, select').forEac
         if (next && next.classList.contains('field-error')) next.remove();
     });
 });
+
+// T-033: the grey line under the birth date hides when the form is for the visitor; errors clear on change.
+document.querySelectorAll('input[name="para_quien"]').forEach(function(r){r.addEventListener('change',function(){document.getElementById('dob-hint').hidden=(this.value==='yo');document.getElementById('cf2-who').classList.remove('error');document.getElementById('who-error').textContent='';});});
+document.getElementById('cf2-topic').addEventListener('change',function(){if(this.value){this.classList.remove('error');document.getElementById('topic-error').textContent='';}});
 
 // ZIP → state auto-select
 (function() {
@@ -1417,5 +1516,8 @@ document.getElementById('contact-form').querySelectorAll('input, select').forEac
   }
 })();
 </script>
+<!-- T-031 contact bar (phones only) -->
+<nav class="t31-bar" aria-label="Contacto"><a class="t31-fill" href="sms:+13105979142?&amp;body=Hola%2C%20tengo%20una%20pregunta%20sobre%20Medicare"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg><span>Texto</span></a><a class="t31-line" href="tel:+13105979142"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Llamar</span></a></nav>
+<script>/* T-031: the bottom contact bar steps aside while the on-screen keyboard is open, so it never sits over a field being typed in, on this page or inside the plan finder. Pinch-zoom is not mistaken for a keyboard. */(function(){var v=window.visualViewport;if(!v)return;function typing(){var a=document.activeElement;return !!a&&(/^(INPUT|TEXTAREA|SELECT|IFRAME)$/.test(a.tagName)||a.isContentEditable);}function f(){document.body.classList.toggle('t31-kb',typing()&&v.scale<1.05&&v.height<window.innerHeight*0.75);if(window.t31Sync)window.t31Sync();}/* a keyboard can only be open while someone is in a field: check on every resize and whenever focus moves, so a resize during page load can never leave the bar hidden */v.addEventListener('resize',f);['focusin','focusout'].forEach(function(t){document.addEventListener(t,function(){setTimeout(f,350);});});['focus','blur'].forEach(function(t){window.addEventListener(t,function(){setTimeout(f,350);});});f();})();</script>
 </body>
 </html>

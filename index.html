@@ -1945,6 +1945,9 @@ html body details.t31-cities[open]>summary{margin-bottom:16px}
     text-align:left!important;padding:12px 0!important;margin:0!important;max-width:none!important;border:0!important;background:none!important;box-shadow:none!important}
   html body .t31-how .steps-grid>div>div:first-child,html body .t31-how .step-icon{grid-row:1/3;width:52px!important;height:52px!important;margin:0!important}
   html body .t31-how .step-arrow{display:none!important}
+  /* thin dividers between the three steps (AB) */
+  html body .t31-how .steps-grid>div~div,html body .t31-how .step~.step{border-top:1px solid #E6DDD0!important;padding-top:16px!important}
+  html body .t31-how .steps-grid>div,html body .t31-how .step{padding-bottom:16px!important}
   html body .t31-how h3,html body .t31-how h4{font-size:18px!important;margin:2px 0 4px!important;text-align:left!important}
   html body .t31-how .steps-grid p,html body .t31-how .step p{font-size:16px!important;line-height:1.5!important;margin:0!important;text-align:left!important}
 
@@ -2094,7 +2097,7 @@ html body .t31-team .team-photo-banner img{object-position:50% 72%!important}
 <!-- ═══ HOW IT WORKS ═══ -->
 <section class="how-it-works t31-sec t31-how" id="how-it-works">
   <div class="how-it-works-inner">
-    <div class="section-label"><span data-i18n="how-label">How It Works</span></div>
+    <div class="section-label"><span data-i18n="how-label">How We Help</span></div>
     <h2><span data-i18n="how-h2">Simple as 1, 2, 3</span></h2>
     <p class="how-sub" data-i18n="how-sub">No paperwork, confusion or pressure.</p>
     <div class="steps">
@@ -2389,7 +2392,7 @@ html body .t31-team .team-photo-banner img{object-position:50% 72%!important}
     </a>
     <a href="#how-it-works">
       <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
-      <span data-i18n="nav-how">How It Works</span>
+      <span data-i18n="nav-how">How We Help</span>
     </a>
     <a href="#plans-overview">
       <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
@@ -2660,7 +2663,7 @@ const I18N = {
   'team-a-role': { en:'CPTO & Licensed Agent', es:'CPTO y Agente Licenciada' },
   'team-a-bio': { en:'Alejandra\u2019s mission: make Medicare accessible for every family, especially Spanish-speaking communities and adult children navigating the system for their parents.', es:'La misi\u00f3n de Alejandra: hacer que Medicare sea accesible para cada familia, especialmente las comunidades hispanas y los hijos adultos que ayudan a sus padres.' },
   // How it works
-  'how-label': { en:'How It Works', es:'C\u00f3mo Funciona' },
+  'how-label': { en:'How We Help', es:'C\u00f3mo Le Ayudamos' },
   'how-h2': { en:'Simple as 1, 2, 3', es:'Sencillo como 1, 2, 3' },
   'how-sub': { en:'No paperwork, confusion or pressure.', es:'Sin formularios, confusión ni presión.' },
   'how-1-h': { en:'Personal Guidance', es:'Asesor\u00eda Personal' },
@@ -2717,7 +2720,7 @@ const I18N = {
   'cta-zip-btn': { en:'Get Started', es:'Comenzar' },
   // Section nav
   'nav-top': { en:'Top', es:'Inicio' },
-  'nav-how': { en:'How It Works', es:'C\u00f3mo Funciona' },
+  'nav-how': { en:'How We Help', es:'C\u00f3mo Le Ayudamos' },
   'nav-plans': { en:'Plans', es:'Planes' },
   'nav-why': { en:'Why Us', es:'Nosotras' },
   'nav-team': { en:'Team', es:'Equipo' },

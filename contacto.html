@@ -817,6 +817,11 @@ html body .t31-bar{display:none}
   html body .sm-foot-in{padding-bottom:0!important}
 }
 </style>
+<style id="logo-align">/* logo: same colour, size and position as the standard sm-header pages (Medicare 101) */
+html body .t31-head,html body .t33-head{max-width:960px!important;min-height:0!important;height:64px!important;padding:0 24px!important;align-items:center!important;box-sizing:border-box!important}
+@media (min-width:1024px){html body .t31-head .logo svg,html body .t33-head .sm-logo svg{width:278px!important}}
+@media (max-width:768px){html body .t31-head,html body .t33-head{padding:0 8px 0 16px!important;height:64px!important;gap:4px!important}html body .t31-head .logo svg,html body .t33-head .sm-logo svg{width:245px!important}}
+</style>
 <style id="t035">html{--t35-pill-label:#9CCBF0;--t35-soft:#EEF6FC;--t35-soft-ink:#0B4F80}
 /* T-035 (AB 2026-10-04), contact round 2: phone pill in the navy block, one-box birth date like the plan finder,
    family consent note, thank-you card. Same block on all 4 contact pages; only the colour line differs. */
@@ -891,14 +896,14 @@ html body .t35-next{display:block;text-align:center;margin:14px 0 0;padding:8px 
 
 <main id="main-content">
 <!-- AEP 2027 Countdown Banner -->
-<style>.aep-more{display:none;color:#FFD54F;font-weight:700;text-decoration:underline;margin-left:6px}@media(max-width:480px){#aep-banner{padding:12px 8px!important}#aep-banner>div{gap:8px 12px!important}#aep-banner>div>div{font-size:clamp(11px,3.5vw,14px)!important;letter-spacing:0!important;line-height:1.35;white-space:nowrap}#aep-banner>div>div>span:first-child{padding:3px 8px!important;margin-right:5px!important;font-size:clamp(10px,3vw,12px)!important}#aep-banner>div>a{display:none!important}#aep-countdown{display:none!important}#aep-banner .aep-more{display:inline-block!important;padding:6px 4px;margin:-6px 0 -6px 2px}}</style>
+<style>#aep-banner>div>a{display:none!important}.aep-more{display:inline-block;color:#FFD54F;font-weight:700;text-decoration:underline;text-underline-offset:3px;margin-left:10px}@media(max-width:480px){#aep-banner{padding:12px 8px!important}#aep-banner>div{gap:8px 12px!important}#aep-banner>div>div{font-size:clamp(11px,3.5vw,14px)!important;letter-spacing:0!important;line-height:1.35;white-space:nowrap}#aep-banner>div>div>span:first-child{padding:3px 8px!important;margin-right:5px!important;font-size:clamp(10px,3vw,12px)!important}#aep-countdown{display:none!important}#aep-banner .aep-more{padding:6px 4px;margin:-6px 0 -6px 2px}}</style>
 <div id="aep-banner" style="background:linear-gradient(135deg,#002147 0%,#0080D4 100%);color:#fff;text-align:center;padding:18px 24px;line-height:1.8;position:relative;z-index:50">
   <div style="max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px 24px">
     <div style="font-size:15px;font-weight:600;letter-spacing:0.5px">
       <span style="background:rgba(255,255,255,0.18);padding:4px 12px;border-radius:20px;font-size:13px;margin-right:8px">AEP 2027</span>
       <strong>Oct. 15 a Dic. 7</strong>
       <span id="aep-countdown" style="margin-left:6px;color:#FFD54F;font-weight:700"></span>
-      <a class="aep-more" href="https://beneficiosmedicare.com/blog/inscripcion-anual-aep-2027-california">Cambios &rarr;</a>
+      <a class="aep-more" href="https://beneficiosmedicare.com/blog/inscripcion-anual-aep-2027-california">Ver cambios &rarr;</a>
     </div>
     <a href="https://beneficiosmedicare.com/blog/inscripcion-anual-aep-2027-california" style="background:#FFD54F;color:#0B2D4F;padding:8px 20px;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none;white-space:nowrap">Ver cambios &rarr;</a>
   </div>

@@ -2974,8 +2974,8 @@ presses the widget's own next button, and a screen with no next button (tap an a
     if(!OK.test(e.origin)||!e.data||e.data.type!=='widget-step') return;
     var d=e.data, q=!d.results&&d.depth>=2;
     b.classList.toggle('t31-thin',q);
-    b.classList.toggle('t31-q',q&&!!d.hasNext);
-    b.classList.toggle('t31-qn',q&&!d.hasNext);
+    b.classList.toggle('t31-q',q&&!!d.hasNext&&!d.lead);
+    b.classList.toggle('t31-qn',(q&&!d.hasNext)||!!d.lead);   /* a lead form: no bar at all, so nothing sits over Enviar */
     if(d.label) label.textContent=d.label;
     next.disabled=!!d.disabled;
   });

@@ -1511,6 +1511,8 @@ html body details.t31-cities[open]>summary{margin-bottom:16px}
   html body .t31-faq .faq-item,html body .t31-faq .accordion-item{margin-bottom:8px!important}
   html body .t31-faq .faq-question,html body .t31-faq .accordion-header{padding:16px 18px!important;font-size:17px!important;min-height:56px}
 }
+html body .t31-team .team-photo-banner img{object-position:50% 72%!important}
+@media (max-width:768px){html body .t31-team .team-photo-banner img{height:250px!important}}
 </style>
 </head>
 <body>
@@ -1760,16 +1762,30 @@ html body details.t31-cities[open]>summary{margin-bottom:16px}
 <section class="team-section t31-sec t31-team" id="team">
   <div class="section-label"><span data-i18n="team-label">Con Quién Hablará</span></div>
   <h2><span data-i18n="team-h2">Conozca al Equipo que Ayuda a Su Familia</span></h2>
-  <p data-i18n="team-desc">Somos una familia de agentes licenciadas. Le ayudamos a usted, y a los hijos que ayudan a sus padres, en español o inglés.</p>
+  <p data-i18n="team-desc">Somos una familia de agentes licenciadas. Le ayudamos a usted, y a los hijos que ayudan a sus padres, a encontrar su plan.</p>
 
   <div class="team-photo-banner fade-in-up">
     <picture>
       <source srcset="images/family-yosemite.webp" type="image/webp">
-      <img src="images/family-yosemite.jpg" alt="Alejandra and Susana at Yosemite" loading="lazy" width="600" height="600">
+      <img src="images/family-yosemite.jpg" alt="Ale Brizuela y Susana Marcos en Yosemite" loading="lazy" width="600" height="600">
     </picture>
   </div>
 
   <div class="team-cards">
+    <div class="team-card fade-in-up">
+      <picture>
+        <source srcset="images/alejandra-headshot.webp" type="image/webp">
+        <img class="team-card-photo" src="images/alejandra-headshot.jpg" alt="Ale Brizuela" loading="lazy" width="200" height="200">
+      </picture>
+      <h3>Ale Brizuela</h3>
+      <div class="team-role" data-i18n="team-a-role">CPTO y Agente Licenciada</div>
+      <p class="team-bio" data-i18n="team-a-bio">La misión de Alejandra: hacer que Medicare sea accesible para cada familia, especialmente las comunidades hispanas y los hijos adultos que ayudan a sus padres.</p>
+      <div class="team-creds">
+        <span class="team-cred" data-i18n="team-a-c1">Licenciada en CA</span>
+        <span class="team-cred" data-i18n="team-a-c2">Certificada AHIP</span>
+        <span class="team-cred" data-i18n="team-a-c3">Bilingüe</span>
+      </div>
+    </div>
     <div class="team-card fade-in-up">
       <picture>
         <source srcset="images/susana-headshot.webp" type="image/webp">
@@ -1782,20 +1798,6 @@ html body details.t31-cities[open]>summary{margin-bottom:16px}
         <span class="team-cred" data-i18n="team-s-c1">Licenciada en 8 Estados</span>
         <span class="team-cred" data-i18n="team-s-c2">Certificada AHIP</span>
         <span class="team-cred" data-i18n="team-s-c3">Bilingüe</span>
-      </div>
-    </div>
-    <div class="team-card fade-in-up">
-      <picture>
-        <source srcset="images/alejandra-headshot.webp" type="image/webp">
-        <img class="team-card-photo" src="images/alejandra-headshot.jpg" alt="Alejandra Brizuela Marcos" loading="lazy" width="200" height="200">
-      </picture>
-      <h3>Alejandra Brizuela Marcos</h3>
-      <div class="team-role" data-i18n="team-a-role">CPTO y Agente Licenciada</div>
-      <p class="team-bio" data-i18n="team-a-bio">La misión de Alejandra: hacer que Medicare sea accesible para cada familia, especialmente las comunidades hispanas y los hijos adultos que ayudan a sus padres.</p>
-      <div class="team-creds">
-        <span class="team-cred" data-i18n="team-a-c1">Licenciada en CA</span>
-        <span class="team-cred" data-i18n="team-a-c2">Certificada AHIP</span>
-        <span class="team-cred" data-i18n="team-a-c3">Bilingüe</span>
       </div>
     </div>
   </div>
@@ -2237,7 +2239,7 @@ const I18N = {
   // Team
   'team-label': { en:'Who You\u2019ll Talk To', es:'Con Qui\u00e9n Hablar\u00e1' },
   'team-h2': { en:'Meet the Team Helping Your Family', es:'Conozca al Equipo que Ayuda a Su Familia' },
-  'team-desc': { en:'We are a family of licensed agents. We help you, and adult children helping their parents, in English or Spanish.', es:'Somos una familia de agentes licenciadas. Le ayudamos a usted, y a los hijos que ayudan a sus padres, en español o inglés.' },
+  'team-desc': { en:'We are a family of licensed agents. We help you, and adult children helping their parents, find the right plan.', es:'Somos una familia de agentes licenciadas. Le ayudamos a usted, y a los hijos que ayudan a sus padres, a encontrar su plan.' },
   'team-s-role': { en:'Founder & Licensed Agent', es:'Fundadora y Agente Licenciada' },
   'team-s-bio': { en:'Former attorney from Argentina and mother of six. Susana brings decades of experience and treats every client like family. She stays obsessively up to date on every plan detail.', es:'Abogada argentina y madre de seis hijos. Susana aporta d\u00e9cadas de experiencia y trata a cada cliente como familia. Se mantiene obsesivamente actualizada en cada detalle.' },
   'team-a-role': { en:'CPTO & Licensed Agent', es:'CPTO y Agente Licenciada' },

@@ -1909,6 +1909,91 @@ html body .t31-bar{display:none}
   html body.t31-kb .t31-bar{display:none}
   html body .section-nav,html body .wa-float{display:none!important}
 }
+
+/* T-031 (b), AB 2026-10-03: a shorter home on phones, a "Continuar" button in the bottom bar while the
+   plan finder asks its questions, and a thin navy block from question 2 on. Content is kept in the page
+   (Google still reads it); on phones it is laid out as compact rows instead of tall stacked cards. */
+html body .t31-bar .t31-next{display:none}
+html body .t31-rating{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 10px;margin:0 auto;max-width:640px;
+  font-size:18px;line-height:1.5;color:var(--t31-ink);text-align:center}
+html body .t31-rating .t31-stars{color:#F5A623;letter-spacing:2px;font-size:20px}
+html body .t31-rating a{color:var(--t31-brand);font-weight:700;text-decoration:underline;text-underline-offset:3px;padding:8px 4px}
+html body details.t31-cities>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;min-height:52px;
+  margin:16px auto 0;padding:12px 18px;max-width:420px;border:2px solid #D4DEE8;border-radius:12px;background:#fff;color:var(--t31-ink);font-weight:700;font-size:17px}
+html body details.t31-cities>summary::-webkit-details-marker{display:none}
+html body details.t31-cities>summary::after{content:"";width:9px;height:9px;border-right:2.5px solid currentColor;border-bottom:2.5px solid currentColor;transform:rotate(45deg);margin-top:-4px}
+html body details.t31-cities[open]>summary::after{transform:rotate(-135deg);margin-top:4px}
+html body details.t31-cities>summary h3{margin:0!important;font-size:inherit!important;color:inherit!important;font-weight:inherit!important}
+html body details.t31-cities[open]>summary{margin-bottom:16px}
+
+@media (max-width:768px){
+  /* top of page */
+  html body .t31-checks{display:none!important}
+  html body .t31-band{padding:20px 18px 32px!important}
+  html body.t31-thin .t31-band{padding:14px 18px 36px!important}
+  html body.t31-thin .t31-band h1{font-size:22px!important;margin:0!important}
+  html body.t31-thin .t31-band p{display:none!important}
+
+  /* bottom bar while the plan finder asks questions */
+  html body.t31-q .t31-bar>a{display:none!important}
+  html body.t31-q .t31-bar .t31-next{display:flex}
+  html body.t31-qn .t31-bar{display:none!important}
+  html body .t31-bar .t31-next{flex:1 1 auto;height:58px;margin:0;padding:0 16px;display:none;align-items:center;justify-content:center;gap:10px;box-sizing:border-box;
+    border:2px solid var(--t31-brand);border-radius:12px;background:var(--t31-brand);color:#fff;cursor:pointer;
+    font:700 18px/1 'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif;-webkit-tap-highlight-color:transparent}
+  html body.t31-q .t31-bar .t31-next{display:flex}
+  html body .t31-bar .t31-next[disabled]{opacity:.45;cursor:default}
+  html body .t31-bar .t31-next:focus-visible{outline:3px solid #FFB300;outline-offset:2px}
+  html body .mobile-sticky-cta{display:none!important}
+
+  /* every compressed section */
+  html body .t31-sec{padding-top:36px!important;padding-bottom:36px!important;padding-left:18px!important;padding-right:18px!important}
+  html body .t31-sec h2,html body .t31-sec .section-title{font-size:24px!important;line-height:1.25!important;margin-bottom:8px!important}
+  html body .t31-sec .section-label{margin-bottom:6px!important}
+  html body .t31-sec .t31-hd{margin-bottom:16px!important}
+
+  /* Así funciona / How it works: three compact rows */
+  html body .t31-how>div{padding:0!important}
+  html body .t31-how .steps-grid,html body .t31-how .steps{display:block!important;margin:0!important}
+  html body .t31-how .steps-grid>div,html body .t31-how .step{display:grid!important;grid-template-columns:52px 1fr;column-gap:14px;align-items:start;
+    text-align:left!important;padding:12px 0!important;margin:0!important;max-width:none!important;border:0!important;background:none!important;box-shadow:none!important}
+  html body .t31-how .steps-grid>div>div:first-child,html body .t31-how .step-icon{grid-row:1/3;width:52px!important;height:52px!important;margin:0!important}
+  html body .t31-how .steps-grid>div>div:first-child>div:last-child,html body .t31-how .step-badge{width:22px!important;height:22px!important;top:-4px!important;right:-4px!important;font-size:12px!important}
+  html body .t31-how .step-arrow{display:none!important}
+  html body .t31-how h3,html body .t31-how h4{font-size:18px!important;margin:2px 0 4px!important;text-align:left!important}
+  html body .t31-how .steps-grid p,html body .t31-how .step p{font-size:16px!important;line-height:1.5!important;margin:0!important;text-align:left!important}
+
+  /* Tipos de planes / plan types, and MC's "why us": icon + text rows */
+  html body .t31-plans>p:first-of-type{display:none!important}
+  html body .t31-plans .plans-grid,html body .t31-why .cards-grid{display:grid!important;grid-template-columns:1fr!important;gap:10px!important;max-width:none!important;margin:12px 0 0!important}
+  html body .t31-plans .plans-grid>*,html body .t31-why .cards-grid>*{display:grid!important;grid-template-columns:40px 1fr;column-gap:12px;align-items:start;
+    text-align:left!important;padding:14px 16px!important;height:auto!important;margin:0!important}
+  html body .t31-plans .plans-grid>*>:first-child,html body .t31-why .cards-grid>*>:first-child{grid-row:1/4;font-size:28px!important;line-height:1!important;
+    width:40px!important;height:40px!important;margin:0!important;display:flex;align-items:center;justify-content:center}
+  html body .t31-plans h3,html body .t31-why h3{font-size:18px!important;margin:0 0 2px!important;text-align:left!important}
+  html body .t31-plans .plans-grid p,html body .t31-why .cards-grid p{font-size:16px!important;line-height:1.5!important;margin:0!important;text-align:left!important}
+
+  /* Quiénes somos / team: one photo, names and roles; bios stay on the team page */
+  html body .t31-team>p:first-of-type{margin-bottom:12px!important}
+  html body .t31-team .team-photo-banner{margin:0 auto 12px!important;max-width:none!important}
+  html body .t31-team .team-photo-banner img{width:100%!important;height:200px!important;object-fit:cover;border-radius:12px}
+  html body .t31-team .team-card-photo,html body .t31-team .team-bio,html body .t31-team .credentials,html body .t31-team .team-creds{display:none!important}
+  html body .t31-team .team-grid,html body .t31-team .team-cards{display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important;margin:0!important}
+  html body .t31-team .team-card{padding:14px 12px!important;margin:0!important;text-align:center}
+  html body .t31-team .team-card h3{font-size:17px!important;margin:0 0 4px!important}
+  html body .t31-team .team-card .role,html body .t31-team .team-card .team-role{font-size:14px!important;margin:0!important}
+  html body .t31-team>p:last-of-type{margin-top:8px!important}
+
+  /* states and cities: chips; the city list sits behind a toggle (links stay in the page) */
+  html body .t31-chips{display:flex!important;flex-wrap:wrap;justify-content:center;gap:8px!important;margin:0 auto 12px!important}
+  html body .t31-chips>*{padding:8px 12px!important;font-size:15px!important;gap:6px!important}
+  html body .t31-chips svg{display:none}
+  html body .t31-states .t31-hd p,html body .t31-citysec>div>p[data-i18n="cities-sub"]{display:none}
+
+  /* FAQ: same questions, tighter */
+  html body .t31-faq .faq-item,html body .t31-faq .accordion-item{margin-bottom:8px!important}
+  html body .t31-faq .faq-question,html body .t31-faq .accordion-header{padding:16px 18px!important;font-size:17px!important;min-height:56px}
+}
 </style>
 </head>
 <body>
@@ -2017,7 +2102,7 @@ html body .t31-bar{display:none}
 </div>
 
 <!-- ═══ HOW IT WORKS ═══ -->
-<section class="how-it-works" id="how-it-works">
+<section class="how-it-works t31-sec t31-how" id="how-it-works">
   <div class="how-it-works-inner">
     <div class="section-label"><span data-i18n="how-label">How It Works</span></div>
     <h2><span data-i18n="how-h2">Simple as 1, 2, 3</span></h2>
@@ -2076,7 +2161,7 @@ html body .t31-bar{display:none}
 </section>
 
 <!-- ═══ MEDICARE PLANS OVERVIEW ═══ -->
-<section class="plans-overview" id="plans-overview">
+<section class="plans-overview t31-sec t31-plans" id="plans-overview">
   <div class="section-label"><span data-i18n="plans-label">Medicare Plan Types</span></div>
   <h2><span data-i18n="plans-h2">Understanding Your Medicare Options</span></h2>
   <p data-i18n="plans-desc">California offers several types of Medicare plans. Each has different coverage, costs, and benefits. We help you understand what's available to you and which plan fits your health needs and budget.</p>
@@ -2109,14 +2194,14 @@ html body .t31-bar{display:none}
 </section>
 
 <!-- ═══ WHY US ═══ -->
-<section class="why-us" id="why-us">
+<section class="why-us t31-sec t31-why" id="why-us">
   <div class="section-label"><span data-i18n="why-label">Why Choose Us</span></div>
   <h2><span data-i18n="why-h2">We're here to help you navigate Medicare</span></h2>
   <div class="cards-grid">
     <article class="card fade-in-up">
       <div class="card-icon family">👩‍👧</div>
       <h3 data-i18n="why-fam-h">Family Team</h3>
-      <p data-i18n="why-fam-p">We are a mother-daughter duo. We treat every client like our own family. Your success is our success.</p>
+      <p data-i18n="why-fam-p">We are a family of licensed agents, and we treat every client like our own family.</p>
     </article>
     <article class="card fade-in-up">
       <div class="card-icon local">🏡</div>
@@ -2132,48 +2217,12 @@ html body .t31-bar{display:none}
 </section>
 
 <!-- ═══ TESTIMONIALS ═══ -->
-<section class="testimonials" id="testimonials">
+<section class="testimonials t31-sec t31-reviews" id="testimonials">
   <div class="testimonials-inner">
     <div class="section-label"><span data-i18n="test-label">Client Stories</span></div>
     <h2><span data-i18n="test-h2">What California Families Are Saying</span></h2>
-    <div class="testimonials-grid">
-      <article class="testimonial-card fade-in-up">
-        <div class="testimonial-stars">
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        </div>
-        <p class="testimonial-text" data-i18n="test-1-text">"I was completely overwhelmed by all the Medicare options out there. These ladies made the whole process so simple and easy to understand. They answered every question I had without making me feel rushed."</p>
-        <div class="testimonial-author">Maria T.</div>
-        <div class="testimonial-location" data-i18n="test-1-loc">Los Angeles</div>
-      </article>
-      <article class="testimonial-card fade-in-up">
-        <div class="testimonial-stars">
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        </div>
-        <p class="testimonial-text" data-i18n="test-2-text">"Best decision I made was calling them. They found me a plan that saves me over $200 a month compared to what I was paying before. They really know their stuff and genuinely care about helping."</p>
-        <div class="testimonial-author">Robert K.</div>
-        <div class="testimonial-location" data-i18n="test-2-loc">San Diego</div>
-      </article>
-      <article class="testimonial-card fade-in-up">
-        <div class="testimonial-stars">
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        </div>
-        <p class="testimonial-text" data-i18n="test-3-text">"I felt totally lost trying to figure out my options after turning 65. They walked me through everything step by step. Now I have coverage that actually fits my needs and my budget. Highly recommend!"</p>
-        <div class="testimonial-author">Linda S.</div>
-        <div class="testimonial-location" data-i18n="test-3-loc">Sacramento</div>
-      </article>
-    </div>
+    <!-- T-031: the real Google rating instead of unverified quotes (D-068). Update the count every Monday from the Business Profile. -->
+    <p class="t31-rating"><span class="t31-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <strong data-i18n="test-rating">5.0 on Google · 9 reviews</strong> <a href="https://maps.app.goo.gl/wfbQjcZ2C4wkN5E99" target="_blank" rel="noopener" data-i18n="test-rating-cta">Read the reviews &rarr;</a></p>
   </div>
 </section>
 
@@ -2191,10 +2240,10 @@ html body .t31-bar{display:none}
 </section>
 
 <!-- ═══ MEET THE TEAM ═══ -->
-<section class="team-section" id="team">
+<section class="team-section t31-sec t31-team" id="team">
   <div class="section-label"><span data-i18n="team-label">Who You'll Talk To</span></div>
   <h2><span data-i18n="team-h2">Meet the Team Helping Your Family</span></h2>
-  <p data-i18n="team-desc">We're a licensed mother-daughter team. We help adult children find the right Medicare plan for their parents, in English or Spanish.</p>
+  <p data-i18n="team-desc">We are a family of licensed agents. We help you, and adult children helping their parents, in English or Spanish.</p>
 
   <div class="team-photo-banner fade-in-up">
     <picture>
@@ -2237,11 +2286,13 @@ html body .t31-bar{display:none}
 </section>
 
 <!-- ═══ CITY PAGES ═══ -->
-<section style="padding:56px 24px;background:var(--cream)">
+<section class="t31-sec t31-citysec" style="padding:56px 24px;background:var(--cream)">
   <div style="max-width:960px;margin:0 auto;text-align:center">
     <div class="section-label"><span data-i18n="cities-label">Local Guidance</span></div>
     <h2 style="font-size:clamp(24px,3.5vw,32px);font-weight:700;color:var(--charcoal);margin-bottom:8px"><span data-i18n="cities-h2">Medicare Help in Your City</span></h2>
     <p style="color:var(--text);margin-bottom:32px;max-width:560px;margin-left:auto;margin-right:auto" data-i18n="cities-sub">Find personalized Medicare guidance for your area. We serve all of California.</p>
+    <details class="t31-cities">
+      <summary data-i18n="cities-toggle">See California cities</summary>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;max-width:800px;margin:0 auto 24px">
       <a href="/california/cities/los-angeles" style="background:white;border-radius:10px;padding:16px 12px;text-decoration:none;color:var(--charcoal);font-weight:600;font-size:14px;box-shadow:0 2px 8px rgba(0,0,0,0.06);transition:all 0.2s">Los Angeles</a>
       <a href="/california/cities/san-diego" style="background:white;border-radius:10px;padding:16px 12px;text-decoration:none;color:var(--charcoal);font-weight:600;font-size:14px;box-shadow:0 2px 8px rgba(0,0,0,0.06);transition:all 0.2s">San Diego</a>
@@ -2269,11 +2320,12 @@ html body .t31-bar{display:none}
       <a href="/california/cities/del-rey" style="background:white;border-radius:8px;padding:10px 12px;text-decoration:none;color:var(--charcoal);font-weight:500;font-size:13px;box-shadow:0 1px 4px rgba(0,0,0,0.06);transition:all 0.2s">Del Rey</a>
     </div>
     <a href="/california/cities/" style="color:var(--terra);font-weight:600;font-size:14px;text-decoration:none" data-i18n="cities-all">View all cities &rarr;</a>
+    </details>
   </div>
 </section>
 
 <!-- ═══ FAQ ACCORDION ═══ -->
-<section class="faq-section" id="faq">
+<section class="faq-section t31-sec t31-faq" id="faq">
   <div class="section-label"><span data-i18n="faq-label">Frequently Asked</span></div>
   <h2><span data-i18n="faq-h2">Medicare Questions Answered</span></h2>
   <div class="accordion" role="region" aria-label="Frequently asked questions">
@@ -2537,7 +2589,6 @@ function handleZipSubmit() {
     bannerH1.innerHTML = currentLang === 'en' ? "Let\u2019s Find <em>Your Plan</em>" : "Encontremos <em>Su Plan</em>";
   }
   var bannerP = document.querySelector('.hero-banner p');
-  if (bannerP) bannerP.style.display = 'none';
 
   // Show widget container
   widgetC.classList.add('active');
@@ -2677,7 +2728,7 @@ const I18N = {
   'why-label': { en:'Why Choose Us', es:'Por Qu\u00e9 Elegirnos' },
   'why-h2': { en:'We\u2019re here to help you navigate Medicare', es:'Estamos aqu\u00ed para ayudarle con Medicare' },
   'why-fam-h': { en:'Family Team', es:'Equipo Familiar' },
-  'why-fam-p': { en:'We are a mother-daughter duo. We treat every client like our own family. Your success is our success.', es:'Somos un d\u00fao madre-hija. Tratamos a cada cliente como familia. Su \u00e9xito es nuestro \u00e9xito.' },
+  'why-fam-p': { en:'We are a family of licensed agents, and we treat every client like our own family.', es:'Somos una familia de agentes licenciadas y tratamos a cada cliente como familia.' },
   'why-loc-h': { en:'California Local', es:'Locales en California' },
   'why-loc-p': { en:'Based right here in California. We know your area, your plans, and the specific coverage options available to you.', es:'Basadas aqu\u00ed en California. Conocemos su \u00e1rea, sus planes y las opciones de cobertura disponibles.' },
   'why-free-h': { en:'Always Free', es:'Siempre Gratis' },
@@ -2687,7 +2738,7 @@ const I18N = {
   // Team
   'team-label': { en:'Who You\u2019ll Talk To', es:'Con Qui\u00e9n Hablar\u00e1' },
   'team-h2': { en:'Meet the Team Helping Your Family', es:'Conozca al Equipo que Ayuda a Su Familia' },
-  'team-desc': { en:'We\u2019re a licensed mother-daughter team. We help adult children find the right Medicare plan for their parents, in English or Spanish.', es:'Somos un equipo madre-hija licenciadas. Ayudamos a hijos adultos a encontrar el plan Medicare correcto para sus padres, en ingl\u00e9s o espa\u00f1ol.' },
+  'team-desc': { en:'We are a family of licensed agents. We help you, and adult children helping their parents, in English or Spanish.', es:'Somos una familia de agentes licenciadas. Le ayudamos a usted, y a los hijos que ayudan a sus padres, en español o inglés.' },
   'team-s-role': { en:'Founder & Licensed Agent', es:'Fundadora y Agente Licenciada' },
   'team-s-bio': { en:'Former attorney from Argentina and mother of six. Susana brings decades of experience and treats every client like family. She stays obsessively up to date on every plan detail.', es:'Abogada argentina y madre de seis hijos. Susana aporta d\u00e9cadas de experiencia y trata a cada cliente como familia. Se mantiene obsesivamente actualizada en cada detalle.' },
   'team-a-role': { en:'CPTO & Licensed Agent', es:'CPTO y Agente Licenciada' },
@@ -2761,6 +2812,9 @@ const I18N = {
   'cities-sub': { en:'Find personalized Medicare guidance for your area. We serve all of California.', es:'Encuentre asesoría personalizada de Medicare para su área. Servimos todo California.' },
   'neighborhoods-label': { en:'LA County Neighborhoods', es:'Vecindarios del Condado de LA' },
   'cities-all': { en:'View all cities &rarr;', es:'Ver todas las ciudades &rarr;' },
+  'cities-toggle': { en:'See California cities', es:'Ver ciudades de California' },
+  'test-rating': { en:'5.0 on Google · 9 reviews', es:'5.0 en Google · 9 reseñas' },
+  'test-rating-cta': { en:'Read the reviews &rarr;', es:'Leer las reseñas &rarr;' },
   'footer-about-h': { en:'About Medicare California', es:'Sobre Medicare California' },
   'footer-about-p': { en:'We\u2019re a California-based family team with over 15 years of experience helping seniors navigate Medicare with honesty and care. We\u2019ve guided over 2,000 families to plans that fit their needs and budget. Our licensed advisors take pride in making complex Medicare information simple and accessible.', es:'Somos un equipo familiar basado en California con m\u00e1s de 15 a\u00f1os de experiencia ayudando a personas mayores a navegar Medicare con honestidad y cuidado. Hemos guiado a m\u00e1s de 2,000 familias a planes que se adaptan a sus necesidades y presupuesto. Nuestras asesoras licenciadas se enorgullecen de hacer la informaci\u00f3n compleja de Medicare simple y accesible.' },
   'footer-links-h': { en:'Quick Links', es:'Enlaces R\u00e1pidos' },
@@ -2907,7 +2961,31 @@ function toggleMobile() {
 }
 </script>
 <!-- T-031 contact bar (phones only) -->
-<nav class="t31-bar" aria-label="Contact"><a class="t31-fill" href="sms:+13105979142?&amp;body=Hi%2C%20I%20have%20a%20Medicare%20question"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg><span>Text us</span></a><a class="t31-line" href="tel:+13105979142"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Call</span></a></nav>
+<nav class="t31-bar" aria-label="Contact"><a class="t31-fill" href="sms:+13105979142?&amp;body=Hi%2C%20I%20have%20a%20Medicare%20question"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg><span>Text us</span></a><a class="t31-line" href="tel:+13105979142"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Call</span></a><button type="button" class="t31-next"><span>Continue</span> &rarr;</button></nav>
 <script>/* T-031: the bottom contact bar steps aside while the on-screen keyboard is open, so it never sits over a field being typed in, on this page or inside the plan finder. Pinch-zoom is not mistaken for a keyboard. */(function(){var v=window.visualViewport;if(!v)return;function f(){document.body.classList.toggle('t31-kb',v.scale<1.05&&v.height<window.innerHeight*0.75)}v.addEventListener('resize',f);})();</script>
+<script>/* T-031 (b): what the bottom bar and the navy block show while the plan finder is open. The widget reports
+each screen (widget-step). Question 1 and the plans keep the contact buttons; from question 2 on, one big Continuar
+presses the widget's own next button, and a screen with no next button (tap an answer) hides the bar. */
+(function(){
+  var bar=document.querySelector('.t31-bar'), next=bar&&bar.querySelector('.t31-next'), frame=document.getElementById('widget-frame');
+  if(!bar||!next||!frame) return;
+  var OK=/^https:\/\/((www\.)?beneficiosmedicare\.com|([a-z0-9-]+\.)?beneficiosmedicare\.pages\.dev)$/, b=document.body, label=next.querySelector('span');
+  window.addEventListener('message',function(e){
+    if(!OK.test(e.origin)||!e.data||e.data.type!=='widget-step') return;
+    var d=e.data, q=!d.results&&d.depth>=2;
+    b.classList.toggle('t31-thin',q);
+    b.classList.toggle('t31-q',q&&!!d.hasNext);
+    b.classList.toggle('t31-qn',q&&!d.hasNext);
+    if(d.label) label.textContent=d.label;
+    next.disabled=!!d.disabled;
+  });
+  next.addEventListener('click',function(){
+    if(next.disabled) return;
+    try{frame.contentWindow.postMessage({type:'widget-next'},new URL(frame.src,location.href).origin);}catch(err){}
+  });
+})();
+/* desktop shows the city list open; on phones it waits behind its toggle */
+if(window.matchMedia&&window.matchMedia('(min-width:769px)').matches){[].forEach.call(document.querySelectorAll('details.t31-cities'),function(d){d.open=true;});}
+</script>
 </body>
 </html>

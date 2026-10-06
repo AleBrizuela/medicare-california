@@ -7,7 +7,7 @@
    Change wording here, never on the pages. Same file on both sites except SITE below. */
 (function () {
   var SITE = {
-    bg: '#00578F',   // MC: one shade deeper than MC blue so the yellow link passes contrast (5.4:1, white 7.6:1)
+    bg: 'linear-gradient(135deg,#002147 0%,#0080D4 100%)',   // MC: the standard banner gradient (AB 2026-10-05, chosen knowing the yellow link is 3.0-3.6:1 on the light end)
     links: {
       en: { aep: '/blog/medicare-aep-2027-california-changes', aepYear: 2027, contact: '/contact',
             oep: '/blog/aep-vs-medicare-advantage-oep-california', t65: '/blog/turning-65-california-medicare-iep-guide' },

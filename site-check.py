@@ -24,6 +24,7 @@ import re
 import subprocess
 import sys
 from collections import defaultdict
+from html.parser import HTMLParser
 
 # ---------------------------------------------------------------- constants
 
@@ -435,6 +436,150 @@ def check_bodies(root, f):
                 f.error("empty-article", rel, f"{words} words, {h2} <h2> — looks like a stub")
 
 
+# ---------------------------------------------------------------- CTA labels (T-043)
+
+# The fixed placement list. PROVE owns the names and their meaning, in
+# PROVE/reference/cta-placements.md (outside this repo, since the repo root is public).
+# A new name goes there first, then here, then onto a page.
+CTA_PLACEMENTS = {"header", "home_hero", "home_alt", "sticky_bar", "contact_card",
+                  "guide_cta", "inline_body", "sidebar", "blog_cta", "city_cta",
+                  "state_cta", "final_cta", "footer", "widget", "float", "thank_you"}
+CTA_TARGETS = {"plan_finder"}
+
+_VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta",
+         "param", "source", "track", "wbr"}
+_HOME = (r"(?:/|/en|/es|https://(?:www\.)?(?:beneficiosmedicare|medicare-california)"
+         r"\.com/?(?:en|es)?)")
+_PLAN_TEXT = re.compile(r"(?i)compar\w* (?:los )?(?:planes|plans)|ver (?:los )?planes"
+                        r"|see (?:the )?plans|find (?:your|my) plan")
+
+
+def cta_kind(tag, attrs, text=""):
+    """What kind of CTA an <a> or <button> is, or "" if it is not one.
+
+    The click listener stamped into every page's footer (T-020/T-040/T-043) sorts taps
+    with the same href patterns. Change one, change the other.
+    """
+    if tag == "a":
+        h = (attrs.get("href") or "").strip()
+        if re.match(r"(?i)tel:", h):
+            return "phone"
+        if re.match(r"(?i)sms:", h):
+            return "sms"
+        if re.search(r"(?i)wa\.me|whatsapp\.com", h):
+            return "whatsapp"
+        if re.search(r"(?i)calendar\.app\.google|calendly\.com|//(?:www\.)?cal\.com", h):
+            return "book"
+        if re.match(r"(?i)mailto:", h):
+            return "email"
+        p = re.sub(r"(?i)^https?://(?:www\.)?(?:beneficiosmedicare|medicare-california)"
+                   r"\.com", "", h)
+        if re.match(r"^/?(?:contacto|contact)(?:\.html)?/?(?:[?#].*)?$", p):
+            return "contact"
+        if re.search(r"#(?:widget-anchor|zip-card)$", h):
+            return "plan_finder"
+        if re.match(_HOME + r"(?:#[\w-]+)?$", h) and _PLAN_TEXT.search(text):
+            return "plan_finder"
+    elif tag == "button":
+        oc = attrs.get("onclick") or ""
+        if re.search(r"handleZipSubmit\s*\(", oc):
+            return "home_zip"   # the home ZIP card: widget_start already counts it
+        if re.search(r"smoothScrollToWidget\s*\(|handleZip\s*\(", oc):
+            return "plan_finder"
+        if re.search(r"location\.href\s*=\s*['\"]" + _HOME + r"(?:#[\w-]+)?['\"]", oc):
+            return "plan_finder"
+    return ""
+
+
+class _CtaParser(HTMLParser):
+    def __init__(self, src):
+        super().__init__(convert_charrefs=True)
+        self.line0 = [0]
+        for m in re.finditer("\n", src):
+            self.line0.append(m.end())
+        self.stack, self.open, self.found = [], [], []
+
+    def handle_starttag(self, tag, attrs):
+        a = {k: (v or "") for k, v in attrs}
+        if tag in ("a", "button"):
+            ln, col = self.getpos()
+            self.open.append({"tag": tag, "attrs": a, "text": "", "line": ln,
+                              "offset": self.line0[ln - 1] + col,
+                              "anc": list(self.stack)})
+        if tag not in _VOID:
+            self.stack.append((tag, a.get("id", ""), a.get("class", "").split(),
+                               a.get("data-cta")))
+
+    def handle_endtag(self, tag):
+        if tag in ("a", "button"):
+            for i in range(len(self.open) - 1, -1, -1):
+                if self.open[i]["tag"] == tag:
+                    el = self.open.pop(i)
+                    el["text"] = " ".join(el["text"].split())
+                    el["kind"] = cta_kind(tag, el["attrs"], el["text"])
+                    if el["kind"]:
+                        self.found.append(el)
+                    break
+        for i in range(len(self.stack) - 1, -1, -1):
+            if self.stack[i][0] == tag:
+                del self.stack[i:]
+                break
+
+    def handle_data(self, data):
+        for el in self.open:
+            el["text"] += data
+
+
+def find_ctas(src):
+    """Every CTA <a>/<button> in a page, in document order, with its ancestors.
+
+    Each item: tag, attrs, kind, text, line, offset (of the "<"), anc (outermost first:
+    (tag, id, [classes], data-cta)), label (its own data-cta) and inherited (nearest
+    data-cta on itself or an ancestor, which is what the listener's closest() reads).
+    Links written by scripts at run time are not seen: the listener still reports them,
+    with the container fallback.
+    """
+    p = _CtaParser(src)
+    p.feed(src)
+    p.close()
+    out = sorted(p.found, key=lambda e: e["offset"])
+    for el in out:
+        el["label"] = el["attrs"].get("data-cta")
+        el["inherited"] = el["label"] or next(
+            (d for _, _, _, d in reversed(el["anc"]) if d), None)
+    return out
+
+
+def check_ctas(root, f):
+    """Every CTA carries a placement from PROVE's list (T-043).
+
+    Without a label the T-040 listener guesses the placement from the container, and
+    on 2026-10-06 that meant 0 of ~1,200 links on BM and 19 on MC reported a name from
+    the list. Plan-finder buttons also need data-cta-target, or cta_click never fires.
+    """
+    redirects = load_redirect_sources(root)
+    for fp, rel in iter_html(root):
+        if is_non_public(rel) or ("/" + rel[:-5]) in redirects:
+            continue
+        src = open(fp, encoding="utf-8", errors="ignore").read()
+        for m in re.finditer(r'\bdata-cta="([^"]*)"', src):
+            if m.group(1) not in CTA_PLACEMENTS:
+                f.error("cta-unknown-placement", rel,
+                        f'line {src.count(chr(10), 0, m.start()) + 1}: "{m.group(1)}" '
+                        "is not on PROVE's list")
+        for m in re.finditer(r'\bdata-cta-target="([^"]*)"', src):
+            if m.group(1) not in CTA_TARGETS:
+                f.error("cta-unknown-target", rel,
+                        f'line {src.count(chr(10), 0, m.start()) + 1}: "{m.group(1)}"')
+        for el in find_ctas(src):
+            what = f'line {el["line"]}: {el["kind"]} <{el["tag"]}> "{el["text"][:40]}"'
+            if not el["inherited"]:
+                f.error("cta-unlabeled", rel, what)
+            if el["kind"] == "plan_finder" and \
+                    el["attrs"].get("data-cta-target") != "plan_finder":
+                f.error("cta-plan-target-missing", rel, what)
+
+
 # ---------------------------------------------------------------- output
 
 def report(f, strict):
@@ -500,6 +645,7 @@ def main():
         "brand": lambda: check_brand(root, domain, f),
         "sitemap": lambda: check_sitemap(root, domain, f),
         "bodies": lambda: check_bodies(root, f),
+        "ctas": lambda: check_ctas(root, f),
     }
     if a.base:
         all_checks["content-loss"] = lambda: check_content_loss(root, a.base, f)

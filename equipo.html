@@ -69,6 +69,12 @@
         .author-card:nth-child(even) { direction: ltr; }
         .author-image { margin-bottom: 0; }
     }
+    /* T-044: on phones the 40px card padding squeezed the bios to ~190px and the two contact buttons ran off a 320px screen */
+    @media (max-width: 768px) {
+        .author-card { padding: 24px 16px; }
+        .team-cta { padding: 32px 16px !important; }
+        .team-cta-grid { grid-template-columns: 1fr !important; }
+    }
     </style>
 
     <!-- JSON-LD Schema Markup -->
@@ -323,7 +329,7 @@
             <p>Escriba directamente a Susana o a Alejandra a <a data-cta="inline_body" href="mailto:alejamedicare@gmail.com" style="color:var(--terra);font-weight:600">alejamedicare@gmail.com</a>. Leen cada mensaje y responden preguntas sobre Medicare.</p>
 
             <!-- CTA Section -->
-            <div style="background: #0C2340; border-radius: 14px; padding: 40px 32px; text-align: center; margin: 48px 0 0; color: white;">
+            <div class="team-cta" style="background: #0C2340; border-radius: 14px; padding: 40px 32px; text-align: center; margin: 48px 0 0; color: white;">
                 <h3 style="color: white; font-size: 24px; margin: 0 0 12px; font-weight: 700;">¿Preguntas sobre Medicare? Hable con una persona real</h3>
                 <p style="color: #9CA3AF; font-size: 16px; line-height: 1.6; margin-bottom: 24px;">Las expertas que conoció aquí están listas para ayudarle con su situación. Sin discurso de venta. Sin presión. Solo orientación honesta de profesionales con licencia.</p>
 
@@ -337,7 +343,7 @@
                     </p>
                 </div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 24px 0;">
+                <div class="team-cta-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 24px 0;">
                     <a data-cta="inline_body" href="/contacto" style="display: block; background: var(--terra); color: white; padding: 14px 20px; border-radius: 8px; text-decoration: none; font-weight: 700; transition: background 0.2s; text-align: center;">Contáctenos</a>
                     <a data-cta="guide_cta" href="https://wa.me/13105979142" style="display: block; background: rgba(255,255,255,0.2); color: white; padding: 14px 20px; border-radius: 8px; text-decoration: none; font-weight: 700; transition: background 0.2s; text-align: center;">WhatsApp a cualquier hora</a>
                 </div>

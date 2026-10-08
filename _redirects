@@ -68,3 +68,7 @@
 /Widget-QA-Report.docx   /           301
 /.gitignore              /           301
 /CNAME                   /           301
+
+# T-044 (AB 2026-10-07): the team page moved to /team, with its Spanish twin at /equipo.
+/authors                 /team       301
+/authors.html            /team       301

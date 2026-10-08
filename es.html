@@ -1536,16 +1536,21 @@ html body .t31-head,html body .t33-head{max-width:960px!important;min-height:0!i
 </style>
 <style>
 /* T-042: booking as a real button under the ZIP button. Outline, so the ZIP button stays first. Colour from each page's own --t31-brand. */
-html body #zip-card .t42-or{display:flex;align-items:center;gap:12px;margin:18px 0 14px;color:#5B6B7B;font-size:15px;line-height:1.3;font-weight:400}
-html body #zip-card .t42-or::before,html body #zip-card .t42-or::after{content:"";flex:1 1 0;height:1px;background:#D4DEE8}
-html body #zip-card .t42-book{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:52px;margin:0;padding:12px;box-sizing:border-box;background:#fff;border:2px solid var(--t31-brand);border-radius:12px;color:var(--t31-brand);font-family:inherit;font-size:17px;font-weight:700;line-height:1.25;text-decoration:none;text-align:center;cursor:pointer}
+html body #zip-card .t42-book{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:52px;margin:12px 0 0;padding:12px;box-sizing:border-box;background:#fff;border:2px solid var(--t31-brand);border-radius:12px;color:var(--t31-brand);font-family:inherit;font-size:17px;font-weight:700;line-height:1.25;text-decoration:none;text-align:center;cursor:pointer}
 html body #zip-card .t42-book svg{width:24px;height:24px;flex:none}
 html body #zip-card .t42-book:hover{background:#F4F7FA}
 html body #zip-card .t42-book:focus-visible{outline:3px solid #FFB300;outline-offset:2px}
-html body #zip-card .t42-note{margin:8px 0 0;text-align:center;color:#5B6B7B;font-size:14px;line-height:1.4}
+/* T-042 (AB 2026-10-07): on the home page the phone bottom bar waits until the visitor has scrolled past the ZIP card
+   (or opened the plan finder), then slides in and stays. Two actions on the first screen instead of four. */
+@media (max-width:768px){
+  html body.t42-calm .t31-bar{display:none}
+  html body.t42-in .t31-bar{animation:t42-in .25s ease-out}
+}
+@keyframes t42-in{from{transform:translateY(100%)}to{transform:none}}
+@media (prefers-reduced-motion:reduce){html body.t42-in .t31-bar{animation:none}}
 </style>
 </head>
-<body>
+<body class="t42-calm">
 
 <a href="#main-content" class="skip-link" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;padding:8px 16px;background:#002147;color:#fff;font-size:14px;text-decoration:none" onfocus="this.style.position='fixed';this.style.left='8px';this.style.top='8px';this.style.width='auto';this.style.height='auto';this.style.overflow='visible'" onblur="this.style.position='absolute';this.style.left='-9999px';this.style.width='1px';this.style.height='1px';this.style.overflow='hidden'">Ir al contenido principal</a>
 
@@ -1602,10 +1607,8 @@ html body #zip-card .t42-note{margin:8px 0 0;text-align:center;color:#5B6B7B;fon
         <span data-i18n="zip-btn">Compare Planes Gratis</span>
         <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </button>
-        <!-- T-042: booking as a full-size button, same link as the footer -->
-        <p class="t42-or"><span data-i18n="book-or">o hable con nosotras</span></p>
+        <!-- T-042: booking as a full-size button, same link as the footer; no divider or sub-line (AB 2026-10-07) -->
         <a class="t42-book" data-cta="home_hero" href="https://calendar.app.google/6D4obxzxERQXBpaf7" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg><span data-i18n="book-btn">Agende una videollamada</span></a>
-        <p class="t42-note"><span data-i18n="book-note">30 minutos · elija la hora que le quede bien</span></p>
     </div>
 
     <div class="hero-checks t31-checks fade-up-d2">
@@ -2275,9 +2278,7 @@ const I18N = {
   'footer-link-benefits': { en:'Medicare Benefits', es:'Beneficios de Medicare' },
   'footer-link-careers': { en:'Careers', es:'Empleos' },
   'footer-copy': { en:'\u00a9 2026 Medicare California. All rights reserved.', es:'\u00a9 2026 Medicare California. Todos los derechos reservados.' },
-  'book-or': { en:'or talk to us', es:'o hable con nosotras' },
   'book-btn': { en:'Book a video visit', es:'Agende una videollamada' },
-  'book-note': { en:'30 minutes \u00b7 pick a time that works for you', es:'30 minutos \u00b7 elija la hora que le quede bien' },
 };
 
 function setLang(lang) {
@@ -2448,5 +2449,6 @@ presses the widget's own next button, and a screen with no next button (tap an a
 /* desktop shows the city list open; on phones it waits behind its toggle */
 if(window.matchMedia&&window.matchMedia('(min-width:769px)').matches){[].forEach.call(document.querySelectorAll('details.t31-cities'),function(d){d.open=true;});}
 </script>
+<script>/* T-042: the bottom bar stays hidden while the ZIP card is on screen; once the card has scrolled off the top, or is hidden because the plan finder opened, the bar slides in for good. No IntersectionObserver: the bar shows at once. */(function(){var b=document.body,c=document.getElementById('zip-card');function show(){if(!b.classList.contains('t42-calm'))return;b.classList.remove('t42-calm');b.classList.add('t42-in');if(window.t31Sync)window.t31Sync();}if(!c||!('IntersectionObserver' in window)){show();return;}var io=new IntersectionObserver(function(es){var r=es[es.length-1].boundingClientRect;if(r.bottom<=0||(!r.width&&!r.height)){show();io.disconnect();}});io.observe(c);})();</script>
 </body>
 </html>

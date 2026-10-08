@@ -44,15 +44,14 @@
     <style>
     .callout { padding: 20px 24px; border-radius: 12px; border-left: 4px solid var(--terra); margin: 28px 0; }
     .callout p { margin: 0; font-size: 15px; line-height: 1.7; }
-    .author-card { display: grid; grid-template-columns: 280px 1fr; gap: 32px; align-items: start; padding: 40px; background: white; border: 1px solid #E5E7EB; border-radius: 12px; margin: 40px 0; }
-    .author-card:nth-child(even) { direction: rtl; }
-    .author-card:nth-child(even) > * { direction: ltr; }
-    .author-image { text-align: center; }
-    .author-image img { width: 100%; max-width: 280px; border-radius: 12px; margin-bottom: 16px; }
-    .author-title { text-align: center; font-weight: 600; color: var(--terra); margin-bottom: 12px; font-size: 14px; }
-    .author-contact { text-align: center; font-size: 13px; line-height: 1.6; color: #6B7280; margin-top: 12px; }
-    .author-contact a { color: var(--terra); text-decoration: none; font-weight: 500; }
-    .author-content h3 { margin-top: 0; color: var(--charcoal); font-size: 28px; }
+    .author-card { padding: 40px; background: white; border: 1px solid #E5E7EB; border-radius: 12px; margin: 40px 0; }
+    /* Photo beside the name, bio full width below: the old 280px photo column sat empty for most of the card's height */
+    .author-head { display: flex; align-items: center; gap: 28px; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #E5E7EB; }
+    .author-head img { width: 160px; height: 160px; flex-shrink: 0; object-fit: cover; object-position: center top; border-radius: 50%; }
+    .author-meta h3 { margin: 0 0 6px; color: var(--charcoal); font-size: 28px; }
+    .author-title { font-weight: 600; color: var(--terra); margin-bottom: 8px; font-size: 16px; }
+    .author-contact { font-size: 15px; line-height: 1.6; color: #4B5563; }
+    .author-contact a { color: var(--terra); text-decoration: none; font-weight: 600; }
     .author-content .credentials { color: var(--terra); font-weight: 600; font-size: 15px; margin-bottom: 16px; }
     .author-content p { line-height: 1.8; }
     .expertise-section { margin: 24px 0; }
@@ -64,10 +63,9 @@
     .articles-list li { margin: 8px 0; }
     .articles-list a { color: var(--terra); text-decoration: none; font-weight: 500; }
     .articles-list a:hover { text-decoration: underline; }
-    @media (max-width: 992px) {
-        .author-card { grid-template-columns: 1fr; }
-        .author-card:nth-child(even) { direction: ltr; }
-        .author-image { margin-bottom: 0; }
+    @media (max-width: 600px) {
+        .author-head { flex-direction: column; text-align: center; gap: 16px; }
+        .author-head img { width: 140px; height: 140px; }
     }
     /* T-044: on phones the 40px card padding squeezed the bios to ~190px and the two contact buttons ran off a 320px screen */
     @media (max-width: 768px) {
@@ -214,18 +212,19 @@
 
             <!-- Alejandra Brizuela Card -->
             <div class="author-card" id="alejandra">
-                <div class="author-image">
+                <div class="author-head">
                     <img src="/images/alejandra-headshot.jpg" alt="Alejandra Brizuela, agente de Medicare licenciada">
-                    <div class="author-title">CPTO y agente licenciada</div>
-                    <div class="author-contact">
-                        CPTO y agente licenciada<br>
+                    <div class="author-meta">
+                        <h3>Alejandra Brizuela</h3>
+                        <div class="author-title">CPTO y agente licenciada</div>
+                        <div class="author-contact">
                         Licencia de CA #4507923<br>
                         Bilingüe inglés/español<br>
                         <a data-cta="contact_card" href="mailto:alejamedicare@gmail.com">Escribir a Alejandra</a>
                     </div>
+                    </div>
                 </div>
                 <div class="author-content">
-                    <h3>Alejandra Brizuela</h3>
                     <p class="credentials">Estrategia de contenido | Salud digital | Tecnología bilingüe | Educación de Medicare para la nueva generación</p>
 
                     <p>Alejandra es agente de Medicare licenciada, radicada en California, y CPTO (Chief Product &amp; Technology Officer) de Medicare California. Trabaja junto a su madre, la fundadora Susana Marcos, y suma a los años de atención personal de Susana una mirada tecnológica y estrategia digital. Está construyendo un modelo de trabajo con inteligencia artificial que ayudará a Medicare California a llevar su atención personalizada a más personas sin perder el trato cercano.</p>
@@ -257,17 +256,19 @@
 
             <!-- Susana Marcos Card -->
             <div class="author-card" id="susana">
-                <div class="author-image">
+                <div class="author-head">
                     <img src="/images/susana-headshot.jpg" alt="Susana Marcos, fundadora de Medicare California">
-                    <div class="author-title">Fundadora, experta en Medicare</div>
-                    <div class="author-contact">
+                    <div class="author-meta">
+                        <h3>Susana Marcos</h3>
+                        <div class="author-title">Fundadora, experta en Medicare</div>
+                        <div class="author-contact">
                         Agente de Medicare licenciada<br>
                         Licencia de CA #6005328<br>
                         <a data-cta="contact_card" href="mailto:alejamedicare@gmail.com">Escribir a Susana</a>
                     </div>
+                    </div>
                 </div>
                 <div class="author-content">
-                    <h3>Susana Marcos</h3>
                     <p class="credentials">Más de 15 años de experiencia en Medicare | Bilingüe inglés/español | Licencia en 8 estados</p>
 
                     <p>Susana es la fundadora de Medicare California y aporta 15 años de experiencia directa con beneficiarios. Empezó su práctica en un pequeño pueblo de Missouri de 5,000 habitantes y la construyó por completo con recomendaciones de clientes satisfechos. Hoy ha ayudado a más de 2,000 personas con Medicare en California, Missouri, Kansas, Oklahoma, Iowa, Illinois, Texas y Florida.</p>

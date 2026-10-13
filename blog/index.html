@@ -5,6 +5,8 @@
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
+/* T-050 tester mode: ?qa=1 marks this browser as ours until ?qa=0; our visits go to GA4 as traffic_type=internal (filtered out). */
+(function(){var t=false;try{var q=/[?&]qa=([01])(?=&|#|$)/.exec(location.search);if(q){if(q[1]==='1')localStorage.setItem('bm_tester','1');else localStorage.removeItem('bm_tester');}t=localStorage.getItem('bm_tester')==='1';}catch(e){t=/[?&]qa=1(?=&|#|$)/.test(location.search);}window.bmTester=t;window.bmInternal=t||/\.pages\.dev$/i.test(location.hostname);if(window.bmInternal)gtag('set',{traffic_type:'internal'});if(t&&window.self===window.top)document.addEventListener('DOMContentLoaded',function(){var d=document.createElement('div');d.id='bm-test-dot';d.textContent='TEST';d.setAttribute('aria-hidden','true');d.style.cssText='position:fixed;left:6px;bottom:calc(6px + env(safe-area-inset-bottom,0px));z-index:2147483647;padding:2px 6px;border-radius:9px;background:#6B7280;color:#fff;font:700 9px/1.4 system-ui,sans-serif;letter-spacing:.06em;opacity:.8;pointer-events:none';document.body.appendChild(d);});})();
 gtag('js', new Date());
 gtag('config', 'G-QT10YEXDCJ');
 </script>

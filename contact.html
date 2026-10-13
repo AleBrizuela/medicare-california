@@ -889,6 +889,41 @@ html body .t35-b2 .t35-line{background:#fff;border:2px solid var(--t31-line);col
 html body .t35-b2 a:focus-visible,html body .t35-next:focus-visible{outline:3px solid #FFB300;outline-offset:2px}
 html body .t35-next{display:block;text-align:center;margin:14px 0 0;padding:8px 4px;color:var(--t31-brand);font-weight:700;text-decoration:underline;text-underline-offset:3px}
 </style>
+<style id="t034">/* T-034 (AB 2026-10-13): contact method and help topic as tap buttons, Estado only for a ZIP we do not
+   recognise, "One of us will reply" card. Same block on all 4 contact pages. */
+html body .t34-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+html body .t34-opts3{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+html body .t34-opts3 .t33-opt{padding:10px 4px}
+html body .t34-state{margin-top:12px}
+html body .t34-state[hidden]{display:none}
+html body .t34-state-msg{font-size:15px;line-height:1.4;font-weight:600;color:var(--t31-ink);background:#FFF7E6;border-left:4px solid #F5A623;border-radius:8px;padding:8px 10px;margin:0 0 10px}
+html body #cf2-zip.error,html body #cf2-state.error{border-color:#B42318!important;box-shadow:0 0 0 3px rgba(180,35,24,.12)}
+html body .t34-side{padding-top:32px;min-width:0}
+html body .t34-card{border:1px solid #E2E8F0;border-radius:16px;background:#fff;padding:20px;box-shadow:0 2px 12px rgba(0,33,71,.06)}
+html body .t34-head{display:flex;flex-direction:column;gap:14px}
+html body .t34-photo{display:block;width:100%;height:240px;object-fit:cover;object-position:50% 38%;border-radius:12px}
+html body .t34-title{font-size:20px;font-weight:800;line-height:1.3;color:var(--t31-ink);margin:0 0 4px}
+html body .t34-line{font-size:15px;line-height:1.45;color:#4A5568;margin:0}
+html body .t34-rate{display:inline-block;padding:6px 0;font-size:15px;font-weight:700;color:var(--t31-ink)!important;text-decoration:none}
+html body .t34-rate .t34-star{color:#F5A623}
+html body .t34-rate u{text-decoration-color:var(--t31-brand);text-underline-offset:3px}
+html body .t34-rate:focus-visible{outline:3px solid #FFB300;outline-offset:2px}
+html body .t34-card .contact-methods{padding-top:0!important;margin-top:14px;gap:0!important;border-top:1px solid #E2E8F0}
+html body .t34-card .contact-method{box-shadow:none!important;border:0!important;border-bottom:1px solid #E2E8F0!important;border-radius:0!important;padding:14px 4px!important;margin:0!important;transform:none!important;background:#fff!important}
+html body .t34-card .contact-method:last-child{border-bottom:0!important}
+html body .t34-card .contact-method:hover h4{text-decoration:underline}
+@media (max-width:768px){
+  html body #cf2-topic .t34-opts{grid-template-columns:1fr}
+  html body .t34-side{padding-top:0}
+  html body .t34-card{padding:16px}
+  html body .t34-head{flex-direction:row;align-items:center}
+  html body .t34-photo{width:84px;height:84px;border-radius:50%;flex:none;object-position:50% 40%}
+  html body .t34-title{font-size:18px}
+  html body .t34-card .contact-method{padding:14px 0!important}
+  html body .t34-card .contact-method>div:last-child{min-width:0}
+  html body .t34-card a[href^="mailto:"] h4{font-size:15px!important;overflow-wrap:anywhere}
+}
+</style>
 </head>
 
 <body>
@@ -976,12 +1011,13 @@ html body .t35-next{display:block;text-align:center;margin:14px 0 0;padding:8px 
               <input type="email" name="email" id="cf2-email" autocomplete="email" inputmode="email" style="font-size:16px;min-height:52px">
             </div>
             <div class="form-group">
-              <div>
-                <label for="cf2-zip" style="display:block;font-size:14px;font-weight:600;color:var(--navy);margin-bottom:6px">ZIP code</label>
-                <input type="text" id="cf2-zip" name="zip" maxlength="5" autocomplete="postal-code" inputmode="numeric" style="width:100%;font-size:16px;min-height:52px;padding:12px 16px;border:1px solid #E2E8F0;border-radius:4px;box-sizing:border-box;margin-bottom:10px"
-                  oninput="const st=zipToState(this.value);if(st){document.getElementById('cf2-state').value=st;}">
-                <label for="cf2-state" style="display:block;font-size:14px;font-weight:600;color:var(--navy);margin-bottom:6px">State</label>
-                <select id="cf2-state" name="state" style="width:100%;font-size:16px;min-height:52px;padding:12px 16px;border:1px solid #E2E8F0;border-radius:4px;background:white">
+              <label for="cf2-zip">ZIP code *</label>
+              <input type="text" id="cf2-zip" name="zip" maxlength="5" autocomplete="postal-code" inputmode="numeric" aria-required="true" aria-describedby="zip-error" style="width:100%;font-size:16px;min-height:52px;padding:12px 16px;border:1px solid #E2E8F0;border-radius:4px;box-sizing:border-box">
+              <span class="t33-err" id="zip-error" role="alert"></span>
+              <div class="t34-state" id="cf2-state-box" hidden>
+                <p class="t34-state-msg" id="state-msg">We don't recognize that ZIP. Pick your state.</p>
+                <label for="cf2-state">State *</label>
+                <select id="cf2-state" name="state" aria-describedby="state-msg state-error" style="width:100%;font-size:16px;min-height:52px;padding:12px 16px;border:1px solid #E2E8F0;border-radius:4px;background:white">
                   <option value="">Select state...</option>
                   <option value="AL">AL - Alabama</option>
                   <option value="AK">AK - Alaska</option>
@@ -1035,29 +1071,27 @@ html body .t35-next{display:block;text-align:center;margin:14px 0 0;padding:8px 
                   <option value="WY">WY - Wyoming</option>
                   <option value="DC">DC - Washington D.C.</option>
                 </select>
+                <span class="t33-err" id="state-error" role="alert"></span>
               </div>
-              <span style="font-size:0.78rem;color:var(--slate);margin-top:4px;display:block">Enter ZIP or state - at least one required</span>
             </div>
-            <div class="form-group">
-              <label for="cf2-prefer">How would you like us to reach you?</label>
-              <select name="prefer" id="cf2-prefer" style="font-size:16px;min-height:52px">
-                <option value="sms" selected>Text message (SMS)</option>
-                <option value="whatsapp">WhatsApp</option>
-                <option value="email">Email</option>
-                <option value="call">Phone</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="cf2-topic">What can we help you with?</label>
-              <select name="topic" id="cf2-topic" aria-required="true" aria-describedby="topic-error" style="font-size:16px;min-height:52px">
-                <option value="">Choose one…</option>
-                <option value="new">I'm enrolling for the first time</option>
-                <option value="change">I want to change my current plan</option>
-                <option value="info">I'm just looking for information</option>
-                <option value="other">Other</option>
-              </select>
+            <fieldset class="form-group t33-who" id="cf2-prefer">
+              <legend>How would you like us to reach you?</legend>
+              <div class="t33-who-opts t34-opts t34-opts3" role="radiogroup">
+                <label class="t33-opt"><input type="radio" name="prefer" value="sms" data-label="Text message (SMS)" checked><span>Text</span></label>
+                <label class="t33-opt"><input type="radio" name="prefer" value="whatsapp" data-label="WhatsApp"><span>WhatsApp</span></label>
+                <label class="t33-opt"><input type="radio" name="prefer" value="call" data-label="Phone"><span>Call</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="form-group t33-who" id="cf2-topic">
+              <legend>What can we help you with? *</legend>
+              <div class="t33-who-opts t34-opts" role="radiogroup" aria-required="true" aria-describedby="topic-error">
+                <label class="t33-opt"><input type="radio" name="topic" value="new" data-label="I&#x27;m enrolling for the first time"><span>I'm enrolling for the first time</span></label>
+                <label class="t33-opt"><input type="radio" name="topic" value="change" data-label="I want to change my current plan"><span>I want to change my current plan</span></label>
+                <label class="t33-opt"><input type="radio" name="topic" value="info" data-label="I&#x27;m just looking for information"><span>I'm just looking for information</span></label>
+                <label class="t33-opt"><input type="radio" name="topic" value="other" data-label="Other"><span>Other</span></label>
+              </div>
               <span class="t33-err" id="topic-error" role="alert"></span>
-            </div>
+            </fieldset>
             <button type="submit" class="btn btn-primary" style="width:100%;font-size:17px;padding:16px">
               <i class="fas fa-paper-plane"></i> <span>Send</span>
             </button>
@@ -1082,7 +1116,17 @@ html body .t35-next{display:block;text-align:center;margin:14px 0 0;padding:8px 
 </div>
         </div>
 
-        <!-- Right: Contact Methods -->
+        <!-- Right: who answers you (T-034) + ways to reach us -->
+        <div class="t34-side">
+        <div class="t34-card">
+          <div class="t34-head">
+            <img class="t34-photo" src="/images/family-yosemite.jpg" alt="Ale Brizuela and Susana Marcos at Yosemite" loading="lazy" decoding="async" width="600" height="600">
+            <div>
+              <p class="t34-title">One of us will reply</p>
+              <p class="t34-line">Licensed agents · Over 2,000 families</p>
+              <a class="t34-rate" href="https://maps.app.goo.gl/wfbQjcZ2C4wkN5E99" target="_blank" rel="noopener"><span class="t34-star" aria-hidden="true">&#9733;</span> 5.0 on Google · <u>9 reviews</u></a>
+            </div>
+          </div>
         <div class="contact-methods" role="list" aria-label="Other ways to reach us">
           <a data-cta="contact_card" href="sms:+13105979142?&amp;body=Hi%2C%20I%20have%20a%20Medicare%20question" class="contact-method">
             <div class="contact-method-icon" style="background:var(--t31-brand)"><i class="fas fa-comment-dots"></i></div>
@@ -1113,6 +1157,8 @@ html body .t35-next{display:block;text-align:center;margin:14px 0 0;padding:8px 
             </div>
           </a>
         </div>
+        </div>
+      </div>
 
       </div>
     </div>
@@ -1206,19 +1252,22 @@ function smoothScrollToWidget() {
 }
 
 function zipToState(zip) {
+  /* T-034: first 3 digits of the ZIP -> state (USPS prefixes). The state is no longer shown when the ZIP gives one,
+     so a wrong range would be sent silently: prefixes we do not serve as a state (000-004, PR, military) return ''
+     and the Estado box appears instead. */
   if (!zip || zip.length < 3) return '';
   const p = parseInt(zip.substring(0, 3), 10);
   if (isNaN(p)) return '';
   const map = [
-    [0,6,'PR'],[6,10,'NH'],[10,28,'MA'],[28,30,'RI'],[30,56,'NY'],[56,63,'NJ'],[66,100,'PA'],
-    [100,150,'PA'],[150,197,'PA'],[197,200,'DE'],[200,206,'DC'],[206,213,'MD'],[213,247,'VA'],
-    [247,269,'WV'],[270,290,'NC'],[290,300,'SC'],[300,320,'GA'],[320,350,'FL'],[350,370,'AL'],
-    [370,386,'TN'],[386,398,'MS'],[400,430,'KY'],[430,460,'OH'],[460,480,'IN'],[480,500,'MI'],
-    [500,530,'IA'],[530,550,'WI'],[550,568,'MN'],[570,578,'SD'],[580,589,'ND'],[590,600,'MT'],
-    [600,633,'IL'],[633,659,'MO'],[660,680,'KS'],[680,694,'NE'],[700,716,'LA'],[716,730,'AR'],
-    [730,750,'OK'],[750,800,'TX'],[800,817,'CO'],[820,832,'WY'],[832,839,'ID'],[840,848,'UT'],
-    [850,866,'AZ'],[870,886,'NM'],[889,899,'NV'],[900,962,'CA'],[967,969,'HI'],[970,980,'OR'],
-    [980,995,'WA'],[995,1000,'AK']
+    [5,6,'NY'],[10,28,'MA'],[28,30,'RI'],[30,39,'NH'],[39,50,'ME'],[50,55,'VT'],[55,56,'MA'],[56,60,'VT'],
+    [60,70,'CT'],[70,90,'NJ'],[100,150,'NY'],[150,197,'PA'],[197,200,'DE'],[200,201,'DC'],[201,202,'VA'],
+    [202,206,'DC'],[206,220,'MD'],[220,247,'VA'],[247,269,'WV'],[270,290,'NC'],[290,300,'SC'],[300,320,'GA'],
+    [320,350,'FL'],[350,370,'AL'],[370,386,'TN'],[386,398,'MS'],[398,400,'GA'],[400,428,'KY'],[430,460,'OH'],
+    [460,480,'IN'],[480,500,'MI'],[500,529,'IA'],[530,550,'WI'],[550,568,'MN'],[569,570,'DC'],[570,578,'SD'],
+    [580,589,'ND'],[590,600,'MT'],[600,630,'IL'],[630,659,'MO'],[660,680,'KS'],[680,694,'NE'],[700,715,'LA'],
+    [716,730,'AR'],[730,733,'OK'],[733,734,'TX'],[734,750,'OK'],[750,800,'TX'],[800,817,'CO'],[820,832,'WY'],
+    [832,839,'ID'],[840,848,'UT'],[850,866,'AZ'],[870,885,'NM'],[885,886,'TX'],[889,899,'NV'],[900,962,'CA'],
+    [967,969,'HI'],[970,980,'OR'],[980,995,'WA'],[995,1000,'AK']
   ];
   for (const [lo, hi, st] of map) if (p >= lo && p < hi) return st;
   return '';
@@ -1326,8 +1375,13 @@ async function submitForm(e) {
     if (!form.querySelector('input[name="para_quien"]:checked')) { whoBox.classList.add('error'); whoErr.textContent = 'Choose who this is for: you or a relative.'; isValid = false; }
     else { whoBox.classList.remove('error'); whoErr.textContent = ''; }
     const topicChk = document.getElementById('cf2-topic'), topicErr = document.getElementById('topic-error');
-    if (!topicChk.value) { topicChk.classList.add('error'); topicErr.textContent = 'Choose what we can help you with.'; isValid = false; }
-    else { topicErr.textContent = ''; }
+    if (!form.querySelector('input[name="topic"]:checked')) { topicChk.classList.add('error'); topicErr.textContent = 'Choose what we can help you with.'; isValid = false; }
+    else { topicChk.classList.remove('error'); topicErr.textContent = ''; }
+    // T-034: ZIP required; the state comes from it, and the Estado box (then required) only appears for a ZIP we do not recognise.
+    const zipBox = document.getElementById('cf2-zip'), zipErr = document.getElementById('zip-error'), stBox = document.getElementById('cf2-state'), stErr = document.getElementById('state-error');
+    t34Zip();
+    if (!/^\d{5}$/.test(zipBox.value)) { zipBox.classList.add('error'); zipErr.textContent = 'Enter your 5-digit ZIP code. E.g. 90230'; isValid = false; }
+    else if (!zipToState(zipBox.value) && !stBox.value) { stBox.classList.add('error'); stErr.textContent = 'Pick your state.'; isValid = false; }
 
     // Validate DOB (T-035: one box, month / day / year, same parsing as the plan finder)
     const dobMonthEl = document.getElementById('dob-month');
@@ -1347,23 +1401,10 @@ async function submitForm(e) {
         return;
     }
     
-    // Zip / state - at least one required
-    const zipVal = document.getElementById('cf2-zip') ? document.getElementById('cf2-zip').value.trim() : '';
-    const stateVal = document.getElementById('cf2-state') ? document.getElementById('cf2-state').value.trim() : '';
-    if (!zipVal && !stateVal) {
-      const zipEl = document.getElementById('cf2-zip');
-      if (zipEl) { zipEl.classList.add('error'); zipEl.scrollIntoView({behavior:'smooth',block:'center'}); }
-      isValid = false;
-    }
-    if (!isValid) {
-      const firstError = form.querySelector('.error');
-      if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      return;
-    }
+    const zipVal = document.getElementById('cf2-zip').value.trim();
+    const stateVal = document.getElementById('cf2-state').value.trim();
 
     // Collect data
-    const preferEl = document.getElementById('cf2-prefer');
-    const topicEl = document.getElementById('cf2-topic');
     const formData = {
         name: nameEl.value,
         phone: phoneEl.value,
@@ -1371,8 +1412,8 @@ async function submitForm(e) {
         zip: zipVal,
         state: stateVal,
         dob: dobMonthEl && dobDayEl && dobYearEl ? `${String(dobMonthEl.value).padStart(2,'0')}/${String(dobDayEl.value).padStart(2,'0')}/${dobYearEl.value}` : '',
-        prefer: preferEl ? preferEl.options[preferEl.selectedIndex].text : '',
-        topic: topicEl ? topicEl.options[topicEl.selectedIndex].text : '',
+        prefer: (form.querySelector('input[name="prefer"]:checked') || { dataset: {} }).dataset.label || '',
+        topic: (form.querySelector('input[name="topic"]:checked') || { dataset: {} }).dataset.label || '',
         para_quien: (form.querySelector('input[name="para_quien"]:checked') || {}).value || '',
         submittedAt: new Date().toLocaleString('en-US',{timeZone:'America/Los_Angeles',month:'2-digit',day:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'}),
         language: 'en',
@@ -1408,7 +1449,7 @@ document.getElementById('contact-form').querySelectorAll('input, select').forEac
 
 // T-033: the grey line under the birth date hides when the form is for the visitor; errors clear on change.
 document.querySelectorAll('input[name="para_quien"]').forEach(function(r){r.addEventListener('change',function(){document.getElementById('dob-hint').hidden=(this.value==='yo');document.getElementById('cf2-who').classList.remove('error');document.getElementById('who-error').textContent='';});});
-document.getElementById('cf2-topic').addEventListener('change',function(){if(this.value){this.classList.remove('error');document.getElementById('topic-error').textContent='';}});
+document.getElementById('cf2-topic').addEventListener('change',function(){this.classList.remove('error');document.getElementById('topic-error').textContent='';});
 
 // T-035: one-box birth date (same format and parsing as the plan finder), read back in words; family consent note;
 // thank-you card filled with textContent only (never raw HTML from the visitor), no birth date, no health detail.
@@ -1421,7 +1462,7 @@ document.querySelectorAll('input[name="para_quien"]').forEach(function(r){r.addE
 function t35Thanks(d){var $=function(id){return document.getElementById(id);},form=$('contact-form'),box=form.parentNode,ok=$('form-success');
   var first=String(d.name||'').trim().split(/\s+/)[0]||'';
   $('ty-title').textContent=first?'Thank you'+', '+first+'.':'Thank you.';
-  var pref=($('cf2-prefer')||{}).value||'sms',CH={sms:['','text',' you'],whatsapp:['message you on ','WhatsApp',''],call:['','call',' you'],email:['','email',' you']},c=CH[pref]||CH.sms,line=$('ty-line');
+  var pref=(document.querySelector('input[name="prefer"]:checked')||{}).value||'sms',CH={sms:['','text',' you'],whatsapp:['message you on ','WhatsApp',''],call:['','call',' you'],email:['','email',' you']},c=CH[pref]||CH.sms,line=$('ty-line');
   line.textContent='';line.appendChild(document.createTextNode('We got your message. One of us will '+c[0]));var b=document.createElement('b');b.textContent=c[1];line.appendChild(b);line.appendChild(document.createTextNode(c[2]+' within 24 hours.'));
   $('ty-for').textContent=d.para_quien==='familiar'?'A relative':'You';
   var p=String(d.phone||'').replace(/\D/g,'');if(p.length===11&&p.charAt(0)==='1')p=p.slice(1);$('ty-phone').textContent=p.length===10?'('+p.slice(0,3)+') '+p.slice(3,6)+'-'+p.slice(6):String(d.phone||'');
@@ -1431,28 +1472,12 @@ function t35Thanks(d){var $=function(id){return document.getElementById(id);},fo
   var hd=document.querySelector('header'),top=ok.getBoundingClientRect().top+window.pageYOffset-((hd&&hd.offsetHeight)||0)-16;window.scrollTo(0,Math.max(0,top));
   try{$('ty-title').focus({preventScroll:true});}catch(e){$('ty-title').focus();}}
 
-// ZIP → state auto-select
-(function() {
-  function wireZip() {
-    const zipEl = document.getElementById('cf2-zip');
-    const stateEl = document.getElementById('cf2-state');
-    if (!zipEl || !stateEl) return;
-    function autoState() {
-      const st = typeof zipToState === 'function' ? zipToState(zipEl.value) : '';
-      if (st) {
-        stateEl.value = st;
-        stateEl.style.borderColor = 'var(--teal, #0080D4)';
-      }
-    }
-    zipEl.addEventListener('input', autoState);
-    zipEl.addEventListener('change', autoState);
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', wireZip);
-  } else {
-    wireZip();
-  }
-})();
+// T-034: the state comes from the ZIP. The Estado box stays hidden; it appears (and is then required) only when
+// the ZIP is 5 digits we do not recognise, and a pick made there is kept until the ZIP changes to one we know.
+function t34Zip(){var z=document.getElementById('cf2-zip'),s=document.getElementById('cf2-state'),box=document.getElementById('cf2-state-box');if(!z||!s||!box)return;var v=z.value.replace(/\D/g,'').slice(0,5);if(z.value!==v)z.value=v;var st=v.length===5?zipToState(v):'',unknown=v.length===5&&!st,wasHidden=box.hidden;if(st)s.value=st;else if(!unknown||wasHidden)s.value='';box.hidden=!unknown;if(v.length===5){z.classList.remove('error');document.getElementById('zip-error').textContent='';}if(!unknown||s.value){s.classList.remove('error');document.getElementById('state-error').textContent='';}}
+['input','change'].forEach(function(t){document.getElementById('cf2-zip').addEventListener(t,t34Zip);});
+document.getElementById('cf2-state').addEventListener('change',t34Zip);
+t34Zip();
 </script>
 <!-- T-031 contact bar (phones only) -->
 <nav class="t31-bar" aria-label="Contact"><a data-cta="sticky_bar" class="t31-fill" href="sms:+13105979142?&amp;body=Hi%2C%20I%20have%20a%20Medicare%20question"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg><span>Text us</span></a><a data-cta="sticky_bar" class="t31-line" href="tel:+13105979142"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Call</span></a></nav>

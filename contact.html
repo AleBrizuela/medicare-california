@@ -926,6 +926,19 @@ html body .t34-card .contact-method:hover h4{text-decoration:underline}
   html body .t34-card a[href^="mailto:"] h4{font-size:15px!important;overflow-wrap:anywhere}
 }
 </style>
+<style>
+/* T-048: the 4 fields we need to call back, then Enviar; the rest sits behind one optional row that opens above Enviar */
+html body .t48-reqh{font-size:13px;font-weight:800;letter-spacing:.5px;color:var(--navy);text-transform:uppercase;margin:4px 0 12px}
+html body .t48-more{margin:4px 0 18px}
+html body .t48-toggle{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:52px;box-sizing:border-box;border:1.5px dashed #B8C4D2;border-radius:12px;padding:12px 14px;background:#FAFBFC;color:var(--navy);font-family:inherit;font-weight:700;font-size:15.5px;line-height:1.3;text-align:left;cursor:pointer;-webkit-appearance:none;appearance:none}
+html body .t48-toggle small{display:block;font-weight:400;color:var(--gray);font-size:13.5px;margin-top:2px}
+html body .t48-pm{flex:none;font-size:26px;line-height:1;font-weight:800;color:var(--t31-brand)}
+html body .t48-toggle:focus-visible{outline:3px solid #FFB300;outline-offset:2px}
+html body .t48-more.t48-open{border:1.5px solid #E2E8F0;border-radius:12px;background:#FAFBFC;padding:0 14px 4px}
+html body .t48-open .t48-toggle{border:none;padding:12px 0;background:none}
+html body .t48-open .t48-toggle small{display:none}
+html body .t48-body[hidden]{display:none!important}
+</style>
 </head>
 
 <body>
@@ -983,11 +996,12 @@ html body .t34-card .contact-method:hover h4{text-decoration:underline}
   <input type="hidden" name="subject" value="Nueva Consulta de Medicare - medicare-california.com">
   <input type="hidden" name="from_name" value="Medicare California Website">
   <input type="hidden" name="redirect" value="false">
+            <p class="t48-reqh">So we can call you</p>
             <fieldset class="form-group t33-who" id="cf2-who">
               <legend>Who is this for? *</legend>
               <div class="t33-who-opts" role="radiogroup" aria-required="true" aria-describedby="who-error">
                 <label class="t33-opt"><input type="radio" name="para_quien" value="yo"><span>Me</span></label>
-                <label class="t33-opt"><input type="radio" name="para_quien" value="familiar"><span>My mom, dad or a relative</span></label>
+                <label class="t33-opt"><input type="radio" name="para_quien" value="familiar"><span>A family member</span></label>
               </div>
               <span class="t33-err" id="who-error" role="alert"></span>
             </fieldset>
@@ -998,19 +1012,6 @@ html body .t34-card .contact-method:hover h4{text-decoration:underline}
             <div class="form-group">
               <label for="cf2-phone">Phone *</label>
               <input type="tel" name="phone" id="cf2-phone" required autocomplete="tel" inputmode="tel" placeholder="(310) 555-1234" style="font-size:16px;min-height:52px">
-            </div>
-            <div class="form-group">
-              <label class="t33-label" id="dob-label" for="cf2-dob">Their date of birth *</label>
-              <span class="t33-hint" id="dob-hint">the person getting Medicare</span>
-              <input type="tel" inputmode="numeric" autocomplete="bday" id="cf2-dob" class="t35-dob" maxlength="14" placeholder="MM / DD / YYYY" aria-required="true" aria-describedby="dob-hint dob-help dob-read dob-error" style="font-size:16px;min-height:52px">
-              <input type="hidden" id="dob-month" name="dob_month"><input type="hidden" id="dob-day" name="dob_day"><input type="hidden" id="dob-year" name="dob_year">
-              <span class="t35-help" id="dob-help">Month / day / year. E.g. 12 / 28 / 1959</span>
-              <span class="t35-read" id="dob-read" role="status" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span></span></span>
-              <span id="dob-error" class="t33-err" role="alert"></span>
-            </div>
-            <div class="form-group">
-              <label for="cf2-email">Email (optional)</label>
-              <input type="email" name="email" id="cf2-email" autocomplete="email" inputmode="email" style="font-size:16px;min-height:52px">
             </div>
             <div class="form-group">
               <label for="cf2-zip">ZIP code *</label>
@@ -1076,6 +1077,31 @@ html body .t34-card .contact-method:hover h4{text-decoration:underline}
                 <span class="t33-err" id="state-error" role="alert"></span>
               </div>
             </div>
+            <div class="t48-more" id="cf2-more">
+              <button type="button" class="t48-toggle" id="cf2-more-btn" aria-expanded="false" aria-controls="cf2-more-body"><span>Add more details (optional)<small>Date of birth, how we can help, email</small></span><span class="t48-pm" aria-hidden="true">+</span></button>
+              <div class="t48-body" id="cf2-more-body" hidden>
+            <div class="form-group">
+              <label class="t33-label" id="dob-label" for="cf2-dob">Their date of birth</label>
+              <span class="t33-hint" id="dob-hint">the person getting Medicare</span>
+              <input type="tel" inputmode="numeric" autocomplete="bday" id="cf2-dob" class="t35-dob" maxlength="14" placeholder="MM / DD / YYYY" aria-describedby="dob-hint dob-help dob-read dob-error" style="font-size:16px;min-height:52px">
+              <input type="hidden" id="dob-month" name="dob_month"><input type="hidden" id="dob-day" name="dob_day"><input type="hidden" id="dob-year" name="dob_year">
+              <span class="t35-help" id="dob-help">Month / day / year. E.g. 12 / 28 / 1959</span>
+              <span class="t35-read" id="dob-read" role="status" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span></span></span>
+              <span id="dob-error" class="t33-err" role="alert"></span>
+            </div>
+            <fieldset class="form-group t33-who" id="cf2-topic">
+              <legend>What can we help you with?</legend>
+              <div class="t33-who-opts t34-opts" role="radiogroup" aria-describedby="topic-error">
+                <label class="t33-opt"><input type="radio" name="topic" value="new" data-label="I&#x27;m enrolling for the first time"><span>I'm enrolling for the first time</span></label>
+                <label class="t33-opt"><input type="radio" name="topic" value="change" data-label="I want to change my current plan"><span>I want to change my current plan</span></label>
+                <label class="t33-opt"><input type="radio" name="topic" value="info" data-label="I&#x27;m just looking for information"><span>I'm just looking for information</span></label>
+              </div>
+              <span class="t33-err" id="topic-error" role="alert"></span>
+            </fieldset>
+            <div class="form-group">
+              <label for="cf2-email">Email</label>
+              <input type="email" name="email" id="cf2-email" autocomplete="email" inputmode="email" style="font-size:16px;min-height:52px">
+            </div>
             <fieldset class="form-group t33-who" id="cf2-prefer">
               <legend>How would you like us to reach you?</legend>
               <div class="t33-who-opts t34-opts t34-opts3" role="radiogroup">
@@ -1084,15 +1110,8 @@ html body .t34-card .contact-method:hover h4{text-decoration:underline}
                 <label class="t33-opt"><input type="radio" name="prefer" value="call" data-label="Phone"><span>Call</span></label>
               </div>
             </fieldset>
-            <fieldset class="form-group t33-who" id="cf2-topic">
-              <legend>What can we help you with? *</legend>
-              <div class="t33-who-opts t34-opts" role="radiogroup" aria-required="true" aria-describedby="topic-error">
-                <label class="t33-opt"><input type="radio" name="topic" value="new" data-label="I&#x27;m enrolling for the first time"><span>I'm enrolling for the first time</span></label>
-                <label class="t33-opt"><input type="radio" name="topic" value="change" data-label="I want to change my current plan"><span>I want to change my current plan</span></label>
-                <label class="t33-opt"><input type="radio" name="topic" value="info" data-label="I&#x27;m just looking for information"><span>I'm just looking for information</span></label>
               </div>
-              <span class="t33-err" id="topic-error" role="alert"></span>
-            </fieldset>
+            </div>
             <button type="submit" class="btn btn-primary" style="width:100%;font-size:17px;padding:16px">
               <i class="fas fa-paper-plane"></i> <span>Send</span>
             </button>
@@ -1375,9 +1394,7 @@ async function submitForm(e) {
     const whoBox = document.getElementById('cf2-who'), whoErr = document.getElementById('who-error');
     if (!form.querySelector('input[name="para_quien"]:checked')) { whoBox.classList.add('error'); whoErr.textContent = 'Choose who this is for: you or a relative.'; isValid = false; }
     else { whoBox.classList.remove('error'); whoErr.textContent = ''; }
-    const topicChk = document.getElementById('cf2-topic'), topicErr = document.getElementById('topic-error');
-    if (!form.querySelector('input[name="topic"]:checked')) { topicChk.classList.add('error'); topicErr.textContent = 'Choose what we can help you with.'; isValid = false; }
-    else { topicChk.classList.remove('error'); topicErr.textContent = ''; }
+    // T-048: the help topic is optional.
     // T-034: ZIP required; the state comes from it, and the Estado box (then required) only appears for a ZIP we do not recognise.
     const zipBox = document.getElementById('cf2-zip'), zipErr = document.getElementById('zip-error'), stBox = document.getElementById('cf2-state'), stErr = document.getElementById('state-error');
     t34Zip();
@@ -1390,9 +1407,13 @@ async function submitForm(e) {
     const dobYearEl  = document.getElementById('dob-year');
     const dobBox     = document.getElementById('cf2-dob');
     const dobErrEl   = document.getElementById('dob-error');
-    if (!t35Dob()) {
+    // T-048: the birth date is optional. Empty is fine; a partly typed or impossible date still blocks the send
+    // and opens the details row so the error shows.
+    const dobOk = t35Dob();
+    if (dobBox.value.replace(/\D/g,'') && !dobOk) {
         dobBox.classList.add('error');
-        dobErrEl.textContent = dobBox.value.replace(/\D/g,'') ? 'Check the date: month first, then day. E.g. 12 / 28 / 1959' : 'Enter the date of birth. E.g. 12 / 28 / 1959';
+        dobErrEl.textContent = 'Check the date: month first, then day. E.g. 12 / 28 / 1959';
+        t48Open(true);
         isValid = false;
     } else { dobBox.classList.remove('error'); dobErrEl.textContent = ''; }
 
@@ -1412,7 +1433,7 @@ async function submitForm(e) {
         email: emailEl ? emailEl.value : '',
         zip: zipVal,
         state: stateVal,
-        dob: dobMonthEl && dobDayEl && dobYearEl ? `${String(dobMonthEl.value).padStart(2,'0')}/${String(dobDayEl.value).padStart(2,'0')}/${dobYearEl.value}` : '',
+        dob: dobMonthEl && dobDayEl && dobYearEl && dobYearEl.value ? `${String(dobMonthEl.value).padStart(2,'0')}/${String(dobDayEl.value).padStart(2,'0')}/${dobYearEl.value}` : '',
         prefer: (form.querySelector('input[name="prefer"]:checked') || { dataset: {} }).dataset.label || '',
         topic: (form.querySelector('input[name="topic"]:checked') || { dataset: {} }).dataset.label || '',
         para_quien: (form.querySelector('input[name="para_quien"]:checked') || {}).value || '',
@@ -1452,6 +1473,10 @@ document.getElementById('contact-form').querySelectorAll('input, select').forEac
 document.querySelectorAll('input[name="para_quien"]').forEach(function(r){r.addEventListener('change',function(){document.getElementById('dob-hint').hidden=(this.value==='yo');document.getElementById('cf2-who').classList.remove('error');document.getElementById('who-error').textContent='';});});
 document.getElementById('cf2-topic').addEventListener('change',function(){this.classList.remove('error');document.getElementById('topic-error').textContent='';});
 
+// T-048: "Agregar más detalles (opcional)" opens and closes the optional fields above Enviar; what was typed stays.
+function t48Open(open){var b=document.getElementById('cf2-more-btn'),body=document.getElementById('cf2-more-body');if(!b||!body)return;body.hidden=!open;b.setAttribute('aria-expanded',open?'true':'false');b.querySelector('.t48-pm').textContent=open?'\u2212':'+';document.getElementById('cf2-more').classList.toggle('t48-open',open);}
+document.getElementById('cf2-more-btn').addEventListener('click',function(){t48Open(this.getAttribute('aria-expanded')!=='true');});
+
 // T-035: one-box birth date (same format and parsing as the plan finder), read back in words; family consent note;
 // thank-you card filled with textContent only (never raw HTML from the visitor), no birth date, no health detail.
 var T35_MONTHS = 'January|February|March|April|May|June|July|August|September|October|November|December'.split('|');
@@ -1465,7 +1490,7 @@ function t35Thanks(d){var $=function(id){return document.getElementById(id);},fo
   $('ty-title').textContent=first?'Thank you'+', '+first+'.':'Thank you.';
   var pref=(document.querySelector('input[name="prefer"]:checked')||{}).value||'sms',CH={sms:['','text',' you'],whatsapp:['message you on ','WhatsApp',''],call:['','call',' you'],email:['','email',' you']},c=CH[pref]||CH.sms,line=$('ty-line');
   line.textContent='';line.appendChild(document.createTextNode('We got your message. One of us will '+c[0]));var b=document.createElement('b');b.textContent=c[1];line.appendChild(b);line.appendChild(document.createTextNode(c[2]+' within 24 hours.'));
-  $('ty-for').textContent=d.para_quien==='familiar'?'A relative':'You';
+  $('ty-for').textContent=d.para_quien==='familiar'?'A family member':'You';
   var p=String(d.phone||'').replace(/\D/g,'');if(p.length===11&&p.charAt(0)==='1')p=p.slice(1);$('ty-phone').textContent=p.length===10?'('+p.slice(0,3)+') '+p.slice(3,6)+'-'+p.slice(6):String(d.phone||'');
   if(d.zip){$('ty-zip').textContent=d.zip;}else{$('ty-zip-k').textContent='State';$('ty-zip').textContent=d.state||'';}
   $('ty-email').textContent=String(d.email||'').trim()||'Not given';

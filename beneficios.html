@@ -797,20 +797,22 @@ a[href^="tel"] { white-space: nowrap; }
   }
   </script>
 <link rel="stylesheet" href="/sm-chrome.css?v=20261003">
+<link rel="stylesheet" href="/page-frame.css?v=20261013">
 </head>
 
 
 <body>
 <!-- sm-header:start -->
 <header class="sm-header sm-mc" id="header">
-  <div class="sm-header-in">
+  <div class="sm-header-in t33-head">
     <a href="/es" class="sm-logo"><svg class="logo-full" viewBox="0 0 370 48" width="278" height="36" xmlns="http://www.w3.org/2000/svg" aria-label="Medicare California" role="img"><defs><linearGradient id="navShieldGradCA" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#0080D4"/><stop offset="100%" style="stop-color:#0071BC"/></linearGradient></defs><path d="M23 2 L43 10 L43 26 C43 37 35 43 23 49 C11 43 3 37 3 26 L3 10 Z" fill="url(#navShieldGradCA)"/><polyline points="14,27 20,33 33,19" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><text y="34" font-family="'Open Sans','Segoe UI','Helvetica Neue',Arial,sans-serif"><tspan x="54" font-size="26" font-weight="700" fill="#1a1a1a">Medicare</tspan><tspan dx="6" font-size="26" font-weight="600" fill="#3D9BE9">California</tspan></text></svg></a>
     <div class="sm-nav" role="navigation" aria-label="Navegación principal">
       <a href="/beneficios">Medicare 101</a>
       <a href="/benefits" hreflang="en" lang="en">In English</a>
       <a data-cta="header" href="/contacto">Contáctenos</a>
     </div>
-    <button type="button" class="sm-burger" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobile-nav" onclick="var m=document.getElementById('mobile-nav');var o=m.classList.toggle('open');this.setAttribute('aria-expanded',o?'true':'false')"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    <a data-cta="header" href="sms:+13105979142?&amp;body=Hola%2C%20tengo%20una%20pregunta%20sobre%20Medicare" class="t31-hcall" aria-label="Envíenos un texto al (310) 597-9142">Texto (310) 597-9142</a>
+    <button type="button" class="t31-menu" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobile-nav" onclick="var m=document.getElementById('mobile-nav');var o=m.classList.toggle('open');this.setAttribute('aria-expanded',o?'true':'false')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h16"/></svg><span>Menú</span></button>
   </div>
   <div class="sm-mnav" id="mobile-nav">
     <a href="/beneficios">Medicare 101</a>
@@ -822,10 +824,6 @@ a[href^="tel"] { white-space: nowrap; }
 
 <!-- SMS floating button -->
 
-<!-- WhatsApp floating button -->
-<a data-cta="float" href="https://wa.me/13105979142?text=Hola%2C%20necesito%20ayuda%20con%20Medicare" class="wa-float" target="_blank" title="WhatsApp" style="position:fixed;bottom:24px;right:16px;z-index:999;display:flex;align-items:center;gap:8px;height:48px;padding:0 18px 0 14px;border-radius:28px;background:#25D366;color:#fff;text-decoration:none;white-space:nowrap">
-  <i class="fab fa-whatsapp"></i><span class="float-label">WhatsApp</span>
-</a>
 
 <main id="main-content">
 <!-- AEP 2027 Countdown Banner -->
@@ -836,17 +834,21 @@ a[href^="tel"] { white-space: nowrap; }
 <!-- ═══════════════════════════════════════════════════════ -->
 
 <!-- Hero -->
-  <section class="hero" style="padding-top:60px;padding-bottom:40px;text-align:center">
-    <div class="container" style="position:relative;z-index:2">
+  <section class="hero t31-hero">
+    <div class="t31-band">
       <div class="section-label">BENEFICIOS DE MEDICARE</div>
-      <h1 style="font-family:'Open Sans',sans-serif;color:var(--navy);margin-bottom:16px">Entienda sus Beneficios de Medicare</h1>
-      <p style="font-size:18px;color:var(--gray);max-width:640px;margin:0 auto 32px">Todo lo que necesita saber para empezar - en español, sin rodeos.</p>
-      <a data-cta="guide_cta" data-cta-target="plan_finder" href="/es#widget-anchor" class="btn btn-primary"><i class="fas fa-search"></i> <span>Compare Planes</span></a>
+      <h1>Entienda sus Beneficios de Medicare</h1>
+      <p>Todo lo que necesita saber para empezar, en español, sin rodeos.</p>
     </div>
   </section>
+  <div class="t54-wrap"><div class="t54-card">
+    <p class="t54-k">En esta página</p>
+    <nav class="t54-jump" aria-label="En esta página"><a href="#partes">Las 4 partes</a><a href="#medigap">Medigap</a><a href="#inscripcion">Cuándo inscribirse</a><a href="#comparacion">Advantage vs. Medigap</a></nav>
+    <a class="t54-go" data-cta="guide_cta" data-cta-target="plan_finder" href="/es#widget-anchor">Compare Planes <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div></div>
 
   <!-- What is Medicare -->
-  <section style="padding:20px 24px 60px;background:white">
+  <section id="que-es" class="t31-sec" style="padding:20px 24px 60px;background:white">
     <div class="container" style="max-width:860px">
       <div class="section-label">¿QUÉ ES MEDICARE?</div>
       <div class="section-title">Medicare es el seguro médico federal para personas de 65 años o más.</div>
@@ -858,11 +860,11 @@ a[href^="tel"] { white-space: nowrap; }
   </section>
 
   <!-- The 4 Parts -->
-  <section style="padding:60px 24px;background:var(--lt-gray)">
+  <section id="partes" class="t31-sec t54-parts" style="padding:60px 24px;background:var(--lt-gray)">
     <div class="container">
       <div class="section-label">LAS 4 PARTES</div>
       <div class="section-title">¿Cuál es la diferencia entre Parte A, B, C y D?</div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:40px">
+      <div class="t54-pgrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:40px">
 
         <!-- Part A -->
         <div style="background:white;border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);border-top:4px solid var(--navy);transition:all 0.3s ease" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 10px 30px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='';this.style.boxShadow='var(--shadow)'">
@@ -898,7 +900,7 @@ a[href^="tel"] { white-space: nowrap; }
   </section>
 
   <!-- Medigap -->
-  <section style="padding:60px 24px;background:white">
+  <section id="medigap" class="t31-sec" style="padding:60px 24px;background:white">
     <div class="container" style="max-width:860px">
       <div class="section-label">SUPLEMENTO MEDIGAP</div>
       <div class="section-title">¿Qué es un plan Medigap o Suplemento?</div>
@@ -907,7 +909,7 @@ a[href^="tel"] { white-space: nowrap; }
   </section>
 
   <!-- Enrollment Periods -->
-  <section style="padding:60px 24px;background:var(--lt-gray)">
+  <section id="inscripcion" class="t31-sec" style="padding:60px 24px;background:var(--lt-gray)">
     <div class="container" style="max-width:860px">
       <div class="section-label">PERÍODOS DE INSCRIPCIÓN</div>
       <div class="section-title">¿Cuándo puedo inscribirme o cambiar mi plan?</div>
@@ -950,21 +952,10 @@ a[href^="tel"] { white-space: nowrap; }
   </section>
 
   <!-- CTA -->
-  <section class="cta-banner">
-    <div class="container" style="position:relative;z-index:2">
-      <div class="section-title" style="color:var(--navy);margin-bottom:8px">¿Listo para encontrar su plan?</div>
-      <p style="color:#5A6577;font-size:18px;margin-bottom:28px">La comparación es gratis y sin compromiso.</p>
-      <div style="display:flex;justify-content:center;margin-bottom:14px">
-        <a data-cta="final_cta" data-cta-target="plan_finder" href="/es#widget-anchor" class="btn btn-primary" style="background:#0080D4;color:white;border:2px solid #0080D4;font-weight:800;font-size:18px;padding:20px 44px;border-radius:12px;display:inline-flex;align-items:center;gap:10px;text-decoration:none">
-          <i class="fas fa-search"></i> <span>Compare Planes Gratis</span>
-        </a>
-      </div>
-      <div style="display:flex;justify-content:center;width:100%"><span style="font-size:14px;color:#8896A6">O si prefiere: <a data-cta="final_cta" href="tel:+13105979142" style="color:#0080D4;text-decoration:underline;font-weight:600"><i class="fas fa-phone-alt" style="display:inline-block;transform:scaleX(-1)"></i> Llame</a> · <a data-cta="final_cta" href="https://calendar.app.google/6D4obxzxERQXBpaf7" target="_blank" style="color:#0080D4;text-decoration:underline;font-weight:600"><i class="fas fa-video"></i> Agende Cita Virtual</a></span></div>
-    </div>
-  </section>
+  
 
   <!-- Complete guides: the eight pillar guides -->
-  <section style="padding:60px 24px;background:white">
+  <section id="guias" class="t31-sec" style="padding:60px 24px;background:white">
     <div class="container">
       <div class="section-label">GUÍAS COMPLETAS</div>
       <div class="section-title">Nuestras guías de Medicare</div>
@@ -1007,7 +998,7 @@ a[href^="tel"] { white-space: nowrap; }
   </section>
 
   <!-- Official Sources -->
-  <section style="padding:60px 24px;background:var(--lt-gray)">
+  <section id="fuentes" class="t31-sec" style="padding:60px 24px;background:var(--lt-gray)">
     <div class="container">
       <div class="section-label">FUENTES OFICIALES</div>
       <div class="section-title">Recursos confiables del gobierno</div>
@@ -1034,7 +1025,7 @@ a[href^="tel"] { white-space: nowrap; }
 
 
   <!-- ══ COMPARISON: MA vs MEDIGAP ══ -->
-  <section style="padding:60px 24px;background:white">
+  <section id="comparacion" class="t31-sec" style="padding:60px 24px;background:white">
     <div class="container" style="max-width:980px">
       <div class="section-label">COMPARACIÓN CLAVE</div>
       <div class="section-title" style="margin-bottom:12px">Medicare Advantage vs. Medigap</div>
@@ -1237,5 +1228,6 @@ function toggleMobile() {
   document.getElementById('mobile-nav').classList.toggle('open');
 }
 </script>
+<nav class="t31-bar" aria-label="Contacto"><a data-cta="sticky_bar" class="t31-fill" href="sms:+13105979142?&amp;body=Hola%2C%20tengo%20una%20pregunta%20sobre%20Medicare"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg><span>Texto</span></a><a data-cta="sticky_bar" class="t31-line" href="tel:+13105979142"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Llamar</span></a></nav>
 </body>
 </html>

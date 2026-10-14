@@ -1,0 +1,100 @@
+/* page-frame.css · T-054 (AB 2026-10-13): one shared page frame for the pages people land on most.
+   The header, navy headline band and phone bottom bar of Inicio / Contáctenos (T-031, T-033), moved out of
+   the page so no page keeps its own copy. Round 1: Benefits, Privacy and the main guides. Round 2 (D-092:
+   cities, states, blog, team, careers) loads this file as is. Same rules on both sites; only the colour
+   line and the header sizes (copied from each site's contact page) differ.
+   Markup a page needs: .sm-header-in.t33-head + .t31-hcall + .t31-menu in the sm-header; the headline in a
+   .t31-band (inside .t31-hero on landing pages, or .t54-gband on an article header); .t31-bar before </body>. */
+html{--t31-brand:#0071BC;--t31-strip:#00578F;--t31-navy:#0B2D4F;--t31-ink:#0B2D4F;--t31-accent:#81D4FA;--t31-line:#0071BC;--t31-logo-w:222px}
+
+/* header: white, name on one line, "Menú" button on phones, phone/text button on desktop */
+html body .sm-header{background:#fff!important;border-bottom:0!important}
+html body .t33-head{max-width:960px!important;min-height:73px;padding:0 24px!important;gap:12px!important;flex-wrap:nowrap!important}
+html body .t33-head .sm-logo svg{display:block;max-width:100%;height:auto}
+html body .t33-head .sm-nav{flex:0 1 auto!important;flex-wrap:nowrap!important;justify-content:flex-end!important;margin-left:auto!important;margin-right:0!important}
+html body .t31-hcall{display:inline-flex;align-items:center;flex:0 0 auto;margin-left:8px;padding:8px 16px;border:2px solid var(--t31-brand);border-radius:10px;
+  color:var(--t31-brand);background:#fff;font:700 16px/1.3 'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif;text-decoration:none;white-space:nowrap}
+html body .t31-hcall:hover,html body .t31-hcall:focus-visible{background:var(--t31-brand);color:#fff}
+html body .t31-menu{display:none!important;align-items:center;gap:8px;flex:0 0 auto;height:44px;min-height:44px;min-width:44px;margin:0;padding:0 12px!important;
+  background:#fff;border:2px solid #D4DEE8;border-radius:10px;color:var(--t31-ink);cursor:pointer;box-sizing:border-box!important;
+  font:700 16px/1 'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif}
+html body .t31-menu svg{width:20px;height:20px;display:block;flex:none}
+
+/* navy headline band */
+html body .t31-hero{background:none!important;padding:0!important;margin:0!important;overflow:visible!important}
+html body .t31-band{background:var(--t31-navy)!important;color:#fff;text-align:center;padding:40px 24px 48px!important;margin:0!important;border:0!important}
+html body .t31-band h1{font-family:'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif!important;font-size:42px!important;font-weight:700!important;line-height:1.15!important;
+  color:#fff!important;margin:0 auto 14px!important;padding:0!important;white-space:normal!important;max-width:960px}
+html body .t31-band p{font-size:18px!important;line-height:1.55!important;color:#DCE6EF!important;max-width:760px!important;margin:0 auto!important;padding:0!important;text-wrap:balance}
+/* the small label above the headline (Guía completa, Beneficios de Medicare): a light chip on the navy */
+html body .t31-band .section-label,html body .t31-band .blog-tag,html body .t31-band .article-tag{display:inline-block;margin:0 0 14px!important;padding:6px 14px!important;border-radius:999px;
+  background:rgba(255,255,255,.12)!important;color:var(--t31-accent)!important;font-size:13px!important;font-weight:700!important;letter-spacing:.08em;text-transform:uppercase;border:0!important}
+/* article headers: the band reaches both edges even inside a narrow column, without widening the page */
+html body .t54-gband{box-shadow:0 0 0 100vmax var(--t31-navy);clip-path:inset(0 -100vmax)}
+html body .t54-gband .blog-article-meta,html body .t54-gband .article-meta,html body .t54-gband .article-meta time,html body .t54-gband .blog-article-meta span,html body .t54-gband p.updated,html body .t54-gband p.updated strong{color:#DCE6EF!important}
+html body .t54-gband .blog-article-meta,html body .t54-gband .article-meta,html body .t54-gband p.updated{font-size:16px!important;margin:0 auto!important}
+html body main.t54-page{padding-top:0!important;margin-top:0!important}
+html body main.t54-page>article{padding-top:0!important;margin-top:0!important}
+
+/* white card over the band (Benefits: jump buttons + the page's own plan button) */
+html body .t54-wrap{padding:0 18px 8px;background:#fff}
+html body .t54-card{position:relative;max-width:520px;margin:-24px auto 0;background:#fff;border-radius:16px;box-shadow:0 10px 30px rgba(0,33,71,.12);padding:22px 20px 20px;text-align:left;box-sizing:border-box}
+html body .t54-card .t54-k{font-size:13px;font-weight:700;letter-spacing:.08em;color:var(--t31-brand);text-transform:uppercase;margin:0 0 10px}
+html body .t54-jump{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 16px}
+html body .t54-jump a{display:flex;align-items:center;justify-content:center;min-height:48px;padding:6px 10px;border:2px solid #D4DEE8;border-radius:12px;color:var(--t31-ink);font-weight:700;font-size:15px;text-decoration:none;text-align:center;line-height:1.25}
+html body .t54-jump a:hover,html body .t54-jump a:focus-visible{border-color:var(--t31-brand)}
+html body .t54-go{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:52px;border-radius:12px;background:var(--t31-brand);color:#fff!important;font-weight:700;font-size:17px;text-decoration:none}
+html body [id].t31-sec{scroll-margin-top:16px}
+
+/* section titles like the home */
+html body .section-title,html body .cta-banner .section-title,html body .blog-article-body h2,html body .blog-post h2{font-family:'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif!important;font-weight:700!important}
+html body .section-title,html body .cta-banner .section-title{font-size:clamp(24px,3.5vw,36px)!important;line-height:1.25!important}
+
+html body .t31-bar{display:none}
+
+@media (min-width:769px) and (max-width:1023px){
+  html body .t33-head .sm-logo svg{width:210px}
+  html body .t33-head .sm-nav{gap:0!important}
+  html body .t33-head .sm-nav a{padding:8px 8px!important}
+}
+@media (max-width:389px){html[lang^="es"] body .t31-hero .t31-band p{font-size:17px!important}}
+@media (max-width:768px){
+  html body .t33-head{padding:10px 16px!important;height:64px!important;min-height:64px;max-width:none!important;justify-content:space-between!important}
+  html body .t33-head .sm-logo svg{width:var(--t31-logo-w)!important}
+  html body .t33-head .sm-nav,html body .t31-hcall{display:none!important}
+  html body .t31-menu{display:inline-flex!important;padding:0 12px!important}
+  html body .sm-mnav.open{display:flex!important}
+
+  html body .t31-band{padding:20px 18px 32px!important}
+  html body .t31-band h1{font-size:30px!important}
+  html body .t31-band .section-label,html body .t31-band .blog-tag,html body .t31-band .article-tag{margin-bottom:10px!important}
+
+  html body .t31-sec{padding-top:36px!important;padding-bottom:36px!important;padding-left:18px!important;padding-right:18px!important}
+  html body .t31-sec h2,html body .t31-sec .section-title{font-size:24px!important;line-height:1.25!important;margin-bottom:8px!important}
+  html body .t31-sec .section-label{margin-bottom:6px!important}
+  /* Benefits: the 4 parts as compact icon-left cards */
+  html body .t54-parts .t54-pgrid{grid-template-columns:1fr!important;gap:12px!important;margin-top:20px!important}
+  html body .t54-parts .t54-pgrid>div{display:grid!important;grid-template-columns:52px 1fr;column-gap:14px;padding:18px!important;border-top:0!important;border-left:4px solid var(--t31-brand)!important}
+  html body .t54-parts .t54-pgrid>div>div:first-child{grid-row:1/4;width:52px!important;height:52px!important;font-size:1.3rem!important;margin:0!important}
+  html body .t54-parts .t54-pgrid h3{margin:0 0 4px!important;font-size:17px!important}
+  html body .t54-parts .t54-pgrid p{grid-column:2}
+
+  /* phone bottom bar */
+  html body .t31-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:950;gap:10px;margin:0;
+    padding:10px 10px calc(10px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid #D4DEE8;box-shadow:0 -4px 16px rgba(0,33,71,.08)}
+  html body .t31-bar a{flex:1 1 0;min-width:0;height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;box-sizing:border-box;
+    border-radius:12px;text-decoration:none;font:700 16px/1.1 'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif;-webkit-tap-highlight-color:transparent}
+  html body .t31-bar svg{width:22px;height:22px;display:block;flex:none}
+  html body .t31-bar .t31-fill{background:var(--t31-brand);border:2px solid var(--t31-brand);color:#fff}
+  html body .t31-bar .t31-line{background:#fff;border:2px solid var(--t31-line);color:var(--t31-ink)}
+  html body .t31-bar a:focus-visible{outline:3px solid #FFB300;outline-offset:2px}
+  html body{padding-bottom:calc(78px + env(safe-area-inset-bottom))!important}
+  html body .mobile-sticky-cta,html body .sms-float,html body .wa-float{display:none!important}
+  html body footer,html body .sm-footer{padding-bottom:16px!important}
+  html body .sm-foot-in{padding-bottom:0!important}
+}
+
+/* logo: same colour, size and position as the contact page (its logo-align block, last so it wins as it does there) */
+html body .t31-head,html body .t33-head{max-width:960px!important;min-height:0!important;height:64px!important;padding:0 24px!important;align-items:center!important;box-sizing:border-box!important}
+@media (min-width:1024px){html body .t31-head .logo svg,html body .t33-head .sm-logo svg{width:278px!important}}
+@media (max-width:768px){html body .t31-head,html body .t33-head{padding:0 8px 0 16px!important;height:64px!important;gap:4px!important}html body .t31-head .logo svg,html body .t33-head .sm-logo svg{width:245px!important}}

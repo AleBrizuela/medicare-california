@@ -98,3 +98,6 @@ html body .t31-bar{display:none}
 html body .t31-head,html body .t33-head{max-width:960px!important;min-height:0!important;height:64px!important;padding:0 24px!important;align-items:center!important;box-sizing:border-box!important}
 @media (min-width:1024px){html body .t31-head .logo svg,html body .t33-head .sm-logo svg{width:278px!important}}
 @media (max-width:768px){html body .t31-head,html body .t33-head{padding:0 8px 0 16px!important;height:64px!important;gap:4px!important}html body .t31-head .logo svg,html body .t33-head .sm-logo svg{width:245px!important}}
+
+/* guides: two side-by-side buttons in the article (Agende / WhatsApp) stack on the narrowest phones instead of pushing the page sideways */
+@media (max-width:400px){html body main.t54-page div[style*="grid-template-columns: 1fr 1fr"]{grid-template-columns:1fr!important}}

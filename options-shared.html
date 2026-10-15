@@ -11,10 +11,11 @@
 <meta property="og:title" content="3 Medicare options for 2027">
 <meta property="og:description" content="The options that were shared with you, with the CMS costs for 2027.">
 <meta property="og:type" content="website">
-<!-- The card a shared link shows. The per-link image (card B+, a tile per carrier) needs a
-     rasteriser in the Pages build and waits for AB; until then this is the site's own card,
-     which is branded and correct. Never a broken image. -->
-<meta property="og:image" content="https://medicare-california.com/og-2026-10-mc-en.jpg">
+<!-- The card a shared link shows: card B+, drawn once at build time, NOT per link (AB 2026-10-15:
+     not touching the Cloudflare build today). One fixed image is shown for every shared link, so it
+     deliberately carries no ZIP and no carrier names — those would be right for one link and wrong
+     for every other. The title and the ZIP travel in the message text instead. -->
+<meta property="og:image" content="https://medicare-california.com/og-options-mc.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:site_name" content="Medicare California">

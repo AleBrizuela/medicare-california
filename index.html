@@ -2957,8 +2957,23 @@ so Back goes one screen back instead of leaving the site. */
   measure();
   window.addEventListener('resize',measure);
   if(window.visualViewport) window.visualViewport.addEventListener('resize',measure);
+  /* the contact bar comes and goes (keyboard, question screens), and the compare bar sits exactly
+     one contact bar above the bottom, so re-measure whenever the page's state changes */
+  new MutationObserver(measure).observe(b,{attributes:true,attributeFilter:['class']});
+  /* T-042 reveals the contact bar when the ZIP card scrolls off the top, using an
+     IntersectionObserver. Since T-051 the card is not scrolled off, it is display:none the moment
+     the plan finder opens, and an observer gets no entry for that — so on the plans-first flow the
+     Llamar / WhatsApp bar never appeared at all. T-063 needs it there, under the compare bar, so
+     the widget opening counts as the card being gone. */
+  function wake(){
+    if(!b.classList.contains('t42-calm')) return;
+    b.classList.remove('t42-calm'); b.classList.add('t42-in');
+    if(window.t31Sync) window.t31Sync();
+    measure();
+  }
   window.addEventListener('message',function(e){
     if(!OK.test(e.origin)||!e.data) return;
+    if(e.data.type==='widget-step'||e.data.type==='widget-cbar'||e.data.type==='widget-nav') wake();
     if(e.data.type==='widget-cbar'){
       var d=e.data;
       if(d.label) lab.textContent=d.label;

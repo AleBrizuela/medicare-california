@@ -1852,6 +1852,10 @@ html body .t31-form #zip-card #zip-btn{height:52px!important;padding:0 24px!impo
 html body .t31-checks{margin-top:22px!important;padding-top:0!important}
 
 html body .t31-bar{display:none}
+/* T-056/T-063: the page's compare bar is a phone thing, like the contact bar above it.
+   Outside the phone media query it has no display rule of its own, so it rendered as a
+   plain block in the middle of the desktop page. */
+html body .t31-cbar{display:none}
 
 @media (min-width:769px) and (max-width:1023px){
   html body .t31-head .logo svg{width:210px}
@@ -2979,7 +2983,11 @@ so Back goes one screen back instead of leaving the site. */
       if(d.label) lab.textContent=d.label;
       if(d.compare) btn.textContent=d.compare;
       btn.disabled=!d.canCompare;
-      if(!!d.on!==on){ on=!!d.on; b.classList.toggle('t31-c',on); measure(); send({type:'host-cbar',on:on}); }
+      if(!!d.on!==on){
+        on=!!d.on; b.classList.toggle('t31-c',on); measure();
+        /* on desktop this bar is not displayed at all, so the widget must keep its own */
+        send({type:'host-cbar',on:on&&getComputedStyle(cbar).display!=='none'});
+      }
       return;
     }
     if(e.data.type==='widget-nav'){

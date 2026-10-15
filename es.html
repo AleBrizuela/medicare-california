@@ -1499,6 +1499,14 @@ html body details.t31-cities[open]>summary{margin-bottom:16px}
   html body.t31-solid .t31-cbar{border:0;background:none;box-shadow:none;padding:0}
   html body.t31-solid .t31-cbar .n{display:none}
   html body.t31-solid .t31-cbar button{flex:1 1 auto;width:100%;min-height:52px;padding:0 14px}
+  html body .t31-cbar .t31-sec{display:none}
+  html body.t31-duo .t31-cbar{gap:10px}
+  html body.t31-duo .t31-cbar .t31-sec{display:flex;align-items:center;justify-content:center;gap:6px;
+    flex:0 0 38%;width:auto;min-height:52px;background:#fff;border:2px solid var(--t31-brand);
+    border-radius:12px;color:var(--t31-brand);cursor:pointer;
+    font:600 16.5px/1 'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif}
+  html body.t31-duo .t31-cbar .t31-sec[hidden]{display:none}
+  html body.t31-duo .t31-cbar button:not(.t31-sec){flex:1 1 auto;font-size:16.5px}
   html body.t31-c .t31-bar{display:none!important}
   html body.t31-kb .t31-cbar{display:none}
   /* T-096 round 2 (AB 2026-10-15): the count is a quiet label next to the button, not a headline */
@@ -2550,18 +2558,40 @@ only to the exact origin the iframe was loaded from. */
 (function(){
   var frame=document.getElementById('widget-frame'), cbar=document.querySelector('.t31-cbar');
   if(!frame||!cbar) return;
-  var btn=cbar.querySelector('button'), lab=cbar.querySelector('.n');
+  var btn=cbar.querySelector('button'), lab=cbar.querySelector('.n'), sec=null;
   var OK=/^https:\/\/((www\.)?beneficiosmedicare\.com|([a-z0-9-]+\.)?beneficiosmedicare\.pages\.dev)$/;
   var b=document.body, on=false;
   function origin(){ try{ return new URL(frame.src,location.href).origin; }catch(e){ return ''; } }
   function send(o){ var t=origin(); if(!t) return; try{ frame.contentWindow.postMessage(o,t); }catch(e){} }
+  /* T-078: WhatsApp, the texting app and the mail app have to be opened by the PAGE — a sms: or
+     mailto: from inside a cross-origin iframe is blocked. Only these three schemes and our own two
+     sites are ever followed, and only from the exact origin the widget was loaded from. */
+  var SHARE_OK=/^(https:\/\/wa\.me\/|sms:|mailto:|https:\/\/(www\.)?(beneficiosmedicare|medicare-california)\.com\/|https:\/\/[a-z0-9-]+\.(beneficiosmedicare|medicare-california)\.pages\.dev\/)/i;
   window.addEventListener('message',function(e){
-    if(!OK.test(e.origin)||!e.data||e.data.type!=='widget-cbar') return;
+    if(!OK.test(e.origin)||!e.data) return;
+    if(e.data.type==='widget-open'){
+      var h=String(e.data.href||''); if(!SHARE_OK.test(h)) return;
+      var a=document.createElement('a'); a.href=h; a.target='_blank'; a.rel='noopener';
+      document.body.appendChild(a); a.click(); a.remove(); return;
+    }
+    if(e.data.type!=='widget-cbar') return;
     var d=e.data;
     if(d.label) lab.textContent=d.label;
     /* T-084 round 2: the same bar, one button wide, when it carries a screen's main action
        ("Ayudeme a elegir este plan" / "...estos planes") instead of the compare count. */
-    b.classList.toggle('t31-solid',d.mode==='action');
+    b.classList.toggle('t31-solid',d.mode==='action'||d.mode==='duo');
+    /* T-096 round 3d + T-078: the comparison's bar carries two actions. The outline one is made
+       here the first time it is needed, so the markup of this page does not have to change. */
+    b.classList.toggle('t31-duo',d.mode==='duo');
+    if(d.mode==='duo'&&d.secondary){
+      if(!sec){
+        sec=document.createElement('button'); sec.type='button'; sec.className='t31-sec';
+        sec.innerHTML='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 13v7h14v-7"/></svg><span></span>';
+        sec.addEventListener('click',function(){ send({type:'widget-share'}); });
+        cbar.insertBefore(sec,btn);
+      }
+      sec.querySelector('span').textContent=d.secondary; sec.hidden=false;
+    } else if(sec){ sec.hidden=true; }
     if(d.compare) btn.textContent=d.compare;
     btn.disabled=!d.canCompare;
     if(!!d.on!==on){

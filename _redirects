@@ -72,3 +72,8 @@
 # T-044 (AB 2026-10-07): the team page moved to /team, with its Spanish twin at /equipo.
 /authors                 /team       301
 /authors.html            /team       301
+
+# T-078: a shared plan link always points at the domain it was made on. This catches the
+# one case where it would not - a link made on beneficiosmedicare.com and retyped here -
+# so it lands on this site's own page instead of a 404. Query string is carried over.
+/planes/compartidos      /plans/shared   301

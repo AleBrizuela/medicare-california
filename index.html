@@ -2606,6 +2606,26 @@ window.addEventListener('message', function(e) {
     var a = document.getElementById('widget-anchor') || frame;
     if (a) a.scrollIntoView({behavior:'smooth', block:'start'});
   }
+  // T-075: Back from a plan screen lands on the card the visitor opened. The widget cannot scroll this
+  // page -- it is embedded with scrolling="no" and the PAGE is what scrolls -- so it sends the card's
+  // offset inside the widget and we scroll here. The height comes with it because the frame is still at
+  // the short plan screen's height: apply it first, with the 0.3s transition off, or the page is not yet
+  // tall enough to scroll that far and the browser clamps the jump. Instant, not smooth: this is
+  // restoring a place the visitor already had, and scroll-behavior:smooth would crawl down 70 cards.
+  if (e.data.type === 'widget-scrollto' && typeof e.data.top === 'number' && isFinite(e.data.top)) {
+    if (typeof e.data.height === 'number' && e.data.height > 0) {
+      var tr = frame.style.transition;
+      frame.style.transition = 'none';
+      frame.style.minHeight = '0px';
+      frame.style.height = e.data.height + 'px';
+      frame.getBoundingClientRect();                       // flush the new height before scrolling
+      requestAnimationFrame(function(){ frame.style.transition = tr; });
+    }
+    var hd = document.querySelector('header'), hp = hd ? getComputedStyle(hd).position : '';
+    var clear = (hp === 'fixed' || hp === 'sticky') ? hd.getBoundingClientRect().height : 0;   // BM's header is sticky on phones
+    var y = Math.max(0, Math.round(frame.getBoundingClientRect().top + window.pageYOffset + e.data.top - clear - 12));
+    try { window.scrollTo({top: y, behavior: 'instant'}); } catch (err) { window.scrollTo(0, y); }
+  }
 });
 
 // ── ACCORDION LOGIC ──

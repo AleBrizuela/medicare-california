@@ -46,8 +46,11 @@ BRAND = {
 # "widget" covers widget.html / widget-v*.html: embedded JS apps, every one noindex
 # and absent from the sitemap. A page whose job is to be an iframe has few words BY
 # DESIGN, and reporting it as "blank or gutted" buried the two pages that really are.
+# T-078: the shared-comparison sheet draws itself from the plan IDs in its own URL, so its static
+# HTML holds no prose for check_bodies to measure, and it is noindex by design. check_exemptions
+# below is what keeps that honest: anything on this list that is NOT noindex is a hard error.
 NON_PUBLIC = ("index-v", "index-dev", "index-localtest", "index-current", "404",
-              "bot-evals", "widget")
+              "bot-evals", "widget", "opciones", "options")
 
 SKIP_DIRS = {".git", "node_modules", ".github", "__pycache__", ".cloudflare", "images",
              "tools"}  # tools/ holds internal scrapers, noindex and unlinked

@@ -26,18 +26,18 @@ setTimeout(function(){
 <link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/">
 <link rel="alternate" hreflang="x-default" href="https://medicare-california.com/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Medicare California · Medicare help from a family agency">
-<meta property="og:description" content="Family-run Medicare agency. We compare plans with you, in English or Spanish.">
+<meta property="og:title" content="Medicare California: Free Plan Comparison | Hablamos Español">
+<meta property="og:description" content="Compare Medicare Advantage, Medigap, and Part D plans in your California ZIP code. Free help from licensed bilingual agents.">
 <meta property="og:url" content="https://medicare-california.com/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Medicare California">
-<meta property="og:image" content="https://medicare-california.com/og-2026-10-mc-en.jpg">
+<meta property="og:image" content="https://medicare-california.com/og-image-ca-v2.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Medicare California · Medicare help from a family agency">
-<meta name="twitter:description" content="Family-run Medicare agency. We compare plans with you, in English or Spanish.">
-<meta name="twitter:image" content="https://medicare-california.com/og-2026-10-mc-en.jpg">
+<meta name="twitter:title" content="Medicare California: Free Plan Comparison | Hablamos Español">
+<meta name="twitter:description" content="Compare Medicare Advantage, Medigap, and Part D plans in your California ZIP code. Free help from licensed bilingual agents. Trusted by 2,000+ families.">
+<meta name="twitter:image" content="https://medicare-california.com/og-image-ca-v2.png">
       <meta name="google-site-verification" content="T-tb-tZ1uc3Af-KOY8cRX3LXDqHE9TaFMSAZFZUscBg" />
 <meta name="robots" content="index, follow">
 <link rel="icon" type="image/svg+xml" href="favicon-california.svg">
@@ -1198,12 +1198,6 @@ footer.site-footer { padding-bottom: 80px; }
   "url": "https://medicare-california.com",
   "description": "California-licensed Medicare insurance agents providing free expert guidance on Medicare Advantage, Medigap, and Part D plans for California residents.",
   "telephone": "+1-310-597-9142",
-  "sameAs": [
-    "https://www.instagram.com/beneficiosmedicare",
-    "https://www.tiktok.com/@beneficiosmedicare",
-    "https://www.facebook.com/beneficiosdemedicare",
-    "https://www.linkedin.com/company/112728228"
-  ],
   "email": "hola@medicare-california.com",
   "areaServed": [
     {
@@ -1858,10 +1852,6 @@ html body .t31-form #zip-card #zip-btn{height:52px!important;padding:0 24px!impo
 html body .t31-checks{margin-top:22px!important;padding-top:0!important}
 
 html body .t31-bar{display:none}
-/* T-056/T-063: the page's compare bar is a phone thing, like the contact bar above it.
-   Outside the phone media query it has no display rule of its own, so it rendered as a
-   plain block in the middle of the desktop page. */
-html body .t31-cbar{display:none}
 
 @media (min-width:769px) and (max-width:1023px){
   html body .t31-head .logo svg{width:210px}
@@ -1942,27 +1932,6 @@ html body details.t31-cities[open]>summary{margin-bottom:16px}
   html body.t31-q .t31-bar .t31-next{display:flex}
   html body .t31-bar .t31-next[disabled]{opacity:.45;cursor:default}
   html body .t31-bar .t31-next:focus-visible{outline:3px solid #FFB300;outline-offset:2px}
-
-  /* ── T-063: the compare bar, drawn by the page so it can be fixed to the bottom of the SCREEN.
-     The widget cannot do it: inside this iframe there is no scrollport, the frame grows to fit and
-     the page is what scrolls, so position:sticky has nothing to stick to.
-     T-066 (AB 2026-10-14), replacing T-063's two stacked bars: ONE bar at a time. From the first
-     ticked plan this bar takes the bottom of the screen and the contact bar steps aside; untick
-     them all and the contact bar comes back. ── */
-  html body .t31-cbar{display:none;position:fixed;left:0;right:0;z-index:951;
-    bottom:env(safe-area-inset-bottom);
-    margin:0 10px 8px;padding:10px 12px;gap:10px;align-items:center;justify-content:space-between;
-    background:#fff;border:2px solid #007B7B;border-radius:14px;box-shadow:0 6px 18px rgba(16,24,40,.16)}
-  html body.t31-c .t31-cbar{display:flex}
-  html body.t31-c .t31-bar{display:none!important}
-  html body.t31-kb .t31-cbar{display:none}
-  html body .t31-cbar .n{font:700 14px/1.2 'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif;color:#002147}
-  html body .t31-cbar button{flex:0 0 auto;min-height:44px;padding:0 18px;border:0;border-radius:10px;
-    background:#007B7B;color:#fff;cursor:pointer;
-    font:800 15px/1 'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif;-webkit-tap-highlight-color:transparent}
-  html body .t31-cbar button:disabled{opacity:.45;cursor:default}
-  html body .t31-cbar button:focus-visible{outline:3px solid #FFB300;outline-offset:2px}
-
   html body .mobile-sticky-cta{display:none!important}
 
   /* every compressed section */
@@ -2463,12 +2432,6 @@ html body #zip-card .t42-book:focus-visible{outline:3px solid #FFB300;outline-of
       <a data-cta="footer" href="mailto:hola@medicare-california.com"><svg class="sm-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Email</a>
       <a data-cta="footer" href="https://wa.me/13105979142" target="_blank" rel="noopener"><svg class="sm-ic sm-ic-fill" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>WhatsApp</a>
     </div>
-    <div class="sm-foot-row">
-      <a data-cta="footer" href="https://www.instagram.com/beneficiosmedicare" target="_blank" rel="noopener"><svg class="sm-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>Instagram</a>
-      <a data-cta="footer" href="https://www.tiktok.com/@beneficiosmedicare" target="_blank" rel="noopener"><svg class="sm-ic sm-ic-fill" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.53.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.6-1.62-.94-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03C3.23 21.76 1.81 19.58 1.6 17.24c-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>TikTok</a>
-      <a data-cta="footer" href="https://www.facebook.com/beneficiosdemedicare" target="_blank" rel="noopener"><svg class="sm-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>Facebook</a>
-      <a data-cta="footer" href="https://www.linkedin.com/company/112728228" target="_blank" rel="noopener"><svg class="sm-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
-    </div>
     <!-- sm-disclaimer:start -->
 <div class="sm-disclaimer" lang="en" style="max-width:960px;margin:20px auto 0;padding:16px 0 0;border-top:1px solid rgba(255,255,255,0.14);text-align:left;font-family:'Open Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:rgba(255,255,255,0.68);">
     <p style="margin:0 0 8px;font-family:'Open Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-size:12px;line-height:1.6;color:rgba(255,255,255,0.68);font-weight:600;color:rgba(255,255,255,0.82);">CMS required notice (TPMO disclaimer)</p>
@@ -2477,7 +2440,7 @@ html body #zip-card .t42-book:focus-visible{outline:3px solid #FFB300;outline-of
     <p style="margin:0 0 4px;font-family:'Open Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-size:11px;line-height:1.6;color:rgba(255,255,255,0.68);margin-top:10px;">Not affiliated with or endorsed by the federal Medicare program or any government agency. Medicare is a registered trademark of the Department of Health and Human Services.</p>
 </div>
 <script>/* T-027 (6): staging badge. Shown only on *.pages.dev hosts, decided by hostname at view time, so it cannot ship to the live domains. */if(/\.pages\.dev$/.test(location.hostname)){var sb=document.createElement('div');sb.className='stg-badge';sb.textContent='STAGING \u00b7 no es el sitio real';sb.setAttribute('style','position:fixed;top:8px;right:8px;z-index:2147483647;background:#5f6b75;color:#fff;font:600 12px/1 -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial,sans-serif;padding:6px 10px;border-radius:999px;opacity:.92;pointer-events:none');document.body.appendChild(sb);}</script>
-<script>/* T-020 + T-040 + T-043 + T-065: taps on phone, text, WhatsApp, booking, email and social links, and clicks on on-site CTAs (links to the contact page, plan-finder buttons: cta_click with target), are reported to GA4 with which button it was (placement). Never personal data: only the channel, site, language, page path, placement and target (for a social tap, which network). Placement: the nearest data-cta (every CTA carries one since T-043, checked by site-check.py), else the container, else body. */document.addEventListener('click',function(e){var a=e.target&&e.target.closest?e.target.closest('a[href],button[data-cta-target]'):null;if(!a||typeof gtag!=='function')return;var h=a.getAttribute('href')||'',n=/^tel:/i.test(h)?'phone_click':/^sms:/i.test(h)?'sms_click':/wa\.me|whatsapp\.com/i.test(h)?'whatsapp_click':/calendar\.app\.google|calendly\.com|\/\/(www\.)?cal\.com/i.test(h)?'book_click':/^mailto:/i.test(h)?'email_click':/(?:instagram|tiktok|facebook|linkedin)\.com/i.test(h)?'social_click':'',t=a.getAttribute('data-cta-target')||(/^(https?:\/\/(www\.)?(beneficiosmedicare|medicare-california)\.com)?\/?(contacto|contact)(\.html)?\/?([?#].*)?$/i.test(h)?'contact':'');if(!n&&!t)return;var c=a.closest('[data-cta]'),p=c?c.getAttribute('data-cta'):'';if(!p&&(a.matches('.wa-float,.whatsapp-float,.wa-float-ca')||getComputedStyle(a).position==='fixed'))p='float';var R=['footer,.sm-footer','footer','#header,.sm-header,.site-header','header','.t31-bar','sticky_bar','#form-success','thank_you','.contact-methods','contact_card','.blog-sidebar','sidebar','.blog-cta-box','blog_cta','.cta-buttons','final_cta','.cta-banner','final_cta','.final-cta-zip-card','final_cta','.author-card','contact_card','.t31-hero,.hero','home_hero','article,.blog-article-body,.blog-container','inline_body'];for(var i=0;!p&&i<R.length;i+=2)if(a.closest(R[i]))p=R[i+1];var o={site:/california/.test(location.hostname)?'mc':'bm',lang:(document.documentElement.lang||'').slice(0,2),page:location.pathname,placement:p||'body'};if(n){if(n==='social_click')o.target=(h.match(/(instagram|tiktok|facebook|linkedin)\.com/i)||['',''])[1].toLowerCase();gtag('event',n,o);}else{o.target=t;gtag('event','cta_click',o);}},true);</script>
+<script>/* T-020 + T-040 + T-043: taps on phone, text, WhatsApp, booking and email links, and clicks on on-site CTAs (links to the contact page, plan-finder buttons: cta_click with target), are reported to GA4 with which button it was (placement). Never personal data: only the channel, site, language, page path, placement and target. Placement: the nearest data-cta (every CTA carries one since T-043, checked by site-check.py), else the container, else body. */document.addEventListener('click',function(e){var a=e.target&&e.target.closest?e.target.closest('a[href],button[data-cta-target]'):null;if(!a||typeof gtag!=='function')return;var h=a.getAttribute('href')||'',n=/^tel:/i.test(h)?'phone_click':/^sms:/i.test(h)?'sms_click':/wa\.me|whatsapp\.com/i.test(h)?'whatsapp_click':/calendar\.app\.google|calendly\.com|\/\/(www\.)?cal\.com/i.test(h)?'book_click':/^mailto:/i.test(h)?'email_click':'',t=a.getAttribute('data-cta-target')||(/^(https?:\/\/(www\.)?(beneficiosmedicare|medicare-california)\.com)?\/?(contacto|contact)(\.html)?\/?([?#].*)?$/i.test(h)?'contact':'');if(!n&&!t)return;var c=a.closest('[data-cta]'),p=c?c.getAttribute('data-cta'):'';if(!p&&(a.matches('.wa-float,.whatsapp-float,.wa-float-ca')||getComputedStyle(a).position==='fixed'))p='float';var R=['footer,.sm-footer','footer','#header,.sm-header,.site-header','header','.t31-bar','sticky_bar','#form-success','thank_you','.contact-methods','contact_card','.blog-sidebar','sidebar','.blog-cta-box','blog_cta','.cta-buttons','final_cta','.cta-banner','final_cta','.final-cta-zip-card','final_cta','.author-card','contact_card','.t31-hero,.hero','home_hero','article,.blog-article-body,.blog-container','inline_body'];for(var i=0;!p&&i<R.length;i+=2)if(a.closest(R[i]))p=R[i+1];var o={site:/california/.test(location.hostname)?'mc':'bm',lang:(document.documentElement.lang||'').slice(0,2),page:location.pathname,placement:p||'body'};if(n){gtag('event',n,o);}else{o.target=t;gtag('event','cta_click',o);}},true);</script>
 <!-- sm-disclaimer:end -->
     <div class="sm-foot-bottom">
       <span>&copy; 2026 Medicare California. All rights reserved.</span>
@@ -2556,7 +2519,7 @@ function handleZipSubmit() {
   var bmHost = window.location.hostname.indexOf('staging') > -1
     ? 'staging.beneficiosmedicare.pages.dev'
     : 'beneficiosmedicare.com';
-  frame.src = 'https://' + bmHost + '/widget-v4?lang=' + currentLang + '&theme=california&v=20261014t67d&zip=' + zip + (window.bmTester ? '&qa=1' : '');
+  frame.src = 'https://' + bmHost + '/widget-v4?lang=' + currentLang + '&theme=california&v=20260308b&zip=' + zip + (window.bmTester ? '&qa=1' : '');
 }
 
 function handleFinalZipSubmit() {
@@ -2919,7 +2882,7 @@ function toggleMobile() {
 }
 </script>
 <!-- T-031 contact bar (phones only) -->
-<div class="t31-cbar" data-cta="share_bar" aria-live="polite"><span class="n">0 plans selected</span><button type="button">Compare</button></div><nav class="t31-bar" data-cta="sticky_bar" aria-label="Contact"><a class="t31-fill" href="sms:+13105979142?&amp;body=Hi%2C%20I%20have%20a%20Medicare%20question"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg><span>Text us</span></a><a class="t31-line" href="tel:+13105979142"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Call</span></a><button type="button" class="t31-next"><span>Continue</span> &rarr;</button></nav>
+<nav class="t31-bar" data-cta="sticky_bar" aria-label="Contact"><a class="t31-fill" href="sms:+13105979142?&amp;body=Hi%2C%20I%20have%20a%20Medicare%20question"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg><span>Text us</span></a><a class="t31-line" href="tel:+13105979142"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Call</span></a><button type="button" class="t31-next"><span>Continue</span> &rarr;</button></nav>
 <script>/* T-031: the bottom contact bar steps aside while the on-screen keyboard is open, so it never sits over a field being typed in, on this page or inside the plan finder. Pinch-zoom is not mistaken for a keyboard. */(function(){var v=window.visualViewport;if(!v)return;function typing(){var a=document.activeElement;return !!a&&(/^(INPUT|TEXTAREA|SELECT|IFRAME)$/.test(a.tagName)||a.isContentEditable);}function f(){document.body.classList.toggle('t31-kb',typing()&&v.scale<1.05&&v.height<window.innerHeight*0.75);if(window.t31Sync)window.t31Sync();}/* a keyboard can only be open while someone is in a field: check on every resize and whenever focus moves, so a resize during page load can never leave the bar hidden */v.addEventListener('resize',f);['focusin','focusout'].forEach(function(t){document.addEventListener(t,function(){setTimeout(f,350);});});['focus','blur'].forEach(function(t){window.addEventListener(t,function(){setTimeout(f,350);});});f();})();</script>
 <script>/* T-031 (b): what the bottom bar and the navy block show while the plan finder is open. The widget reports
 each screen (widget-step). Question 1 and the plans keep the contact buttons; from question 2 on, one big Continuar
@@ -2958,52 +2921,5 @@ presses the widget's own next button, and a screen with no next button (tap an a
 if(window.matchMedia&&window.matchMedia('(min-width:769px)').matches){[].forEach.call(document.querySelectorAll('details.t31-cities'),function(d){d.open=true;});}
 </script>
 <script>/* T-042: the bottom bar stays hidden while the ZIP card is on screen; once the card has scrolled off the top, or is hidden because the plan finder opened, the bar slides in for good. No IntersectionObserver: the bar shows at once. */(function(){var b=document.body,c=document.getElementById('zip-card');function show(){if(!b.classList.contains('t42-calm'))return;b.classList.remove('t42-calm');b.classList.add('t42-in');if(window.t31Sync)window.t31Sync();}if(!c||!('IntersectionObserver' in window)){show();return;}var io=new IntersectionObserver(function(es){var r=es[es.length-1].boundingClientRect;if(r.bottom<=0||(!r.width&&!r.height)){show();io.disconnect();}});io.observe(c);})();</script>
-<script>/* T-063 + T-064: the compare bar this page draws for the plan finder, and the
-browser's own Back button. The widget reports how many plans are ticked (widget-cbar) and each screen
-it opens (widget-nav); this page keeps one history entry per screen and sends Back down to the widget,
-so Back goes one screen back instead of leaving the site. */
-(function(){
-  var bar=document.querySelector('.t31-bar'), frame=document.getElementById('widget-frame');
-  var cbar=document.querySelector('.t31-cbar'); if(!bar||!frame||!cbar) return;
-  var btn=cbar.querySelector('button'), lab=cbar.querySelector('.n');
-  var OK=/^https:\/\/((www\.)?(beneficiosmedicare|medicare-california)\.com|([a-z0-9-]+\.)?(beneficiosmedicare|medicare-california)\.pages\.dev)$/;
-  var b=document.body, on=false, depth=0;
-  function origin(){ try{ return new URL(frame.src,location.href).origin; }catch(e){ return '*'; } }
-  function send(o){ try{ frame.contentWindow.postMessage(o,origin()); }catch(e){} }
-  /* T-042 reveals the contact bar when the ZIP card scrolls off the top, using an
-     IntersectionObserver. Since T-051 the card is not scrolled off, it is display:none the moment
-     the plan finder opens, and an observer gets no entry for that — so on the plans-first flow the
-     Llamar / WhatsApp bar never appeared at all. T-063 needs it there, under the compare bar, so
-     the widget opening counts as the card being gone. */
-  function wake(){
-    if(!b.classList.contains('t42-calm')) return;
-    b.classList.remove('t42-calm'); b.classList.add('t42-in');
-    if(window.t31Sync) window.t31Sync();
-  }
-  window.addEventListener('message',function(e){
-    if(!OK.test(e.origin)||!e.data) return;
-    if(e.data.type==='widget-step'||e.data.type==='widget-cbar'||e.data.type==='widget-nav') wake();
-    if(e.data.type==='widget-cbar'){
-      var d=e.data;
-      if(d.label) lab.textContent=d.label;
-      if(d.compare) btn.textContent=d.compare;
-      btn.disabled=!d.canCompare;
-      if(!!d.on!==on){
-        on=!!d.on; b.classList.toggle('t31-c',on);
-        /* on desktop this bar is not displayed at all, so the widget must keep its own */
-        send({type:'host-cbar',on:on&&getComputedStyle(cbar).display!=='none'});
-      }
-      return;
-    }
-    if(e.data.type==='widget-nav'){
-      /* one entry per widget screen; the hash is only a label for the reader */
-      depth++;
-      try{ history.pushState({w:depth},'',e.data.hash?'#'+e.data.hash:location.pathname+location.search); }catch(err){}
-      return;
-    }
-  });
-  window.addEventListener('popstate',function(){ if(depth>0){ depth--; send({type:'widget-back'}); } });
-  btn.addEventListener('click',function(){ if(!btn.disabled) send({type:'widget-compare'}); });
-})();</script>
 </body>
 </html>

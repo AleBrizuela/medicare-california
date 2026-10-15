@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- T-078: the page a shared link opens. Not for search engines: it is one person's three plans,
+     sent to one other person. noindex keeps it out of the index and generate_sitemap.py's noindex
+     rule keeps it out of the sitemap. -->
+<meta name="robots" content="noindex, follow">
+<title>Medicare options for 2027 | Medicare California</title>
+<meta property="og:title" content="3 Medicare options for 2027">
+<meta property="og:description" content="The options that were shared with you, with the CMS costs for 2027.">
+<meta property="og:type" content="website">
+<link rel="icon" href="/favicon-california.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ── T-078 (AB 2026-10-15, rounds 2-8). ONE document renders three things: the sheet on a desktop,
+   the same sheet stacked on a phone, and the PDF (the browser's own print of this page, one letter
+   portrait page). Pixel spec: 2026-10-15_2200_opciones-hoja-v8.html. Values below are the mock's. */
+*{box-sizing:border-box}
+body{margin:0;font-family:"Open Sans",Arial,sans-serif;color:#1E2A3B;background:#fff}
+p,div,span{text-wrap:pretty}
+.sheet{max-width:1056px;margin:0 auto;padding:18px 26px}
+/* header: the client-sheet template, exactly (round 6) */
+.hdr2{display:flex;align-items:center;background:#F4F6F8;border:1px solid #DDE3E9;border-radius:10px;padding:8px 16px;margin-bottom:6px;gap:16px}
+.logo2{flex:0 0 auto}
+.sep2{width:1px;align-self:stretch;background:#D3DAE1}
+.who2{display:flex;align-items:center;gap:10px;flex:1}
+.who2 img{width:46px;height:46px;border-radius:50%;border:2px solid #fff;object-fit:cover}
+.lab2{font-size:10.5px;letter-spacing:2px;font-weight:700;color:#0071BC}
+.nm2{font-size:17px;font-weight:700;color:#0B2D4F;line-height:1.15}
+.em2{font-size:12.5px;color:#0071BC}
+.call2{text-align:center}
+.ph2{font-size:21px;font-weight:700;color:#0B2D4F;white-space:nowrap}
+.band2{background:linear-gradient(135deg,#0B2D4F 0%,#0071BC 100%);color:#fff;border-radius:8px;padding:7px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.band2 h1{margin:0;font-size:22px;font-weight:700}
+.band2 h1 em{font-style:normal;font-weight:400;color:#B3D4F0}
+.gold{background:#FFD54F;color:#0B2D4F;border-radius:6px;padding:2px 10px;white-space:nowrap;font-weight:600;font-size:14px}
+.gold b{color:#0B2D4F}
+.pick2{margin:5px 0 6px;padding:5px 14px;background:#E8F2FC;border-radius:7px;display:flex;justify-content:space-between;align-items:center;gap:14px;font-size:14.5px;color:#1A202C}
+.sgt{color:#0B2D4F;font-weight:700}
+/* the table itself */
+.grid{display:grid;grid-template-columns:24% repeat(var(--n,3),1fr);column-gap:8px}
+.col{border-top:5px solid var(--c);background:#fff;border-radius:4px 4px 0 0;text-align:center;padding:8px 6px 7px}
+.car{font-size:22px;font-weight:700;color:var(--c)}
+.pn{font-size:15px;color:#3a4650}
+.id{font-size:13px;color:#4A5568}
+.id span{white-space:nowrap}
+.sgc{display:inline-block;margin-top:4px;background:#0071BC;color:#fff;font-size:12px;font-weight:600;border-radius:999px;padding:2px 9px}
+.row{display:contents}
+.row>div{padding:5px 6px;border-bottom:1px solid #EEF1F3;font-size:16px}
+.rl{font-weight:400;color:#4A5568}
+.v{text-align:center;font-weight:600;color:#1A202C}
+.v.z{color:#0068B0}
+.v.off{color:#56616a;font-weight:400;font-style:italic}
+.sec{grid-column:1/-1;background:#EEF1F3;font-size:13px;letter-spacing:2px;font-weight:700;color:#5b6670;padding:4px 6px;margin-top:4px;display:flex;align-items:center}
+.si{width:17px;height:17px;fill:none;stroke:#0071BC;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;margin-right:6px;flex:0 0 17px}
+/* the two rows only a person can answer (round 8e) */
+.callrow{grid-column:2/-1;background:#E8F2FC;border-radius:8px;margin:3px 0;padding:6px 10px!important;color:#0B2D4F!important;display:flex;align-items:center;justify-content:center;gap:8px;font-weight:400;font-size:15px!important;border-bottom:0!important}
+.callrow b{font-weight:700;color:#0071BC;white-space:nowrap}
+.cri{width:18px;height:18px;flex:0 0 18px;fill:none;stroke:#0071BC;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.cta2{margin:14px 0 0;background:#E8F2FC;border-radius:12px;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px 20px;flex-wrap:wrap;color:#0B2D4F}
+.c2t{font-size:18px;font-weight:700}
+.c2p{font-size:18px}
+.c2p b{font-size:22px;font-weight:800;white-space:nowrap}
+.c2w{font-size:17px;font-weight:700;color:#0071BC}
+.disc{font-size:12.5px;color:#4A5568;margin-top:10px;line-height:1.45}
+.err{max-width:640px;margin:60px auto;padding:0 20px;text-align:center;font-size:17px;line-height:1.5;color:#1E2A3B}
+.err a{color:#0071BC;font-weight:700}
+.loading{max-width:640px;margin:80px auto;text-align:center;color:#5b6670;font-size:16px}
+/* phone: the same sheet, stacked, bigger values (round 5: seniors) */
+@media (max-width:600px){
+  .sheet{padding:12px 10px 96px}
+  .hdr2{flex-wrap:wrap;gap:8px}.hdr2 .sep2{display:none}.logo2{flex:0 0 100%}.call2{text-align:left}
+  .band2{flex-direction:column;align-items:flex-start}.band2 h1{font-size:19px}
+  .pick2{flex-direction:column;align-items:flex-start}
+  .grid{grid-template-columns:repeat(var(--n,3),1fr);column-gap:5px}
+  .grid>.blank{display:none}
+  .rl{grid-column:1/-1;border-bottom:0!important;padding:8px 4px 0!important;font-size:15.5px;color:#4A5568}
+  .v{font-size:17px!important;font-weight:600!important;padding:2px 3px 9px!important}
+  .car{font-size:18px}.pn{font-size:13px}
+  .callrow{grid-column:1/-1}
+  .cta2{flex-direction:column;align-items:flex-start;padding:12px 14px}
+  .disc{font-size:11.5px}
+  .fix{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #E3E7EA;padding:10px 12px;display:flex;gap:10px;z-index:5}
+  .fix a{flex:1;display:flex;align-items:center;justify-content:center;height:56px;border-radius:12px;font-weight:600;font-size:16.5px;text-decoration:none}
+  .fix .l{background:#0071BC;color:#fff}
+  .fix .w{border:2px solid #0071BC;color:#0071BC}
+  .q{font-size:15px;font-weight:700;color:#0B2D4F;text-align:center;margin:12px 0 0}
+}
+@media (min-width:601px){.fix,.q{display:none}}
+/* the PDF is this page printed: one letter portrait page (round 5) */
+@page{size:letter portrait;margin:0.25in 0.3in}
+@media print{
+  .sheet{padding:0;max-width:none}
+  .logo2 svg{width:228px;height:auto}
+  .nm2{font-size:15.5px}.ph2{font-size:18px}.lab2{font-size:9.5px;letter-spacing:1.5px}.em2{font-size:11.5px}
+  .who2 img{width:40px;height:40px}
+  .grid{grid-template-columns:31% repeat(var(--n,3),1fr)!important}
+  .row>div{padding:2px 5px!important;font-size:14.5px!important;line-height:1.3}
+  .disc{margin-top:5px!important;font-size:11.5px!important}
+  .col{padding:5px 4px!important}.pn{font-size:13px!important}.id{font-size:12px!important}
+  .sec{margin-top:2px!important;padding:3px 6px!important}
+  .hdr2{margin-bottom:4px;padding:6px 12px;gap:12px}
+  .band2{padding:6px 12px!important;flex-direction:row}
+  .band2 h1{font-size:18px!important;white-space:nowrap}
+  .gold{font-size:12.5px!important}
+  .callrow{font-size:14px!important;white-space:nowrap;padding:3px 10px!important;margin:2px 0!important}
+  .pick2{font-size:13.5px!important;margin:4px 0!important;padding:4px 12px!important}
+  .sgc{font-size:11px!important;margin-top:2px!important;padding:1px 8px!important}
+  .cta2{margin-top:5px!important;padding:6px 14px!important;flex-wrap:nowrap!important}
+  .c2t,.c2p,.c2w{white-space:nowrap}
+  .c2t,.c2p{font-size:15px!important}.c2p b{font-size:18px!important}.c2w{font-size:15px!important}
+  .fix,.q{display:none!important}
+}
+</style>
+</head>
+<body>
+<div id="out"><p class="loading">Cargando sus opciones…</p></div>
+<iframe id="src" title="" aria-hidden="true" style="position:absolute;width:1px;height:1px;left:-9999px;border:0"></iframe>
+<script>
+/* ── T-078 · the shared sheet ──────────────────────────────────────────────────────────────────
+   The link carries everything: /opciones/90230/H0504-056/H5496-012/H0523-085?lang=en&r=cost
+   Nothing is stored on a server, so a link cannot rot and nothing about the sender is kept.
+
+   The figures come from the plan finder itself, loaded in a hidden frame with ?data=1 (no UI, no
+   GA4) and asked for exactly these plan IDs. That is deliberate: the CMS mapping lives in ONE file,
+   so this sheet and the comparison it came from can never print different numbers for the same
+   plan. On medicare-california the same frame is loaded from beneficiosmedicare, which is where the
+   plan data lives, and the reply is origin-checked at both ends. */
+(function(){
+  var seg = location.pathname.split('/').filter(Boolean);   // ["options","90230","H0504-056",...]
+  var q   = new URLSearchParams(location.search);
+  var ZIP = seg[1] || q.get('zip') || '';
+  var IDS = seg.slice(2).filter(function(x){return /^[A-Z0-9-]{4,}$/i.test(x);});
+  if (!IDS.length && q.get('p')) IDS = q.get('p').split(',');
+  var EN  = q.get('lang') !== 'es';   // MC is the English site; Spanish is asked for
+  var PRI = q.get('r') || '';
+  var PRINT = q.get('print') === '1';
+  document.documentElement.lang = EN ? 'en' : 'es';
+
+  var T = {
+    title:  EN ? 'Medicare options for 2027' : 'opciones de Medicare 2027',
+    adv:    EN ? 'YOUR AGENT · LIC. #4507923' : 'SU ASESORA · LIC. #4507923',
+    call:   EN ? 'CALL, TEXT OR WHATSAPP' : 'LLAMADA, TEXTO O WHATSAPP',
+    before: EN ? 'Choose before <b>Dec 7</b> · starts January 1' : 'Elija antes del <b>7 de dic.</b> · inicia el 1 de enero',
+    sug:    EN ? 'Our suggestion' : 'Nuestra sugerencia',
+    costs:  EN ? 'COSTS' : 'COSTOS',
+    doctor: EN ? 'YOUR DOCTOR' : 'SU MÉDICO',
+    hosp:   EN ? 'HOSPITAL AND EMERGENCIES' : 'HOSPITAL Y EMERGENCIAS',
+    drugs:  EN ? 'MEDICINES (1 MONTH)' : 'MEDICAMENTOS (1 MES)',
+    extras: EN ? 'EXTRAS' : 'EXTRAS',
+    docCall:EN ? 'Tell me your doctor and I will confirm whether they are in network: '
+               : 'Dígame su médico y le confirmo si está en la red: ',
+    rxCall: EN ? 'Tell me your medicines and I will confirm whether they are covered: '
+               : 'Dígame sus medicamentos y le confirmo si los cubre: ',
+    q:      EN ? 'Questions? I answer today.' : '¿Tiene preguntas? Le respondo hoy.',
+    cw:     EN ? 'Call or text: ' : 'Llame o escriba: ',
+    callb:  EN ? 'Call' : 'Llamar',
+    rows: {
+      premium: EN?'Monthly premium':'Prima mensual',
+      giveback:EN?'Part B premium reduction':'Reducción prima Parte B',
+      moop:    EN?'Yearly out-of-pocket maximum':'Máximo de bolsillo al año',
+      mded:    EN?'Medical deductible':'Deducible médico',
+      pcp:     EN?'Primary doctor':'Médico de cabecera',
+      spec:    EN?'Specialist':'Especialista',
+      hosp:    EN?'Hospital':'Hospital',
+      er:      EN?'Emergency / urgent care':'Emergencias / urgencias',
+      amb:     EN?'Ambulance':'Ambulancia',
+      wwe:     EN?'Emergency care outside the U.S.':'Emergencias fuera del país',
+      ded:     EN?'Drug deductible':'Deducible de medicamentos',
+      tiers:   EN?'Tiers 1 · 2 · 3':'Niveles 1 · 2 · 3',
+      dental:  EN?'Dental':'Dental',
+      vision:  EN?'Eyewear':'Anteojos',
+      hearing: EN?'Hearing aids':'Audífonos',
+      otc:     EN?'OTC card (pharmacy)':'Tarjeta OTC (farmacia)',
+      trans:   EN?'Rides':'Transporte'
+    },
+    /* PROTECT: these four lines are required and are not ours to shorten. The first is the TPMO
+       disclaimer, word for word as the widget and the compare screen carry it. */
+    disc: EN
+      ? 'We do not offer every plan available in your area. Contact Medicare.gov, 1-800-MEDICARE (1-800-633-4227) or your State Health Insurance Assistance Program (SHIP) for information on all of your options. Every year, Medicare evaluates plans based on a 5-star rating system. We are not connected with or endorsed by the U.S. government or the federal Medicare program. Data: CMS 2027.'
+      : 'No ofrecemos todos los planes disponibles en su área. Comuníquese con Medicare.gov, 1-800-MEDICARE (1-800-633-4227) o su Programa Estatal de Asistencia sobre Seguros de Salud (SHIP) para obtener información sobre todas sus opciones. Cada año, Medicare evalúa los planes según un sistema de calificación de 5 estrellas. No estamos conectados ni respaldados por el gobierno de EE.UU. ni por el programa federal de Medicare. Datos: CMS 2027.',
+    sent: EN ? 'Sent on ' : 'Enviado el '
+  };
+
+  var PIC = {
+    cost:'<circle cx="12" cy="12" r="9"/><path d="M15 9.5c-.5-1-1.6-1.5-3-1.5-1.8 0-3 .9-3 2.1 0 2.9 6 1.6 6 4.4 0 1.2-1.2 2.1-3 2.1-1.4 0-2.6-.6-3-1.6M12 6.5v1.5M12 16v1.5"/>',
+    visits:'<path d="M6 3v6a4 4 0 0 0 8 0V3"/><path d="M10 13v3a5 5 0 0 0 10 0v-2"/><circle cx="20" cy="12" r="2"/>',
+    hosp:'<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M12 7v6M9 10h6M9 21v-4h6v4"/>',
+    drug:'<g transform="rotate(-35 12 12)"><rect x="2.5" y="8" width="19" height="8" rx="4"/><path d="M12 8v8"/></g>',
+    star:'<path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.9z"/>'
+  };
+  var TEL = '(310) 597‑9142';
+  var esc = function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});};
+
+  function fail(){
+    document.getElementById('out').innerHTML =
+      '<div class="err"><p>' + (EN
+        ? 'We could not open these options. The link may be incomplete.'
+        : 'No pudimos abrir estas opciones. El enlace puede estar incompleto.') +
+      '</p><p><a href="/">' + (EN ? 'Find plans for your ZIP code' : 'Busque planes para su código postal') +
+      '</a></p><p>' + T.cw + '<a href="tel:+13105979142">' + TEL + '</a></p></div>';
+  }
+  if (!/^\d{5}$/.test(ZIP) || !IDS.length) { fail(); return; }
+
+  // The frame is the plan finder with its UI switched off. On medicare-california it is loaded from
+  // beneficiosmedicare, where the CMS files live; everywhere else it is this same site.
+  var WIDGET_HOST = (location.hostname.indexOf('medicare-california') > -1)
+    ? (location.hostname.indexOf('.pages.dev') > -1
+        ? 'https://' + location.hostname.replace('medicare-california', 'beneficiosmedicare')
+        : 'https://beneficiosmedicare.com')
+    : location.origin;
+  var frame = document.getElementById('src');
+  var rid = String(Math.random()).slice(2);
+  var done = false;
+  var timer = setTimeout(function(){ if (!done) fail(); }, 15000);
+
+  window.addEventListener('message', function(e){
+    if (e.origin !== WIDGET_HOST) return;
+    var d = e.data;
+    if (!d || d.type !== 'widget-plans-result' || d.rid !== rid) return;
+    done = true; clearTimeout(timer);
+    if (!d.ok || !d.plans.length) { fail(); return; }
+    render(d);
+  });
+  frame.addEventListener('load', function(){
+    try {
+      frame.contentWindow.postMessage({type:'widget-plans', rid:rid, zip:ZIP, ids:IDS, r:PRI}, WIDGET_HOST);
+    } catch (err) { fail(); }
+  });
+  frame.src = WIDGET_HOST + '/widget-v4.html?data=1&theme=california&lang=' + (EN ? 'en' : 'es');
+
+  function cell(v){
+    if (!v) return '<div class="v off">' + (EN ? 'No information' : 'Sin información') + '</div>';
+    var t = String(v.t);
+    var zero = !v.off && /^\$0(\.00)?($|\/| )/.test(t.replace(/<[^>]+>/g, '').trim());
+    return '<div class="v' + (v.off ? ' off' : (zero ? ' z' : '')) + '">' + t + '</div>';
+  }
+  function rowHTML(key, plans){
+    var any = plans.some(function(p){ return p.rows[key]; });
+    if (!any) return '';
+    return '<div class="row"><div class="rl">' + esc(T.rows[key]) + '</div>' +
+      plans.map(function(p){ return cell(p.rows[key]); }).join('') + '</div>';
+  }
+  function secHTML(icon, label){
+    return '<div class="sec"><svg class="si" viewBox="0 0 24 24">' + PIC[icon] + '</svg>' + esc(label) + '</div>';
+  }
+  function callRow(icon, text){
+    return '<div class="row"><div class="rl"></div><div class="callrow">' +
+      '<svg class="cri" viewBox="0 0 24 24">' + PIC[icon] + '</svg><span>' + esc(text) +
+      '<b><a href="tel:+13105979142" style="color:inherit;text-decoration:none">' + TEL + '</a></b></span></div></div>';
+  }
+
+  function render(d){
+    var plans = d.plans, n = plans.length;
+    var sug = d.sug;
+    var when = new Date().toLocaleDateString(EN ? 'en-US' : 'es-ES',
+      {day:'numeric', month:'short', year:'numeric'});
+    var where = esc(ZIP) + (d.state ? ', ' + esc(d.state) : '');
+
+    var cols = '<div class="blank"></div>' + plans.map(function(p){
+      var stars = p.stars == null ? '' : '<span>★ ' + p.stars + (EN ? ' of 5' : ' de 5') + '</span>';
+      return '<div class="col" style="--c:' + esc(p.color) + '">' +
+        '<div class="car">' + esc(p.carrier) + '</div>' +
+        '<div class="pn">' + esc(p.name) + '</div>' +
+        '<div class="id"><span>' + esc(p.type) + ' · ' + esc(p.id) + '</span> ' + stars + '</div>' +
+        (sug && sug.id === p.id ? '<span class="sgc">' + esc(T.sug) + '</span>' : '') +
+      '</div>';
+    }).join('');
+
+    var table =
+      secHTML('cost', T.costs) +
+      rowHTML('premium', plans) + rowHTML('giveback', plans) + rowHTML('moop', plans) + rowHTML('mded', plans) +
+      secHTML('visits', T.doctor) +
+      rowHTML('pcp', plans) + rowHTML('spec', plans) + callRow('visits', T.docCall) +
+      secHTML('hosp', T.hosp) +
+      rowHTML('hosp', plans) + rowHTML('er', plans) + rowHTML('amb', plans) + rowHTML('wwe', plans) +
+      secHTML('drug', T.drugs) +
+      rowHTML('ded', plans) + rowHTML('tiers', plans) + callRow('drug', T.rxCall) +
+      secHTML('star', T.extras) +
+      rowHTML('dental', plans) + rowHTML('vision', plans) + rowHTML('hearing', plans) +
+      rowHTML('otc', plans) + rowHTML('trans', plans);
+
+    var sugLine = sug
+      ? '<div class="pick2"><div><b class="sgt">' + esc(T.sug) + ': ' + esc(sug.name) + '.</b> ' +
+        esc([sug.lead, sug.why].filter(Boolean).join(' ')) + '</div></div>'
+      : '';
+
+    document.getElementById('out').innerHTML =
+      '<div class="sheet">' +
+        '<div class="hdr2">' +
+          '<div class="logo2">' + LOGO + '</div><div class="sep2"></div>' +
+          '<div class="who2"><img src="' + IMGBASE + 'images/alejandra-headshot.jpg" alt="Alejandra Brizuela" width="46" height="46">' +
+            '<div><div class="lab2">' + esc(T.adv) + '</div><div class="nm2">Alejandra Brizuela</div>' +
+            '<div class="em2"><a href="mailto:alejandra@beneficiosmedicare.com" style="color:inherit;text-decoration:none">Alejandra@BeneficiosMedicare.com</a></div></div></div>' +
+          '<div class="sep2"></div>' +
+          '<div class="call2"><div class="lab2">' + esc(T.call) + '</div>' +
+            '<div class="ph2"><a href="tel:+13105979142" style="color:inherit;text-decoration:none">' + TEL + '</a></div></div>' +
+        '</div>' +
+        '<div class="band2"><h1>' + n + ' ' + esc(T.title) + ' <em>· ZIP ' + where + '</em></h1>' +
+          '<span class="gold">' + T.before + '</span></div>' +
+        sugLine +
+        '<div class="grid" style="--n:' + n + '">' + cols + table + '</div>' +
+        '<p class="q">' + esc(T.q) + '</p>' +
+        '<div class="cta2"><div class="c2t">' + esc(T.q) + '</div>' +
+          '<div class="c2p">' + esc(T.cw) + '<b>' + TEL + '</b></div>' +
+          '<div class="c2w">Medicare-California.com</div></div>' +
+        '<p class="disc">' + esc(T.disc) + ' ' + esc(T.sent) + esc(when) + '.</p>' +
+      '</div>' +
+      '<div class="fix"><a class="l" href="tel:+13105979142">' + esc(T.callb) + '</a>' +
+        '<a class="w" href="https://wa.me/13105979142" target="_blank" rel="noopener">WhatsApp</a></div>';
+
+    if (window.gtag) window.gtag('event', 'shared_page_view', {plans:n, zip3:ZIP.slice(0,3), lang:EN?'en':'es'});
+    if (PRINT) setTimeout(function(){ window.print(); }, 600);
+  }
+
+  var IMGBASE = '/';   // this site has its own copy of the headshot
+  var LOGO = '<svg viewBox="0 0 370 48" width="250" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Medicare California">' +
+    '<defs><linearGradient id="shLogo" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#0080D4"/><stop offset="100%" style="stop-color:#0071BC"/></linearGradient></defs>' +
+    '<path d="M23 2 L43 10 L43 26 C43 37 35 43 23 49 C11 43 3 37 3 26 L3 10 Z" fill="url(#shLogo)"/>' +
+    '<polyline points="14,27 20,33 33,19" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+    '<text y="34" font-family="\'Open Sans\',Arial,sans-serif">' +
+      '<tspan x="54" font-size="26" font-weight="700" fill="#1a1a1a">Medicare</tspan>' +
+      '<tspan dx="6" font-size="26" font-weight="600" fill="#3D9BE9">California</tspan></text></svg>';
+})();
+</script>
+</body>
+</html>

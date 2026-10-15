@@ -1,3 +1,8 @@
+# T-078: the page a shared comparison opens, the twin of beneficiosmedicare.com/opciones/*.
+# Same domain as the link, never across (CLAUDE.md). 200 rewrite so the readable path stays in the
+# address bar; status 200 and never 404, which Cloudflare Pages silently drops.
+/options/*               /options.html    200
+
 # Cowork-added redirects 2026-04-30 for blog cluster consolidations
 /blog/turning-65-medicare-california.html /blog/turning-65-california-medicare-iep-guide 301
 /blog/turning-65-medicare-california /blog/turning-65-california-medicare-iep-guide 301

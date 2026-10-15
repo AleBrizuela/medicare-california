@@ -17,6 +17,7 @@ Owner: SHIP. See reference/deploy-flow.md and reference/review-policy.md.
 """
 
 import argparse
+import struct
 import html
 import json
 import os
@@ -550,6 +551,108 @@ def find_ctas(src):
     return out
 
 
+# T-057: the phrases that claim OUR service is free, or that sell "licensed" as the
+# reason to pick us. Banned by AB (T-049, 2026-10-13: never "agentes licenciadas" as a
+# selling point; "Nuestra ayuda no le cuesta nada", not "gratuita"). A statement about
+# what MEDICARE covers at no cost is a fact, not a claim about us, and is not on this
+# list -- it warns instead, so a human can look.
+OG_OUR_CLAIM = [
+    "asesoria gratuita", "asesoría gratuita", "ayuda gratuita", "servicio 100% gratis",
+    "free local help", "free plan comparison", "free guidance", "free help",
+    "free bilingual", "free service", "always free", "licensed bilingual",
+    "agentes licenciad", "licensed in 8 states", "licensed in 9 states",
+    "from a licensed local agent", "by two licensed",
+]
+OG_BAN_WORD = re.compile(r"gratis|gratuit|\bfree\b|licenciad|licensed", re.I)
+
+
+def og_meta(prop, src):
+    e = re.escape(prop)
+    m = (re.search(r'<meta[^>]*?(?:property|name)="%s"[^>]*?content="([^"]*)"' % e, src, re.I)
+         or re.search(r'<meta[^>]*?content="([^"]*)"[^>]*?(?:property|name)="%s"' % e, src, re.I))
+    return m.group(1) if m else None
+
+
+def image_size(path):
+    """(w, h) for a PNG or JPEG, or None. Stdlib only -- site-check has no deps."""
+    try:
+        d = open(path, "rb").read()
+    except OSError:
+        return None
+    if d[:8] == b"\x89PNG\r\n\x1a\n" and len(d) >= 24:
+        return struct.unpack(">II", d[16:24])
+    if d[:2] == b"\xff\xd8":
+        i = 2
+        while i + 9 < len(d):
+            if d[i] != 0xFF:
+                i += 1
+                continue
+            mk = d[i + 1]
+            if mk in (0xD8, 0xD9) or 0xD0 <= mk <= 0xD7:
+                i += 2
+                continue
+            if mk in (0xC0, 0xC1, 0xC2, 0xC3, 0xC5, 0xC6, 0xC7, 0xC9, 0xCA, 0xCB):
+                h, w = struct.unpack(">HH", d[i + 5:i + 9])
+                return (w, h)
+            i += 2 + struct.unpack(">H", d[i + 2:i + 4])[0]
+    return None
+
+
+def check_og(root, domain, f):
+    """T-057: does a texted, WhatsApp'd or emailed link show a card, and is it clean?
+
+    Measured 2026-10-14, before this check existed: 125 of 197 public pages had no
+    og:image at all, 16 MC pages pointed at medicare-california.com/og-image.jpg (404),
+    5 MC city pages at images/<city>-medicare.jpg (404), one BM page at MC's image, and
+    108 pages had no twitter:card, so a texted link was a bare URL with a compass icon.
+    None of it renders on the page, so nothing on either site could ever have shown it.
+    """
+    host = domain.split("//", 1)[1].rstrip("/")
+    redirects = load_redirect_sources(root)
+    for fp, rel in iter_html(root):
+        if is_non_public(rel) or rel.replace(os.sep, "/").startswith("social/"):
+            continue
+        if ("/" + rel[:-5]) in redirects:
+            continue
+        src = open(fp, encoding="utf-8", errors="ignore").read()
+
+        img = og_meta("og:image", src)
+        if not img:
+            f.error("og-image-missing", rel, "no og:image — a texted link shows no picture")
+        elif not img.startswith("https://"):
+            f.error("og-image-not-absolute", rel, f"{img} — WhatsApp and iMessage need a full URL")
+        elif not img.startswith(f"https://{host}/"):
+            f.error("og-image-offsite", rel, f"{img} — not on {host}")
+        else:
+            local = os.path.join(root, img[len(f"https://{host}/"):])
+            if not os.path.exists(local):
+                f.error("og-image-404", rel, f"{img} — that file is not in the repo")
+            else:
+                kb = os.path.getsize(local) // 1024
+                if kb > 300:
+                    f.warn("og-image-heavy", rel, f"{kb} KB — WhatsApp may skip it over 300 KB")
+                wh = image_size(local)
+                if wh and wh != (1200, 630):
+                    f.warn("og-image-not-1200x630", rel, f"{wh[0]}x{wh[1]}")
+
+        if (og_meta("twitter:card", src) or "") != "summary_large_image":
+            f.warn("og-twitter-card", rel, "no twitter:card=summary_large_image — "
+                                           "the card shows a thumbnail, not the picture")
+        for tag in ("og:title", "og:description"):
+            if not (og_meta(tag, src) or "").strip():
+                f.warn("og-card-incomplete", rel, f"no {tag}")
+
+        for tag in ("og:title", "og:description", "twitter:title", "twitter:description"):
+            v = og_meta(tag, src) or ""
+            low = v.lower()
+            hit = next((p for p in OG_OUR_CLAIM if p in low), None)
+            if hit:
+                f.error("og-claims-free-or-licensed", rel, f'{tag}: "{hit}" — AB banned this wording')
+            elif OG_BAN_WORD.search(v):
+                f.warn("og-word-free-or-licensed", rel,
+                       f'{tag}: "{OG_BAN_WORD.search(v).group(0)}" — check it is about what '
+                       "Medicare covers, not about us")
+
 def check_ctas(root, f):
     """Every CTA carries a placement from PROVE's list (T-043).
 
@@ -646,6 +749,7 @@ def main():
         "sitemap": lambda: check_sitemap(root, domain, f),
         "bodies": lambda: check_bodies(root, f),
         "ctas": lambda: check_ctas(root, f),
+        "og": lambda: check_og(root, domain, f),
     }
     if a.base:
         all_checks["content-loss"] = lambda: check_content_loss(root, a.base, f)

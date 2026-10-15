@@ -1492,7 +1492,7 @@ html body details.t31-cities[open]>summary{margin-bottom:16px}
      aside; untick them all and the contact bar comes back. ── */
   html body .t31-cbar{display:none;position:fixed;left:0;right:0;z-index:951;
     bottom:env(safe-area-inset-bottom);
-    margin:0 10px 8px;padding:10px 12px;gap:10px;align-items:center;justify-content:space-between;
+    margin:0 10px 8px;padding:10px 12px;gap:12px;align-items:center;justify-content:flex-end;
     background:#fff;border:2px solid var(--t31-brand);border-radius:14px;box-shadow:0 6px 18px rgba(16,24,40,.16)}
   html body.t31-c .t31-cbar{display:flex}
   /* T-084 round 2: solid, full-width, when the bar is a screen's main action */
@@ -1501,7 +1501,8 @@ html body details.t31-cities[open]>summary{margin-bottom:16px}
   html body.t31-solid .t31-cbar button{flex:1 1 auto;width:100%;min-height:52px;padding:0 14px}
   html body.t31-c .t31-bar{display:none!important}
   html body.t31-kb .t31-cbar{display:none}
-  html body .t31-cbar .n{font:700 14px/1.2 'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif;color:var(--t31-ink);min-width:0;overflow-wrap:anywhere}
+  /* T-096 round 2 (AB 2026-10-15): the count is a quiet label next to the button, not a headline */
+  html body .t31-cbar .n{font:400 15px/1.2 'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif;color:#4A5568;min-width:0;overflow-wrap:anywhere}
   html body .t31-cbar button{flex:0 0 auto;min-height:48px;padding:0 18px;border:0;border-radius:10px;
     background:var(--t31-brand);color:#fff;cursor:pointer;
     font:800 17px/1 'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif;-webkit-tap-highlight-color:transparent}

@@ -2032,9 +2032,12 @@ html body .t31-head,html body .t33-head{max-width:960px!important;min-height:0!i
 </style>
 <style>
 /* T-042: booking as a real button under the ZIP button. Outline, so the ZIP button stays first. Colour from each page's own --t31-brand. */
-html body #zip-card .t42-book{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:52px;margin:12px 0 0;padding:12px;box-sizing:border-box;background:#fff;border:2px solid var(--t31-brand);border-radius:12px;color:var(--t31-brand);font-family:inherit;font-size:17px;font-weight:700;line-height:1.25;text-decoration:none;text-align:center;cursor:pointer}
-html body #zip-card .t42-book svg{width:24px;height:24px;flex:none}
-html body #zip-card .t42-book:hover{background:#F4F7FA}
+/* T-095 (AB 2026-10-15, "less is more"): the booking offer is a warm line under the one button,
+   not a second button of the same size competing with it. Pixel spec: 1610_inicio-video-v2 (B). */
+html body #zip-card .t42-vl{margin:14px 0 2px;font-size:15.5px!important;color:#3a4650!important;line-height:1.45;text-align:center}
+html body #zip-card .t42-book{display:inline-block;color:var(--t31-brand);font-family:inherit;font-size:16.5px;font-weight:800;line-height:1.3;text-decoration:underline;text-underline-offset:3px;padding:10px 0;min-height:44px;cursor:pointer}
+html body #zip-card .t42-book svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linejoin:round;vertical-align:-4px;margin-right:6px}
+html body #zip-card .t42-book:hover{color:var(--t31-brand)}
 html body #zip-card .t42-book:focus-visible{outline:3px solid #FFB300;outline-offset:2px}
 /* T-042 (AB 2026-10-07): on the home page the phone bottom bar waits until the visitor has scrolled past the ZIP card
    (or opened the plan finder), then slides in and stays. Two actions on the first screen instead of four. */
@@ -2103,8 +2106,8 @@ html body #zip-card .t42-book:focus-visible{outline:3px solid #FFB300;outline-of
         <span data-i18n="zip-btn">Compare Plans Free</span>
         <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </button>
-        <!-- T-042: booking as a full-size button, same link as the footer; no divider or sub-line (AB 2026-10-07) -->
-        <a class="t42-book" data-cta="home_hero" href="https://calendar.app.google/6D4obxzxERQXBpaf7" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg><span data-i18n="book-btn">Book a video visit</span></a>
+        <!-- T-095: one button, and the video call as a warm line under it (AB 2026-10-15) -->
+        <p class="t42-vl"><span data-i18n="book-ask">Prefer to talk with us?</span><br><a class="t42-book" data-cta="home_hero" href="https://calendar.app.google/6D4obxzxERQXBpaf7" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2.5" y="6" width="13" height="12" rx="2.5"/><path d="M15.5 10.5l6-3.5v10l-6-3.5z"/></svg><span data-i18n="book-btn">Book a video call →</span></a></p>
     </div>
 
     <div class="hero-checks t31-checks fade-up-d2">
@@ -2832,7 +2835,8 @@ const I18N = {
   'footer-link-benefits': { en:'Medicare Benefits', es:'Beneficios de Medicare' },
   'footer-link-careers': { en:'Careers', es:'Empleos' },
   'footer-copy': { en:'\u00a9 2026 Medicare California. All rights reserved.', es:'\u00a9 2026 Medicare California. Todos los derechos reservados.' },
-  'book-btn': { en:'Book a video visit', es:'Agende una videollamada' },
+  'book-ask': { en:'Prefer to talk with us?', es:'¿Prefiere hablar con nosotras?' },
+  'book-btn': { en:'Book a video call →', es:'Agende una videollamada →' },
 };
 
 function setLang(lang) {

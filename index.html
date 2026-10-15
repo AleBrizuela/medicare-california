@@ -1945,13 +1945,16 @@ html body details.t31-cities[open]>summary{margin-bottom:16px}
 
   /* ── T-063: the compare bar, drawn by the page so it can be fixed to the bottom of the SCREEN.
      The widget cannot do it: inside this iframe there is no scrollport, the frame grows to fit and
-     the page is what scrolls, so position:sticky has nothing to stick to. It stacks ABOVE the
-     Llamar / WhatsApp bar (AB 2026-10-14, "SUPER important"): both stay visible. ── */
+     the page is what scrolls, so position:sticky has nothing to stick to.
+     T-066 (AB 2026-10-14), replacing T-063's two stacked bars: ONE bar at a time. From the first
+     ticked plan this bar takes the bottom of the screen and the contact bar steps aside; untick
+     them all and the contact bar comes back. ── */
   html body .t31-cbar{display:none;position:fixed;left:0;right:0;z-index:951;
-    bottom:calc(var(--t31-barh, 78px) + env(safe-area-inset-bottom));
+    bottom:env(safe-area-inset-bottom);
     margin:0 10px 8px;padding:10px 12px;gap:10px;align-items:center;justify-content:space-between;
     background:#fff;border:2px solid #007B7B;border-radius:14px;box-shadow:0 6px 18px rgba(16,24,40,.16)}
   html body.t31-c .t31-cbar{display:flex}
+  html body.t31-c .t31-bar{display:none!important}
   html body.t31-kb .t31-cbar{display:none}
   html body .t31-cbar .n{font:700 14px/1.2 'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif;color:#002147}
   html body .t31-cbar button{flex:0 0 auto;min-height:44px;padding:0 18px;border:0;border-radius:10px;
@@ -2553,7 +2556,7 @@ function handleZipSubmit() {
   var bmHost = window.location.hostname.indexOf('staging') > -1
     ? 'staging.beneficiosmedicare.pages.dev'
     : 'beneficiosmedicare.com';
-  frame.src = 'https://' + bmHost + '/widget-v4?lang=' + currentLang + '&theme=california&v=20261014b64&zip=' + zip + (window.bmTester ? '&qa=1' : '');
+  frame.src = 'https://' + bmHost + '/widget-v4?lang=' + currentLang + '&theme=california&v=20261014t66&zip=' + zip + (window.bmTester ? '&qa=1' : '');
 }
 
 function handleFinalZipSubmit() {
@@ -2967,15 +2970,6 @@ so Back goes one screen back instead of leaving the site. */
   var b=document.body, on=false, depth=0;
   function origin(){ try{ return new URL(frame.src,location.href).origin; }catch(e){ return '*'; } }
   function send(o){ try{ frame.contentWindow.postMessage(o,origin()); }catch(e){} }
-  /* the compare bar sits exactly one contact bar above the bottom, measured, not guessed */
-  function measure(){ document.documentElement.style.setProperty('--t31-barh',
-      (getComputedStyle(bar).display==='none'?0:bar.offsetHeight)+'px'); }
-  measure();
-  window.addEventListener('resize',measure);
-  if(window.visualViewport) window.visualViewport.addEventListener('resize',measure);
-  /* the contact bar comes and goes (keyboard, question screens), and the compare bar sits exactly
-     one contact bar above the bottom, so re-measure whenever the page's state changes */
-  new MutationObserver(measure).observe(b,{attributes:true,attributeFilter:['class']});
   /* T-042 reveals the contact bar when the ZIP card scrolls off the top, using an
      IntersectionObserver. Since T-051 the card is not scrolled off, it is display:none the moment
      the plan finder opens, and an observer gets no entry for that — so on the plans-first flow the
@@ -2985,7 +2979,6 @@ so Back goes one screen back instead of leaving the site. */
     if(!b.classList.contains('t42-calm')) return;
     b.classList.remove('t42-calm'); b.classList.add('t42-in');
     if(window.t31Sync) window.t31Sync();
-    measure();
   }
   window.addEventListener('message',function(e){
     if(!OK.test(e.origin)||!e.data) return;
@@ -2996,7 +2989,7 @@ so Back goes one screen back instead of leaving the site. */
       if(d.compare) btn.textContent=d.compare;
       btn.disabled=!d.canCompare;
       if(!!d.on!==on){
-        on=!!d.on; b.classList.toggle('t31-c',on); measure();
+        on=!!d.on; b.classList.toggle('t31-c',on);
         /* on desktop this bar is not displayed at all, so the widget must keep its own */
         send({type:'host-cbar',on:on&&getComputedStyle(cbar).display!=='none'});
       }

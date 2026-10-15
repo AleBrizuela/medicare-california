@@ -443,7 +443,10 @@ def check_bodies(root, f):
 # A new name goes there first, then here, then onto a page.
 CTA_PLACEMENTS = {"header", "home_hero", "home_alt", "sticky_bar", "contact_card",
                   "guide_cta", "inline_body", "sidebar", "blog_cta", "city_cta",
-                  "state_cta", "final_cta", "footer", "widget", "float", "thank_you"}
+                  "state_cta", "final_cta", "footer", "widget", "float", "thank_you",
+                  # share + compare (PROVE/reference/cta-placements.md, 2026-10-14)
+                  "share_bar", "compare_top", "compare_ask", "sheet_pick",
+                  "shared_pinned", "shared_card", "recibido"}
 CTA_TARGETS = {"plan_finder"}
 
 _VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta",

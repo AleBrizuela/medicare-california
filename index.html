@@ -1932,6 +1932,24 @@ html body details.t31-cities[open]>summary{margin-bottom:16px}
   html body.t31-q .t31-bar .t31-next{display:flex}
   html body .t31-bar .t31-next[disabled]{opacity:.45;cursor:default}
   html body .t31-bar .t31-next:focus-visible{outline:3px solid #FFB300;outline-offset:2px}
+
+  /* ── T-063: the compare bar, drawn by the page so it can be fixed to the bottom of the SCREEN.
+     The widget cannot do it: inside this iframe there is no scrollport, the frame grows to fit and
+     the page is what scrolls, so position:sticky has nothing to stick to. It stacks ABOVE the
+     Llamar / WhatsApp bar (AB 2026-10-14, "SUPER important"): both stay visible. ── */
+  html body .t31-cbar{display:none;position:fixed;left:0;right:0;z-index:951;
+    bottom:calc(var(--t31-barh, 78px) + env(safe-area-inset-bottom));
+    margin:0 10px 8px;padding:10px 12px;gap:10px;align-items:center;justify-content:space-between;
+    background:#fff;border:2px solid #007B7B;border-radius:14px;box-shadow:0 6px 18px rgba(16,24,40,.16)}
+  html body.t31-c .t31-cbar{display:flex}
+  html body.t31-kb .t31-cbar{display:none}
+  html body .t31-cbar .n{font:700 14px/1.2 'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif;color:#002147}
+  html body .t31-cbar button{flex:0 0 auto;min-height:44px;padding:0 18px;border:0;border-radius:10px;
+    background:#007B7B;color:#fff;cursor:pointer;
+    font:800 15px/1 'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif;-webkit-tap-highlight-color:transparent}
+  html body .t31-cbar button:disabled{opacity:.45;cursor:default}
+  html body .t31-cbar button:focus-visible{outline:3px solid #FFB300;outline-offset:2px}
+
   html body .mobile-sticky-cta{display:none!important}
 
   /* every compressed section */
@@ -2519,7 +2537,7 @@ function handleZipSubmit() {
   var bmHost = window.location.hostname.indexOf('staging') > -1
     ? 'staging.beneficiosmedicare.pages.dev'
     : 'beneficiosmedicare.com';
-  frame.src = 'https://' + bmHost + '/widget-v4?lang=' + currentLang + '&theme=california&v=20261014a&zip=' + zip + (window.bmTester ? '&qa=1' : '');
+  frame.src = 'https://' + bmHost + '/widget-v4?lang=' + currentLang + '&theme=california&v=20261014b64&zip=' + zip + (window.bmTester ? '&qa=1' : '');
 }
 
 function handleFinalZipSubmit() {
@@ -2882,7 +2900,7 @@ function toggleMobile() {
 }
 </script>
 <!-- T-031 contact bar (phones only) -->
-<nav class="t31-bar" data-cta="sticky_bar" aria-label="Contact"><a class="t31-fill" href="sms:+13105979142?&amp;body=Hi%2C%20I%20have%20a%20Medicare%20question"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg><span>Text us</span></a><a class="t31-line" href="tel:+13105979142"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Call</span></a><button type="button" class="t31-next"><span>Continue</span> &rarr;</button></nav>
+<div class="t31-cbar" data-cta="share_bar" aria-live="polite"><span class="n">0 plans selected</span><button type="button">Compare</button></div><nav class="t31-bar" data-cta="sticky_bar" aria-label="Contact"><a class="t31-fill" href="sms:+13105979142?&amp;body=Hi%2C%20I%20have%20a%20Medicare%20question"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg><span>Text us</span></a><a class="t31-line" href="tel:+13105979142"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Call</span></a><button type="button" class="t31-next"><span>Continue</span> &rarr;</button></nav>
 <script>/* T-031: the bottom contact bar steps aside while the on-screen keyboard is open, so it never sits over a field being typed in, on this page or inside the plan finder. Pinch-zoom is not mistaken for a keyboard. */(function(){var v=window.visualViewport;if(!v)return;function typing(){var a=document.activeElement;return !!a&&(/^(INPUT|TEXTAREA|SELECT|IFRAME)$/.test(a.tagName)||a.isContentEditable);}function f(){document.body.classList.toggle('t31-kb',typing()&&v.scale<1.05&&v.height<window.innerHeight*0.75);if(window.t31Sync)window.t31Sync();}/* a keyboard can only be open while someone is in a field: check on every resize and whenever focus moves, so a resize during page load can never leave the bar hidden */v.addEventListener('resize',f);['focusin','focusout'].forEach(function(t){document.addEventListener(t,function(){setTimeout(f,350);});});['focus','blur'].forEach(function(t){window.addEventListener(t,function(){setTimeout(f,350);});});f();})();</script>
 <script>/* T-031 (b): what the bottom bar and the navy block show while the plan finder is open. The widget reports
 each screen (widget-step). Question 1 and the plans keep the contact buttons; from question 2 on, one big Continuar
@@ -2921,5 +2939,43 @@ presses the widget's own next button, and a screen with no next button (tap an a
 if(window.matchMedia&&window.matchMedia('(min-width:769px)').matches){[].forEach.call(document.querySelectorAll('details.t31-cities'),function(d){d.open=true;});}
 </script>
 <script>/* T-042: the bottom bar stays hidden while the ZIP card is on screen; once the card has scrolled off the top, or is hidden because the plan finder opened, the bar slides in for good. No IntersectionObserver: the bar shows at once. */(function(){var b=document.body,c=document.getElementById('zip-card');function show(){if(!b.classList.contains('t42-calm'))return;b.classList.remove('t42-calm');b.classList.add('t42-in');if(window.t31Sync)window.t31Sync();}if(!c||!('IntersectionObserver' in window)){show();return;}var io=new IntersectionObserver(function(es){var r=es[es.length-1].boundingClientRect;if(r.bottom<=0||(!r.width&&!r.height)){show();io.disconnect();}});io.observe(c);})();</script>
+<script>/* T-063 + T-064: the compare bar this page draws for the plan finder, and the
+browser's own Back button. The widget reports how many plans are ticked (widget-cbar) and each screen
+it opens (widget-nav); this page keeps one history entry per screen and sends Back down to the widget,
+so Back goes one screen back instead of leaving the site. */
+(function(){
+  var bar=document.querySelector('.t31-bar'), frame=document.getElementById('widget-frame');
+  var cbar=document.querySelector('.t31-cbar'); if(!bar||!frame||!cbar) return;
+  var btn=cbar.querySelector('button'), lab=cbar.querySelector('.n');
+  var OK=/^https:\/\/((www\.)?(beneficiosmedicare|medicare-california)\.com|([a-z0-9-]+\.)?(beneficiosmedicare|medicare-california)\.pages\.dev)$/;
+  var b=document.body, on=false, depth=0;
+  function origin(){ try{ return new URL(frame.src,location.href).origin; }catch(e){ return '*'; } }
+  function send(o){ try{ frame.contentWindow.postMessage(o,origin()); }catch(e){} }
+  /* the compare bar sits exactly one contact bar above the bottom, measured, not guessed */
+  function measure(){ document.documentElement.style.setProperty('--t31-barh',
+      (getComputedStyle(bar).display==='none'?0:bar.offsetHeight)+'px'); }
+  measure();
+  window.addEventListener('resize',measure);
+  if(window.visualViewport) window.visualViewport.addEventListener('resize',measure);
+  window.addEventListener('message',function(e){
+    if(!OK.test(e.origin)||!e.data) return;
+    if(e.data.type==='widget-cbar'){
+      var d=e.data;
+      if(d.label) lab.textContent=d.label;
+      if(d.compare) btn.textContent=d.compare;
+      btn.disabled=!d.canCompare;
+      if(!!d.on!==on){ on=!!d.on; b.classList.toggle('t31-c',on); measure(); send({type:'host-cbar',on:on}); }
+      return;
+    }
+    if(e.data.type==='widget-nav'){
+      /* one entry per widget screen; the hash is only a label for the reader */
+      depth++;
+      try{ history.pushState({w:depth},'',e.data.hash?'#'+e.data.hash:location.pathname+location.search); }catch(err){}
+      return;
+    }
+  });
+  window.addEventListener('popstate',function(){ if(depth>0){ depth--; send({type:'widget-back'}); } });
+  btn.addEventListener('click',function(){ if(!btn.disabled) send({type:'widget-compare'}); });
+})();</script>
 </body>
 </html>

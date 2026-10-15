@@ -1495,6 +1495,10 @@ html body details.t31-cities[open]>summary{margin-bottom:16px}
     margin:0 10px 8px;padding:10px 12px;gap:10px;align-items:center;justify-content:space-between;
     background:#fff;border:2px solid var(--t31-brand);border-radius:14px;box-shadow:0 6px 18px rgba(16,24,40,.16)}
   html body.t31-c .t31-cbar{display:flex}
+  /* T-084 round 2: solid, full-width, when the bar is a screen's main action */
+  html body.t31-solid .t31-cbar{border:0;background:none;box-shadow:none;padding:0}
+  html body.t31-solid .t31-cbar .n{display:none}
+  html body.t31-solid .t31-cbar button{flex:1 1 auto;width:100%;min-height:52px;padding:0 14px}
   html body.t31-c .t31-bar{display:none!important}
   html body.t31-kb .t31-cbar{display:none}
   html body .t31-cbar .n{font:700 14px/1.2 'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif;color:var(--t31-ink);min-width:0;overflow-wrap:anywhere}
@@ -2550,6 +2554,9 @@ only to the exact origin the iframe was loaded from. */
     if(!OK.test(e.origin)||!e.data||e.data.type!=='widget-cbar') return;
     var d=e.data;
     if(d.label) lab.textContent=d.label;
+    /* T-084 round 2: the same bar, one button wide, when it carries a screen's main action
+       ("Ayudeme a elegir este plan" / "...estos planes") instead of the compare count. */
+    b.classList.toggle('t31-solid',d.mode==='action');
     if(d.compare) btn.textContent=d.compare;
     btn.disabled=!d.canCompare;
     if(!!d.on!==on){

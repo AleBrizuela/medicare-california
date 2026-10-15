@@ -17,7 +17,7 @@
 export async function onRequest(context) {
   const { request, env, params, next } = context;
   const url = new URL(request.url);
-  const page = new URL('/options.html', url.origin);
+  const page = new URL('/options-shared.html', url.origin);
 
   let res;
   try {

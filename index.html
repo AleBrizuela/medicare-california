@@ -2528,9 +2528,7 @@ function handleZipSubmit() {
   // Load widget with current language, California theme, and zip param.
   // Match BM's environment to our own, so staging tests staging and
   // production tests production instead of staging always borrowing BM prod.
-  var bmHost = window.location.hostname.indexOf('staging') > -1
-    ? 'staging.beneficiosmedicare.pages.dev'
-    : 'beneficiosmedicare.com';
+  var bmHost = bmWidgetHost();
   frame.src = 'https://' + bmHost + '/widget-v4?lang=' + currentLang + '&theme=california&v=20260308b&zip=' + zip + (window.bmTester ? '&qa=1' : '');
 }
 
@@ -2587,8 +2585,32 @@ function handleFinalZipSubmit() {
     }
   }
 
+// T-075: which beneficiosmedicare host serves the widget. ONE function, used BOTH to build the iframe
+// src above and to decide which origin this listener trusts, because CLAUDE.md says those two are never
+// edited separately -- and two copies of this rule would become exactly that, one commit later.
+//   staging.medicare-california.pages.dev      -> staging.beneficiosmedicare.pages.dev    (unchanged)
+//   <branch>.medicare-california.pages.dev     -> <branch>.beneficiosmedicare.pages.dev   (new)
+//   medicare-california.com, and anything else -> beneficiosmedicare.com                  (unchanged)
+// The middle case is the fix: without it EVERY MC branch preview loaded the PRODUCTION widget, so a
+// widget ticket built on a branch showed production behaviour on MC whatever the branch, and could not
+// be QA'd there at all. It needs the SAME branch name in both repos; if beneficiosmedicare has no such
+// branch the frame simply fails to load, which is loud. Deliberately NOT falling back to production
+// there: a silent production widget on a preview is the exact bug being fixed.
+// An 8-hex deployment-hash preview (abc12345.medicare-california.pages.dev) is left on production, as
+// today -- those hashes differ per repo, so there is no matching host to map to, and CLAUDE.md tells
+// people to use those URLs to bypass the custom-domain cache.
+function bmWidgetHost(){
+  var h = location.hostname;
+  if (h.indexOf('staging') > -1) return 'staging.beneficiosmedicare.pages.dev';
+  var m = /^([a-z0-9-]+)\.medicare-california\.pages\.dev$/.exec(h);
+  if (m && !/^[0-9a-f]{8}$/.test(m[1])) return m[1] + '.beneficiosmedicare.pages.dev';
+  return 'beneficiosmedicare.com';
+}
+
 window.addEventListener('message', function(e) {
-  if (e.origin !== 'https://beneficiosmedicare.com' && e.origin !== 'https://staging.beneficiosmedicare.pages.dev') return;
+  // Exactly the host the widget was loaded from, from the same function that built the src, so a new
+  // preview host can never be trusted here without also being the one we load.
+  if (e.origin !== 'https://' + bmWidgetHost()) return;
   if (!e.data || typeof e.data !== 'object') return;
   if (e.data.type === 'widget-resize') {
     // min-height:500px keeps the frame from collapsing before the widget has

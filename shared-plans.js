@@ -82,6 +82,11 @@ function loadScript(src){ return new Promise(function(res, rej){
 // keeps them; this page reads them there rather than carrying a 44 MB copy of the same files.
 // A *.pages.dev preview reads its own twin preview, so a branch is never checked against
 // production data by accident.
+// This works because Cloudflare Pages serves every asset with Access-Control-Allow-Origin: *
+// (measured on beneficiosmedicare.com 2026-10-15, on /data/*, / and /widget-v4.html). It is a
+// Pages default, not a rule in that repo's _headers. If a cross-origin fetch here ever starts
+// failing, that default is the first thing to check, and the fix is four lines in BM's
+// _headers under /data/*.
 function dataHost(){
   var h = location.hostname;
   if(/\.pages\.dev$/i.test(h)) return 'https://' + h.replace('medicare-california', 'beneficiosmedicare');
@@ -171,10 +176,18 @@ function starsT(p){
 
 function rows(){
   var R = [], v = function(x){ return x == null ? {t: noInfo(), na: true} : (typeof x === 'string' ? {t: x} : x); };
-  R.push({g: L('Costs', 'Costos')});
-  R.push({lab: L('Monthly premium', 'Prima mensual'), big: true, cells: PLANS.map(function(p){ return v(premUsd(p.prem)); })});
+  // Same rows, same order, same groups as the PDF. One sheet, two outputs, so they cannot drift.
+  if(PLANS.some(function(p){ return typeof p.stars === 'number' || p.starsna; }))
+    R.push({lab: L('Star rating 2027', 'Estrellas Medicare 2027'), keep: true, stars: true,
+      cells: PLANS.map(function(p){
+        return (typeof p.stars === 'number' && p.stars > 0)
+          ? {t: '\u2605 ' + p.stars.toFixed(1).replace(/\.0$/, '') + L(' of 5', ' de 5')}
+          : {t: L('Not rated yet', 'Aún sin calificación'), off: true}; })});
+  R.push({g: L('COSTS', 'COSTOS')});
+  R.push({lab: L('Monthly premium', 'Prima mensual'), big: true, keep: true,
+    cells: PLANS.map(function(p){ return v(premUsd(p.prem)); })});
   if(MINE && MINE.prem != null){
-    R.push({lab: L('Difference a year (premium)', 'Diferencia al año (prima)'), big: true, diff: true,
+    R.push({lab: L('Difference a year (premium)', 'Diferencia al año (prima)'), big: true, diff: true, keep: true,
       cells: PLANS.map(function(p){
         if(p === MINE) return {t: '—', off: true};
         if(p.prem == null) return {t: noInfo(), na: true};
@@ -183,74 +196,96 @@ function rows(){
         return {t: (d > 0 ? '+' : '−') + usd(Math.abs(d)), cls: d > 0 ? 'up' : 'dn'};
       })});
   }
-  R.push({lab: L('Max out-of-pocket', 'Máximo de bolsillo'), big: true, cells: PLANS.map(function(p){ return v(p.moop == null ? null : usd(p.moop)); })});
-  R.push({lab: L('Drug deductible', 'Deducible de medicamentos'), cells: PLANS.map(function(p){
+  R.push({lab: L('Part B giveback (if any)', 'Devolución Parte B (si hay)'),
+    cells: PLANS.map(function(p){ return p.gb ? {t: usd(p.gb) + L(' a month', ' al mes')} : {t: L('Not included', 'No incluido'), off: true}; })});
+  R.push({lab: L('Yearly max out-of-pocket', 'Máximo de gastos al año'), big: true, keep: true,
+    cells: PLANS.map(function(p){ return v(p.moop == null ? null : usd(p.moop)); })});
+  R.push({lab: L('Doctor / specialist', 'Médico / especialista'),
+    cells: PLANS.map(function(p){ return {t: (money(p.pcp) || noInfo()) + ' / ' + (money(p.spec) || noInfo())}; })});
+  R.push({lab: L('Emergency room', 'Sala de emergencias'), cells: PLANS.map(function(p){ return v(money(p.er)); })});
+  R.push({g: L('YOUR DOCTOR AND HOSPITAL', 'SU MÉDICO Y HOSPITAL')});
+  // said once, across the columns - never a row that could land in "the same in all"
+  R.push({full: L('We check your doctors and your hospital against each plan, one by one.',
+                  'Revisamos sus médicos y su hospital en cada plan, uno por uno.')});
+  R.push({g: L('DRUGS (PART D)', 'MEDICINAS (PARTE D)')});
+  R.push({lab: L('Covers drugs?', '¿Cubre medicinas?'),
+    cells: PLANS.map(function(p){ return {t: p.drug ? L('Yes', 'Sí') : L('No', 'No'), off: !p.drug}; })});
+  R.push({lab: L('Drug deductible', 'Deducible de medicinas'), cells: PLANS.map(function(p){
     return p.drug ? v(p.dded == null ? null : usd(p.dded)) : {t: L('No drug coverage', 'Sin medicamentos'), off: true}; })});
-  R.push({g: L('Visits', 'Consultas')});
-  [['pcp', L('Primary doctor', 'Médico primario')], ['spec', L('Specialist', 'Especialista')],
-   ['er', L('Emergency room', 'Emergencias')], ['urg', L('Urgent care', 'Urgencias')]]
-    .forEach(function(x){ R.push({lab: x[1], cells: PLANS.map(function(p){ return v(money(p[x[0]])); })}); });
-  R.push({lab: L('Your doctors and hospital', 'Sus médicos y hospital'),
-    cells: PLANS.map(function(){ return {t: L('We check them for you', 'Lo revisamos por usted')}; })});
-  R.push({g: L('Extra benefits', 'Beneficios extra')});
+  R.push({g: 'EXTRAS'});
   R.push({lab: 'Dental', cells: PLANS.map(function(p){ return v(dentalT(p)); })});
-  R.push({lab: L('Eyewear', 'Anteojos'), cells: PLANS.map(function(p){ return v(visionT(p)); })});
   R.push({lab: L('Hearing aids', 'Audífonos'), cells: PLANS.map(function(p){ return v(hearT(p)); })});
+  R.push({lab: L('Eyewear', 'Anteojos'), cells: PLANS.map(function(p){ return v(visionT(p)); })});
   R.push({lab: 'OTC', cells: PLANS.map(function(p){ return v(otcT(p)); })});
-  R.push({g: L('CMS rating', 'Calificación CMS')});
-  R.push({lab: L('Overall star rating', 'Estrellas (general)'), cells: PLANS.map(function(p){ return v(starsT(p)); })});
   return R;
 }
-
+// The two numbers that differ most across these plans, in dollars. A fact, never a
+// recommendation: nothing here may read as "best" or "suggested".
+function insight(){
+  var out = [];
+  [[L('Premium a year', 'Prima al año'), function(p){ return p.prem == null ? null : Math.round(p.prem * 12); }],
+   [L('Yearly max out-of-pocket', 'Máximo de gastos al año'), function(p){ return p.moop; }],
+   [L('Drug deductible', 'Deducible de medicinas'), function(p){ return p.drug ? p.dded : null; }]].forEach(function(x){
+    var vs = PLANS.map(x[1]).filter(function(v){ return typeof v === 'number'; });
+    if(vs.length < 2) return;
+    var lo = Math.min.apply(null, vs), hi = Math.max.apply(null, vs);
+    if(hi > lo) out.push({d: hi - lo, t: x[0] + ' ' + usd(lo) + L(' to ', ' a ') + usd(hi)});
+  });
+  out.sort(function(a, b){ return b.d - a.d; });
+  return out.slice(0, 2).map(function(o){ return o.t; }).join('   ·   ');
+}
 function isZero(s){ return s === '$0' || s === '$0.00' || s === '0%'; }
 function tableHTML(){
   var R = rows(), sameLabels = [], keep = [];
   R.forEach(function(r){
-    if(r.g){ keep.push(r); return; }
+    if(r.g || r.full){ keep.push(r); return; }
     var same = r.cells.length > 1 && r.cells.every(function(c){ return c.t === r.cells[0].t; });
-    if(same && !r.diff && !r.big){ sameLabels.push(r.lab); return; }
+    if(same && !r.keep){ sameLabels.push(r.lab); return; }
     keep.push(r);
   });
   var body = keep.filter(function(r, i){ return !(r.g && (i === keep.length - 1 || keep[i + 1].g)); }).map(function(r){
     if(r.g) return '<tr class="grp"><td colspan="' + (PLANS.length + 1) + '">' + esc(r.g) + '</td></tr>';
+    if(r.full) return '<tr class="full"><td colspan="' + (PLANS.length + 1) + '">' + esc(r.full) + '</td></tr>';
     return '<tr><td class="lab">' + esc(r.lab) + '</td>' + r.cells.map(function(c, j){
       var cls = 'v' + (r.big ? ' big' : '') + (c.off ? ' off' : '') + (c.na ? ' na off' : '') +
         (c.cls ? ' ' + c.cls : '') + (PLANS[j] === MINE ? ' mine' : '') + (!c.off && !c.na && isZero(String(c.t)) ? ' zero' : '');
       return '<td class="' + cls + '">' + esc(c.t) + '</td>';
     }).join('') + '</tr>';
   }).join('');
+  // The carrier is named ONCE per column, big and in its own colour, as on the printed sheet.
   var head = '<tr><th class="l0">' + L('Plans 2027', 'Planes 2027') + '</th>' + PLANS.map(function(p){
-    return '<th class="' + (p === MINE ? 'mine' : '') + '" style="--cc:' + (p === MINE ? '#1E3A5F' : cc(p)) + '">' +
-      '<span class="eb">' + (p === MINE ? L('YOUR PLAN', 'SU PLAN') : esc(p.org)) + '</span>' + esc(p.name) +
-      '<span class="pid">' + esc(p.org) + '<br>' + esc(baseType(p)) + ' · <span class="nw">' + esc(dashId(p.id)) + '</span></span></th>';
+    return '<th class="' + (p === MINE ? 'mine' : '') + '" style="--cc:' + (p === MINE ? '#002147' : cc(p)) + '">' +
+      '<span class="car">' + (p === MINE ? L('YOUR PLAN', 'SU PLAN') : esc(p.org)) + '</span>' +
+      '<span class="nm">' + esc(p.name) + '</span>' +
+      '<span class="pid">' + esc(baseType(p)) + ' · <span class="nw">' + esc(dashId(p.id)) + '</span></span></th>';
   }).join('') + '</tr>';
   window._sameLabels = sameLabels;
   return '<div class="cmp"><table><thead>' + head + '</thead><tbody>' + body + '</tbody></table></div>';
 }
-
-function contactCard(){
-  return '<div class="ctc"><img src="' + ADV.photo + '" alt="' + esc(ADV.name) + '" width="76" height="76" loading="lazy">' +
-    '<h3>' + L('Questions about these plans?', '¿Preguntas sobre estos planes?') + '</h3>' +
-    '<p>' + L('I answer in Spanish or English.', 'Le contesto en español o inglés.') + '</p>' +
-    '<div class="row">' +
-      '<a class="main" href="tel:' + ADV.tel + '" data-cta="contact_card" onclick="shEv(\'phone_click\')">' + L('Call', 'Llamar') + ' ' + ADV.telShown + '</a>' +
-      '<a href="' + WA + '" target="_blank" rel="noopener" data-cta="contact_card" onclick="shEv(\'whatsapp_click\')">WhatsApp</a>' +
-      '<a href="sms:' + ADV.tel + '" data-cta="contact_card" onclick="shEv(\'sms_click\')">' + L('Text', 'Texto') + '</a>' +
-    '</div><p class="lic">' + esc(ADV.name) + ' · ' + advBrand() + '</p></div>';
-}
+// ONE contact block on the page, after the table, and no photo in it: the photo is in the
+// header band, once (T-056 round 7 point 2 - AB: "don't think i want my picture TWICE").
+function contactPath(){ return L('/contact', '/contacto'); }
 function advBrand(){ return 'Medicare California'; }
-
-// The ask goes to the site's own contact form, the one that is already wired to the leads sheet
-// and already tested. T-078 does not open a second lead endpoint on this page.
-function contactPath(){ return L('/contact', '/contacto'); }  // MC: English default, same two paths
 function askBox(){
-  return '<div class="askb"><img src="' + ADV.photo + '" alt="' + esc(ADV.name) + '" width="72" height="72" loading="lazy">' +
+  return '<div class="askb">' +
     '<h3>' + L('Which one is right for you?', '¿Cuál le conviene?') + '</h3>' +
     '<p>' + L('I tell you, based on your doctors.', 'Se lo digo según sus médicos.') + '</p>' +
-    '<a class="b1" href="' + contactPath() + '" data-cta="final_cta" onclick="shEv(\'form_open\',\'final_cta\')">' + L('Ask for your personal comparison', 'Pida su comparación personal') + '</a>' +
-    '<span class="alt">' + L('or text', 'o texto al') + ' <a href="sms:' + ADV.tel + '" data-cta="contact_card" onclick="shEv(\'sms_click\')">' + ADV.telShown + '</a></span></div>';
+    '<a class="b1" href="' + contactPath() + '" data-cta="final_cta" onclick="shEv(\'form_open\',\'final_cta\')">' +
+      L('Ask for your personal comparison', 'Pida su comparación personal') + '</a>' +
+    '<div class="row" style="display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin-top:10px">' +
+      '<a class="b2" href="tel:' + ADV.tel + '" data-cta="contact_card" onclick="shEv(\'phone_click\')">' + L('Call', 'Llamar') + ' ' + ADV.telShown + '</a>' +
+      '<a class="b2" href="' + WA + '" target="_blank" rel="noopener" data-cta="contact_card" onclick="shEv(\'whatsapp_click\')">WhatsApp</a>' +
+      '<a class="b2" href="sms:' + ADV.tel + '" data-cta="contact_card" onclick="shEv(\'sms_click\')">' + L('Text', 'Texto') + '</a>' +
+    '</div></div>';
 }
-
+function contactCard(){ return askBox(); }   // the fallback path shows the same one block
+function stepsHTML(){
+  return '<div class="steps">' +
+    [[L('We review your doctors and drugs together.', 'Revisamos juntos sus médicos y sus medicinas.')],
+     [L('Changes from Oct 15 to Dec 7, 2026.', 'Cambios del 15 de oct. al 7 de dic. de 2026.')],
+     [L('Your new plan starts Jan 1, 2027.', 'Su plan nuevo empieza el 1 de enero de 2027.')]]
+    .map(function(x, i){ return '<div class="s"><b>' + (i + 1) + '.</b>' + esc(x[0]) + '</div>'; }).join('') + '</div>';
+}
 function render(){
   document.documentElement.lang = lang;
   $('langLink').textContent = L('Español', 'English');
@@ -258,19 +293,25 @@ function render(){
   $('h1').textContent = PLANS.length + ' ' + L(PLANS.length === 1 ? 'Medicare plan 2027' : 'Medicare plans 2027',
                                                PLANS.length === 1 ? 'plan de Medicare 2027' : 'planes de Medicare 2027');
   $('sub').textContent = (zip ? 'ZIP ' + zip : '') + (county ? ' · ' + county : '');
-  $('stamp').textContent = (sDate ? L('Shared on ', 'Compartido el ') + fmtDate(sDate) : '') + cmsStamp();
+  // One date story: shared on, CMS data of, opened on - the same three the PDF prints.
+  $('stamp').textContent = (sDate ? L('Shared on ', 'Compartido el ') + fmtDate(sDate) : '') + cmsStamp() +
+    ' · ' + L('opened ', 'abierto el ') + fmtDate(new Date().toISOString().slice(0, 10));
   $('advLabel').textContent = L('Your advisor · Lic. #', 'Su asesora · Lic. #') + ADV.lic;
   $('advMail').textContent = ADV.mail;
   $('brand').textContent = advBrand();
 
   var noteCard = notes.length
     ? '<div class="card note"><p class="h">' + L('Their note', 'Su nota') + '</p><p>' + esc(notes[0]) + '</p></div>'
-    : '<div class="card"><p style="font-size:15px;line-height:1.5">' +
-        L('Questions about these plans? Text Alejandra: ', '¿Preguntas sobre estos planes? Escríbale a Alejandra: ') +
-        '<a href="sms:' + ADV.tel + '" data-cta="inline_body" onclick="shEv(\'sms_click\',\'inline_body\')"><b>' + ADV.telShown + '</b></a></p></div>';
-
+    : '';
   var replies = notes.slice(1).map(function(n, i){
     return '<div class="r"><b>' + L('Reply ', 'Respuesta ') + (i + 1) + '</b>' + esc(n) + '</div>'; }).join('');
+
+  // the sheet's top strip: what changes most, and the one gold thing on the page
+  var ins = insight();
+  var strip = '<div class="ins"><div class="t">' +
+    (ins ? '<b>' + L('What changes most: ', 'Lo que más cambia: ') + '</b>' + esc(ins)
+         : esc(L('The official CMS figures for these plans, side by side.', 'Las cifras oficiales de CMS de estos planes, lado a lado.'))) +
+    '</div><span class="gold">' + L('Choose by Dec 7 · starts Jan 1', 'Elija antes del 7 de dic. · inicia el 1 de enero') + '</span></div>';
 
   var table = tableHTML();
   var same = (window._sameLabels || []).length
@@ -278,10 +319,11 @@ function render(){
       esc(window._sameLabels.join(' · ')) + '</p></div>' : '';
 
   $('main').innerHTML =
-    (dataChanged() ? '<div class="chg">' + L('Some CMS figures changed after this was shared. What you see below is today’s data.',
+    (dataChanged() ? '<div class="chg">' + L('Some CMS figures changed after this was shared. What you see below is today\u2019s data.',
                                              'Algunas cifras de CMS cambiaron después de que le compartieron esto. Abajo ve los datos de hoy.') + '</div>' : '') +
     noteCard +
     (replies ? '<div class="replies">' + replies + '</div>' : '') +
+    strip +
     table + same +
     (MINE && MINE.prem != null ? '<p class="fine" style="margin-top:8px">' +
       L('The yearly difference compares the monthly premium only. Copays and drug costs depend on the care you use.',
@@ -292,16 +334,10 @@ function render(){
         ? '<p style="font-size:14px;color:#5F6B75">' + L('This link already has the most replies it can carry.', 'Este enlace ya tiene todas las respuestas que puede llevar.') + '</p>'
         : '<textarea id="rep" maxlength="280" placeholder="' + esc(L('e.g. I like the second one. Can we talk Sunday?', 'Ej: Me gusta el segundo. ¿Hablamos el domingo?')) + '" oninput="repCount()"></textarea>' +
           '<p class="cnt"><span id="repc">0</span>/280</p>' +
-          '<button class="b2" onclick="sendReply()">' + L('Send reply', 'Enviar respuesta') + '</button>' +
-          ' <button class="b2" onclick="makePDF()">' + L('Save as PDF', 'Guardar en PDF') + '</button>' +
-          '<p class="cnt" id="repok" style="text-align:left;color:#00796B"></p>') + '</div>' +
-    contactCard() +
-    '<div class="steps">' +
-      '<div class="s"><b>' + L('Step 1', 'Paso 1') + '</b><span>' + L('You tell me your doctors.', 'Usted me dice sus médicos.') + '</span></div>' +
-      '<div class="s"><b>' + L('Step 2', 'Paso 2') + '</b><span>' + L('I check them against each plan.', 'Yo los reviso en cada plan.') + '</span></div>' +
-      '<div class="s"><b>' + L('Step 3', 'Paso 3') + '</b><span>' + L('We decide together.', 'Decidimos juntas.') + '</span></div>' +
-    '</div>' +
-    '<p style="margin-top:14px"><span class="gold">' + L('Open enrollment ends December 7', 'La inscripción termina el 7 de diciembre') + '</span></p>' +
+          '<div class="btns"><button class="b2" onclick="sendReply()">' + L('Send reply', 'Enviar respuesta') + '</button>' +
+          '<button class="b2" onclick="makePDF()">' + L('Save as PDF', 'Guardar en PDF') + '</button></div>' +
+          '<p class="cnt" id="repok" style="text-align:left;color:#007B40"></p>') + '</div>' +
+    stepsHTML() +
     fineprint();
   paintPin();
   $('langLink').href = switchLangURL();
@@ -314,7 +350,8 @@ function fineprint(){
               'No está relacionado ni respaldado por el gobierno federal ni por el programa Medicare.') + '</p>' +
     '<p>' + L('Every year, Medicare evaluates plans based on a 5-star rating system.',
               'Cada año, Medicare evalúa los planes según un sistema de calificación de 5 estrellas.') + '</p>' +
-    (DATA && DATA.source ? '<p>' + esc(L('Source: ', 'Fuente: ') + DATA.source) + '</p>' : '') +
+    '<p>' + esc(L('A fixed picture of the CMS data', 'Es una foto fija de los datos de CMS') + cmsStamp().replace(/^ · /, ': ') +
+      L('. Plan details can change. © 2026 Susana Marcos LLC, doing business as ', '. Los detalles del plan pueden cambiar. © 2026 Susana Marcos LLC, que opera como ') + advBrand() + '.') + '</p>' +
     '</div>';
 }
 function paintPin(){

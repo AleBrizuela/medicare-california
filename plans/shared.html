@@ -70,7 +70,19 @@ a{color:var(--teal-d)}
 .cmp thead th{background:#fff;font-size:12px;line-height:1.25;color:var(--dark);font-weight:700;
   box-shadow:inset 0 4px 0 var(--cc,#C9D1D8);border-left:3px solid #fff;border-right:3px solid #fff;padding-top:11px}
 .cmp thead th.l0{box-shadow:none;text-align:left;padding-left:10px;color:var(--grey);font-weight:600;width:31%}
-.cmp thead th .eb{display:block;font-size:10px;font-weight:800;letter-spacing:.02em;text-transform:uppercase;color:var(--grey);margin-bottom:3px}
+.cmp thead th .car{display:block;font-size:13px;font-weight:800;line-height:1.2;color:var(--cc,#3A4554);margin-bottom:3px}
+/* 3 columns at 375px: the carrier name has about 70px, so it steps down rather than
+   breaking mid-word ("Californi / a" is what happens when it does not). */
+@media(max-width:560px){
+  .cmp thead th .car{font-size:11px;letter-spacing:-.2px}
+  .cmp thead th .nm{font-size:11.5px}
+  .cmp td.lab,.cmp thead th.l0{width:27%}
+  .cmp th,.cmp td{padding:8px 3px}
+  .cmp td.v{font-size:12px}
+  .cmp td.big{font-size:14.5px}
+}
+.cmp thead th .nm{display:block;font-weight:600;color:#3A4554}
+.cmp tr.full td{background:#F3F7F4;color:#1F7A3A;font-weight:700;text-align:center;font-size:13px;padding:10px}
 .cmp thead th .pid{display:block;margin-top:3px;font-size:10.5px;font-weight:600;color:var(--grey)}
 .cmp thead th.mine{box-shadow:inset 0 4px 0 var(--navy);background:#F2F6FA}
 .cmp td.mine{background:#F2F6FA}
@@ -90,9 +102,9 @@ a{color:var(--teal-d)}
 .askb h3{font-size:18px;font-weight:800;margin-bottom:4px;text-wrap:balance}
 .askb p{font-size:14.5px;color:var(--grey);margin-bottom:12px;text-wrap:pretty}
 .b1{display:block;width:100%;background:var(--teal);color:#fff;border:0;border-radius:11px;padding:14px;
-  font:800 16px/1.2 inherit;min-height:50px;cursor:pointer;text-decoration:none;text-align:center}
-.b2{display:inline-block;background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:11px 14px;
-  font:700 14px/1.2 inherit;color:var(--dark);min-height:44px;cursor:pointer;text-decoration:none}
+  font-family:inherit;font-size:17px;font-weight:800;line-height:1.2;min-height:52px;cursor:pointer;text-decoration:none;text-align:center}
+.b2{display:inline-block;background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:12px 15px;
+  font-family:inherit;font-size:15px;font-weight:700;line-height:1.2;color:var(--dark);min-height:48px;cursor:pointer;text-decoration:none}
 .alt{display:block;margin-top:10px;font-size:13.5px;color:var(--grey)}
 .alt a{font-weight:700;text-decoration:none;white-space:nowrap}
 /* ── navy contact card ── */
@@ -102,12 +114,12 @@ a{color:var(--teal-d)}
 .ctc p{font-size:14.5px;opacity:.9;margin-bottom:13px}
 .ctc .row{display:flex;gap:9px;justify-content:center;flex-wrap:wrap}
 .ctc .row a{flex:1 1 130px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);color:#fff;
-  border-radius:10px;padding:12px 10px;font:700 14.5px/1.2 inherit;text-decoration:none;min-height:46px;
+  border-radius:10px;padding:12px 10px;font-family:inherit;font-size:14.5px;font-weight:700;line-height:1.2;text-decoration:none;min-height:46px;
   display:flex;align-items:center;justify-content:center}
 .ctc .row a.main{background:#fff;color:var(--navy);border-color:#fff}
 .ctc .lic{font-size:11.5px;opacity:.72;margin-top:11px}
 /* ── reply ── */
-.rep textarea{width:100%;border:1.5px solid #CFD8DE;border-radius:10px;padding:11px 12px;font:16px/1.45 inherit;min-height:76px;resize:vertical}
+.rep textarea{width:100%;border:1.5px solid #CFD8DE;border-radius:10px;padding:11px 12px;font-family:inherit;font-size:16px;line-height:1.45;min-height:76px;resize:vertical}
 .rep textarea:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,128,212,.16)}
 .cnt{font-size:11.5px;color:#8B959D;text-align:right;margin-top:4px}
 .replies{margin-top:12px}
@@ -116,14 +128,14 @@ a{color:var(--teal-d)}
 /* ── form ── */
 .fld{margin-top:11px}
 .fld label{display:block;font-size:13px;font-weight:700;color:var(--grey);margin-bottom:5px}
-.fld input{width:100%;border:1.5px solid #CFD8DE;border-radius:10px;padding:12px;font:16px/1.3 inherit;min-height:48px}
+.fld input{width:100%;border:1.5px solid #CFD8DE;border-radius:10px;padding:12px;font-family:inherit;font-size:16px;line-height:1.3;min-height:48px}
 .fld input:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,128,212,.16)}
 .consent{font-size:11.5px;color:var(--grey);margin-top:9px;line-height:1.5}
 /* ── pinned bar ── */
 .pin{position:fixed;left:0;right:0;bottom:0;z-index:40;background:#fff;border-top:1px solid var(--line);
   padding:9px 16px calc(9px + env(safe-area-inset-bottom,0px));box-shadow:0 -4px 18px rgba(16,24,40,.08)}
 .pin a{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--teal);color:#fff;
-  border-radius:11px;padding:12px;font:800 15.5px/1.2 inherit;text-decoration:none;min-height:50px;max-width:560px;margin:0 auto}
+  border-radius:11px;padding:12px;font-family:inherit;font-size:15.5px;font-weight:800;line-height:1.2;text-decoration:none;min-height:50px;max-width:560px;margin:0 auto}
 .pin img{width:30px;height:30px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.6)}
 /* ── fine print ── */
 .fine{font-size:11.5px;color:var(--grey);line-height:1.6;margin:18px 0 10px}
@@ -147,13 +159,27 @@ a{color:var(--teal-d)}
   .cmp td.big{font-size:19px}
   .grid{display:grid;grid-template-columns:1fr 340px;gap:16px;align-items:start}
   .pin{display:none}
-  .steps{display:flex;gap:12px;margin-top:14px}
-  .steps .s{flex:1;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
-  .steps .s b{display:block;color:var(--teal-d);font-size:12px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:3px}
-  .steps .s span{font-size:14px;color:var(--dark)}
 }
-@media(max-width:899px){.adv{display:none}.steps{display:none}}
-.gold{display:inline-block;background:#FDF3E0;color:var(--gold);border-radius:999px;padding:4px 11px;font-weight:800;font-size:12.5px}
+@media(max-width:899px){
+  .band .wrap{display:block}
+  .adv{display:flex;align-items:center;gap:10px;text-align:left;margin-top:12px;
+    border-top:1px solid rgba(255,255,255,.22);padding-top:11px;font-size:13px;line-height:1.35}
+  .adv img{width:46px;height:46px;margin:0;flex:0 0 auto}
+  .adv .n{font-size:15px}
+  .adv .l{font-size:10.5px}
+  .adv #advMail{display:none}
+}
+.gold{display:inline-block;background:#FFD54F;color:#0B1F44;border-radius:7px;padding:5px 12px;font-weight:800;font-size:12.5px}
+/* "Lo que más cambia" sits where AB's printed sheet has its top strip, and carries the chip. */
+.ins{background:#EEF3F9;border-radius:10px;padding:10px 13px;margin-top:14px;display:flex;gap:10px;
+  align-items:center;flex-wrap:wrap;font-size:14px;color:var(--dark)}
+.ins .t{flex:1 1 220px;min-width:0}
+.ins b{font-weight:800}
+.steps{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.steps .s{flex:1 1 220px;background:#F4F6F9;border-radius:10px;padding:11px 13px;font-size:13.5px;color:var(--dark)}
+.steps .s b{color:var(--teal-d);margin-right:5px}
+.rep .btns{display:flex;gap:9px;margin-top:10px;flex-wrap:wrap}
+.rep .btns button{flex:1 1 150px;min-height:48px;font-size:15px;font-weight:700}
 .stg-badge{margin-left:auto;background:#5F6B75;color:#fff;font-family:inherit;font-size:10.5px;font-weight:700;line-height:1;
   letter-spacing:.04em;padding:5px 10px;border-radius:999px;white-space:nowrap}
 .stg-badge + .ln{margin-left:10px}
@@ -175,10 +201,12 @@ a{color:var(--teal-d)}
   </div>
   <div class="adv">
     <img src="/images/alejandra-headshot.webp" alt="Alejandra Brizuela" width="66" height="66" loading="lazy">
-    <div class="l" id="advLabel">Your advisor · Lic. #4507923</div>
-    <div class="n">Alejandra Brizuela</div>
-    <div id="advMail">Alejandra@Medicare-California.com</div>
-    <div>(310) 597-9142</div>
+    <div class="at">
+      <div class="l" id="advLabel">Your advisor · Lic. #4507923</div>
+      <div class="n">Alejandra Brizuela</div>
+      <div id="advMail">Alejandra@Medicare-California.com</div>
+      <div><a href="tel:+13105979142" data-cta="header" style="color:inherit;text-decoration:none">(310) 597-9142</a></div>
+    </div>
   </div>
 </div></div>
 

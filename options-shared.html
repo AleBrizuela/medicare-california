@@ -50,7 +50,24 @@ p,div,span{text-wrap:pretty}
 .pick2{margin:5px 0 6px;padding:5px 14px;background:#E8F2FC;border-radius:7px;display:flex;justify-content:space-between;align-items:center;gap:14px;font-size:14.5px;color:#1A202C}
 .sgt{color:#0B2D4F;font-weight:700}
 /* the table itself */
-.grid{display:grid;grid-template-columns:24% repeat(var(--n,3),1fr);column-gap:8px}
+.grid{display:grid;grid-template-columns:24% repeat(var(--n,3),1fr);column-gap:8px;position:relative}
+/* ── T-078 round 9 (AB 2026-10-15 22:30): the suggested plan is marked down its WHOLE column, not
+   just named on the line above. The outline is drawn ON the cells — top and sides on the header,
+   sides on every value, bottom on the last — so it reads as one continuous line and stays in flow.
+   An absolutely positioned overlay was tried first and pushed the sheet onto a second printed
+   page, which the PDF cannot afford. On a phone the columns are too narrow for a full outline, so
+   there it is the header box and the tint only. */
+.col.sug{background:#E8F2FC;border-left:2.5px solid #0071BC;border-right:2.5px solid #0071BC;border-radius:6px 6px 0 0}
+.v.sug{background:#EDF5FD;border-left:2.5px solid #0071BC;border-right:2.5px solid #0071BC}
+.v.sug.vlast{border-bottom:2.5px solid #0071BC;border-radius:0 0 6px 6px}
+.sgc.ph{display:none}
+@media (max-width:600px){
+  .col.sug{border:2.5px solid #0071BC;border-radius:6px}
+  .v.sug{border-left:0;border-right:0}
+  .v.sug.vlast{border-bottom:0;border-radius:0}
+  .sgc.dk{display:none}
+  .sgc.ph{display:inline-block}
+}
 .col{border-top:5px solid var(--c);background:#fff;border-radius:4px 4px 0 0;text-align:center;padding:8px 6px 7px}
 .car{font-size:22px;font-weight:700;color:var(--c)}
 .pn{font-size:15px;color:#3a4650}
@@ -66,7 +83,7 @@ p,div,span{text-wrap:pretty}
 .sec{grid-column:1/-1;background:#EEF1F3;font-size:13px;letter-spacing:2px;font-weight:700;color:#5b6670;padding:4px 6px;margin-top:4px;display:flex;align-items:center}
 .si{width:17px;height:17px;fill:none;stroke:#0071BC;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;margin-right:6px;flex:0 0 17px}
 /* the two rows only a person can answer (round 8e) */
-.callrow{grid-column:2/-1;background:#E8F2FC;border-radius:8px;margin:3px 0;padding:6px 10px!important;color:#0B2D4F!important;display:flex;align-items:center;justify-content:center;gap:8px;font-weight:400;font-size:15px!important;border-bottom:0!important}
+.callrow{position:relative;z-index:3;grid-column:2/-1;background:#E8F2FC;border-radius:8px;margin:3px 0;padding:6px 10px!important;color:#0B2D4F!important;display:flex;align-items:center;justify-content:center;gap:8px;font-weight:400;font-size:15px!important;border-bottom:0!important}
 .callrow b{font-weight:700;color:#0071BC;white-space:nowrap}
 .cri{width:18px;height:18px;flex:0 0 18px;fill:none;stroke:#0071BC;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .cta2{margin:14px 0 0;background:#E8F2FC;border-radius:12px;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px 20px;flex-wrap:wrap;color:#0B2D4F}
@@ -122,6 +139,10 @@ p,div,span{text-wrap:pretty}
   .c2t,.c2p,.c2w{white-space:nowrap}
   .c2t,.c2p{font-size:15px!important}.c2p b{font-size:18px!important}.c2w{font-size:15px!important}
   .fix,.q{display:none!important}
+  /* the phone chip is not a print thing: without this it printed under the desktop one and the
+     taller header pushed the sheet onto a second page */
+  .sgc.ph{display:none!important}
+  .sgc.dk{display:inline-block!important}
 }
 </style>
 </head>
@@ -155,6 +176,7 @@ p,div,span{text-wrap:pretty}
     call:   EN ? 'CALL, TEXT OR WHATSAPP' : 'LLAMADA, TEXTO O WHATSAPP',
     before: EN ? 'Choose before <b>Dec 7</b> · starts January 1' : 'Elija antes del <b>7 de dic.</b> · inicia el 1 de enero',
     sug:    EN ? 'Our suggestion' : 'Nuestra sugerencia',
+    sugShort: EN ? 'Suggested' : 'Sugerido',
     costs:  EN ? 'COSTS' : 'COSTOS',
     doctor: EN ? 'YOUR DOCTOR' : 'SU MÉDICO',
     hosp:   EN ? 'HOSPITAL AND EMERGENCIES' : 'HOSPITAL Y EMERGENCIAS',
@@ -242,17 +264,18 @@ p,div,span{text-wrap:pretty}
   });
   frame.src = WIDGET_HOST + '/widget-v4.html?data=1&theme=california&lang=' + (EN ? 'en' : 'es');
 
-  function cell(v){
-    if (!v) return '<div class="v off">' + (EN ? 'No information' : 'Sin información') + '</div>';
+  function cell(v, isSug){
+    var sg = isSug ? ' sug' : '';
+    if (!v) return '<div class="v off' + sg + '">' + (EN ? 'No information' : 'Sin información') + '</div>';
     var t = String(v.t);
     var zero = !v.off && /^\$0(\.00)?($|\/| )/.test(t.replace(/<[^>]+>/g, '').trim());
-    return '<div class="v' + (v.off ? ' off' : (zero ? ' z' : '')) + '">' + t + '</div>';
+    return '<div class="v' + (v.off ? ' off' : (zero ? ' z' : '')) + sg + '">' + t + '</div>';
   }
-  function rowHTML(key, plans){
+  function rowHTML(key, plans, sugId){
     var any = plans.some(function(p){ return p.rows[key]; });
     if (!any) return '';
     return '<div class="row"><div class="rl">' + esc(T.rows[key]) + '</div>' +
-      plans.map(function(p){ return cell(p.rows[key]); }).join('') + '</div>';
+      plans.map(function(p){ return cell(p.rows[key], sugId && p.id === sugId); }).join('') + '</div>';
   }
   function secHTML(icon, label){
     return '<div class="sec"><svg class="si" viewBox="0 0 24 24">' + PIC[icon] + '</svg>' + esc(label) + '</div>';
@@ -272,26 +295,29 @@ p,div,span{text-wrap:pretty}
 
     var cols = '<div class="blank"></div>' + plans.map(function(p){
       var stars = p.stars == null ? '' : '<span>★ ' + p.stars + (EN ? ' of 5' : ' de 5') + '</span>';
-      return '<div class="col" style="--c:' + esc(p.color) + '">' +
+      return '<div class="col' + (sug && sug.id === p.id ? ' sug' : '') + '" style="--c:' + esc(p.color) + '">' +
         '<div class="car">' + esc(p.carrier) + '</div>' +
         '<div class="pn">' + esc(p.name) + '</div>' +
         '<div class="id"><span>' + esc(p.type) + ' · ' + esc(p.id) + '</span> ' + stars + '</div>' +
-        (sug && sug.id === p.id ? '<span class="sgc">' + esc(T.sug) + '</span>' : '') +
+        (sug && sug.id === p.id
+          ? '<span class="sgc dk">' + esc(T.sug) + '</span><span class="sgc ph">' + esc(T.sugShort) + '</span>'
+          : '') +
       '</div>';
     }).join('');
 
+    var sugId = sug ? sug.id : '';
     var table =
       secHTML('cost', T.costs) +
-      rowHTML('premium', plans) + rowHTML('giveback', plans) + rowHTML('moop', plans) + rowHTML('mded', plans) +
+      rowHTML('premium', plans, sugId) + rowHTML('giveback', plans, sugId) + rowHTML('moop', plans, sugId) + rowHTML('mded', plans, sugId) +
       secHTML('visits', T.doctor) +
-      rowHTML('pcp', plans) + rowHTML('spec', plans) + callRow('visits', T.docCall) +
+      rowHTML('pcp', plans, sugId) + rowHTML('spec', plans, sugId) + callRow('visits', T.docCall) +
       secHTML('hosp', T.hosp) +
-      rowHTML('hosp', plans) + rowHTML('er', plans) + rowHTML('amb', plans) + rowHTML('wwe', plans) +
+      rowHTML('hosp', plans, sugId) + rowHTML('er', plans, sugId) + rowHTML('amb', plans, sugId) + rowHTML('wwe', plans, sugId) +
       secHTML('drug', T.drugs) +
-      rowHTML('ded', plans) + rowHTML('tiers', plans) + callRow('drug', T.rxCall) +
+      rowHTML('ded', plans, sugId) + rowHTML('tiers', plans, sugId) + callRow('drug', T.rxCall) +
       secHTML('star', T.extras) +
-      rowHTML('dental', plans) + rowHTML('vision', plans) + rowHTML('hearing', plans) +
-      rowHTML('otc', plans) + rowHTML('trans', plans);
+      rowHTML('dental', plans, sugId) + rowHTML('vision', plans, sugId) + rowHTML('hearing', plans, sugId) +
+      rowHTML('otc', plans, sugId) + rowHTML('trans', plans, sugId);
 
     var sugLine = sug
       ? '<div class="pick2"><div><b class="sgt">' + esc(T.sug) + ': ' + esc(sug.name) + '.</b> ' +
@@ -322,8 +348,15 @@ p,div,span{text-wrap:pretty}
       '<div class="fix"><a class="l" href="tel:+13105979142">' + esc(T.callb) + '</a>' +
         '<a class="w" href="https://wa.me/13105979142" target="_blank" rel="noopener">WhatsApp</a></div>';
 
+    placeSugBox();
     if (window.gtag) window.gtag('event', 'shared_page_view', {plans:n, zip3:ZIP.slice(0,3), lang:EN?'en':'es'});
     if (PRINT) setTimeout(function(){ window.print(); }, 600);
+  }
+
+  // The bottom of the outline belongs to whichever value row happens to be last.
+  function placeSugBox(){
+    var cells = document.querySelectorAll('.v.sug');
+    if (cells.length) cells[cells.length - 1].classList.add('vlast');
   }
 
   var IMGBASE = '/';   // this site has its own copy of the headshot

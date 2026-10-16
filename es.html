@@ -1522,6 +1522,9 @@ html body details.t31-cities[open]>summary{margin-bottom:16px}
   html body.t31-duo .t31-cbar button:not(.t31-shr){flex:1 1 auto;font-size:16.5px}
   html body.t31-c .t31-bar{display:none!important}
   html body.t31-kb .t31-cbar{display:none}
+  /* T-098: the share sheet owns the bottom of the screen while it is open. */
+  html body.t31-sheet .t31-cbar{display:none!important}
+  html body.t31-sheet .t31-bar{display:none!important}
   /* T-096 round 2 (AB 2026-10-15): the count is a quiet label next to the button, not a headline */
   html body .t31-cbar .n{font:400 15px/1.2 'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif;color:#4A5568;min-width:0;overflow-wrap:anywhere}
   html body .t31-cbar button{flex:0 0 auto;min-height:48px;padding:0 18px;border:0;border-radius:10px;
@@ -2609,7 +2612,11 @@ only to the exact origin the iframe was loaded from. */
   var SHARE_OK=/^(https:\/\/wa\.me\/|sms:|mailto:|https:\/\/(www\.)?(beneficiosmedicare|medicare-california)\.com\/|https:\/\/[a-z0-9-]+\.(beneficiosmedicare|medicare-california)\.pages\.dev\/)/i;
   window.addEventListener('message',function(e){
     if(!OK.test(e.origin)||!e.data) return;
-    if(e.data.type==='widget-want-viewport'){ vpOn=e.data.on!==false; if(vpOn) sendVP(); return; }
+    if(e.data.type==='widget-want-viewport'){ vpOn=e.data.on!==false;
+      /* The page's own bar is drawn above the iframe, so while the share sheet is up it sat
+         on top of it and covered the last channel. One thing on screen at a time. */
+      b.classList.toggle('t31-sheet',vpOn);
+      if(vpOn) sendVP(); return; }
     if(e.data.type==='widget-open'){
       var h=String(e.data.href||''); if(!SHARE_OK.test(h)) return;
       var a=document.createElement('a'); a.href=h; a.target='_blank'; a.rel='noopener';

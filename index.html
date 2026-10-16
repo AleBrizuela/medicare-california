@@ -1954,6 +1954,13 @@ html body details.t31-cities[open]>summary{margin-bottom:16px}
     margin:0 10px 8px;padding:10px 12px;gap:12px;align-items:center;justify-content:flex-end;
     background:#fff;border:2px solid var(--t31-brand);border-radius:14px;box-shadow:0 6px 18px rgba(16,24,40,.16)}
   html body.t31-c .t31-cbar{display:flex}
+  /* T-084 round 2 put the count in the button, so there is no label beside it any more and the
+     bar's justify-content:flex-end left the button pinned right against an empty half-bar. With
+     the span empty the button simply fills the bar, which is the "ONE teal button" the round asked
+     for. Written as :empty so a label, if one ever comes back, restores the old two-part layout
+     on its own. */
+  html body .t31-cbar .n:empty{display:none}
+  html body .t31-cbar .n:empty + button{flex:1 1 auto;width:100%;min-height:52px}
   /* T-084 round 2: solid, full-width, when the bar is a screen's main action */
   html body.t31-solid .t31-cbar{border:0;background:none;box-shadow:none;padding:0}
   html body.t31-solid .t31-cbar .n{display:none}

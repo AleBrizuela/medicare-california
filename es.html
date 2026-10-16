@@ -2510,7 +2510,7 @@ function toggleMobile() {
 </script>
 <!-- T-031 contact bar (phones only) -->
 <!-- T-084 compare bar (phones only); the widget fills in the words and the count -->
-<div class="t31-cbar" data-cta="widget" aria-live="polite" aria-label="Planes elegidos para comparar"><span class="n">0 planes elegidos</span><button type="button">Comparar</button></div>
+<div class="t31-cbar" data-cta="widget" aria-live="polite" aria-label="Planes elegidos para comparar"><span class="n"></span><button type="button">Comparar</button></div>
 <nav class="t31-bar" data-cta="sticky_bar" aria-label="Contacto"><a class="t31-fill" href="sms:+13105979142?&amp;body=Hola%2C%20tengo%20una%20pregunta%20sobre%20Medicare"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg><span>Texto</span></a><a class="t31-line" href="tel:+13105979142"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Llamar</span></a><button type="button" class="t31-next"><span>Continuar</span> &rarr;</button></nav>
 <script>/* T-031: the bottom contact bar steps aside while the on-screen keyboard is open, so it never sits over a field being typed in, on this page or inside the plan finder. Pinch-zoom is not mistaken for a keyboard. */(function(){var v=window.visualViewport;if(!v)return;function typing(){var a=document.activeElement;return !!a&&(/^(INPUT|TEXTAREA|SELECT|IFRAME)$/.test(a.tagName)||a.isContentEditable);}function f(){document.body.classList.toggle('t31-kb',typing()&&v.scale<1.05&&v.height<window.innerHeight*0.75);if(window.t31Sync)window.t31Sync();}/* a keyboard can only be open while someone is in a field: check on every resize and whenever focus moves, so a resize during page load can never leave the bar hidden */v.addEventListener('resize',f);['focusin','focusout'].forEach(function(t){document.addEventListener(t,function(){setTimeout(f,350);});});['focus','blur'].forEach(function(t){window.addEventListener(t,function(){setTimeout(f,350);});});f();})();</script>
 <script>/* T-031 (b): what the bottom bar and the navy block show while the plan finder is open. The widget reports
@@ -2576,7 +2576,10 @@ only to the exact origin the iframe was loaded from. */
     }
     if(e.data.type!=='widget-cbar') return;
     var d=e.data;
-    if(d.label) lab.textContent=d.label;
+    /* T-084 round 2 made the count part of the button ("Comparar (2)"), so the widget stopped
+       sending a label. This span then kept the text the page shipped with and the bar read
+       "0 planes elegidos  Comparar (2)" for good. An absent label now CLEARS it. */
+    lab.textContent = d.label || '';
     /* T-084 round 2: the same bar, one button wide, when it carries a screen's main action
        ("Ayudeme a elegir este plan" / "...estos planes") instead of the compare count. */
     b.classList.toggle('t31-solid',d.mode==='action'||d.mode==='duo');

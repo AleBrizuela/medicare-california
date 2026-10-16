@@ -3059,12 +3059,26 @@ only to the exact origin the iframe was loaded from. */
   var b=document.body, on=false;
   function origin(){ try{ return new URL(frame.src,location.href).origin; }catch(e){ return ''; } }
   function send(o){ var t=origin(); if(!t) return; try{ frame.contentWindow.postMessage(o,t); }catch(e){} }
+  /* T-098: the widget's share sheet is position:fixed inside an iframe that has no scrollport
+     of its own, so "fixed" pinned it to the FRAME -- as tall as the whole widget -- and on a
+     390x760 phone it opened 1,043px below the fold: the screen dimmed and nothing appeared.
+     The PAGE is what scrolls, so the page is the only thing that knows where the screen is.
+     It says so when asked and again on every scroll, and the widget places the sheet there. */
+  var vpQ=0, vpOn=false;
+  function sendVP(){
+    var r=frame.getBoundingClientRect();
+    send({type:'host-viewport', top:Math.round(-r.top), height:Math.round(window.innerHeight)});
+  }
+  addEventListener('scroll',function(){ if(!vpOn||vpQ) return;
+    vpQ=requestAnimationFrame(function(){ vpQ=0; sendVP(); }); },{passive:true});
+  addEventListener('resize',function(){ if(vpOn) sendVP(); });
   /* T-078: WhatsApp, the texting app and the mail app have to be opened by the PAGE — a sms: or
      mailto: from inside a cross-origin iframe is blocked. Only these three schemes and our own two
      sites are ever followed, and only from the exact origin the widget was loaded from. */
   var SHARE_OK=/^(https:\/\/wa\.me\/|sms:|mailto:|https:\/\/(www\.)?(beneficiosmedicare|medicare-california)\.com\/|https:\/\/[a-z0-9-]+\.(beneficiosmedicare|medicare-california)\.pages\.dev\/)/i;
   window.addEventListener('message',function(e){
     if(!OK.test(e.origin)||!e.data) return;
+    if(e.data.type==='widget-want-viewport'){ vpOn=e.data.on!==false; if(vpOn) sendVP(); return; }
     if(e.data.type==='widget-open'){
       var h=String(e.data.href||''); if(!SHARE_OK.test(h)) return;
       var a=document.createElement('a'); a.href=h; a.target='_blank'; a.rel='noopener';

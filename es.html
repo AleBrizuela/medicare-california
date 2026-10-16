@@ -6,7 +6,7 @@
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 /* T-050 tester mode: ?qa=1 marks this browser as ours until ?qa=0; our visits go to GA4 as traffic_type=internal (filtered out). */
-(function(){var t=false;try{var q=/[?&]qa=([01])(?=&|#|$)/.exec(location.search);if(q){if(q[1]==='1')localStorage.setItem('bm_tester','1');else localStorage.removeItem('bm_tester');}t=localStorage.getItem('bm_tester')==='1';}catch(e){t=/[?&]qa=1(?=&|#|$)/.test(location.search);}window.bmTester=t;window.bmInternal=t||/\.pages\.dev$/i.test(location.hostname);if(window.bmInternal)gtag('set',{traffic_type:'internal'});if(t&&window.self===window.top)document.addEventListener('DOMContentLoaded',function(){var d=document.createElement('div');d.id='bm-test-dot';d.textContent='TEST';d.setAttribute('aria-hidden','true');d.style.cssText='position:fixed;left:6px;bottom:calc(6px + env(safe-area-inset-bottom,0px));z-index:2147483647;padding:2px 6px;border-radius:9px;background:#6B7280;color:#fff;font:700 9px/1.4 system-ui,sans-serif;letter-spacing:.06em;opacity:.8;pointer-events:none';document.body.appendChild(d);});})();
+(function(){var t=false;try{var q=/[?&]qa=([01])(?=&|#|$)/.exec(location.search);if(q){if(q[1]==='1')localStorage.setItem('bm_tester','1');else localStorage.removeItem('bm_tester');}t=localStorage.getItem('bm_tester')==='1';}catch(e){t=/[?&]qa=1(?=&|#|$)/.test(location.search);}window.bmTester=t;window.bmInternal=t||/\.pages\.dev$/i.test(location.hostname);if(window.bmInternal)gtag('set',{traffic_type:'internal'});})();
 gtag('js', new Date());
 gtag('config', 'G-QT10YEXDCJ');
 setTimeout(function(){
@@ -1386,6 +1386,12 @@ html body .t31-menu svg{width:20px;height:20px;display:block;flex:none}
 
 html body .t31-hero{background:none!important;padding:0!important;margin:0!important;overflow:visible!important}
 html body .t31-band{background:var(--t31-navy);color:#fff;text-align:center;padding:40px 24px 48px!important;margin:0!important}
+/* T-098 SHORTER TOP: while the plan finder is showing results, the top of the page is one short
+   line. The AEP strip and the hero subline are both saying things the results page is not for. */
+html body.t31-plans #aep-banner{display:none!important}
+html body.t31-plans .t31-band{padding:14px 20px!important}
+html body.t31-plans .t31-band h1{font-size:22px!important;margin:0!important;line-height:1.25!important}
+html body.t31-plans .t31-band p{display:none!important}
 html body .t31-band h1{font-family:'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif!important;font-size:42px!important;font-weight:700!important;line-height:1.15!important;
   color:#fff!important;margin:0 0 14px!important;padding:0!important;white-space:normal!important}
 html body .t31-band h1 em,html body .t31-band h1 .t31-accent{font-style:normal;color:var(--t31-accent)!important}
@@ -1506,14 +1512,14 @@ html body details.t31-cities[open]>summary{margin-bottom:16px}
   html body.t31-solid .t31-cbar{border:0;background:none;box-shadow:none;padding:0}
   html body.t31-solid .t31-cbar .n{display:none}
   html body.t31-solid .t31-cbar button{flex:1 1 auto;width:100%;min-height:52px;padding:0 14px}
-  html body .t31-cbar .t31-sec{display:none}
+  html body .t31-cbar .t31-shr{display:none}
   html body.t31-duo .t31-cbar{gap:10px}
-  html body.t31-duo .t31-cbar .t31-sec{display:flex;align-items:center;justify-content:center;gap:6px;
+  html body.t31-duo .t31-cbar .t31-shr{display:flex;align-items:center;justify-content:center;gap:6px;
     flex:0 0 38%;width:auto;min-height:52px;background:#fff;border:2px solid var(--t31-brand);
     border-radius:12px;color:var(--t31-brand);cursor:pointer;
     font:600 16.5px/1 'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif}
-  html body.t31-duo .t31-cbar .t31-sec[hidden]{display:none}
-  html body.t31-duo .t31-cbar button:not(.t31-sec){flex:1 1 auto;font-size:16.5px}
+  html body.t31-duo .t31-cbar .t31-shr[hidden]{display:none}
+  html body.t31-duo .t31-cbar button:not(.t31-shr){flex:1 1 auto;font-size:16.5px}
   html body.t31-c .t31-bar{display:none!important}
   html body.t31-kb .t31-cbar{display:none}
   /* T-096 round 2 (AB 2026-10-15): the count is a quiet label next to the button, not a headline */
@@ -1523,6 +1529,15 @@ html body details.t31-cities[open]>summary{margin-bottom:16px}
     font:800 17px/1 'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif;-webkit-tap-highlight-color:transparent}
   html body .t31-cbar button:disabled{opacity:.45;cursor:default}
   html body .t31-cbar button:focus-visible{outline:3px solid #FFB300;outline-offset:2px}
+  /* T-098 item 7: while 1 or 2 plans are ticked the button is an outline -- a real action, but
+     not the one we are asking for yet. At 3 it fills in and pulses once. Height never changes. */
+  html body.t31-c:not(.t31-solid):not(.t31-duo) .t31-cbar button{background:#fff;color:var(--t31-brand);
+    border:2px solid var(--t31-brand)}
+  html body.t31-c.t31-ready:not(.t31-solid):not(.t31-duo) .t31-cbar button{background:var(--t31-brand);
+    color:#fff;border:2px solid var(--t31-brand)}
+  @keyframes t31pulse{0%{transform:scale(1)}50%{transform:scale(1.04)}100%{transform:scale(1)}}
+  html body .t31-cbar button.t31-pulse{animation:t31pulse 400ms ease-out 1}
+  @media (prefers-reduced-motion:reduce){html body .t31-cbar button.t31-pulse{animation:none}}
 
   html body .mobile-sticky-cta{display:none!important}
 
@@ -2040,7 +2055,7 @@ html body #zip-card .t42-book:focus-visible{outline:3px solid #FFB300;outline-of
     </div>
     <div id="footer-privacy" style="display:none;padding:16px 0;font-size:12px;color:#9ca3af;line-height:1.6;border-top:1px solid rgba(255,255,255,0.1);margin-top:12px">
       <strong style="color:#d1d5db">Pol&iacute;tica de Privacidad</strong><br>
-      Solo recopilamos la informaci&oacute;n que usted nos da voluntariamente (nombre, tel&eacute;fono, correo, c&oacute;digo postal, fecha de nacimiento, preferencias de salud) para ayudarle a encontrar un plan de Medicare. No vendemos su informaci&oacute;n personal a terceros. Sus datos se comparten &uacute;nicamente con aseguradoras con licencia y solo para inscribirle en un plan. Usamos medidas de seguridad est&aacute;ndar de la industria para proteger su informaci&oacute;n. Al usar este sitio, usted acepta esta pol&iacute;tica. Si tiene preguntas, ll&aacute;menos al (310) 597-9142.
+      Solo recopilamos la informaci&oacute;n que usted nos da voluntariamente (nombre, tel&eacute;fono, correo, c&oacute;digo postal, fecha de nacimiento, preferencias de salud) para ayudarle a encontrar un plan de Medicare. No vendemos su informaci&oacute;n personal a terceros. Sus datos se comparten &uacute;nicamente con aseguradoras con licencia y solo para inscribirle en un plan. Usamos medidas de seguridad est&aacute;ndar de la industria para proteger su informaci&oacute;n. Al usar este sitio, usted acepta esta pol&iacute;tica. Si tiene preguntas, ll&aacute;menos al <a data-cta="footer" href="tel:+13105979142">(310) 597-9142</a>.
     </div>
     <div id="footer-terms" style="display:none;padding:16px 0;font-size:12px;color:#9ca3af;line-height:1.6;border-top:1px solid rgba(255,255,255,0.1);margin-top:12px">
       <strong style="color:#d1d5db">T&eacute;rminos de Servicio</strong><br>
@@ -2138,12 +2153,17 @@ function handleFinalZipSubmit() {
     if (on) {
       if (!heroSaved) heroSaved = {h1: h1.innerHTML, p: p ? p.innerHTML : null, pDisp: p ? p.style.display : '', lDisp: label ? label.style.display : ''};
       h1.textContent = en ? 'Your 2027 plans' : 'Sus planes para 2027';
-      if (p) { p.textContent = en ? 'Compare them at your own pace. If you have questions, we are here to help.' : 'Compárelos con calma. Si tiene dudas, estamos aquí para ayudarle.'; p.style.display = ''; }
+      /* T-098 SHORTER TOP (AB 2026-10-15 02:00): the title keeps the context, the subline goes.
+         On a 390x660 phone those two lines were the difference between seeing one plan and
+         seeing none. The body class hides the AEP strip and shrinks the band; see t31-plans. */
+      if (p) { p.style.display = 'none'; }
       if (label) label.style.display = 'none';
+      document.body.classList.add('t31-plans');
     } else if (heroSaved) {
       h1.innerHTML = heroSaved.h1;
       if (p) { p.innerHTML = heroSaved.p; p.style.display = heroSaved.pDisp; }
       if (label) label.style.display = heroSaved.lDisp;
+      document.body.classList.remove('t31-plans');
       heroSaved = null;
     }
   }
@@ -2595,7 +2615,7 @@ only to the exact origin the iframe was loaded from. */
     b.classList.toggle('t31-duo',d.mode==='duo');
     if(d.mode==='duo'&&d.secondary){
       if(!sec){
-        sec=document.createElement('button'); sec.type='button'; sec.className='t31-sec';
+        sec=document.createElement('button'); sec.type='button'; sec.className='t31-shr';
         sec.innerHTML='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 13v7h14v-7"/></svg><span></span>';
         sec.addEventListener('click',function(){ send({type:'widget-share'}); });
         cbar.insertBefore(sec,btn);
@@ -2603,6 +2623,12 @@ only to the exact origin the iframe was loaded from. */
       sec.querySelector('span').textContent=d.secondary; sec.hidden=false;
     } else if(sec){ sec.hidden=true; }
     if(d.compare) btn.textContent=d.compare;
+    /* T-098 item 7: the third tick is what turns the button solid, and the pulse fires once, on
+       the way in -- not on every re-render, or it would twitch at each repaint. */
+    var wasReady=b.classList.contains('t31-ready');
+    b.classList.toggle('t31-ready',!!d.ready);
+    if(d.ready&&!wasReady){ btn.classList.remove('t31-pulse'); void btn.offsetWidth; btn.classList.add('t31-pulse'); }
+    if(!d.ready) btn.classList.remove('t31-pulse');
     btn.disabled=!d.canCompare;
     if(!!d.on!==on){
       on=!!d.on; b.classList.toggle('t31-c',on);

@@ -1847,10 +1847,13 @@ html body .t31-hero{background:none!important;padding:0!important;margin:0!impor
 html body .t31-band{background:var(--t31-navy);color:#fff;text-align:center;padding:40px 24px 48px!important;margin:0!important}
 /* T-098 SHORTER TOP: while the plan finder is showing results, the top of the page is one short
    line. The AEP strip and the hero subline are both saying things the results page is not for. */
-html body.t31-plans #aep-banner{display:none!important}
-html body.t31-plans .t31-band{padding:14px 20px!important}
-html body.t31-plans .t31-band h1{font-size:22px!important;margin:0!important;line-height:1.25!important}
-html body.t31-plans .t31-band p{display:none!important}
+/* T-100 (AB 2026-10-17): the plan finder's question screen ("¿Qué le importa más?") gets this same
+   short top, so its six options and "Sin preferencia" sit above the fold. The widget says when
+   (widget-step pri:true) and the page sets t31-pri. */
+html body.t31-plans #aep-banner,html body.t31-pri #aep-banner{display:none!important}
+html body.t31-plans .t31-band,html body.t31-pri .t31-band{padding:14px 20px!important}
+html body.t31-plans .t31-band h1,html body.t31-pri .t31-band h1{font-size:22px!important;margin:0!important;line-height:1.25!important}
+html body.t31-plans .t31-band p,html body.t31-pri .t31-band p{display:none!important}
 html body .t31-band h1{font-family:'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif!important;font-size:42px!important;font-weight:700!important;line-height:1.15!important;
   color:#fff!important;margin:0 0 14px!important;padding:0!important;white-space:normal!important}
 html body .t31-band h1 em,html body .t31-band h1 .t31-accent{font-style:normal;color:var(--t31-accent)!important}
@@ -1941,7 +1944,7 @@ html body details.t31-cities[open]>summary{margin-bottom:16px}
   /* bottom bar while the plan finder asks questions */
   html body.t31-q .t31-bar>a{display:none!important}
   html body.t31-q .t31-bar .t31-next{display:flex}
-  html body.t31-qn .t31-bar{display:none!important}
+  html body.t31-qn .t31-bar,html body.t31-pri .t31-bar{display:none!important}   /* T-100: none on the question screen either */
   html body .t31-bar .t31-next{flex:1 1 auto;height:58px;margin:0;padding:0 16px;display:none;align-items:center;justify-content:center;gap:10px;box-sizing:border-box;
     border:2px solid var(--t31-brand);border-radius:12px;background:var(--t31-brand);color:#fff;cursor:pointer;
     font:700 18px/1 'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif;-webkit-tap-highlight-color:transparent}
@@ -3021,8 +3024,9 @@ presses the widget's own next button, and a screen with no next button (tap an a
   var OK=/^https:\/\/((www\.)?beneficiosmedicare\.com|([a-z0-9-]+\.)?beneficiosmedicare\.pages\.dev)$/, b=document.body, label=next.querySelector('span');
   window.addEventListener('message',function(e){
     if(!OK.test(e.origin)||!e.data||e.data.type!=='widget-step') return;
-    var d=e.data, q=!d.results&&d.depth>=2;
-    b.classList.toggle('t31-thin',q);
+    var d=e.data, q=!d.results&&d.depth>=2, pri=!d.results&&!!d.pri;
+    b.classList.toggle('t31-pri',pri);        /* T-100: the question screen takes the results screen's one-line band */
+    b.classList.toggle('t31-thin',q&&!pri);
     b.classList.toggle('t31-q',q&&!!d.hasNext&&!d.lead);
     b.classList.toggle('t31-qn',(q&&!d.hasNext)||!!d.lead);   /* a lead form: no bar at all, so nothing sits over Enviar */
     if(d.label) label.textContent=d.label;

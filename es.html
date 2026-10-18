@@ -2601,7 +2601,10 @@ only to the exact origin the iframe was loaded from. */
   var vpQ=0, vpOn=false;
   function sendVP(){
     var r=frame.getBoundingClientRect();
-    send({type:'host-viewport', top:Math.round(-r.top), height:Math.round(window.innerHeight)});
+    /* B-012: desk tells the widget this is a computer by this page's own 769px line (the frame
+       is narrower than the screen, so the widget cannot tell by itself): centre the sheet. */
+    send({type:'host-viewport', top:Math.round(-r.top), height:Math.round(window.innerHeight),
+      desk:!!(window.matchMedia&&window.matchMedia('(min-width:769px)').matches)});
   }
   addEventListener('scroll',function(){ if(!vpOn||vpQ) return;
     vpQ=requestAnimationFrame(function(){ vpQ=0; sendVP(); }); },{passive:true});
@@ -2616,6 +2619,20 @@ only to the exact origin the iframe was loaded from. */
       /* The page's own bar is drawn above the iframe, so while the share sheet is up it sat
          on top of it and covered the last channel. One thing on screen at a time. */
       b.classList.toggle('t31-sheet',vpOn);
+      if(vpOn) sendVP(); return; }
+    /* B-012: the part of the frame on screen is too short for the sheet (on a computer, the page
+       is scrolled until the frame's end is well up the screen). Scroll just enough to bring the
+       sheet's spot on screen, clear of a sticky header, instantly -- the widget holds the sheet
+       and the dimming back until the new viewport says it fits. */
+    if(e.data.type==='widget-reveal'){
+      var fr=frame.getBoundingClientRect(), t=fr.top+(+e.data.top||0), h=+e.data.height||0;
+      var hd=document.querySelector('header'), hp=hd?getComputedStyle(hd).position:'';
+      var clr=(hp==='fixed'||hp==='sticky')?hd.getBoundingClientRect().height:0, dy=0;
+      if(t+h>window.innerHeight) dy=t+h-window.innerHeight;
+      if(t-dy<clr) dy=t-clr;
+      dy=Math.round(dy);
+      if(dy){ var y=Math.max(0,window.pageYOffset+dy);
+        try{ window.scrollTo({top:y,behavior:'instant'}); }catch(x){ window.scrollTo(0,y); } }
       if(vpOn) sendVP(); return; }
     if(e.data.type==='widget-open'){
       var h=String(e.data.href||''); if(!SHARE_OK.test(h)) return;

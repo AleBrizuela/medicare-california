@@ -645,6 +645,24 @@ def check_og(root, domain, f):
             if not (og_meta(tag, src) or "").strip():
                 f.warn("og-card-incomplete", rel, f"no {tag}")
 
+        # T-113 (AB 2026-10-19 audit, ZIP 64078): "less is more." A WhatsApp/iMessage card
+        # title that is a verbatim copy of the long SEO <title> is exactly how the widget's
+        # own share-card bug happened -- the same text twice, cut off by the platform's own
+        # length limit. Neither check was here before T-113 (og-card-incomplete above only
+        # ever checked for BLANK tags); both are warns, same severity as og-twitter-card,
+        # since a long/duplicate title still renders, just badly. Mirrored from BM's
+        # site-check.py per the cross-site-fixes rule.
+        tm = re.search(r"<title[^>]*>(.*?)</title>", src, re.S | re.I)
+        seo_title = re.sub(r"\s+", " ", tm.group(1)).strip() if tm else ""
+        og_title = (og_meta("og:title", src) or "").strip()
+        if og_title:
+            if seo_title and og_title == seo_title and len(og_title) > 55:
+                f.warn("og-title-duplicate", rel,
+                       f'og:title repeats <title> verbatim ({len(og_title)} chars) — '
+                       "likely to cut off on a share card")
+            elif len(og_title) > 70:
+                f.warn("og-title-too-long", rel, f"og:title is {len(og_title)} chars — likely to cut off")
+
         for tag in ("og:title", "og:description", "twitter:title", "twitter:description"):
             v = og_meta(tag, src) or ""
             low = v.lower()

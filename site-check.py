@@ -53,7 +53,8 @@ NON_PUBLIC = ("index-v", "index-dev", "index-localtest", "index-current", "404",
               "bot-evals", "widget", "opciones", "options")
 
 SKIP_DIRS = {".git", "node_modules", ".github", "__pycache__", ".cloudflare", "images",
-             "tools"}  # tools/ holds internal scrapers, noindex and unlinked
+             "tools",  # tools/ holds internal scrapers, noindex and unlinked
+             "partials"}  # T-108: shared-component fragments, not standalone pages
 
 URL_ATTRS = [
     ("canonical", re.compile(r'rel="canonical"[^>]*?href="([^"]+)"')),

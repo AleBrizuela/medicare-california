@@ -1,0 +1,11 @@
+/* T-108 STEP 1: MC brand tokens, one file per site.
+   Values confirmed live today (2026-10-20) from medicare-california-brand.css.
+   Primary blue stays #0080D4 here on purpose: the #0071BC swap decided 2026-10-14
+   is a separate, later ticket (one line in this file once T-108 is live). */
+:root {
+  --blue: #0080D4;
+  --blue-dark: #0071BC;
+  --green: #0071BC;
+  --teal: #0080D4;
+  --gray: #4A5568;
+}

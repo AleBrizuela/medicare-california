@@ -1379,13 +1379,13 @@ html body .t31-hcall{display:inline-flex;align-items:center;flex:0 0 auto;margin
   color:var(--t31-brand);background:#fff;font:700 16px/1.3 'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif;text-decoration:none;white-space:nowrap}
 html body .t31-hcall:hover,html body .t31-hcall:focus-visible{background:var(--t31-brand);color:#fff}
 html body .t31-menu{display:none!important;align-items:center;gap:8px;flex:0 0 auto;height:44px;min-height:44px;min-width:44px;margin:0;padding:0 12px!important;
-  background:#fff;border:2px solid #D4DEE8;border-radius:10px;color:var(--t31-ink);cursor:pointer;box-sizing:border-box!important;
+  background:transparent;border:none;border-radius:10px;color:var(--t31-ink);cursor:pointer;box-sizing:border-box!important;
   font:700 16px/1 'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif}
 html body .t31-menu svg{width:20px;height:20px;display:block;flex:none}
 
 
 html body .t31-hero{background:none!important;padding:0!important;margin:0!important;overflow:visible!important}
-html body .t31-band{background:var(--t31-navy);color:#fff;text-align:center;padding:40px 24px 48px!important;margin:0!important}
+html body .t31-band{background:linear-gradient(135deg,#002147 0%,#0080D4 100%);color:#fff;text-align:center;padding:40px 24px 48px!important;margin:0!important}
 /* T-098 SHORTER TOP: while the plan finder is showing results, the top of the page is one short
    line. The AEP strip and the hero subline are both saying things the results page is not for. */
 /* T-100 (AB 2026-10-17): the plan finder's question screen ("¿Qué le importa más?") gets this same
@@ -1397,10 +1397,10 @@ html body.t31-plans .t31-band h1,html body.t31-pri .t31-band h1{font-size:22px!i
 html body.t31-plans .t31-band p,html body.t31-pri .t31-band p{display:none!important}
 html body .t31-band h1{font-family:'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif!important;font-size:42px!important;font-weight:700!important;line-height:1.15!important;
   color:#fff!important;margin:0 0 14px!important;padding:0!important;white-space:normal!important}
-html body .t31-band h1 em,html body .t31-band h1 .t31-accent{font-style:normal;color:var(--t31-accent)!important}
+html body .t31-band h1 em,html body .t31-band h1 .t31-accent{font-style:normal;color:var(--t31-accent)!important;white-space:nowrap}
 html body .t31-band p{font-size:18px!important;line-height:1.55!important;color:#DCE6EF!important;max-width:none!important;margin:0 auto!important;padding:0!important;text-wrap:balance}
 html body .t31-form{text-align:center;max-width:640px;margin:0 auto!important;padding:0 24px!important}
-html body .t31-form #zip-card{position:relative;max-width:400px;margin:-24px auto 0!important;padding:32px 28px 28px!important;box-sizing:border-box}
+html body .t31-form #zip-card{position:relative;max-width:400px;margin:-24px auto 0!important;padding:10px 28px 28px!important;box-sizing:border-box}
 html body .t31-form #zip-card label{display:block;font-size:16px!important;line-height:22px!important;font-weight:600;margin:0 0 8px!important}
 html body .t31-form #zip-card #zip-input{height:59px!important;padding:0 18px!important;margin:0!important;box-sizing:border-box!important}
 html body .t31-form #zip-card .t31-zip-wrap{margin:0 0 16px!important}
@@ -1414,7 +1414,6 @@ html body .t31-bar{display:none}
 html body .t31-cbar{display:none}
 
 @media (min-width:769px) and (max-width:1023px){
-  html body .t31-head .logo svg{width:210px}
   html body .t31-head .t31-nav{gap:0!important}
   html body .t31-head .t31-nav a{padding:8px 8px!important}
 }
@@ -1431,7 +1430,6 @@ html body .t31-stats .stat-item p{font-size:16px!important;color:#E8F2FA!importa
 @media (max-width:768px){html body .t31-stats .trust-stats-inner{grid-template-columns:1fr!important;gap:20px!important}html body .t31-stats .stat-item h3{font-size:34px!important}}
 @media (max-width:768px){
   html body .t31-head{padding:10px 16px!important;height:64px!important;max-width:none!important;justify-content:space-between!important}
-  html body .t31-head .logo svg{width:var(--t31-logo-w)!important}
   html body .t31-head .t31-nav,html body .t31-hcall{display:none!important}
   html body .t31-menu{display:inline-flex!important}
   html body .mobile-nav{top:64px!important}
@@ -1439,7 +1437,7 @@ html body .t31-stats .stat-item p{font-size:16px!important;color:#E8F2FA!importa
   html body .t31-band{padding:28px 18px 40px!important}
   html body .t31-band h1{font-size:30px!important}
   html body .t31-form{padding:0 18px!important}
-  html body .t31-form #zip-card{max-width:none;padding:24px 20px 22px!important}
+  html body .t31-form #zip-card{max-width:none;padding:10px 20px 22px!important}
 
   html body .t31-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:950;gap:10px;margin:0;
     padding:10px 10px calc(10px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid #D4DEE8;box-shadow:0 -4px 16px rgba(0,33,71,.08)}
@@ -1605,8 +1603,23 @@ html body .t31-team .team-photo-banner img{object-position:50% 72%!important}
 </style>
 <style id="logo-align">/* logo: same colour, size and position as the standard sm-header pages (Medicare 101) */
 html body .t31-head,html body .t33-head{max-width:960px!important;min-height:0!important;height:64px!important;padding:0 24px!important;align-items:center!important;box-sizing:border-box!important}
-@media (min-width:1024px){html body .t31-head .logo svg,html body .t33-head .sm-logo svg{width:278px!important}}
-@media (max-width:768px){html body .t31-head,html body .t33-head{padding:0 8px 0 16px!important;height:64px!important;gap:4px!important}html body .t31-head .logo svg,html body .t33-head .sm-logo svg{width:245px!important}}
+@media (min-width:1024px){html body .t33-head .sm-logo svg{width:278px!important}}
+@media (max-width:768px){html body .t31-head,html body .t33-head{padding:0 8px 0 16px!important;height:64px!important;gap:4px!important}html body .t33-head .sm-logo svg{width:245px!important}}
+/* T-119 B5: logo sized by height, not width, identical on BM + MC (AB 2026-10-21) */
+html body .t31-head .logo svg{width:auto!important;height:33px!important}
+@media(max-width:359px){html body .t31-head .logo svg{height:28px!important}}
+@media(min-width:1024px){html body .t31-head .logo svg{height:38px!important}}
+</style>
+<style id="t119-dlbox">
+/* T-119 B6: the deadline box, top of #zip-card (AB 2026-10-21). No link in the box. */
+.dl-box{margin:0 -10px 16px;border-radius:10px;padding:12px 28px;background:#EAF3FB;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.dl-text{text-align:left;min-width:0}
+.dl-eyebrow{font-size:12px;font-weight:700;letter-spacing:.08em;color:#0071BC;margin:0 0 2px;text-transform:uppercase}
+.dl-main{font-size:20px;font-weight:700;color:#002147;margin:0}
+.dl-num{color:#0071BC}
+.dl-tile{flex:none;width:50px;background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,33,71,.18);overflow:hidden;text-align:center}
+.dl-month{display:block;background:#FFD54F;color:#002147;font-size:11px;font-weight:700;padding:3px 0;letter-spacing:.02em}
+.dl-day{display:block;color:#002147;font-size:21px;font-weight:700;padding:4px 0;line-height:1.1}
 </style>
 <style>
 /* T-042: booking as a real button under the ZIP button. Outline, so the ZIP button stays first. Colour from each page's own --t31-brand. */
@@ -1656,16 +1669,13 @@ html body #zip-card .t42-book:focus-visible{outline:3px solid #FFB300;outline-of
 
 <!-- Social proof moved inside widget (widget-v4.html) -->
 
-<!-- AEP 2027 Countdown Banner -->
-<div id="aep-banner" data-lang="es" style="min-height:44px;background:linear-gradient(135deg,#002147 0%,#0080D4 100%)"></div>
-<script src="/js/date-strip.js?v=20261015t087" defer></script>
+<script src="/js/date-strip.js?v=20261021t119" defer></script>
 
 <!-- ═══ HERO (Option C: Empathy-first) ═══ -->
 <div id="hero"></div>
 <section class="hero t31-hero" id="main-content">
   <div class="hero-banner t31-band">
     <h1><span data-i18n="hero-h1">Medicare California,</span> <em data-i18n="hero-h1-em">Simplificado.</em></h1>
-    <p data-i18n="hero-banner-p">Agencia familiar · Sin costo para usted</p>
   </div>
   <div class="hero-form-area t31-form">
     <!-- ZIP FORM -->
@@ -1687,7 +1697,7 @@ html body #zip-card .t42-book:focus-visible{outline:3px solid #FFB300;outline-of
         <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </button>
         <!-- T-095: one button, and the video call as a warm line under it (AB 2026-10-15) -->
-        <p class="t42-vl"><span data-i18n="book-ask">¿Prefiere hablar con nosotras?</span><br><a class="t42-book" data-cta="home_hero" href="https://calendar.app.google/6D4obxzxERQXBpaf7" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2.5" y="6" width="13" height="12" rx="2.5"/><path d="M15.5 10.5l6-3.5v10l-6-3.5z"/></svg><span data-i18n="book-btn">Agende una videollamada →</span></a></p>
+        <p class="t42-vl"><a class="t42-book" data-cta="home_hero" href="https://calendar.app.google/6D4obxzxERQXBpaf7" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2.5" y="6" width="13" height="12" rx="2.5"/><path d="M15.5 10.5l6-3.5v10l-6-3.5z"/></svg><span data-i18n="book-btn">Agende una videollamada →</span></a></p>
     </div>
 
     <div class="hero-checks t31-checks fade-up-d2">

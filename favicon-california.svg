@@ -6,5 +6,5 @@
     </linearGradient>
   </defs>
   <path d="M24 2 L44 10 L44 26 C44 37 36 44 24 50 C12 44 4 37 4 26 L4 10 Z" fill="url(#sg)"/>
-  <polyline points="15,27 21,33 34,19" fill="none" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M200 272 C150 236 132 212 132 184 C132 160 150 144 172 144 C185 144 195 151 200 160 C205 151 215 144 228 144 C250 144 268 160 268 184 C268 212 250 236 200 272 Z" fill="#fff" transform="translate(24 26) scale(0.181) translate(-200 -208)"/>
 </svg>

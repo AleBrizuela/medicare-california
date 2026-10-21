@@ -1,0 +1,40 @@
+/* T-121 (AB 2026-10-21): "less is more" home pages. ONE shared file for the 4 home pages' repeated pieces:
+   logo size, deadline box, photo, numbers band + reviews link, bottom bar. Loaded last in <head>. */
+:root{--lim-accent:#0071BC;--lim-box:#EAF3FB}
+/* 2 logo: sized by height, same on both sites (shield 36px phone / 40px desktop) */
+html body .t31-head .logo{flex-shrink:0!important}
+html body .t31-head .logo svg{width:auto!important;height:37px!important;flex-shrink:0!important;max-width:none!important}
+@media(max-width:374px){html body .t31-head .logo svg{height:33px!important}}
+@media(max-width:339px){html body .t31-head .logo svg{height:31px!important}}
+@media(min-width:1024px){html body .t31-head .logo svg{height:41px!important}}
+/* 1 deadline box (rendered by js/date-strip.js) */
+html body .dl-box{margin:0 -10px 16px!important;border-radius:10px!important;padding:12px 28px!important;background:var(--lim-box)!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;text-align:left!important}
+html body .dl-text{text-align:left!important;min-width:0}
+html body .dl-eyebrow{font-size:12px!important;font-weight:700!important;letter-spacing:.08em!important;color:var(--lim-accent)!important;line-height:1.2!important;margin:0 0 2px!important;padding:0!important;text-transform:uppercase}
+html body .dl-main{font-size:20px!important;font-weight:700!important;color:#002147!important;line-height:1.25!important;margin:0!important;padding:0!important}
+html body .dl-num{color:var(--lim-accent)!important}
+html body .dl-tile{flex:none;width:50px;background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,33,71,.18);overflow:hidden;text-align:center}
+html body .dl-month{display:block;background:#FFD54F;color:#002147;font-size:11px;font-weight:700;padding:3px 0;letter-spacing:.02em}
+html body .dl-day{display:block;color:#002147;font-size:21px;font-weight:700;padding:4px 0;line-height:1.1}
+/* 4 family photo: smaller */
+html body .team-photo-banner img,html body .t31-team .team-photo-banner img{width:100%!important;height:220px!important;object-fit:cover!important;object-position:center 35%!important}
+@media(min-width:769px){html body .team-photo-banner img,html body .t31-team .team-photo-banner img{height:320px!important}}
+/* 5 reviews link now lives in the dark numbers band */
+html body .stats-bar .t31-rating,html body .t31-stats .t31-rating{margin:24px auto 0!important;justify-content:center;color:#fff}
+html body .stats-bar .t31-rating .t31-stars,html body .t31-stats .t31-rating .t31-stars{color:#FFD54F!important}
+html body .stats-bar .t31-rating a,html body .t31-stats .t31-rating a{color:#fff!important}
+/* 9 the section bar (Inicio / Planes / Equipo / FAQ) is a phone thing: not pinned to the window on desktop */
+@media(min-width:1024px){html body .section-nav{display:none!important}}
+/* 11 numbers band on phones: three numbers in one row */
+@media(max-width:768px){
+  html body .stats-bar .stats-grid,html body .t31-stats .trust-stats-inner{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:8px!important}
+  html body .stats-bar .stat-item h3,html body .t31-stats .stat-item h3{font-size:28px!important;white-space:nowrap}
+  html body .stats-bar .stat-item p,html body .t31-stats .stat-item p{font-size:13px!important;line-height:1.3!important}
+}
+/* MC only: the MC wordmark is wider than BM's, so at the same height it pushes Menu off a phone screen.
+   On phones the logo takes the width left beside Menu (never wider than the 37px-high natural size). */
+@media(max-width:768px){
+  html body .t31-head{padding-left:12px!important;padding-right:12px!important}
+  html body .t31-menu{padding:0 4px!important}
+  html body .t31-head .logo svg{height:auto!important;width:min(285px,calc(100vw - 24px - 12px - 80px))!important}
+}

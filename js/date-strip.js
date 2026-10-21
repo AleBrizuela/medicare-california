@@ -47,7 +47,7 @@
   var tile = '<div class="dl-tile">' + (month ? '<span class="dl-month">' + month + '</span>' : '') + '<span class="dl-day">' + day + '</span></div>';
   var box = document.createElement('div');
   box.className = 'dl-box';
-  box.innerHTML = '<div class="dl-text"><p class="dl-eyebrow">' + eyebrow + '</p><p class="dl-main">' + main + '</p></div>' + tile;
+  box.innerHTML = '<div class="dl-text"><div class="dl-eyebrow">' + eyebrow + '</div><div class="dl-main">' + main + '</div></div>' + tile;
   card.insertBefore(box, card.firstChild);
 
   // T-087: a visitor arriving from elsewhere on the site with /#zip-card in the URL (blog CTAs,

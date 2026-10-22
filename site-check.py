@@ -446,7 +446,7 @@ def check_bodies(root, f):
 # The fixed placement list. PROVE owns the names and their meaning, in
 # PROVE/reference/cta-placements.md (outside this repo, since the repo root is public).
 # A new name goes there first, then here, then onto a page.
-CTA_PLACEMENTS = {"header", "home_hero", "home_alt", "sticky_bar", "contact_card",
+CTA_PLACEMENTS = {"header", "home_hero", "home_alt", "sticky_bar", "float_call", "float_text", "contact_card",
                   "guide_cta", "inline_body", "sidebar", "blog_cta", "city_cta",
                   "state_cta", "final_cta", "footer", "widget", "float", "thank_you"}
 CTA_TARGETS = {"plan_finder"}

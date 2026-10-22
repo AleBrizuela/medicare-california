@@ -22,7 +22,7 @@ html body .t31-menu svg{width:20px;height:20px;display:block;flex:none}
 
 /* navy headline band */
 html body .t31-hero{background:none!important;padding:0!important;margin:0!important;overflow:visible!important}
-html body .t31-band{background:var(--t31-navy)!important;color:#fff;text-align:center;padding:40px 24px 48px!important;margin:0!important;border:0!important}
+html body .t31-band{color:#fff;text-align:center;padding:40px 24px 48px!important;margin:0!important;border:0!important}
 html body .t31-band h1{font-family:'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif!important;font-size:42px!important;font-weight:700!important;line-height:1.15!important;
   color:#fff!important;margin:0 auto 14px!important;padding:0!important;white-space:normal!important;max-width:960px}
 html body .t31-band p{font-size:18px!important;line-height:1.55!important;color:#DCE6EF!important;max-width:760px!important;margin:0 auto!important;padding:0!important;text-wrap:balance}

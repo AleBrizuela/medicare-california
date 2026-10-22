@@ -1,0 +1,5 @@
+/* T-117 L8 (AB 2026-10-21): ONE background for every dark headline band (.t31-band) on both sites. Change it here only. */
+:root{--hero-gradient:linear-gradient(135deg,#002147 0%,#0080D4 100%)}
+html body .t31-band{background:var(--hero-gradient)!important}
+/* bands narrower than the screen (Privacy x2, one guide) keep the solid navy: a gradient there would show a seam against the navy sides */
+html body .t31-band.hero-solid{background:var(--t31-navy,#002147)!important}

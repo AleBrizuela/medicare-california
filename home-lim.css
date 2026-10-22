@@ -8,7 +8,7 @@ html body .t31-head .logo svg{width:auto!important;height:37px!important;flex-sh
 @media(max-width:339px){html body .t31-head .logo svg{height:31px!important}}
 @media(min-width:1024px){html body .t31-head .logo svg{height:41px!important}}
 /* 1 deadline box (rendered by js/date-strip.js) */
-html body .dl-box{margin:0 -10px 16px!important;border-radius:10px!important;padding:12px 28px!important;background:var(--lim-box)!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;text-align:left!important}
+html body .dl-box{margin:0 -10px 32px!important;border-radius:10px!important;padding:12px 28px!important;background:var(--lim-box)!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;text-align:left!important}
 html body .dl-text{text-align:left!important;min-width:0}
 html body .dl-eyebrow{font-size:12px!important;font-weight:700!important;letter-spacing:.08em!important;color:var(--lim-accent)!important;line-height:1.2!important;margin:0 0 2px!important;padding:0!important;text-transform:uppercase}
 html body .dl-main{font-size:20px!important;font-weight:700!important;color:#002147!important;line-height:1.25!important;margin:0!important;padding:0!important}
@@ -16,6 +16,9 @@ html body .dl-num{color:var(--lim-accent)!important}
 html body .dl-tile{flex:none;width:50px;background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,33,71,.18);overflow:hidden;text-align:center}
 html body .dl-month{display:block;background:#FFD54F;color:#002147;font-size:11px;font-weight:700;padding:3px 0;letter-spacing:.02em}
 html body .dl-day{display:block;color:#002147;font-size:21px;font-weight:700;padding:4px 0;line-height:1.1}
+/* L7 (T-117): less empty space under the video-call link */
+html body .t31-form #zip-card{padding-bottom:20px!important}
+@media(max-width:768px){html body .t31-form #zip-card{padding-bottom:14px!important}}
 /* 4 family photo: smaller */
 html body .team-photo-banner img,html body .t31-team .team-photo-banner img{width:100%!important;height:220px!important;object-fit:cover!important;object-position:center 35%!important}
 @media(min-width:769px){html body .team-photo-banner img,html body .t31-team .team-photo-banner img{height:320px!important}}

@@ -42,6 +42,13 @@
 .sm-foot-brand{font-size:18px;font-weight:600;color:var(--sm-accent);margin:0 0 10px}
 .sm-foot-row{display:flex;justify-content:center;gap:8px 18px;flex-wrap:wrap;margin:0 0 8px;font-size:13px}
 .sm-foot-row a{color:#E8F2FA;text-decoration:none}
+
+/* T-126 (AB 2026-10-22): tel:/mailto: links inside a dark box (the navy "Questions about
+   Medicare" / "Get Expert Help" CTA, legal footer blocks) must not fall back to the browser's
+   default blue, which fails WCAG AA on navy. One rule, hand-applied with class="sm-dark-link"
+   only to links that actually sit on a dark background -- not a blanket tel:/mailto: selector,
+   because the same data-cta="inline_body" markup is also used on light backgrounds elsewhere. */
+.sm-dark-link{color:#fff;text-decoration:underline;font-weight:600}
 .sm-foot-row a:hover{text-decoration:underline}
 .sm-footer .sm-disclaimer{margin-bottom:0}
 .sm-footer .sm-disclaimer p{text-align:left;padding:0}

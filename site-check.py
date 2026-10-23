@@ -234,6 +234,36 @@ def check_internal_links(root, domain, f):
             f.warn("sister-site-html-link", rel, f"{href} x{n} — 308s on the other domain")
 
 
+# Each site's own team page, keyed by domain — never the sister site's.
+FIRST_AGENT = {
+    "beneficiosmedicare.com": "Susana Marcos",
+    "medicare-california.com": "Alejandra Brizuela",
+}
+
+def check_team_pages(root, domain, f):
+    """T-125 (AB 2026-10-22, "we fixed this many times and apparently messed it
+    up again"): team/equipo links must stay same-site, and each site's own
+    team.html/equipo.html must list its own lead agent first — Susana on BM,
+    Alejandra on MC. Catches the bios link crossing domains again before it
+    reaches production a third time."""
+    host = domain.replace("https://", "").replace("http://", "").rstrip("/")
+    other = "medicare-california.com" if "beneficiosmedicare" in host else "beneficiosmedicare.com"
+    first_agent = FIRST_AGENT[host]
+    for fp, rel in iter_html(root):
+        if is_non_public(rel):
+            continue
+        src = open(fp, encoding="utf-8", errors="ignore").read()
+        for m in re.finditer(r'href="(https?://' + re.escape(other) + r'/(?:team|equipo|authors)/?[^"]*)"', src):
+            f.error("cross-domain-team-link", rel, f"href -> {m.group(1)} (belongs on {host})")
+        if os.path.basename(rel) in ("team.html", "equipo.html"):
+            names = re.findall(r"<h3>(Susana Marcos|Alejandra Brizuela)</h3>", src)
+            if not names:
+                f.warn("team-page-no-agent-names", rel, "no agent <h3> found — check manually")
+            elif names[0] != first_agent:
+                f.error("team-page-wrong-order", rel,
+                        f"first agent card is {names[0]}, expected {first_agent} first")
+
+
 # Which Medicare Part each figure belongs to, so a figure can be rejected when the
 # surrounding text plainly names a different Part. None = not Part-specific.
 PART_OF = {
@@ -766,6 +796,7 @@ def main():
         "exemptions": lambda: check_exemptions(root, f),
         "urls": lambda: check_urls(root, domain, f),
         "links": lambda: check_internal_links(root, domain, f),
+        "team-pages": lambda: check_team_pages(root, domain, f),
         "figures": lambda: check_figures(root, figures_path, f),
         "brand": lambda: check_brand(root, domain, f),
         "sitemap": lambda: check_sitemap(root, domain, f),

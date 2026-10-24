@@ -45,17 +45,26 @@ export async function onRequestGet(context) {
 
     const en = url.searchParams.get('lang') !== 'es';
     const n = ids.length;
-    const title = en ? `${n} Medicare plan${n === 1 ? '' : 's'} for 2027 · ZIP ${zip}`
-                     : `${n} plan${n === 1 ? '' : 'es'} de Medicare 2027 · ZIP ${zip}`;
 
-    let ak = 'alejandra';
+    // AB 2026-10-24: the title should name the place, same as BM's opciones-compartidas ("en Cass,
+    // MO"), not just the bare ZIP -- the state (for the agent) and the county (for the place name)
+    // both come from BM's public data files, same cross-origin fetch as the agent lookup below.
+    let ak = 'alejandra', st = '', county = '';
     try {
       const zi = await fetch('https://beneficiosmedicare.com/data/zip_index.js');
       if (zi.ok) {
-        const st = pick(await zi.text(), zip);
+        st = pick(await zi.text(), zip);
         if (SUSANA[st]) ak = 'susana';
       }
-    } catch (e) { /* keep default */ }
+      if (/^[A-Z]{2}$/.test(st)) {
+        const pf = await fetch(`https://beneficiosmedicare.com/data/plans_${st}_2027.json`);
+        if (pf.ok) county = pick(await pf.text(), zip);
+      }
+    } catch (e) { /* keep defaults */ }
+
+    const where = /^[A-Z]{2}$/.test(st) ? (county ? `${county}, ${st}` : st) : `ZIP ${zip}`;
+    const title = en ? `${n} Medicare plan${n === 1 ? '' : 's'} for 2027 in ${where}`
+                     : `${n} plan${n === 1 ? '' : 'es'} de Medicare 2027 en ${where}`;
 
     const img = `${url.origin}/og-plans-mc-${ak}-${en ? 'en' : 'es'}-20261024.jpg`;
     const alt = ak === 'susana'

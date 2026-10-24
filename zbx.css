@@ -8,4 +8,4 @@
 .zbx-btn{flex:1 1 160px;padding:14px 20px;background:#0080D4;color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;font-family:'Open Sans',Arial,sans-serif;cursor:pointer}
 .zbx-btn:hover{background:#0071BC}
 .zbx-error{display:none;color:#B3261E;font-size:13px;margin:8px 0 0}
-@media(max-width:480px){.zbx-form{flex-direction:column}}
+@media(max-width:480px){.zbx-form{flex-direction:column}.zbx-input,.zbx-btn{flex:none;width:100%}}

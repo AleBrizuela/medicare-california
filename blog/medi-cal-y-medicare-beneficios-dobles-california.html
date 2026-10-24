@@ -132,6 +132,7 @@
     {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://medicare-california.com"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://medicare-california.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "Guide"}, {"@type": "ListItem", "position": 4, "name": "Medi-Cal and Medicare in California: How Dual Benefits Wo..."}]}
     </script>
 <link rel="stylesheet" href="/sm-chrome.css?v=20261023">
+<link rel="stylesheet" href="/zbx.css">
 </head>
 <body>
 <!-- sm-header:start -->
@@ -159,6 +160,17 @@
             <header class="blog-article-header">
                 <div class="blog-tag">Guide</div>
                 <h1>Medi-Cal and Medicare in California: How Dual Benefits Work Together</h1>
+<!-- shared:zip-top -->
+<div class="zbx" data-target="/?zip=" data-site="mc" data-lang="en">
+  <p class="zbx-title">Compare 2027 plans in your county</p>
+  <form class="zbx-form">
+    <input type="tel" inputmode="numeric" maxlength="5" autocomplete="postal-code" class="zbx-input" placeholder="e.g. 90230" aria-label="Compare 2027 plans in your county">
+    <button type="submit" class="zbx-btn" data-cta="zip_top">See my plans</button>
+  </form>
+  <p class="zbx-error">Enter 5 digits</p>
+</div>
+<!-- /shared:zip-top -->
+
                 <div class="blog-article-meta">
                     <span class="blog-article-byline">By <a href="/team#alejandra" rel="author" style="color:#0080D4;text-decoration:none;font-weight:600">Alejandra Brizuela</a>, Licensed Medicare Agent</span>
                     <span class="blog-article-divider">&middot;</span>
@@ -279,7 +291,17 @@
 
             <div class="lang-cta"> <span class="lang-cta-icon">ES</span> This article is also available in Spanish. <a href="https://beneficiosmedicare.com/blog/medi-cal-y-medicare-beneficios-dobles-california">Read it in Spanish &rarr;</a> </div>
             </div>
-        </article>
+        <!-- shared:zip-end -->
+<div class="zbx" data-target="/?zip=" data-site="mc" data-lang="en">
+  <p class="zbx-title">Compare 2027 plans in your county</p>
+  <form class="zbx-form">
+    <input type="tel" inputmode="numeric" maxlength="5" autocomplete="postal-code" class="zbx-input" placeholder="e.g. 90230" aria-label="Compare 2027 plans in your county">
+    <button type="submit" class="zbx-btn" data-cta="zip_end">See my plans</button>
+  </form>
+  <p class="zbx-error">Enter 5 digits</p>
+</div>
+<!-- /shared:zip-end -->
+</article>
     </main>
 <!-- sm-footer:start -->
 <!-- shared:footer -->
@@ -337,5 +359,6 @@
 <script>
 window.addEventListener('scroll',function(){document.getElementById('header').classList.toggle('scrolled',window.scrollY>10)});
 </script>
+<script src="/zbx.js" defer></script>
 </body>
 </html>

@@ -143,6 +143,7 @@ table { display: table; width: 100%; max-width: 100%; }
         }
 </style>
 <link rel="stylesheet" href="/sm-chrome.css?v=20261023">
+<link rel="stylesheet" href="/zbx.css">
 </head>
 <body>
 <a href="#main-content" class="skip-link" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;padding:8px 16px;background:#002147;color:#fff;font-size:14px;text-decoration:none" onfocus="this.style.position='fixed';this.style.left='8px';this.style.top='8px';this.style.width='auto';this.style.height='auto';this.style.overflow='visible'" onblur="this.style.position='absolute';this.style.left='-9999px';this.style.width='1px';this.style.height='1px';this.style.overflow='hidden'">Skip to main content</a>
@@ -176,6 +177,17 @@ table { display: table; width: 100%; max-width: 100%; }
     <section class="hero" id="main-content">
         <div class="hero-content">
             <h1>Medicare Help in Marina Del Rey</h1>
+<!-- shared:zip-top -->
+<div class="zbx" data-target="/?zip=" data-site="mc" data-lang="en">
+  <p class="zbx-title">Compare 2027 plans in your county</p>
+  <form class="zbx-form">
+    <input type="tel" inputmode="numeric" maxlength="5" autocomplete="postal-code" class="zbx-input" placeholder="e.g. 90230" aria-label="Compare 2027 plans in your county">
+    <button type="submit" class="zbx-btn" data-cta="zip_top">See my plans</button>
+  </form>
+  <p class="zbx-error">Enter 5 digits</p>
+</div>
+<!-- /shared:zip-top -->
+
             <p class="hero-subtitle">Find Medicare help near you in Marina Del Rey. Free, personalized guidance for Los Angeles County residents</p>
             <div class="zip-form">
                 <input type="text" id="city-zip" class="zip-input" placeholder="Enter your ZIP code" maxlength="5" inputmode="numeric">
@@ -284,6 +296,16 @@ table { display: table; width: 100%; max-width: 100%; }
     </section>
 
     <!-- sm-footer:start -->
+<!-- shared:zip-end -->
+<div class="zbx" data-target="/?zip=" data-site="mc" data-lang="en">
+  <p class="zbx-title">Compare 2027 plans in your county</p>
+  <form class="zbx-form">
+    <input type="tel" inputmode="numeric" maxlength="5" autocomplete="postal-code" class="zbx-input" placeholder="e.g. 90230" aria-label="Compare 2027 plans in your county">
+    <button type="submit" class="zbx-btn" data-cta="zip_end">See my plans</button>
+  </form>
+  <p class="zbx-error">Enter 5 digits</p>
+</div>
+<!-- /shared:zip-end -->
 <!-- shared:footer -->
 <footer class="sm-footer sm-mc">
   <div class="sm-foot-in">
@@ -449,5 +471,6 @@ table { display: table; width: 100%; max-width: 100%; }
             if(e.key === 'Enter') { handleZip(); }
         });
     </script>
+<script src="/zbx.js" defer></script>
 </body>
 </html>

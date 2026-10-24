@@ -2066,6 +2066,7 @@ const zipCard  = document.getElementById('zip-card');
 const heroEl   = document.querySelector('.hero');
 const widgetC  = document.getElementById('widget-container');
 const frame    = document.getElementById('widget-frame');
+let zipFromSource = '';  // T-133: zip_top/zip_end when the ZIP arrived via ?from= from a zip-box page
 
 // Allow Enter key
 zipInput.addEventListener('keydown', function(e) {
@@ -2121,8 +2122,23 @@ function handleZipSubmit() {
   // Match BM's environment to our own, so staging tests staging and
   // production tests production instead of staging always borrowing BM prod.
   var bmHost = bmWidgetHost();
-  frame.src = 'https://' + bmHost + '/widget-v4?lang=' + currentLang + '&theme=california&v=20260308b&zip=' + zip + (window.bmTester ? '&qa=1' : '');
+  frame.src = 'https://' + bmHost + '/widget-v4?lang=' + currentLang + '&theme=california&v=20260308b&zip=' + zip + (zipFromSource ? '&from=' + encodeURIComponent(zipFromSource) : '') + (window.bmTester ? '&qa=1' : '');
 }
+
+// T-133: a ZIP in the URL (zip-box pages) auto-submits, same pattern as beneficiosmedicare's home.
+// ?from=zip_top|zip_end travels with it so the widget's widget_start event can report which page
+// started the search.
+(function autoSubmitFromZipContext(){
+  try {
+    var params = new URLSearchParams(location.search);
+    var urlZip = (params.get('zip') || '').trim();
+    if (/^\d{5}$/.test(urlZip)) {
+      zipInput.value = urlZip;
+      zipFromSource = (params.get('from') || '').trim();
+      setTimeout(function(){ handleZipSubmit(); }, 0);
+    }
+  } catch (err) { /* fail open: normal flow */ }
+})();
 
 function handleFinalZipSubmit() {
   const zip = document.getElementById('final-zip-input').value.trim();

@@ -138,6 +138,7 @@ table { display: table; width: 100%; max-width: 100%; }
     {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://medicare-california.com"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://medicare-california.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "Coverage"}, {"@type": "ListItem", "position": 4, "name": "How Medicare Works with Employer Insurance in California..."}]}
     </script>
 <link rel="stylesheet" href="/sm-chrome.css?v=20261023">
+<link rel="stylesheet" href="/zbx.css">
 </head>
 <body>
 <!-- sm-header:start -->
@@ -165,6 +166,17 @@ table { display: table; width: 100%; max-width: 100%; }
             <header class="blog-article-header">
                 <div class="blog-tag">Coverage</div>
                 <h1>How Medicare Works with Employer Insurance in California 2026</h1>
+<!-- shared:zip-top -->
+<div class="zbx" data-target="/?zip=" data-site="mc" data-lang="en">
+  <p class="zbx-title">Compare 2027 plans in your county</p>
+  <form class="zbx-form">
+    <input type="tel" inputmode="numeric" maxlength="5" autocomplete="postal-code" class="zbx-input" placeholder="e.g. 90230" aria-label="Compare 2027 plans in your county">
+    <button type="submit" class="zbx-btn" data-cta="zip_top">See my plans</button>
+  </form>
+  <p class="zbx-error">Enter 5 digits</p>
+</div>
+<!-- /shared:zip-top -->
+
                 <div class="blog-article-meta">
                     <span class="blog-article-byline">By <a href="/team#susana" rel="author" style="color:#0080D4;text-decoration:none;font-weight:600">Susana Marcos</a>, Licensed Medicare Agent</span>
                     <span class="blog-article-divider">&middot;</span>
@@ -346,7 +358,17 @@ table { display: table; width: 100%; max-width: 100%; }
 
             <div class="lang-cta"> <span class="lang-cta-icon">ES</span> This article is also available in Spanish. <a href="https://beneficiosmedicare.com/blog/medicare-seguro-empleador-california">Read it in Spanish &rarr;</a> </div>
             </div>
-        </article>
+        <!-- shared:zip-end -->
+<div class="zbx" data-target="/?zip=" data-site="mc" data-lang="en">
+  <p class="zbx-title">Compare 2027 plans in your county</p>
+  <form class="zbx-form">
+    <input type="tel" inputmode="numeric" maxlength="5" autocomplete="postal-code" class="zbx-input" placeholder="e.g. 90230" aria-label="Compare 2027 plans in your county">
+    <button type="submit" class="zbx-btn" data-cta="zip_end">See my plans</button>
+  </form>
+  <p class="zbx-error">Enter 5 digits</p>
+</div>
+<!-- /shared:zip-end -->
+</article>
     </main>
 <!-- sm-footer:start -->
 <!-- shared:footer -->
@@ -404,5 +426,6 @@ table { display: table; width: 100%; max-width: 100%; }
 <script>
 window.addEventListener('scroll',function(){document.getElementById('header').classList.toggle('scrolled',window.scrollY>10)});
 </script>
+<script src="/zbx.js" defer></script>
 </body>
 </html>

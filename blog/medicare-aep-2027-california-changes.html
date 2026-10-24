@@ -84,6 +84,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="/zbx.css">
 </head>
 <body>
 <a href="#main-content" class="skip-link" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;padding:8px 16px;background:#002147;color:#fff;font-size:14px;text-decoration:none" onfocus="this.style.position='fixed';this.style.left='8px';this.style.top='8px';this.style.width='auto';this.style.height='auto';this.style.overflow='visible'" onblur="this.style.position='absolute';this.style.left='-9999px';this.style.width='1px';this.style.height='1px';this.style.overflow='hidden'">Skip to main content</a>
@@ -118,6 +119,17 @@
                     <span class="blog-article-byline">By <a href="/team#susana" rel="author" style="color:#0080D4;text-decoration:none;font-weight:600">Susana Marcos</a>, Licensed Medicare Agent</span>
                 </div>
                 <h1>Medicare Annual Enrollment 2027: What's Changing for California Seniors</h1>
+<!-- shared:zip-top -->
+<div class="zbx" data-target="/?zip=" data-site="mc" data-lang="en">
+  <p class="zbx-title">Compare 2027 plans in your county</p>
+  <form class="zbx-form">
+    <input type="tel" inputmode="numeric" maxlength="5" autocomplete="postal-code" class="zbx-input" placeholder="e.g. 90230" aria-label="Compare 2027 plans in your county">
+    <button type="submit" class="zbx-btn" data-cta="zip_top">See my plans</button>
+  </form>
+  <p class="zbx-error">Enter 5 digits</p>
+</div>
+<!-- /shared:zip-top -->
+
                 <p class="article-excerpt">AEP opens October 15. Major changes are coming for 2027: a higher Part D spending cap, Medicare-negotiated prices on Ozempic and 14 other drugs, and expanded supplemental benefits. Here's what California seniors need to know.</p>
             </header>
             <div class="lang-cta" style="background:#EAF4FC;border-left:4px solid #0080D4;padding:14px 18px;border-radius:8px;margin:20px 0;font-size:15px"><span class="lang-cta-icon" style="font-weight:700;color:#0071BC;margin-right:6px">ES</span> This article is also available in Spanish. <a href="https://beneficiosmedicare.com/blog/inscripcion-anual-aep-2027-california" style="color:#0071BC;font-weight:600">Read it in Spanish &rarr;</a></div>
@@ -268,7 +280,17 @@
                     <p>If you're currently enrolled in a Medicare Advantage plan, you get a second chance: Medicare Advantage Open Enrollment Period (MA-OEP) runs January 1 - March 31, 2027. You can switch to Original Medicare during this window. If you're on Original Medicare, you'll need to wait until next year's AEP unless you have a qualifying life event (moving, losing insurance, etc.).</p>
                 </div>
             </section>
-        </article>
+        <!-- shared:zip-end -->
+<div class="zbx" data-target="/?zip=" data-site="mc" data-lang="en">
+  <p class="zbx-title">Compare 2027 plans in your county</p>
+  <form class="zbx-form">
+    <input type="tel" inputmode="numeric" maxlength="5" autocomplete="postal-code" class="zbx-input" placeholder="e.g. 90230" aria-label="Compare 2027 plans in your county">
+    <button type="submit" class="zbx-btn" data-cta="zip_end">See my plans</button>
+  </form>
+  <p class="zbx-error">Enter 5 digits</p>
+</div>
+<!-- /shared:zip-end -->
+</article>
     </main>
 
     <!-- sm-footer:start -->
@@ -397,5 +419,6 @@
         ]
     }
     </script>
+<script src="/zbx.js" defer></script>
 </body>
 </html>

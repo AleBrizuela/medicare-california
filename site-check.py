@@ -28,8 +28,6 @@ from collections import defaultdict
 from html.parser import HTMLParser
 import difflib
 from datetime import datetime, timedelta
-import difflib
-from datetime import datetime, timedelta
 
 # ---------------------------------------------------------------- constants
 
@@ -482,7 +480,8 @@ def check_bodies(root, f):
 # A new name goes there first, then here, then onto a page.
 CTA_PLACEMENTS = {"header", "home_hero", "home_alt", "sticky_bar", "float_call", "float_text", "contact_card",
                   "guide_cta", "inline_body", "sidebar", "blog_cta", "city_cta",
-                  "state_cta", "final_cta", "footer", "widget", "float", "thank_you"}
+                  "state_cta", "final_cta", "footer", "widget", "float", "thank_you",
+                  "zip_top", "zip_end"}  # T-133: the zip box's two placements on non-home pages
 CTA_TARGETS = {"plan_finder"}
 
 _VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta",
@@ -520,6 +519,11 @@ def cta_kind(tag, attrs, text=""):
         if re.match(_HOME + r"(?:#[\w-]+)?$", h) and _PLAN_TEXT.search(text):
             return "plan_finder"
     elif tag == "button":
+        # T-133: the zip box's submit button has no onclick (zbx.js listens for the
+        # form's submit event instead), so it needs its own class-based signal to be
+        # seen as a CTA at all -- otherwise a copy missing data-cta would pass silently.
+        if "zbx-btn" in (attrs.get("class") or "").split():
+            return "zip_box"
         oc = attrs.get("onclick") or ""
         if re.search(r"handleZipSubmit\s*\(", oc):
             return "home_zip"   # the home ZIP card: widget_start already counts it
@@ -762,12 +766,14 @@ def _page_type(rel):
 
 
 def _core_words(src):
-    """Visible text with header/nav/footer stripped, so two pages sharing chrome don't
-    look like duplicates of each other. Falls back to the whole page if there is no
-    <main>/<article> landmark to anchor on."""
+    """Visible text with header/nav/footer AND any stamped shared block (zip box, lang-cta,
+    etc. -- anything between <!-- shared:X --> markers) stripped, so two pages sharing
+    chrome or a shared component don't look like duplicates of each other on that account.
+    Falls back to the whole page if there is no <main>/<article> landmark to anchor on."""
     m = re.search(r"<(main|article)\b.*?</\1>", src, re.S | re.I)
     body = m.group(0) if m else src
     body = re.sub(r"<(header|footer|nav)\b.*?</\1>", " ", body, flags=re.S | re.I)
+    body = re.sub(r"<!--\s*shared:[^>]*?-->.*?<!--\s*/shared:[^>]*?-->", " ", body, flags=re.S)
     text = visible_text(body).lower()
     return re.findall(r"[a-z0-9]+", text)
 
@@ -801,218 +807,29 @@ def check_google_safety(root, domain, f, base=None):
     changed = _changed_files(root, base) if base else None
 
     # (a) look-alike --------------------------------------------------------------
+    # ERROR only for a pairing that CROSSED the 40% line because of this push -- not every
+    # pairing that happens to include a page this push touched. A page that was already a
+    # near-duplicate before this push (T-135's own backlog) stays WARN even when something
+    # unrelated on it changed; only a pairing that is newly over the line, or a brand-new
+    # page that lands over the line, is this push's own doing.
     by_type = defaultdict(list)
     for rel, src in pages:
         by_type[_page_type(rel)].append((rel, _core_words(src)))
-    seen_pairs = 0
-    for ptype, items in by_type.items():
-        for i in range(len(items)):
-            for j in range(i + 1, len(items)):
-                rel_a, words_a = items[i]
-                rel_b, words_b = items[j]
-                if not words_a or not words_b:
-                    continue
-                ratio = difflib.SequenceMatcher(None, words_a, words_b).quick_ratio()
-                if ratio <= 0.40:
-                    continue
-                seen_pairs += 1
-                is_new = changed is not None and (rel_a in changed or rel_b in changed)
-                detail = f"{ratio:.0%} identical to {rel_b}"
-                if is_new:
-                    f.error("google-safety-lookalike", rel_a, detail)
-                else:
-                    f.warn("google-safety-lookalike-existing", rel_a, detail)
-    if seen_pairs:
-        f.warn("google-safety-lookalike-count", "-",
-               f"{seen_pairs} page pair(s) over the 40% look-alike threshold site-wide "
-               "(T-135 cleanup target)")
 
-    # (b) bulk ----------------------------------------------------------------------
-    try:
-        head_msg = subprocess.run(["git", "log", "-1", "--format=%B"], cwd=root,
-                                   capture_output=True, text=True, timeout=30).stdout
-    except Exception:
-        head_msg = ""
-    if "AB-OK-BULK" not in head_msg:
-        sitemap_path = os.path.join(root, "sitemap.xml")
-        if os.path.exists(sitemap_path):
+    _old_cache = {}
+
+    def _old_words(rel):
+        if not base:
+            return None
+        if rel not in _old_cache:
             try:
-                cutoff = (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d")
-                old_hash = subprocess.run(
-                    ["git", "log", f"--until={cutoff}", "-1", "--format=%H", "--", "sitemap.xml"],
-                    cwd=root, capture_output=True, text=True, timeout=30).stdout.strip()
-                new_src = open(sitemap_path, encoding="utf-8", errors="ignore").read()
-                new_urls = set(re.findall(r"<loc>([^<]*)</loc>", new_src))
-                if old_hash:
-                    old_src = subprocess.run(["git", "show", f"{old_hash}:sitemap.xml"],
-                                              cwd=root, capture_output=True, text=True,
-                                              timeout=30).stdout
-                    old_urls = set(re.findall(r"<loc>([^<]*)</loc>", old_src))
-                else:
-                    old_urls = set()  # no 7-day-old sitemap: repo is younger than the window
-                added = new_urls - old_urls
-                if len(added) > 5:
-                    f.error("google-safety-bulk", "sitemap.xml",
-                            f"{len(added)} new indexable URLs added to the sitemap in the "
-                            "last 7 days (limit 5) — add 'AB-OK-BULK <date>' to the commit "
-                            "message if this batch is intentional")
-            except Exception as e:
-                f.warn("google-safety-bulk-skipped", "sitemap.xml", str(e)[:120])
+                out = subprocess.run(["git", "show", f"{base}:{rel}"], cwd=root,
+                                      capture_output=True, text=True, timeout=20)
+                _old_cache[rel] = _core_words(out.stdout) if out.returncode == 0 else []
+            except Exception:
+                _old_cache[rel] = None
+        return _old_cache[rel]
 
-    # (c) dates -----------------------------------------------------------------------
-    date_re = re.compile(r'"datePublished"\s*:\s*"(\d{4}-\d{2}-\d{2})')
-    for rel, src in pages:
-        m = date_re.search(src)
-        if not m:
-            continue
-        published = m.group(1)
-        try:
-            fp_rel = rel
-            out = subprocess.run(
-                ["git", "log", "--follow", "--format=%ad", "--date=format:%Y-%m-%d",
-                 "--diff-filter=A", "--", fp_rel],
-                cwd=root, capture_output=True, text=True, timeout=30)
-            first_commit = out.stdout.strip().splitlines()[-1] if out.stdout.strip() else None
-        except Exception:
-            first_commit = None
-        if not first_commit:
-            continue
-        try:
-            pub_d = datetime.strptime(published, "%Y-%m-%d")
-            first_d = datetime.strptime(first_commit, "%Y-%m-%d")
-        except ValueError:
-            continue
-        if pub_d < first_d - timedelta(days=1):
-            f.error("google-safety-fake-date", rel,
-                    f"datePublished {published} predates this file's first commit "
-                    f"({first_commit})")
-
-    # (d) stuffing ----------------------------------------------------------------------
-    near_me_re = re.compile(r"near me|cerca de m[ií]", re.I)
-    for rel, src in pages:
-        text = visible_text(src)
-        hits = near_me_re.findall(text)
-        if len(hits) > 1:
-            f.error("google-safety-stuffing-nearme", rel,
-                    f'"near me" / "cerca de mí" appears {len(hits)} times')
-        city = _city_name_from_rel(rel)
-        if not city:
-            continue
-        words = text.lower().split()
-        if not words:
-            continue
-        count = len(re.findall(re.escape(city), text.lower()))
-        per_1000 = count / (len(words) / 1000)
-        if per_1000 > 8:
-            f.error("google-safety-stuffing-city", rel,
-                    f'"{city}" appears {count} times ({per_1000:.1f} per 1,000 words, limit 8)')
-
-    # (e) indexing ------------------------------------------------------------------------
-    robots_path = os.path.join(root, "robots.txt")
-    if os.path.exists(robots_path):
-        robots_src = open(robots_path, encoding="utf-8", errors="ignore").read()
-        if re.search(r"(?im)^\s*disallow:\s*/\s*$", robots_src):
-            f.error("google-safety-robots-disallow-all", "robots.txt",
-                    "Disallow: / blocks the whole site")
-
-    sitemap_path = os.path.join(root, "sitemap.xml")
-    sitemap_urls = set()
-    if os.path.exists(sitemap_path):
-        sitemap_src = open(sitemap_path, encoding="utf-8", errors="ignore").read()
-        sitemap_urls = {u[len(domain):].rstrip("/") or "/"
-                         for u in re.findall(r"<loc>([^<]*)</loc>", sitemap_src)
-                         if u.startswith(domain)}
-
-    def path_of(rel):
-        path = "/" + rel[:-5]
-        path = "/" if path == "/index" else (path[:-6] if path.endswith("/index") else path)
-        return path.rstrip("/") or "/"
-
-    for rel, src in pages:
-        if path_of(rel) not in sitemap_urls and rel != "index.html":
-            continue
-        if re.search(r'name="robots"[^>]*content="[^"]*noindex', src, re.I):
-            f.error("google-safety-sitemap-noindex", rel,
-                    "listed in the sitemap but has a noindex meta tag")
-
-    for home_rel in ("index.html", "en.html", "es.html"):
-        fp = os.path.join(root, home_rel)
-        if not os.path.exists(fp):
-            continue
-        src = open(fp, encoding="utf-8", errors="ignore").read()
-        m = re.search(r'rel="canonical"[^>]*href="([^"]+)"', src)
-        if not m:
-            f.error("google-safety-home-no-canonical", home_rel, "home page has no canonical tag")
-        elif not m.group(1).startswith(domain):
-            f.error("google-safety-home-cross-domain-canonical", home_rel,
-                    f"canonical points at {m.group(1)}, not this domain")
-
-
-# ---------------------------------------------------------------- T-134 Google safety gate
-
-CITY_NAME_RE = re.compile(r"[a-z0-9]+")
-
-
-def _city_name_from_rel(rel):
-    """california/cities/los-angeles.html -> 'los angeles'; None if not a city page."""
-    parts = rel.split("/")
-    if len(parts) >= 2 and parts[-2] == "cities" and not rel.endswith("index.html"):
-        stem = parts[-1][:-5]
-        return stem.replace("-", " ")
-    return None
-
-
-def _page_type(rel):
-    """Bucket pages so look-alike only compares pages of the same kind."""
-    parts = rel.split("/")
-    if len(parts) == 1:
-        return "root"
-    return "/".join(parts[:-1])
-
-
-def _core_words(src):
-    """Visible text with header/nav/footer stripped, so two pages sharing chrome don't
-    look like duplicates of each other. Falls back to the whole page if there is no
-    <main>/<article> landmark to anchor on."""
-    m = re.search(r"<(main|article)\b.*?</\1>", src, re.S | re.I)
-    body = m.group(0) if m else src
-    body = re.sub(r"<(header|footer|nav)\b.*?</\1>", " ", body, flags=re.S | re.I)
-    text = visible_text(body).lower()
-    return re.findall(r"[a-z0-9]+", text)
-
-
-def _changed_files(root, base):
-    try:
-        out = subprocess.run(["git", "diff", "--name-only", base, "--"],
-                              cwd=root, capture_output=True, text=True, timeout=60)
-    except Exception:
-        return None
-    if out.returncode != 0:
-        return None
-    return {line.strip() for line in out.stdout.splitlines() if line.strip()}
-
-
-def check_google_safety(root, domain, f, base=None):
-    """T-134 (AB 2026-10-24): "i need something anticipating and avoiding this type of
-    problem" — MC dropped out of Google on Aug 18, the first day of Google's Aug 2026
-    spam update, and nothing in this gate would have caught the kind of page that
-    triggers it. Five checks, each proven able to fail on a planted bad page before
-    being trusted (BLUEPRINT rule) — see SHIP/now/2026-10-24_T-134-gate-proof.md.
-    """
-    redirects = load_redirect_sources(root)
-    pages = []  # (rel, src, words, type)
-    for fp, rel in iter_html(root):
-        if is_non_public(rel) or ("/" + rel[:-5]) in redirects:
-            continue
-        src = open(fp, encoding="utf-8", errors="ignore").read()
-        pages.append((rel, src))
-
-    changed = _changed_files(root, base) if base else None
-
-    # (a) look-alike --------------------------------------------------------------
-    by_type = defaultdict(list)
-    for rel, src in pages:
-        by_type[_page_type(rel)].append((rel, _core_words(src)))
     seen_pairs = 0
     for ptype, items in by_type.items():
         for i in range(len(items)):
@@ -1025,9 +842,20 @@ def check_google_safety(root, domain, f, base=None):
                 if ratio <= 0.40:
                     continue
                 seen_pairs += 1
-                is_new = changed is not None and (rel_a in changed or rel_b in changed)
                 detail = f"{ratio:.0%} identical to {rel_b}"
-                if is_new:
+                touched = changed is not None and (rel_a in changed or rel_b in changed)
+                is_new_pairing = False
+                if touched:
+                    old_a = _old_words(rel_a) if rel_a in changed else words_a
+                    old_b = _old_words(rel_b) if rel_b in changed else words_b
+                    if old_a is None or old_b is None:
+                        is_new_pairing = True  # couldn't establish a before -- be conservative
+                    elif not old_a or not old_b:
+                        is_new_pairing = True  # one side is a brand-new page
+                    else:
+                        old_ratio = difflib.SequenceMatcher(None, old_a, old_b).quick_ratio()
+                        is_new_pairing = old_ratio <= 0.40
+                if is_new_pairing:
                     f.error("google-safety-lookalike", rel_a, detail)
                 else:
                     f.warn("google-safety-lookalike-existing", rel_a, detail)
@@ -1225,7 +1053,6 @@ def main():
         "bodies": lambda: check_bodies(root, f),
         "ctas": lambda: check_ctas(root, f),
         "og": lambda: check_og(root, domain, f),
-        "google-safety": lambda: check_google_safety(root, domain, f, a.base),
         "google-safety": lambda: check_google_safety(root, domain, f, a.base),
     }
     if a.base:

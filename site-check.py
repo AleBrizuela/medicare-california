@@ -26,6 +26,10 @@ import subprocess
 import sys
 from collections import defaultdict
 from html.parser import HTMLParser
+import difflib
+from datetime import datetime, timedelta
+import difflib
+from datetime import datetime, timedelta
 
 # ---------------------------------------------------------------- constants
 
@@ -735,6 +739,424 @@ def check_ctas(root, f):
                 f.error("cta-plan-target-missing", rel, what)
 
 
+# ---------------------------------------------------------------- T-134 Google safety gate
+
+CITY_NAME_RE = re.compile(r"[a-z0-9]+")
+
+
+def _city_name_from_rel(rel):
+    """california/cities/los-angeles.html -> 'los angeles'; None if not a city page."""
+    parts = rel.split("/")
+    if len(parts) >= 2 and parts[-2] == "cities" and not rel.endswith("index.html"):
+        stem = parts[-1][:-5]
+        return stem.replace("-", " ")
+    return None
+
+
+def _page_type(rel):
+    """Bucket pages so look-alike only compares pages of the same kind."""
+    parts = rel.split("/")
+    if len(parts) == 1:
+        return "root"
+    return "/".join(parts[:-1])
+
+
+def _core_words(src):
+    """Visible text with header/nav/footer stripped, so two pages sharing chrome don't
+    look like duplicates of each other. Falls back to the whole page if there is no
+    <main>/<article> landmark to anchor on."""
+    m = re.search(r"<(main|article)\b.*?</\1>", src, re.S | re.I)
+    body = m.group(0) if m else src
+    body = re.sub(r"<(header|footer|nav)\b.*?</\1>", " ", body, flags=re.S | re.I)
+    text = visible_text(body).lower()
+    return re.findall(r"[a-z0-9]+", text)
+
+
+def _changed_files(root, base):
+    try:
+        out = subprocess.run(["git", "diff", "--name-only", base, "--"],
+                              cwd=root, capture_output=True, text=True, timeout=60)
+    except Exception:
+        return None
+    if out.returncode != 0:
+        return None
+    return {line.strip() for line in out.stdout.splitlines() if line.strip()}
+
+
+def check_google_safety(root, domain, f, base=None):
+    """T-134 (AB 2026-10-24): "i need something anticipating and avoiding this type of
+    problem" — MC dropped out of Google on Aug 18, the first day of Google's Aug 2026
+    spam update, and nothing in this gate would have caught the kind of page that
+    triggers it. Five checks, each proven able to fail on a planted bad page before
+    being trusted (BLUEPRINT rule) — see SHIP/now/2026-10-24_T-134-gate-proof.md.
+    """
+    redirects = load_redirect_sources(root)
+    pages = []  # (rel, src, words, type)
+    for fp, rel in iter_html(root):
+        if is_non_public(rel) or ("/" + rel[:-5]) in redirects:
+            continue
+        src = open(fp, encoding="utf-8", errors="ignore").read()
+        pages.append((rel, src))
+
+    changed = _changed_files(root, base) if base else None
+
+    # (a) look-alike --------------------------------------------------------------
+    by_type = defaultdict(list)
+    for rel, src in pages:
+        by_type[_page_type(rel)].append((rel, _core_words(src)))
+    seen_pairs = 0
+    for ptype, items in by_type.items():
+        for i in range(len(items)):
+            for j in range(i + 1, len(items)):
+                rel_a, words_a = items[i]
+                rel_b, words_b = items[j]
+                if not words_a or not words_b:
+                    continue
+                ratio = difflib.SequenceMatcher(None, words_a, words_b).quick_ratio()
+                if ratio <= 0.40:
+                    continue
+                seen_pairs += 1
+                is_new = changed is not None and (rel_a in changed or rel_b in changed)
+                detail = f"{ratio:.0%} identical to {rel_b}"
+                if is_new:
+                    f.error("google-safety-lookalike", rel_a, detail)
+                else:
+                    f.warn("google-safety-lookalike-existing", rel_a, detail)
+    if seen_pairs:
+        f.warn("google-safety-lookalike-count", "-",
+               f"{seen_pairs} page pair(s) over the 40% look-alike threshold site-wide "
+               "(T-135 cleanup target)")
+
+    # (b) bulk ----------------------------------------------------------------------
+    try:
+        head_msg = subprocess.run(["git", "log", "-1", "--format=%B"], cwd=root,
+                                   capture_output=True, text=True, timeout=30).stdout
+    except Exception:
+        head_msg = ""
+    if "AB-OK-BULK" not in head_msg:
+        sitemap_path = os.path.join(root, "sitemap.xml")
+        if os.path.exists(sitemap_path):
+            try:
+                cutoff = (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d")
+                old_hash = subprocess.run(
+                    ["git", "log", f"--until={cutoff}", "-1", "--format=%H", "--", "sitemap.xml"],
+                    cwd=root, capture_output=True, text=True, timeout=30).stdout.strip()
+                new_src = open(sitemap_path, encoding="utf-8", errors="ignore").read()
+                new_urls = set(re.findall(r"<loc>([^<]*)</loc>", new_src))
+                if old_hash:
+                    old_src = subprocess.run(["git", "show", f"{old_hash}:sitemap.xml"],
+                                              cwd=root, capture_output=True, text=True,
+                                              timeout=30).stdout
+                    old_urls = set(re.findall(r"<loc>([^<]*)</loc>", old_src))
+                else:
+                    old_urls = set()  # no 7-day-old sitemap: repo is younger than the window
+                added = new_urls - old_urls
+                if len(added) > 5:
+                    f.error("google-safety-bulk", "sitemap.xml",
+                            f"{len(added)} new indexable URLs added to the sitemap in the "
+                            "last 7 days (limit 5) — add 'AB-OK-BULK <date>' to the commit "
+                            "message if this batch is intentional")
+            except Exception as e:
+                f.warn("google-safety-bulk-skipped", "sitemap.xml", str(e)[:120])
+
+    # (c) dates -----------------------------------------------------------------------
+    date_re = re.compile(r'"datePublished"\s*:\s*"(\d{4}-\d{2}-\d{2})')
+    for rel, src in pages:
+        m = date_re.search(src)
+        if not m:
+            continue
+        published = m.group(1)
+        try:
+            fp_rel = rel
+            out = subprocess.run(
+                ["git", "log", "--follow", "--format=%ad", "--date=format:%Y-%m-%d",
+                 "--diff-filter=A", "--", fp_rel],
+                cwd=root, capture_output=True, text=True, timeout=30)
+            first_commit = out.stdout.strip().splitlines()[-1] if out.stdout.strip() else None
+        except Exception:
+            first_commit = None
+        if not first_commit:
+            continue
+        try:
+            pub_d = datetime.strptime(published, "%Y-%m-%d")
+            first_d = datetime.strptime(first_commit, "%Y-%m-%d")
+        except ValueError:
+            continue
+        if pub_d < first_d - timedelta(days=1):
+            f.error("google-safety-fake-date", rel,
+                    f"datePublished {published} predates this file's first commit "
+                    f"({first_commit})")
+
+    # (d) stuffing ----------------------------------------------------------------------
+    near_me_re = re.compile(r"near me|cerca de m[ií]", re.I)
+    for rel, src in pages:
+        text = visible_text(src)
+        hits = near_me_re.findall(text)
+        if len(hits) > 1:
+            f.error("google-safety-stuffing-nearme", rel,
+                    f'"near me" / "cerca de mí" appears {len(hits)} times')
+        city = _city_name_from_rel(rel)
+        if not city:
+            continue
+        words = text.lower().split()
+        if not words:
+            continue
+        count = len(re.findall(re.escape(city), text.lower()))
+        per_1000 = count / (len(words) / 1000)
+        if per_1000 > 8:
+            f.error("google-safety-stuffing-city", rel,
+                    f'"{city}" appears {count} times ({per_1000:.1f} per 1,000 words, limit 8)')
+
+    # (e) indexing ------------------------------------------------------------------------
+    robots_path = os.path.join(root, "robots.txt")
+    if os.path.exists(robots_path):
+        robots_src = open(robots_path, encoding="utf-8", errors="ignore").read()
+        if re.search(r"(?im)^\s*disallow:\s*/\s*$", robots_src):
+            f.error("google-safety-robots-disallow-all", "robots.txt",
+                    "Disallow: / blocks the whole site")
+
+    sitemap_path = os.path.join(root, "sitemap.xml")
+    sitemap_urls = set()
+    if os.path.exists(sitemap_path):
+        sitemap_src = open(sitemap_path, encoding="utf-8", errors="ignore").read()
+        sitemap_urls = {u[len(domain):].rstrip("/") or "/"
+                         for u in re.findall(r"<loc>([^<]*)</loc>", sitemap_src)
+                         if u.startswith(domain)}
+
+    def path_of(rel):
+        path = "/" + rel[:-5]
+        path = "/" if path == "/index" else (path[:-6] if path.endswith("/index") else path)
+        return path.rstrip("/") or "/"
+
+    for rel, src in pages:
+        if path_of(rel) not in sitemap_urls and rel != "index.html":
+            continue
+        if re.search(r'name="robots"[^>]*content="[^"]*noindex', src, re.I):
+            f.error("google-safety-sitemap-noindex", rel,
+                    "listed in the sitemap but has a noindex meta tag")
+
+    for home_rel in ("index.html", "en.html", "es.html"):
+        fp = os.path.join(root, home_rel)
+        if not os.path.exists(fp):
+            continue
+        src = open(fp, encoding="utf-8", errors="ignore").read()
+        m = re.search(r'rel="canonical"[^>]*href="([^"]+)"', src)
+        if not m:
+            f.error("google-safety-home-no-canonical", home_rel, "home page has no canonical tag")
+        elif not m.group(1).startswith(domain):
+            f.error("google-safety-home-cross-domain-canonical", home_rel,
+                    f"canonical points at {m.group(1)}, not this domain")
+
+
+# ---------------------------------------------------------------- T-134 Google safety gate
+
+CITY_NAME_RE = re.compile(r"[a-z0-9]+")
+
+
+def _city_name_from_rel(rel):
+    """california/cities/los-angeles.html -> 'los angeles'; None if not a city page."""
+    parts = rel.split("/")
+    if len(parts) >= 2 and parts[-2] == "cities" and not rel.endswith("index.html"):
+        stem = parts[-1][:-5]
+        return stem.replace("-", " ")
+    return None
+
+
+def _page_type(rel):
+    """Bucket pages so look-alike only compares pages of the same kind."""
+    parts = rel.split("/")
+    if len(parts) == 1:
+        return "root"
+    return "/".join(parts[:-1])
+
+
+def _core_words(src):
+    """Visible text with header/nav/footer stripped, so two pages sharing chrome don't
+    look like duplicates of each other. Falls back to the whole page if there is no
+    <main>/<article> landmark to anchor on."""
+    m = re.search(r"<(main|article)\b.*?</\1>", src, re.S | re.I)
+    body = m.group(0) if m else src
+    body = re.sub(r"<(header|footer|nav)\b.*?</\1>", " ", body, flags=re.S | re.I)
+    text = visible_text(body).lower()
+    return re.findall(r"[a-z0-9]+", text)
+
+
+def _changed_files(root, base):
+    try:
+        out = subprocess.run(["git", "diff", "--name-only", base, "--"],
+                              cwd=root, capture_output=True, text=True, timeout=60)
+    except Exception:
+        return None
+    if out.returncode != 0:
+        return None
+    return {line.strip() for line in out.stdout.splitlines() if line.strip()}
+
+
+def check_google_safety(root, domain, f, base=None):
+    """T-134 (AB 2026-10-24): "i need something anticipating and avoiding this type of
+    problem" — MC dropped out of Google on Aug 18, the first day of Google's Aug 2026
+    spam update, and nothing in this gate would have caught the kind of page that
+    triggers it. Five checks, each proven able to fail on a planted bad page before
+    being trusted (BLUEPRINT rule) — see SHIP/now/2026-10-24_T-134-gate-proof.md.
+    """
+    redirects = load_redirect_sources(root)
+    pages = []  # (rel, src, words, type)
+    for fp, rel in iter_html(root):
+        if is_non_public(rel) or ("/" + rel[:-5]) in redirects:
+            continue
+        src = open(fp, encoding="utf-8", errors="ignore").read()
+        pages.append((rel, src))
+
+    changed = _changed_files(root, base) if base else None
+
+    # (a) look-alike --------------------------------------------------------------
+    by_type = defaultdict(list)
+    for rel, src in pages:
+        by_type[_page_type(rel)].append((rel, _core_words(src)))
+    seen_pairs = 0
+    for ptype, items in by_type.items():
+        for i in range(len(items)):
+            for j in range(i + 1, len(items)):
+                rel_a, words_a = items[i]
+                rel_b, words_b = items[j]
+                if not words_a or not words_b:
+                    continue
+                ratio = difflib.SequenceMatcher(None, words_a, words_b).quick_ratio()
+                if ratio <= 0.40:
+                    continue
+                seen_pairs += 1
+                is_new = changed is not None and (rel_a in changed or rel_b in changed)
+                detail = f"{ratio:.0%} identical to {rel_b}"
+                if is_new:
+                    f.error("google-safety-lookalike", rel_a, detail)
+                else:
+                    f.warn("google-safety-lookalike-existing", rel_a, detail)
+    if seen_pairs:
+        f.warn("google-safety-lookalike-count", "-",
+               f"{seen_pairs} page pair(s) over the 40% look-alike threshold site-wide "
+               "(T-135 cleanup target)")
+
+    # (b) bulk ----------------------------------------------------------------------
+    try:
+        head_msg = subprocess.run(["git", "log", "-1", "--format=%B"], cwd=root,
+                                   capture_output=True, text=True, timeout=30).stdout
+    except Exception:
+        head_msg = ""
+    if "AB-OK-BULK" not in head_msg:
+        sitemap_path = os.path.join(root, "sitemap.xml")
+        if os.path.exists(sitemap_path):
+            try:
+                cutoff = (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d")
+                old_hash = subprocess.run(
+                    ["git", "log", f"--until={cutoff}", "-1", "--format=%H", "--", "sitemap.xml"],
+                    cwd=root, capture_output=True, text=True, timeout=30).stdout.strip()
+                new_src = open(sitemap_path, encoding="utf-8", errors="ignore").read()
+                new_urls = set(re.findall(r"<loc>([^<]*)</loc>", new_src))
+                if old_hash:
+                    old_src = subprocess.run(["git", "show", f"{old_hash}:sitemap.xml"],
+                                              cwd=root, capture_output=True, text=True,
+                                              timeout=30).stdout
+                    old_urls = set(re.findall(r"<loc>([^<]*)</loc>", old_src))
+                else:
+                    old_urls = set()  # no 7-day-old sitemap: repo is younger than the window
+                added = new_urls - old_urls
+                if len(added) > 5:
+                    f.error("google-safety-bulk", "sitemap.xml",
+                            f"{len(added)} new indexable URLs added to the sitemap in the "
+                            "last 7 days (limit 5) — add 'AB-OK-BULK <date>' to the commit "
+                            "message if this batch is intentional")
+            except Exception as e:
+                f.warn("google-safety-bulk-skipped", "sitemap.xml", str(e)[:120])
+
+    # (c) dates -----------------------------------------------------------------------
+    date_re = re.compile(r'"datePublished"\s*:\s*"(\d{4}-\d{2}-\d{2})')
+    for rel, src in pages:
+        m = date_re.search(src)
+        if not m:
+            continue
+        published = m.group(1)
+        try:
+            fp_rel = rel
+            out = subprocess.run(
+                ["git", "log", "--follow", "--format=%ad", "--date=format:%Y-%m-%d",
+                 "--diff-filter=A", "--", fp_rel],
+                cwd=root, capture_output=True, text=True, timeout=30)
+            first_commit = out.stdout.strip().splitlines()[-1] if out.stdout.strip() else None
+        except Exception:
+            first_commit = None
+        if not first_commit:
+            continue
+        try:
+            pub_d = datetime.strptime(published, "%Y-%m-%d")
+            first_d = datetime.strptime(first_commit, "%Y-%m-%d")
+        except ValueError:
+            continue
+        if pub_d < first_d - timedelta(days=1):
+            f.error("google-safety-fake-date", rel,
+                    f"datePublished {published} predates this file's first commit "
+                    f"({first_commit})")
+
+    # (d) stuffing ----------------------------------------------------------------------
+    near_me_re = re.compile(r"near me|cerca de m[ií]", re.I)
+    for rel, src in pages:
+        text = visible_text(src)
+        hits = near_me_re.findall(text)
+        if len(hits) > 1:
+            f.error("google-safety-stuffing-nearme", rel,
+                    f'"near me" / "cerca de mí" appears {len(hits)} times')
+        city = _city_name_from_rel(rel)
+        if not city:
+            continue
+        words = text.lower().split()
+        if not words:
+            continue
+        count = len(re.findall(re.escape(city), text.lower()))
+        per_1000 = count / (len(words) / 1000)
+        if per_1000 > 8:
+            f.error("google-safety-stuffing-city", rel,
+                    f'"{city}" appears {count} times ({per_1000:.1f} per 1,000 words, limit 8)')
+
+    # (e) indexing ------------------------------------------------------------------------
+    robots_path = os.path.join(root, "robots.txt")
+    if os.path.exists(robots_path):
+        robots_src = open(robots_path, encoding="utf-8", errors="ignore").read()
+        if re.search(r"(?im)^\s*disallow:\s*/\s*$", robots_src):
+            f.error("google-safety-robots-disallow-all", "robots.txt",
+                    "Disallow: / blocks the whole site")
+
+    sitemap_path = os.path.join(root, "sitemap.xml")
+    sitemap_urls = set()
+    if os.path.exists(sitemap_path):
+        sitemap_src = open(sitemap_path, encoding="utf-8", errors="ignore").read()
+        sitemap_urls = {u[len(domain):].rstrip("/") or "/"
+                         for u in re.findall(r"<loc>([^<]*)</loc>", sitemap_src)
+                         if u.startswith(domain)}
+
+    def path_of(rel):
+        path = "/" + rel[:-5]
+        path = "/" if path == "/index" else (path[:-6] if path.endswith("/index") else path)
+        return path.rstrip("/") or "/"
+
+    for rel, src in pages:
+        if path_of(rel) not in sitemap_urls and rel != "index.html":
+            continue
+        if re.search(r'name="robots"[^>]*content="[^"]*noindex', src, re.I):
+            f.error("google-safety-sitemap-noindex", rel,
+                    "listed in the sitemap but has a noindex meta tag")
+
+    for home_rel in ("index.html", "en.html", "es.html"):
+        fp = os.path.join(root, home_rel)
+        if not os.path.exists(fp):
+            continue
+        src = open(fp, encoding="utf-8", errors="ignore").read()
+        m = re.search(r'rel="canonical"[^>]*href="([^"]+)"', src)
+        if not m:
+            f.error("google-safety-home-no-canonical", home_rel, "home page has no canonical tag")
+        elif not m.group(1).startswith(domain):
+            f.error("google-safety-home-cross-domain-canonical", home_rel,
+                    f"canonical points at {m.group(1)}, not this domain")
+
+
 # ---------------------------------------------------------------- output
 
 def report(f, strict):
@@ -803,6 +1225,8 @@ def main():
         "bodies": lambda: check_bodies(root, f),
         "ctas": lambda: check_ctas(root, f),
         "og": lambda: check_og(root, domain, f),
+        "google-safety": lambda: check_google_safety(root, domain, f, a.base),
+        "google-safety": lambda: check_google_safety(root, domain, f, a.base),
     }
     if a.base:
         all_checks["content-loss"] = lambda: check_content_loss(root, a.base, f)

@@ -45,6 +45,37 @@ BRAND = {
     },
 }
 
+# T-126: every value here was a confirmed WCAG AA color-contrast failure (4.5:1 normal
+# text, 3:1 large/bold), measured by a real rendered sweep, not guessed —
+# SHIP/reference/tools/contrast-check.mjs, run across every public page on both sites at
+# 375px and 1280px, 2026-10-24. Each has already been replaced everywhere it was found
+# failing. This does NOT re-derive contrast from the cascade (that needs a real browser,
+# which this gate doesn't have) — it only catches these exact values coming back, the way
+# wrong-brand-colour catches a retired hex. A brand-new color pair this has never seen can
+# still fail silently; re-run contrast-check.mjs before any release that touches colors.
+# #0080D4 and #0071BC (MC's own primary blue) are NOT here on purpose: D-095 already
+# tracks that one as a deliberate, not-yet-authorized sitewide swap — see DECIDE/backlog.md.
+# Deliberately NOT in this list, even though they also measured as failures: #9CA3AF,
+# #6B7280, #DC2626, #007B7B/#0080D4/#0071BC. Each has dozens of OTHER, unverified uses
+# across both sites (a general-purpose muted grey, a standard danger-red, the primary
+# brand accents) that this gate has not individually confirmed pass contrast in their own
+# context — #0080D4/#0071BC additionally carry D-095's explicit "not yet" (backlog.md).
+# Blanket-flagging a hex with legitimate uses elsewhere is worse than not flagging it: it
+# trains everyone to ignore the gate. Every value actually listed here was re-verified
+# 2026-10-24 to have ZERO remaining `color:` occurrences anywhere in either repo.
+LOW_CONTRAST_COLORS = {
+    "beneficiosmedicare.com": {
+        "#27AE60": "#1E7E42", "#E67E22": "#AF5500", "#E74C3C": "#C8281C",
+        "#28A745": "#1E7D34 (skip-link)", "#E65100": "#AF5500 (AEP highlight-box)",
+        "#8896A6": "#5A6577", "#059669": "#1E7E42 (in .tag-checklist)",
+    },
+    "medicare-california.com": {
+        "#27AE60": "#1E7E42", "#E67E22": "#AF5500", "#E74C3C": "#C8281C",
+        "#94A3B8": "#5A6577", "#8896A6": "#5A6577",
+        "#059669": "#1E7E42 (in .tag-checklist)",
+    },
+}
+
 # "widget" covers widget.html / widget-v*.html: embedded JS apps, every one noindex
 # and absent from the sitemap. A page whose job is to be an iframe has few words BY
 # DESIGN, and reporting it as "blank or gutted" buried the two pages that really are.
@@ -356,6 +387,37 @@ def check_brand(root, domain, f):
         if len(re.findall(r":root\s*\{", src)) > 1:
             f.error("duplicate-root-block", rel,
                     "more than one :root{} — the wrong site's theme may be overriding")
+
+
+def check_contrast(root, domain, f):
+    """T-126: a value in LOW_CONTRAST_COLORS has no accessible use anywhere on this site —
+    it was found failing WCAG AA somewhere and replaced everywhere. Finding it again means
+    either an old draft got pasted back in, or a new element copied the wrong constant.
+    ERROR, not WARN: unlike a generic off-brand color this is a confirmed a11y regression.
+    Scans .css files too (check_brand does not), since that's where two of these actually
+    lived (blog.css tag colors) and a page-only scan would have missed them both times."""
+    host = domain.replace("https://", "").replace("http://", "").rstrip("/")
+    bad_colors = LOW_CONTRAST_COLORS.get(host)
+    if not bad_colors:
+        return
+    for dirpath, dirs, files in os.walk(root):
+        dirs[:] = [d for d in dirs if d not in SKIP_DIRS]
+        for fn in files:
+            if not (fn.endswith(".html") or fn.endswith(".css")):
+                continue
+            fp = os.path.join(dirpath, fn)
+            rel = os.path.relpath(fp, root)
+            if fn.endswith(".html") and is_non_public(rel):
+                continue
+            src = open(fp, encoding="utf-8", errors="ignore").read()
+            for bad, good in bad_colors.items():
+                # "color:", never "background-color:"/"border-color:" — those are a
+                # different property and were never what failed.
+                n = len(re.findall(r'(?<![a-zA-Z-])color\s*:\s*' + re.escape(bad),
+                                    src, re.I))
+                if n:
+                    f.error("low-contrast-colour", rel,
+                            f"{bad} x{n} — fails WCAG AA here, use {good}")
 
 
 def check_sitemap(root, domain, f):
@@ -985,6 +1047,116 @@ def check_google_safety(root, domain, f, base=None):
                     f"canonical points at {m.group(1)}, not this domain")
 
 
+# ---------------------------------------------------------------- T-126 part 3: dark-box link contrast
+
+def _srgb_to_linear(c):
+    c = c / 255
+    return c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4
+
+
+def _relative_luminance(r, g, b):
+    r, g, b = _srgb_to_linear(r), _srgb_to_linear(g), _srgb_to_linear(b)
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b
+
+
+def _parse_color(val):
+    """'#rgb' / '#rrggbb' / 'rgb(...)' / 'rgba(...)' -> (r, g, b, a) or None."""
+    val = val.strip()
+    m = re.match(r'#([0-9a-fA-F]{3})$', val)
+    if m:
+        h = m.group(1)
+        return (int(h[0] * 2, 16), int(h[1] * 2, 16), int(h[2] * 2, 16), 1.0)
+    m = re.match(r'#([0-9a-fA-F]{6})$', val)
+    if m:
+        h = m.group(1)
+        return (int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16), 1.0)
+    m = re.match(r'rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*([\d.]+))?\s*\)', val, re.I)
+    if m:
+        a = float(m.group(4)) if m.group(4) is not None else 1.0
+        return (int(m.group(1)), int(m.group(2)), int(m.group(3)), a)
+    return None
+
+
+def _bg_darkness(style, threshold=0.35):
+    """True = this inline background is dark enough that white text is the safe default;
+    False = light; None = no background declared, or translucent (<0.5 alpha) so a descendant
+    should still inherit whatever context it already had (a 10%-white overlay on a navy box
+    is still a navy box)."""
+    m = re.search(r'background(?:-color)?\s*:\s*([^;]+)', style or '', re.I)
+    if not m:
+        return None
+    c = _parse_color(m.group(1))
+    if not c:
+        return None
+    r, g, b, a = c
+    if a < 0.5:
+        return None
+    return _relative_luminance(r, g, b) < threshold
+
+
+def _has_explicit_light_style(attrs):
+    """A link is exempt from the heuristic if it already carries the project's own fix
+    (.sm-dark-link) or any inline color at all (a human already made a choice here;
+    check_contrast_heuristic only catches the NO-styling-at-all case the original bug was)."""
+    classes = (attrs.get('class') or '').split()
+    if 'sm-dark-link' in classes:
+        return True
+    style = attrs.get('style') or ''
+    return bool(re.search(r'(?<![-\w])color\s*:', style, re.I))
+
+
+class _DarkBoxParser(HTMLParser):
+    """Walks the DOM tracking inline-background darkness down the tree; flags an unstyled
+    tel:/mailto: link found while under a dark context."""
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.stack = [False]  # darkness context per open element, root = light
+        self.found = []       # (line, href)
+
+    def handle_starttag(self, tag, attrs):
+        a = {k: (v or '') for k, v in attrs}
+        dark = _bg_darkness(a.get('style'))
+        self.stack.append(self.stack[-1] if dark is None else dark)
+        if tag == 'a' and self.stack[-1]:
+            href = a.get('href', '')
+            if re.match(r'(?i)^(tel|mailto):', href) and not _has_explicit_light_style(a):
+                self.found.append((self.getpos()[0], href))
+        if tag in _VOID:
+            self.stack.pop()
+
+    def handle_endtag(self, tag):
+        if self.stack and tag not in _VOID:
+            self.stack.pop()
+
+
+def check_contrast_heuristic(root, f):
+    """T-126 (AB 2026-10-22): a tel:/mailto: link with no color set, inside a box whose own
+    inline style sets a dark background, renders in the browser's default blue on navy --
+    this is the exact defect that started the ticket. This is a cheap static proxy for the
+    real check (axe-core's color-contrast rule, run against the live, rendered page by
+    SHIP/reference/tools/contrast-check.mjs): it catches the known failure pattern on every
+    push without a browser, but a clean run here is not proof the site has zero contrast
+    issues -- re-run the real sweep periodically, the way widget-check.mjs is re-run for the
+    widget. A link already carrying .sm-dark-link or any inline color is trusted as a human
+    choice and left alone.
+    """
+    redirects = load_redirect_sources(root)
+    for fp, rel in iter_html(root):
+        if is_non_public(rel) or ("/" + rel[:-5]) in redirects:
+            continue
+        src = open(fp, encoding="utf-8", errors="ignore").read()
+        p = _DarkBoxParser()
+        try:
+            p.feed(src)
+        except Exception:
+            continue
+        for line, href in p.found:
+            f.error("contrast-dark-box-link", rel,
+                    f"line {line}: {href} has no color set inside a dark-background box "
+                    "(add class=\"sm-dark-link\" or an inline color)")
+
+
 # ---------------------------------------------------------------- output
 
 def report(f, strict):
@@ -1049,11 +1221,13 @@ def main():
         "team-pages": lambda: check_team_pages(root, domain, f),
         "figures": lambda: check_figures(root, figures_path, f),
         "brand": lambda: check_brand(root, domain, f),
+        "contrast": lambda: check_contrast(root, domain, f),
         "sitemap": lambda: check_sitemap(root, domain, f),
         "bodies": lambda: check_bodies(root, f),
         "ctas": lambda: check_ctas(root, f),
         "og": lambda: check_og(root, domain, f),
         "google-safety": lambda: check_google_safety(root, domain, f, a.base),
+        "contrast": lambda: check_contrast_heuristic(root, f),
     }
     if a.base:
         all_checks["content-loss"] = lambda: check_content_loss(root, a.base, f)

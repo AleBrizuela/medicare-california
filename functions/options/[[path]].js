@@ -5,15 +5,31 @@
  * preview would read the same. This Function serves that same file and rewrites the title and
  * description from the path, so the card says how many options and for which ZIP.
  *
+ * T-136 (2026-10-24): the image now varies by agent + language too, same SUSANA state map as
+ * beneficiosmedicare's opciones-compartidas.js. MC's own repo carries no zip->state data (it embeds
+ * beneficiosmedicare's widget rather than its own), so the state lookup is a plain cross-origin fetch
+ * of BM's public `/data/zip_index.js` -- a static asset, not a bound service, so a normal fetch() is
+ * the right tool (env.ASSETS only binds this Pages project's own files). Any failure (network, parse,
+ * unknown ZIP) falls through to the static file's own default (Alejandra, English): a shared link
+ * never breaks over an image choice.
+ *
  * Deliberately plain JavaScript with no dependencies: Cloudflare's build for these repos runs
  * generate_sitemap.py and nothing else, and adding a bundler is a change to the thing every release
- * depends on (BLUEPRINT's second always-ask trigger). The bespoke per-link IMAGE — card B+, a tile
- * per carrier — needs a rasteriser and therefore that build change; it is written on the ticket and
- * waits for AB. Until then the site's own card is the image: branded, correct, never broken.
+ * depends on (BLUEPRINT's second always-ask trigger).
  *
  * A Function takes precedence over the _redirects rewrite for this path, so it serves the page
  * itself. Anything unexpected falls through to the plain asset: a visitor always gets the page.
  */
+const SUSANA = { KS: 1, MO: 1, TX: 1, FL: 1 };
+
+// '"<key>":"<value>"' found by plain search -- same approach as BM's opciones-compartidas.js
+function pick(text, key) {
+  const k = '"' + key + '":"', i = text.indexOf(k);
+  if (i < 0) return '';
+  const j = text.indexOf('"', i + k.length);
+  return j < 0 ? '' : text.slice(i + k.length, j);
+}
+
 export async function onRequest(context) {
   const { request, env, params, next } = context;
   const url = new URL(request.url);
@@ -45,11 +61,34 @@ export async function onRequest(context) {
     const esc = s => String(s).replace(/[&<>"]/g,
       c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
+    // T-136: agent by state, same map as BM. Default stays Alejandra if the lookup fails.
+    let ak = 'alejandra';
+    try {
+      const zi = await fetch('https://beneficiosmedicare.com/data/zip_index.js');
+      if (zi.ok) {
+        const st = pick(await zi.text(), zip);
+        if (SUSANA[st]) ak = 'susana';
+      }
+    } catch (e) { /* keep default */ }
+
+    const img = `${url.origin}/og-plans-mc-${ak}-${en ? 'en' : 'es'}-20261024.jpg`;
+    const alt = ak === 'susana'
+      ? (en ? 'Susana Marcos, Medicare agent, Medicare-California.com' : 'Susana Marcos, agente de Medicare, Medicare-California.com')
+      : (en ? 'Alejandra Brizuela, Medicare agent, Medicare-California.com' : 'Alejandra Brizuela, agente de Medicare, Medicare-California.com');
+
     const html = (await res.text())
       .replace(/<meta property="og:title" content="[^"]*">/,
                `<meta property="og:title" content="${esc(title)}">`)
       .replace(/<title>[^<]*<\/title>/,
-               `<title>${esc(title)} | Medicare California</title>`);
+               `<title>${esc(title)} | Medicare California</title>`)
+      .replace(/<meta property="og:image" content="[^"]*">/,
+               `<meta property="og:image" content="${esc(img)}">`)
+      .replace(/<meta property="og:image:secure_url" content="[^"]*">/,
+               `<meta property="og:image:secure_url" content="${esc(img)}">`)
+      .replace(/<meta property="og:image:alt" content="[^"]*">/,
+               `<meta property="og:image:alt" content="${esc(alt)}">`)
+      .replace(/<meta name="twitter:image" content="[^"]*">/,
+               `<meta name="twitter:image" content="${esc(img)}">`);
 
     const headers = new Headers(res.headers);
     headers.set('content-type', 'text/html; charset=utf-8');

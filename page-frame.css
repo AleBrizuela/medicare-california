@@ -26,9 +26,10 @@ html body .t31-band{color:#fff;text-align:center;padding:40px 24px 48px!importan
 html body .t31-band h1{font-family:'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif!important;font-size:42px!important;font-weight:700!important;line-height:1.15!important;
   color:#fff!important;margin:0 auto 14px!important;padding:0!important;white-space:normal!important;max-width:960px}
 html body .t31-band p{font-size:18px!important;line-height:1.55!important;color:#DCE6EF!important;max-width:760px!important;margin:0 auto!important;padding:0!important;text-wrap:balance}
+html body .t31-band .zbx-title{color:#0B2D4F!important}
 /* the small label above the headline (Guía completa, Beneficios de Medicare): a light chip on the navy */
 html body .t31-band .section-label,html body .t31-band .blog-tag,html body .t31-band .article-tag{display:inline-block;margin:0 0 14px!important;padding:6px 14px!important;border-radius:999px;
-  background:rgba(255,255,255,.12)!important;color:var(--t31-accent)!important;font-size:13px!important;font-weight:700!important;letter-spacing:.08em;text-transform:uppercase;border:0!important}
+  background:#fff!important;color:var(--t31-navy)!important;font-size:13px!important;font-weight:700!important;letter-spacing:.08em;text-transform:uppercase;border:0!important}
 /* article headers: the band reaches both edges even inside a narrow column, without widening the page */
 html body .t54-gband{box-shadow:0 0 0 100vmax var(--t31-navy);clip-path:inset(0 -100vmax)}
 html body .t54-gband .blog-article-meta,html body .t54-gband .article-meta,html body .t54-gband .article-meta time,html body .t54-gband .blog-article-meta span,html body .t54-gband p.updated,html body .t54-gband p.updated strong{color:#DCE6EF!important}

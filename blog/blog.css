@@ -130,12 +130,12 @@ body {
   margin-bottom: 10px;
 }
 .tag-oep { background: #E8F2FC; color: #0068B0; }
-.tag-iep { background: #E0F2F1; color: #00796B; }
-.tag-guide { background: var(--light-blue); color: var(--soft-blue); }
+.tag-iep { background: #E0F2F1; color: #006E60; }
+.tag-guide { background: var(--light-blue); color: #006CB2; }
 .tag-aep { background: #FEF3C7; color: #92400E; }
 .tag-compare { background: #F0E6FF; color: #7C3AED; }
-.tag-tips { background: #FEE2E2; color: #DC2626; }
-.tag-checklist { background: #ECFDF5; color: #059669; }
+.tag-tips { background: #FEE2E2; color: #C8281C; }
+.tag-checklist { background: #ECFDF5; color: #1E7E42; }
 
 .blog-card-body {
   padding: 24px;
@@ -158,7 +158,7 @@ body {
 }
 .blog-card-meta {
   font-size: 12px;
-  color: #9CA3AF;
+  color: #5A6577;
   margin-top: 16px;
   padding-top: 12px;
   border-top: 1px solid #F3F4F6;

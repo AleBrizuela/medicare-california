@@ -1221,7 +1221,7 @@ def main():
         "team-pages": lambda: check_team_pages(root, domain, f),
         "figures": lambda: check_figures(root, figures_path, f),
         "brand": lambda: check_brand(root, domain, f),
-        "contrast": lambda: check_contrast(root, domain, f),
+        "low-contrast-colors": lambda: check_contrast(root, domain, f),
         "sitemap": lambda: check_sitemap(root, domain, f),
         "bodies": lambda: check_bodies(root, f),
         "ctas": lambda: check_ctas(root, f),

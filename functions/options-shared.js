@@ -41,10 +41,16 @@ export async function onRequestGet(context) {
 
     const zip = url.searchParams.get('zip') || '';
     const ids = (url.searchParams.get('p') || '').split(',').filter(x => /^[A-Z0-9-]{4,}$/i.test(x)).slice(0, 3);
-    if (!/^\d{5}$/.test(zip) || !ids.length) return res;
+    // T-139: a shared LIST link carries no plan ids at all (it replays filters, not a plan set), so
+    // its own count (n) and filter words (t) -- written by shareListURL() in widget-v4.html -- stand
+    // in for what `ids` gives the compare case below.
+    const listN = parseInt(url.searchParams.get('n') || '0', 10) || 0;
+    const isList = !ids.length && listN > 0;
+    if (!/^\d{5}$/.test(zip) || (!ids.length && !isList)) return res;
 
     const en = url.searchParams.get('lang') !== 'es';
-    const n = ids.length;
+    const n = isList ? listN : ids.length;
+    const t = isList ? (url.searchParams.get('t') || '') : '';
 
     // T-138: the title names the CITY (USPS default city + state), never the county -- the state
     // (for the agent) and the place (city, ZIP's own fallback) both come from BM's public data
@@ -63,8 +69,11 @@ export async function onRequestGet(context) {
 
     const where = place || (/^[A-Z]{2}$/.test(st) ? st : `ZIP ${zip}`);
     // T-138 (7): no "Medicare" -- the logo and the link already say it.
-    const title = en ? `${n} plan${n === 1 ? '' : 's'} for 2027 in ${where}`
-                     : `${n} plan${n === 1 ? '' : 'es'} 2027 en ${where}`;
+    const title = isList
+      ? (en ? `${n}${t ? ' ' + t : ''} plan${n === 1 ? '' : 's'} in ${where}`
+            : `${n} plan${n === 1 ? '' : 'es'}${t ? ' ' + t : ''} en ${where}`)
+      : en ? `${n} plan${n === 1 ? '' : 's'} for 2027 in ${where}`
+           : `${n} plan${n === 1 ? '' : 'es'} 2027 en ${where}`;
 
     const img = `${url.origin}/og-plans-mc-${ak}-${en ? 'en' : 'es'}-20261024.jpg`;
     const alt = ak === 'susana'

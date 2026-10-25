@@ -186,6 +186,12 @@ p,div,span{text-wrap:pretty}
   var EN  = q.get('lang') !== 'es';   // MC is the English site; Spanish is asked for
   var PRI = q.get('r') || '';
   var PRINT = q.get('print') === '1';
+  // T-139: a shared LIST link -- never plan ids, replayed instead by re-applying the same
+  // filters/sort/carrier to this zip's live plans (shareRenderList in widget-v4.html).
+  var LF = q.get('f') || '', LO = q.get('o') || '', LA = q.get('a') || '';
+  var LT = q.get('t') || '', LN = parseInt(q.get('n') || '0', 10) || 0;
+  var SHARE_ID = q.get('share_id') || '';
+  var LIST = !IDS.length && /^\d{5}$/.test(ZIP) && (LF || LO || LA || LN > 0);
   document.documentElement.lang = EN ? 'en' : 'es';
 
   var T = {
@@ -264,7 +270,7 @@ p,div,span{text-wrap:pretty}
       '</p><p><a href="/">' + (EN ? 'Find plans for your ZIP code' : 'Busque planes para su código postal') +
       '</a></p><p>' + T.cw + '<a href="tel:+13105979142">' + TEL + '</a></p></div>';
   }
-  if (!/^\d{5}$/.test(ZIP) || !IDS.length) { fail(); return; }
+  if (!/^\d{5}$/.test(ZIP) || (!IDS.length && !LIST)) { fail(); return; }
 
   // The frame is the plan finder with its UI switched off. On medicare-california it is loaded from
   // beneficiosmedicare, where the CMS files live; everywhere else it is this same site.
@@ -283,12 +289,15 @@ p,div,span{text-wrap:pretty}
     var d = e.data;
     if (!d || d.type !== 'widget-plans-result' || d.rid !== rid) return;
     done = true; clearTimeout(timer);
+    if (LIST) { if (!d.ok || !d.html || !d.css) { fail(); return; } try { renderList(d); } catch (err) { fail(); } return; }
     if (!d.ok || !d.plans.length) { fail(); return; }
     render(d);
   });
   frame.addEventListener('load', function(){
     try {
-      frame.contentWindow.postMessage({type:'widget-plans', rid:rid, zip:ZIP, ids:IDS, r:PRI}, WIDGET_HOST);
+      frame.contentWindow.postMessage(LIST
+        ? {type:'widget-plans', rid:rid, zip:ZIP, f:LF, o:LO, a:LA, list:true}
+        : {type:'widget-plans', rid:rid, zip:ZIP, ids:IDS, r:PRI}, WIDGET_HOST);
     } catch (err) { fail(); }
   });
   frame.src = WIDGET_HOST + '/widget-v4.html?data=1&theme=california&lang=' + (EN ? 'en' : 'es');
@@ -395,6 +404,72 @@ p,div,span{text-wrap:pretty}
   function placeSugBox(){
     var cells = document.querySelectorAll('.v.sug');
     if (cells.length) cells[cells.length - 1].classList.add('vlast');
+  }
+
+  /* T-139: a shared LIST link, not a compare of specific ids -- shareRenderList (widget-v4.html,
+     loaded from beneficiosmedicare per WIDGET_HOST above) re-applies the link's own filters/sort/
+     carrier to this zip's live plans and hands back the widget's own plan-card markup, read-only, in
+     a shadow root carrying the widget's own stylesheet (same reuse principle as beneficiosmedicare's
+     opciones-compartidas.html: one card template, never a second copy for this page to drift from). */
+  function part(host, css, html){
+    var root = host.attachShadow({mode:'open'});
+    root.innerHTML = '<style>' + css.replace(/:root\b/g, ':host') + ':host{display:block}</style>' + html;
+    return root;
+  }
+  // The onclick on every card opens a detail screen that only exists inside the live, interactive
+  // widget; this page shows the list read-only, so the dead handler and the "View details" link that
+  // would do nothing are both removed rather than left looking tappable.
+  function stripDeadCardLinks(html){
+    return String(html || '')
+      .replace(/\sonclick="cardTap\([^"]*\)"/g, '')
+      .replace(/<div class="pc-det">[\s\S]*?<\/div>/g, '');
+  }
+  // T-139: "N [filter words] plans in CITY" / "N planes [filter words] en CITY" -- LT is the exact
+  // plain words the sender's own results headline showed (typeNameWords + priorityNameWords,
+  // widget-v4.html resultsTitlePlain), carried in the link so this page never recomputes it. English
+  // puts the words BEFORE "plan(s)" ("8 HMO plans"), Spanish AFTER ("8 planes HMO") -- same order
+  // resultsTitlePlain uses, not the same position in both languages.
+  function listTitleBase(n){
+    return LT ? (EN ? n + ' ' + LT + ' plan' + (n === 1 ? '' : 's') : n + ' plan' + (n === 1 ? '' : 'es') + ' ' + LT)
+              : (EN ? n + ' plan' + (n === 1 ? '' : 's') : n + ' plan' + (n === 1 ? '' : 'es'));
+  }
+  function renderList(d){
+    var n = d.n || 0;
+    if (!n) { fail(); return; }
+    var when = new Date().toLocaleDateString(EN ? 'en-US' : 'es-ES', {day:'numeric', month:'short', year:'numeric'});
+    var place = placeText(ZIP, d.city);
+    document.title = listTitleBase(n) + (EN ? ' in ' : ' en ') + place + ' | Medicare California';
+
+    document.getElementById('out').innerHTML =
+      '<div class="sheet">' +
+        '<div class="hdr2">' +
+          '<div class="logo2"><a href="/" aria-label="Medicare California home" ' +
+            'style="display:inline-block;text-decoration:none">' + LOGO + '</a></div><div class="sep2"></div>' +
+          '<div class="who2"><img src="' + IMGBASE + 'images/alejandra-headshot.jpg" alt="Alejandra Brizuela" width="46" height="46">' +
+            '<div><div class="lab2">' + esc(T.adv) + '</div><div class="nm2">Alejandra Brizuela</div>' +
+            '<div class="em2"><a href="mailto:alejandra@medicare-california.com" style="color:inherit;text-decoration:none">Alejandra@Medicare-California.com</a></div></div></div>' +
+          '<div class="sep2"></div>' +
+          '<div class="call2"><div class="lab2">' + esc(T.call) + '</div>' +
+            '<div class="ph2"><a href="tel:+13105979142" style="color:inherit;text-decoration:none">' + TEL + '</a></div></div>' +
+        '</div>' +
+        '<div class="band2"><h1>' + esc(listTitleBase(n)) + ' <em>' + placePill(ZIP, d.city) + '</em></h1>' +
+          '<div class="dl"><span class="gold">' + T.before + '</span>' +
+            '<span class="plain">' + esc(T.start) + '</span></div></div>' +
+        '<div class="listw" id="listA"></div>' +
+        '<div class="cta2"><div class="c2t">' + esc(T.q) + '</div>' +
+          '<div class="c2p">' + esc(T.cw) + '<b>' + TEL + '</b></div>' +
+          '<div class="c2w">Medicare-California.com</div></div>' +
+        '<p class="disc">' + esc(T.disc) + ' ' + esc(T.sent) + esc(when) + '.</p>' +
+      '</div>' +
+      '<div class="fix"><a class="l" href="tel:+13105979142">' + esc(T.callb) + '</a>' +
+        '<a class="w" href="https://wa.me/13105979142" target="_blank" rel="noopener">WhatsApp</a></div>';
+
+    part(document.getElementById('listA'), d.css, stripDeadCardLinks(d.html));
+    if (window.gtag) window.gtag('event', 'list_share_view', {plans:n, zip3:ZIP.slice(0,3), lang:EN?'en':'es', share_id:SHARE_ID});
+    if (PRINT) setTimeout(function(){
+      document.title = place + ' - ' + (EN ? '2027 Plans' : 'Planes 2027') + ' - ' + when;
+      window.print();
+    }, 600);
   }
 
   var IMGBASE = '/';   // this site has its own copy of the headshot

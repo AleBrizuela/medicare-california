@@ -1157,6 +1157,59 @@ def check_contrast_heuristic(root, f):
                     "(add class=\"sm-dark-link\" or an inline color)")
 
 
+# ---------------------------------------------------------------- T-138 place display
+
+# Only the files this ticket touched here: MC embeds beneficiosmedicare's widget rather than
+# carrying its own, so the plan-finder logic (widget-v4.html, dualLine's one deliberate county
+# exception) lives only in BM's gate -- this one covers MC's own shared/compare page and its
+# link-preview edge Functions. Site copy elsewhere (e.g. SHIP-hotline disclaimer boilerplate on
+# article pages) is a different, legitimate use of "county" and is deliberately out of scope.
+PLACE_DISPLAY_FILES = (
+    "options-shared.html",
+    "functions/options-shared.js", "functions/options/[[path]].js",
+)
+
+
+def _strip_js_comments(src):
+    # Cheap and not string-aware (a "//" inside a string literal would get stripped too), but
+    # this check only needs to find a comment EXPLAINING county logic vs. a real visitor-facing
+    # string, and every false negative here still gets caught on next read, per CLAUDE.md.
+    src = re.sub(r"/\*.*?\*/", " ", src, flags=re.S)
+    return re.sub(r"//[^\n]*", "", src)
+
+
+def check_place_display(root, f):
+    """T-138 (D-110, AB 2026-10-25 "nicely represented every time we speak of someone's zip
+    code, end to end"): a visitor is never shown the giant county where the city (placeText()/
+    placePill(), beneficiosmedicare.com/data/zip_city.js) could run instead. Catches the two
+    shapes of the bug that actually shipped before this ticket: a "ZIP 90230"-style display
+    built straight from the ZIP with no place name, and a sentence naming "your county" as the
+    visitor's own place. Scoped to the files T-138 touched (see PLACE_DISPLAY_FILES) -- this is
+    a regression check for the mechanism this ticket built, not a sitewide ban on the word
+    "county" (plenty of legitimate uses remain, e.g. SHIP-hotline disclaimer copy elsewhere).
+    Like every check in this gate, a clean run means these two exact shapes weren't found here
+    today, not that no county string can ever reach a visitor -- audit by hand whenever this
+    check or the files it covers change (CLAUDE.md).
+    """
+    bullet_zip = re.compile(r"·\s*ZIP\b")
+    county_phrase = re.compile(r"\b(your|this|su|este)\s+(county|condado)\b", re.IGNORECASE)
+
+    for rel in PLACE_DISPLAY_FILES:
+        fp = os.path.join(root, rel)
+        if not os.path.isfile(fp):
+            continue
+        src = open(fp, encoding="utf-8", errors="ignore").read()
+        for m in bullet_zip.finditer(src):
+            f.error("place-display-zip", rel,
+                    f'line {src.count(chr(10), 0, m.start()) + 1}: "· ZIP" display '
+                    "-- use placeText()/placePill() instead")
+        clean = _strip_js_comments(src)
+        for m in county_phrase.finditer(clean):
+            f.error("place-display-county", rel,
+                    f'line {clean.count(chr(10), 0, m.start()) + 1}: visitor-facing '
+                    f'"{m.group(0)}" -- show the city (placeText()/d.city), not the county')
+
+
 # ---------------------------------------------------------------- output
 
 def report(f, strict):
@@ -1228,6 +1281,7 @@ def main():
         "og": lambda: check_og(root, domain, f),
         "google-safety": lambda: check_google_safety(root, domain, f, a.base),
         "contrast": lambda: check_contrast_heuristic(root, f),
+        "place-display": lambda: check_place_display(root, f),
     }
     if a.base:
         all_checks["content-loss"] = lambda: check_content_loss(root, a.base, f)

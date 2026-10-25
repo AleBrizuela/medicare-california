@@ -46,25 +46,25 @@ export async function onRequestGet(context) {
     const en = url.searchParams.get('lang') !== 'es';
     const n = ids.length;
 
-    // AB 2026-10-24: the title should name the place, same as BM's opciones-compartidas ("en Cass,
-    // MO"), not just the bare ZIP -- the state (for the agent) and the county (for the place name)
-    // both come from BM's public data files, same cross-origin fetch as the agent lookup below.
-    let ak = 'alejandra', st = '', county = '';
+    // T-138: the title names the CITY (USPS default city + state), never the county -- the state
+    // (for the agent) and the place (city, ZIP's own fallback) both come from BM's public data
+    // files, same cross-origin fetch as the agent lookup always used (MC's own repo carries no
+    // zip->place data; it embeds BM's widget rather than its own).
+    let ak = 'alejandra', st = '', place = '';
     try {
       const zi = await fetch('https://beneficiosmedicare.com/data/zip_index.js');
       if (zi.ok) {
         st = pick(await zi.text(), zip);
         if (SUSANA[st]) ak = 'susana';
       }
-      if (/^[A-Z]{2}$/.test(st)) {
-        const pf = await fetch(`https://beneficiosmedicare.com/data/plans_${st}_2027.json`);
-        if (pf.ok) county = pick(await pf.text(), zip);
-      }
+      const zc = await fetch('https://beneficiosmedicare.com/data/zip_city.js');
+      if (zc.ok) place = pick(await zc.text(), zip);
     } catch (e) { /* keep defaults */ }
 
-    const where = /^[A-Z]{2}$/.test(st) ? (county ? `${county}, ${st}` : st) : `ZIP ${zip}`;
-    const title = en ? `${n} Medicare plan${n === 1 ? '' : 's'} for 2027 in ${where}`
-                     : `${n} plan${n === 1 ? '' : 'es'} de Medicare 2027 en ${where}`;
+    const where = place || (/^[A-Z]{2}$/.test(st) ? st : `ZIP ${zip}`);
+    // T-138 (7): no "Medicare" -- the logo and the link already say it.
+    const title = en ? `${n} plan${n === 1 ? '' : 's'} for 2027 in ${where}`
+                     : `${n} plan${n === 1 ? '' : 'es'} 2027 en ${where}`;
 
     const img = `${url.origin}/og-plans-mc-${ak}-${en ? 'en' : 'es'}-20261024.jpg`;
     const alt = ak === 'susana'

@@ -53,23 +53,26 @@ export async function onRequest(context) {
 
     const en = url.searchParams.get('lang') !== 'es';
     const n = Math.min(ids.length, 3);
-    // T-113: no description -- the image carries the tagline, agent name and phone; this path is
-    // unreached today (SHARE_READABLE_PATH is off in the widget), kept consistent in case it's ever
-    // re-enabled.
-    const title = en ? `${n} Medicare plan${n === 1 ? '' : 's'} for 2027 · ZIP ${zip}`
-                     : `${n} plan${n === 1 ? '' : 'es'} de Medicare 2027 · ZIP ${zip}`;
     const esc = s => String(s).replace(/[&<>"]/g,
       c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
-    // T-136: agent by state, same map as BM. Default stays Alejandra if the lookup fails.
-    let ak = 'alejandra';
+    // T-136: agent by state, same map as BM. T-138: the place is the city (never the county),
+    // same cross-origin data file as BM's own functions. Both default to the plain ZIP / Alejandra
+    // if a lookup fails; this path is unreached today (SHARE_READABLE_PATH is off in the widget),
+    // kept consistent in case it's ever re-enabled.
+    let ak = 'alejandra', place = '';
     try {
       const zi = await fetch('https://beneficiosmedicare.com/data/zip_index.js');
       if (zi.ok) {
         const st = pick(await zi.text(), zip);
         if (SUSANA[st]) ak = 'susana';
       }
-    } catch (e) { /* keep default */ }
+      const zc = await fetch('https://beneficiosmedicare.com/data/zip_city.js');
+      if (zc.ok) place = pick(await zc.text(), zip);
+    } catch (e) { /* keep defaults */ }
+    const where = place || `ZIP ${zip}`;
+    const title = en ? `${n} plan${n === 1 ? '' : 's'} for 2027 in ${where}`
+                     : `${n} plan${n === 1 ? '' : 'es'} 2027 en ${where}`;
 
     const img = `${url.origin}/og-plans-mc-${ak}-${en ? 'en' : 'es'}-20261024.jpg`;
     const alt = ak === 'susana'

@@ -16,3 +16,13 @@
 
 /images/*
   Cache-Control: public, max-age=604800
+
+# T-147 (AB 2026-10-25): same fix as BM -- the footer/header source fragments live here,
+# publicly served, no <title>, and Google can index them as "Untitled" results. stamp-shared.mjs
+# copies their content INTO every real page at commit time; no live page fetches these at request
+# time (verified: no fetch()/XHR reference to partials/ anywhere in the repo). noindex, not a
+# block, per the ticket, so re-crawling the real pages that quote this content is unaffected.
+# robots.txt is deliberately NOT touched. MC has no data/, experiments/, social/, widget*.html or
+# presentacion*/presentation* of its own, so those BM-only patterns are not mirrored here.
+/partials/*
+  X-Robots-Tag: noindex

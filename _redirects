@@ -74,6 +74,14 @@
 /.gitignore              /           301
 /CNAME                   /           301
 
+# T-147 (AB 2026-10-25): same leak as BM. SHIP/now/*.md are this repo's own internal release
+# reports (T-108 summaries etc.), live at 200. tools/ scripts listed individually, not as
+# /tools/* -- MC's tools/ holds only these two scripts, no reachable tool page to protect, but
+# matching BM's explicit-file style rather than a directory wildcard in case that changes.
+/SHIP/*                        /     301
+/tools/check-shared.mjs        /     301
+/tools/stamp-shared.mjs        /     301
+
 # T-044 (AB 2026-10-07): the team page moved to /team, with its Spanish twin at /equipo.
 /authors                 /team       301
 /authors.html            /team       301

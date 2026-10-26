@@ -1,6 +1,23 @@
 <!doctype html>
 <html lang="en">
 <head>
+<!-- T-139: this page never had a GA4 tag of its own, so its gtag(...) calls below (shared_page_view,
+     list_share_view) were always silent no-ops -- found testing T-139's "GA4 share_id arrives"
+     requirement. Same bootstrap as BM's opciones-compartidas.html: the address is sent WITHOUT its
+     query string (the ZIP, the plan ids/filters and the page title, which names the ZIP, never reach
+     GA4), and the same bm_tester/?qa=1 flag every other MC and BM page already uses. -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  (function(){var t=false;try{var q=/[?&]qa=([01])(?=&|#|$)/.exec(location.search);if(q){if(q[1]==='1')localStorage.setItem('bm_tester','1');else localStorage.removeItem('bm_tester');}t=localStorage.getItem('bm_tester')==='1';}catch(e){t=/[?&]qa=1(?=&|#|$)/.test(location.search);}window.bmTester=t;window.bmInternal=t||/\.pages\.dev$/i.test(location.hostname);if(window.bmInternal)gtag('set',{traffic_type:'internal'});})();
+  gtag('js', new Date());
+  gtag('config', 'G-QT10YEXDCJ', {page_location: location.origin + location.pathname, page_title: 'Shared options'});
+  setTimeout(function(){
+    var s=document.createElement('script');
+    s.src='https://www.googletagmanager.com/gtag/js?id=G-QT10YEXDCJ';
+    document.head.appendChild(s);
+  },3000);
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <!-- T-078: the page a shared link opens. Not for search engines: it is one person's three plans,

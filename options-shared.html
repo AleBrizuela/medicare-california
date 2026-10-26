@@ -433,13 +433,22 @@ p,div,span{text-wrap:pretty}
     root.innerHTML = '<style>' + css.replace(/:root\b/g, ':host') + ':host{display:block}</style>' + html;
     return root;
   }
-  // The onclick on every card opens a detail screen that only exists inside the live, interactive
-  // widget; this page shows the list read-only, so the dead handler and the "View details" link that
-  // would do nothing are both removed rather than left looking tappable.
+  // The onclick on every card (cardTap) opens a detail screen that only exists inside the live,
+  // interactive widget, so it is stripped -- the card itself stays non-tappable on this read-only
+  // page. AMENDMENT B (T-139, AB 2026-10-25): the "View details ›" button inside .pc-det is NOT
+  // dropped -- it's rewired from the dead openPlan() call to a real link to this same page's own
+  // single-plan view (zip+p+hoy+lang, the existing MP_SINGLE path), same tab.
+  function detailURL(id){
+    return location.pathname + '?zip=' + encodeURIComponent(ZIP) + '&p=' + encodeURIComponent(id) +
+      '&hoy=' + encodeURIComponent(id) + '&lang=' + (EN ? 'en' : 'es');
+  }
   function stripDeadCardLinks(html){
     return String(html || '')
       .replace(/\sonclick="cardTap\([^"]*\)"/g, '')
-      .replace(/<div class="pc-det">[\s\S]*?<\/div>/g, '');
+      .replace(/(data-pid="([^"]+)"[\s\S]*?)<div class="pc-det">[\s\S]*?<\/div>/g, function(_, pre, id){
+        return pre + '<div class="pc-det"><a class="pc-detl" href="' + esc(detailURL(id)) +
+          '" data-plan-detail="' + esc(id) + '">' + esc(EN ? 'See details' : 'Ver detalles') + ' ›</a></div>';
+      });
   }
   // T-139: "N [filter words] plans in CITY" / "N planes [filter words] en CITY" -- LT is the exact
   // plain words the sender's own results headline showed (typeNameWords + priorityNameWords,
@@ -501,6 +510,16 @@ p,div,span{text-wrap:pretty}
       '<tspan x="54" font-size="26" font-weight="700" fill="#1a1a1a">Medicare</tspan>' +
       '<tspan font-size="26" font-weight="700" fill="#3D9BE9">-California</tspan>' +
       '<tspan font-size="26" font-weight="600" fill="#5d6b78">.com</tspan></text></svg>';
+
+  // AMENDMENT B (T-139): "See details ›" on a shared-list card, before the click navigates away.
+  // Shadow-root aware (composedPath), same technique as BM's shared_call listener.
+  document.addEventListener('click', function(e){
+    if (!window.gtag) return;
+    var path = e.composedPath ? e.composedPath() : [e.target], a = null;
+    for (var i = 0; i < path.length && !a; i++) if (path[i] && path[i].tagName === 'A' && path[i].hasAttribute && path[i].hasAttribute('data-plan-detail')) a = path[i];
+    if (!a) return;
+    window.gtag('event', 'shared_list_details', {plan_id:a.getAttribute('data-plan-detail'), zip3:ZIP.slice(0,3), lang:EN?'en':'es'});
+  }, true);
 })();
 </script>
 </body>

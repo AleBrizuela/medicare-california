@@ -11,6 +11,17 @@
 /blog/oep-ending-california-2026.html /blog/california-medicare-oep-ends-march-2026 301
 /blog/oep-ending-california-2026 /blog/california-medicare-oep-ends-march-2026 301
 
+# T-150 (2026-10-26): blog cluster consolidations, same-topic posts merged into the
+# stronger GSC performer, unique facts moved into the keeper before retiring.
+/blog/medicare-part-d-drug-coverage-california.html /blog/medicare-parte-d-medicamentos-california 301
+/blog/medicare-part-d-drug-coverage-california /blog/medicare-parte-d-medicamentos-california 301
+/blog/medicare-preventive-care-california.html /blog/free-medicare-preventive-services-california 301
+/blog/medicare-preventive-care-california /blog/free-medicare-preventive-services-california 301
+/blog/medicare-dental-coverage-california.html /blog/medicare-dental-vision-hearing-california 301
+/blog/medicare-dental-coverage-california /blog/medicare-dental-vision-hearing-california 301
+/blog/medicare-diabetes-cobertura-california.html /blog/medicare-diabetes-coverage-california 301
+/blog/medicare-diabetes-cobertura-california /blog/medicare-diabetes-coverage-california 301
+
 # 301 redirects: Spanish pages that were wrongly hosted same-domain (violates the
 # cross-site bilingual rule) now point to their real Spanish home on beneficiosmedicare.com.
 # Preserves existing organic ranking/impressions instead of 404ing them.

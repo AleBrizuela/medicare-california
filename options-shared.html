@@ -195,6 +195,10 @@ p,div,span{text-wrap:pretty}
    plan. On medicare-california the same frame is loaded from beneficiosmedicare, which is where the
    plan data lives, and the reply is origin-checked at both ends. */
 (function(){
+  // AMENDMENT B (T-139): the browser's own scroll restoration on Back raced the manual restore
+  // below and won (list re-renders async, after bfcache-less reload) -- measured on staging, not
+  // guessed. 'manual' leaves scroll position entirely to the code below.
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   var seg = location.pathname.split('/').filter(Boolean);   // ["options","90230","H0504-056",...]
   var q   = new URLSearchParams(location.search);
   var ZIP = seg[1] || q.get('zip') || '';

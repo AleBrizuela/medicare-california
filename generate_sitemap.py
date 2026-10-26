@@ -108,7 +108,7 @@ def scan_local_files(directory, domain):
     domain = domain.rstrip("/")
     directory = os.path.abspath(directory)
 
-    skip = {".git", "node_modules", ".github", "__pycache__", ".cloudflare"}
+    skip = {".git", "node_modules", ".github", "__pycache__", ".cloudflare", "partials"}
 
     for root, dirs, files in os.walk(directory):
         dirs[:] = [d for d in dirs if d not in skip]

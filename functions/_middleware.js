@@ -31,6 +31,35 @@ const EXACT = new Set([
 
 const PREFIXES = ['/.github/', '/SHIP/'];
 
+/* T-135 (2026-10-26) · same gap, different shape: a page retired in the SAME deploy that adds
+ * its own _redirects rule does not actually redirect -- confirmed live (cache-busted, and on a
+ * brand-new branch preview with no prior cache at all) still 404s instead of 301ing, for both
+ * these brand-new rules AND a long-standing, previously-working blog redirect tested the same
+ * way. Not yet root-caused; a Pages Function is the one mechanism already proven to take
+ * precedence (see the comment above), so retired city pages route through it too. Keep this map
+ * in sync with the matching _redirects block (still present, belt-and-suspenders). The hard
+ * split here (not reused from EXACT's redirect-to-home) is deliberate: these need a per-page
+ * target, not just "/".
+ */
+const CITY_REDIRECTS = new Map([
+  ['/california/cities/beverly-hills', '/california/cities/los-angeles'],
+  ['/california/cities/culver-city', '/california/cities/los-angeles'],
+  ['/california/cities/del-rey', '/california/cities/los-angeles'],
+  ['/california/cities/el-segundo', '/california/cities/los-angeles'],
+  ['/california/cities/mar-vista', '/california/cities/los-angeles'],
+  ['/california/cities/marina-del-rey', '/california/cities/los-angeles'],
+  ['/california/cities/mid-city', '/california/cities/los-angeles'],
+  ['/california/cities/playa-del-rey', '/california/cities/los-angeles'],
+  ['/california/cities/playa-vista', '/california/cities/los-angeles'],
+  ['/california/cities/santa-monica', '/california/cities/los-angeles'],
+  ['/california/cities/westchester', '/california/cities/los-angeles'],
+  ['/california/cities/san-jose', '/best-medicare-advantage-california'],
+  ['/california/cities/san-francisco', '/best-medicare-advantage-california'],
+  ['/california/cities/sacramento', '/best-medicare-advantage-california'],
+  ['/california/cities/fresno', '/best-medicare-advantage-california'],
+  ['/california/cities/bakersfield', '/best-medicare-advantage-california'],
+]);
+
 export async function onRequest(context) {
   const { request, next } = context;
   const url = new URL(request.url);
@@ -38,6 +67,11 @@ export async function onRequest(context) {
 
   if (EXACT.has(path) || PREFIXES.some(p => path.startsWith(p))) {
     return Response.redirect(new URL('/', url.origin).toString(), 301);
+  }
+
+  const cityTarget = CITY_REDIRECTS.get(path.replace(/\.html$/, ''));
+  if (cityTarget) {
+    return Response.redirect(new URL(cityTarget, url.origin).toString(), 301);
   }
 
   return next();

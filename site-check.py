@@ -827,6 +827,27 @@ def _page_type(rel):
     return "/".join(parts[:-1])
 
 
+LOOKALIKE_THRESHOLD = 0.20  # T-151 (2026-10-26): copied 5-word phrases, replaces word-overlap quick_ratio 40%
+
+
+def _shingles(words, n=5):
+    """Set of contiguous n-word phrases. Order-sensitive (unlike quick_ratio's LCS-style
+    measure), so it catches copy-pasted sentences and ignores pages that just happen to
+    share the same vocabulary in a different order."""
+    if len(words) < n:
+        return set()
+    return {tuple(words[i:i + n]) for i in range(len(words) - n + 1)}
+
+
+def _lookalike_ratio(words_a, words_b, n=5):
+    """Fraction of the smaller page's 5-word phrases that are copied onto the other page.
+    None if either side has fewer than n words (too short to measure meaningfully)."""
+    sa, sb = _shingles(words_a, n), _shingles(words_b, n)
+    if not sa or not sb:
+        return None
+    return len(sa & sb) / min(len(sa), len(sb))
+
+
 def _core_words(src):
     """Visible text with header/nav/footer AND any stamped shared block (zip box, lang-cta,
     etc. -- anything between <!-- shared:X --> markers) stripped, so two pages sharing
@@ -900,11 +921,11 @@ def check_google_safety(root, domain, f, base=None):
                 rel_b, words_b = items[j]
                 if not words_a or not words_b:
                     continue
-                ratio = difflib.SequenceMatcher(None, words_a, words_b).quick_ratio()
-                if ratio <= 0.40:
+                ratio = _lookalike_ratio(words_a, words_b)
+                if ratio is None or ratio <= LOOKALIKE_THRESHOLD:
                     continue
                 seen_pairs += 1
-                detail = f"{ratio:.0%} identical to {rel_b}"
+                detail = f"{ratio:.0%} copied 5-word phrases with {rel_b}"
                 touched = changed is not None and (rel_a in changed or rel_b in changed)
                 is_new_pairing = False
                 if touched:
@@ -915,15 +936,15 @@ def check_google_safety(root, domain, f, base=None):
                     elif not old_a or not old_b:
                         is_new_pairing = True  # one side is a brand-new page
                     else:
-                        old_ratio = difflib.SequenceMatcher(None, old_a, old_b).quick_ratio()
-                        is_new_pairing = old_ratio <= 0.40
+                        old_ratio = _lookalike_ratio(old_a, old_b)
+                        is_new_pairing = old_ratio is None or old_ratio <= LOOKALIKE_THRESHOLD
                 if is_new_pairing:
                     f.error("google-safety-lookalike", rel_a, detail)
                 else:
                     f.warn("google-safety-lookalike-existing", rel_a, detail)
     if seen_pairs:
         f.warn("google-safety-lookalike-count", "-",
-               f"{seen_pairs} page pair(s) over the 40% look-alike threshold site-wide "
+               f"{seen_pairs} page pair(s) over the {LOOKALIKE_THRESHOLD:.0%} copied-phrase threshold site-wide "
                "(T-135 cleanup target)")
 
     # (b) bulk ----------------------------------------------------------------------

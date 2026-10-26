@@ -78,7 +78,7 @@
     <loc>https://medicare-california.com/blog/free-medicare-preventive-services-california</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/free-medicare-preventive-services-california" />
     <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/free-medicare-preventive-services-california" />
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -204,18 +204,10 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://medicare-california.com/blog/medicare-dental-coverage-california</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-dental-coverage-california" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/medicare-dental-california" />
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://medicare-california.com/blog/medicare-dental-vision-hearing-california</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-dental-vision-hearing-california" />
     <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/medicare-dental-vision-hearing-california" />
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -223,7 +215,7 @@
     <loc>https://medicare-california.com/blog/medicare-diabetes-coverage-california</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-diabetes-coverage-california" />
     <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/medicare-diabetes-california" />
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -286,14 +278,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://medicare-california.com/blog/medicare-part-d-drug-coverage-california</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-part-d-drug-coverage-california" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/medicamentos-medicare-parte-d-california" />
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://medicare-california.com/blog/medicare-parte-a-california</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-parte-a-california" />
     <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/medicare-parte-a-california" />
@@ -302,11 +286,10 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://medicare-california.com/blog/medicare-preventive-care-california</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-preventive-care-california" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/beneficios-preventivos-medicare-california" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/blog/medicare-preventive-care-california" />
-    <lastmod>2026-09-26</lastmod>
+    <loc>https://medicare-california.com/blog/medicare-parte-d-medicamentos-california</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-parte-d-medicamentos-california" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/medicare-parte-d-medicamentos-california" />
+    <lastmod>2026-09-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

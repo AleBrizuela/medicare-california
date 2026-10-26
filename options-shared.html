@@ -490,13 +490,17 @@ p,div,span{text-wrap:pretty}
   }
 
   var IMGBASE = '/';   // this site has its own copy of the headshot
-  var LOGO = '<svg viewBox="0 0 370 48" width="250" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Medicare California">' +
+  /* AMENDMENT A (T-139, AB 2026-10-25 17:25): "-California" (hyphen matches the real domain) +
+     ".com" #5d6b78 600 appended, no gap before either -- viewBox/width widened to fit
+     (370->378 / 250->255), nothing else about the mark changed. */
+  var LOGO = '<svg viewBox="0 0 378 48" width="255" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Medicare-California.com">' +
     '<defs><linearGradient id="shLogo" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#0080D4"/><stop offset="100%" style="stop-color:#0071BC"/></linearGradient></defs>' +
     '<path d="M23 2 L43 10 L43 26 C43 37 35 43 23 49 C11 43 3 37 3 26 L3 10 Z" fill="url(#shLogo)"/>' +
     '<path d="M200 272 C150 236 132 212 132 184 C132 160 150 144 172 144 C185 144 195 151 200 160 C205 151 215 144 228 144 C250 144 268 160 268 184 C268 212 250 236 200 272 Z" fill="#fff" transform="translate(23 26) scale(0.181) translate(-200 -208)"/>' +
     '<text y="34" font-family="\'Open Sans\',Arial,sans-serif">' +
       '<tspan x="54" font-size="26" font-weight="700" fill="#1a1a1a">Medicare</tspan>' +
-      '<tspan dx="6" font-size="26" font-weight="700" fill="#3D9BE9">California</tspan></text></svg>';
+      '<tspan font-size="26" font-weight="700" fill="#3D9BE9">-California</tspan>' +
+      '<tspan font-size="26" font-weight="600" fill="#5d6b78">.com</tspan></text></svg>';
 })();
 </script>
 </body>

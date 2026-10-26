@@ -91,9 +91,9 @@
 .soc .fol{font-size:17px;line-height:1.25;color:var(--navy)}
 .soc .folt{grid-area:t;margin:0;font-size:14px;color:#6b7280;text-wrap:pretty}
 .soc .soclinks{grid-area:l;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-top:8px}
-.soclinks a{display:inline-flex;align-items:center}
+.soclinks a{display:inline-flex;align-items:center;gap:6px;color:var(--navy);text-decoration:none;font-weight:600;font-size:14px}
 .soclinks svg{width:28px;height:28px;flex:none}
-.sl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+/* AB 2026-10-25: names spelled out again, not visually hidden */
 @media(max-width:600px){
   .soc{grid-template-columns:72px 1fr;padding:14px}
   .soc img{width:72px;height:90px}

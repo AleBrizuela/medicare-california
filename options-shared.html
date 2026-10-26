@@ -504,7 +504,29 @@ p,div,span{text-wrap:pretty}
       document.title = place + ' - ' + (EN ? '2027 Plans' : 'Planes 2027') + ' - ' + when;
       window.print();
     }, 600);
+    // AMENDMENT B: this page fully reloads on browser Back (the hidden-iframe postMessage render
+    // can't survive bfcache), so the list's scroll position is restored by hand -- keyed to this
+    // exact list's own query string. Double rAF: the shadow-root cards need a layout pass after
+    // part() before their real height exists to scroll to.
+    try {
+      var savedY = sessionStorage.getItem(listScrollKey());
+      if (savedY != null) {
+        sessionStorage.removeItem(listScrollKey());
+        requestAnimationFrame(function(){ requestAnimationFrame(function(){ window.scrollTo(0, +savedY); }); });
+      }
+    } catch(e){}
   }
+  function listScrollKey(){ return 'mc_list_scroll:' + location.pathname + location.search; }
+  // AMENDMENT B: save scroll the instant a detail link is pressed (mousedown/touchstart, before
+  // click, and not gated on window.gtag like the listener below).
+  ['mousedown', 'touchstart'].forEach(function(evt){
+    document.addEventListener(evt, function(e){
+      var path = e.composedPath ? e.composedPath() : [e.target], a = null;
+      for (var i = 0; i < path.length && !a; i++) if (path[i] && path[i].hasAttribute && path[i].hasAttribute('data-plan-detail')) a = path[i];
+      if (!a) return;
+      try { sessionStorage.setItem(listScrollKey(), String(window.scrollY)); } catch(err){}
+    }, true);
+  });
 
   var IMGBASE = '/';   // this site has its own copy of the headshot
   /* AMENDMENT A (T-139, AB 2026-10-25 17:25): "-California" (hyphen matches the real domain) +

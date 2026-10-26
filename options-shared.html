@@ -438,16 +438,24 @@ p,div,span{text-wrap:pretty}
   // page. AMENDMENT B (T-139, AB 2026-10-25): the "View details ›" button inside .pc-det is NOT
   // dropped -- it's rewired from the dead openPlan() call to a real link to this same page's own
   // single-plan view (zip+p+hoy+lang, the existing MP_SINGLE path), same tab.
-  function detailURL(id){
+  // data-pid is the raw internal id (e.g. "H1224_001_0"); every URL/display ID on this page
+  // (Plan ID:, p=, hoy=) is the public hyphenated form -- same transform as widget-v4.html's
+  // planIdRaw(), reproduced here since this page never loads the widget's own JS.
+  function planIdRaw(id){
+    var m = String(id || '').split('_');
+    return m[0] + (m[1] ? '-' + m[1] : '') + (m[2] && m[2] !== '0' ? '-' + m[2] : '');
+  }
+  function detailURL(rawId){
+    var id = planIdRaw(rawId);
     return location.pathname + '?zip=' + encodeURIComponent(ZIP) + '&p=' + encodeURIComponent(id) +
       '&hoy=' + encodeURIComponent(id) + '&lang=' + (EN ? 'en' : 'es');
   }
   function stripDeadCardLinks(html){
     return String(html || '')
       .replace(/\sonclick="cardTap\([^"]*\)"/g, '')
-      .replace(/(data-pid="([^"]+)"[\s\S]*?)<div class="pc-det">[\s\S]*?<\/div>/g, function(_, pre, id){
-        return pre + '<div class="pc-det"><a class="pc-detl" href="' + esc(detailURL(id)) +
-          '" data-plan-detail="' + esc(id) + '">' + esc(EN ? 'See details' : 'Ver detalles') + ' ›</a></div>';
+      .replace(/(data-pid="([^"]+)"[\s\S]*?)<div class="pc-det">[\s\S]*?<\/div>/g, function(_, pre, rawId){
+        return pre + '<div class="pc-det"><a class="pc-detl" href="' + esc(detailURL(rawId)) +
+          '" data-plan-detail="' + esc(planIdRaw(rawId)) + '">' + esc(EN ? 'See details' : 'Ver detalles') + ' ›</a></div>';
       });
   }
   // T-139: "N [filter words] plans in CITY" / "N planes [filter words] en CITY" -- LT is the exact

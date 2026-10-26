@@ -31,15 +31,15 @@ const EXACT = new Set([
 
 const PREFIXES = ['/.github/', '/SHIP/'];
 
-/* T-135 (2026-10-26) · same gap, different shape: a page retired in the SAME deploy that adds
- * its own _redirects rule does not actually redirect -- confirmed live (cache-busted, and on a
- * brand-new branch preview with no prior cache at all) still 404s instead of 301ing, for both
- * these brand-new rules AND a long-standing, previously-working blog redirect tested the same
+/* T-135/T-150 (2026-10-26) · same gap, different shape: a page retired in the SAME deploy that
+ * adds its own _redirects rule does not actually redirect -- confirmed live (cache-busted, and
+ * on a brand-new branch preview with no prior cache at all) still 404s instead of 301ing, for
+ * both brand-new rules AND a long-standing, previously-working blog redirect tested the same
  * way. Not yet root-caused; a Pages Function is the one mechanism already proven to take
- * precedence (see the comment above), so retired city pages route through it too. Keep this map
- * in sync with the matching _redirects block (still present, belt-and-suspenders). The hard
- * split here (not reused from EXACT's redirect-to-home) is deliberate: these need a per-page
- * target, not just "/".
+ * precedence (see the comment above), so retired city pages (T-135) and consolidated blog posts
+ * (T-150) both route through it too. Keep these maps in sync with the matching _redirects block
+ * (still present, belt-and-suspenders). The hard split here (not reused from EXACT's
+ * redirect-to-home) is deliberate: these need a per-page target, not just "/".
  */
 const CITY_REDIRECTS = new Map([
   ['/california/cities/beverly-hills', '/california/cities/los-angeles'],
@@ -60,6 +60,13 @@ const CITY_REDIRECTS = new Map([
   ['/california/cities/bakersfield', '/best-medicare-advantage-california'],
 ]);
 
+const BLOG_REDIRECTS = new Map([
+  ['/blog/medicare-part-d-drug-coverage-california', '/blog/medicare-parte-d-medicamentos-california'],
+  ['/blog/medicare-preventive-care-california', '/blog/free-medicare-preventive-services-california'],
+  ['/blog/medicare-dental-coverage-california', '/blog/medicare-dental-vision-hearing-california'],
+  ['/blog/medicare-diabetes-cobertura-california', '/blog/medicare-diabetes-coverage-california'],
+]);
+
 export async function onRequest(context) {
   const { request, next } = context;
   const url = new URL(request.url);
@@ -69,9 +76,16 @@ export async function onRequest(context) {
     return Response.redirect(new URL('/', url.origin).toString(), 301);
   }
 
-  const cityTarget = CITY_REDIRECTS.get(path.replace(/\.html$/, ''));
+  const normalized = path.replace(/\.html$/, '');
+
+  const cityTarget = CITY_REDIRECTS.get(normalized);
   if (cityTarget) {
     return Response.redirect(new URL(cityTarget, url.origin).toString(), 301);
+  }
+
+  const blogTarget = BLOG_REDIRECTS.get(normalized);
+  if (blogTarget) {
+    return Response.redirect(new URL(blogTarget, url.origin).toString(), 301);
   }
 
   return next();

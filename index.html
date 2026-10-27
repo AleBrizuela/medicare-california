@@ -1876,6 +1876,24 @@ html body .t31-bar{display:none}
    Outside the phone media query it has no display rule of its own, so without this it renders as
    a plain block in the middle of the desktop page. On desktop the widget keeps its own bar. */
 html body .t31-cbar{display:none}
+/* T-154 round 2 (AB 2026-10-27, "you removed COMPARTIR but have yet to introduce T-154"): on desktop the widget's own
+   bar is sticky inside an iframe that has no scrollport, so it landed under the fine print, 3,000px down. The page
+   now pins the same bar to the bottom of the screen on desktop too, one card wide, centred over the widget. */
+@media (min-width:769px){
+  html body.t31-c .t31-cbar{display:flex;position:fixed;z-index:951;left:50%;right:auto;bottom:16px;transform:translateX(-50%);
+    width:min(480px,calc(100% - 32px));box-sizing:border-box;margin:0;padding:10px 12px;gap:12px;align-items:center;
+    background:#fff;border:2px solid var(--t31-brand);border-radius:14px;box-shadow:0 6px 18px rgba(16,24,40,.16)}
+  html body.t31-c .t31-cbar .n:empty{display:none}
+  html body.t31-c .t31-cbar .n{font:400 15px/1.2 'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif;color:#4A5568}
+  html body.t31-c .t31-cbar button{flex:1 1 auto;width:100%;min-height:52px;padding:0 18px;border:2px solid var(--t31-brand);
+    border-radius:10px;background:var(--t31-brand);color:#fff;cursor:pointer;font:800 17px/1 'Open Sans',-apple-system,'Segoe UI',Arial,sans-serif}
+  html body.t31-c:not(.t31-solid):not(.t31-ready) .t31-cbar button{background:#fff;color:var(--t31-brand)}
+  html body.t31-solid .t31-cbar{border:0;background:none;box-shadow:none;padding:0}
+  html body .t31-cbar .t31-shr{display:none!important}
+  html body.t31-sheet .t31-cbar{display:none!important}
+  html body .t31-cbar button:disabled{opacity:.45;cursor:default}
+  html body .t31-cbar button:focus-visible{outline:3px solid #FFB300;outline-offset:2px}
+}
 
 @media (min-width:769px) and (max-width:1023px){
   html body .t31-head .t31-nav{gap:0!important}

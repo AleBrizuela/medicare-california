@@ -125,3 +125,8 @@ html body .sm-footer .sm-disclaimer p:last-child{font-size:11px!important;line-h
   html body footer.sm-footer{padding-top:36px!important;padding-left:24px!important;padding-right:24px!important;padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))!important}
   html body footer.sm-footer .sm-foot-in{padding-bottom:0!important}
 }
+/* T-163: the footer brings the floating Llamar / Call button to every page at phone width. Six BM pages
+   (city pages, /california, /equipo, /team) also had their own green WhatsApp bubble in the same corner,
+   so the two sat on top of each other. At phone width every page now shows the one button; WhatsApp
+   stays in the footer, and the bubble still shows on desktop, where the call button does not. */
+@media(max-width:1023px){html body a[data-cta="float"][href*="wa.me"]{display:none!important}}

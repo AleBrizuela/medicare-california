@@ -2174,7 +2174,7 @@ html body #zip-card .t42-book:focus-visible{outline:3px solid #FFB300;outline-of
         <!-- T-156 (AB 2026-10-26): the headline asks "is your plan changing?", the button answers it (opens the
              plan finder on "What plan do you have today?"), the link keeps today's path. The video call leaves the
              card (still in the menu and footer). Reverts by itself on Dec 8 (see the T-156 block after toggleLang). -->
-        <p class="t156-all" id="t156-all"><a data-cta="home_hero" data-cta-target="plan_finder" href="#" onclick="event.preventDefault();handleZipSubmit('')" data-i18n="t156-all">See all 2027 plans</a></p>
+        <p class="t156-all" id="t156-all"><a data-cta="home_hero" data-cta-target="plan_finder" href="#" onclick="event.preventDefault();handleZipSubmit('all')" data-i18n="t156-all">See all 2027 plans</a></p>
         <script>(function(){var p=new Date(new Date().toLocaleString('en-US',{timeZone:'America/Los_Angeles'}));window.t156On=p<new Date(2026,11,8);})();</script>
     </div>
 
@@ -2592,7 +2592,7 @@ function handleZipSubmit(mode) {
   // Match BM's environment to our own, so staging tests staging and
   // production tests production instead of staging always borrowing BM prod.
   var bmHost = bmWidgetHost();
-  frame.src = 'https://' + bmHost + '/widget-v4?lang=' + currentLang + '&theme=california&v=20260308b&zip=' + zip + (mode === 'myplan' ? '&start=myplan' : '') + (zipFromSource ? '&from=' + encodeURIComponent(zipFromSource) : '') + (window.bmTester ? '&qa=1' : '');
+  frame.src = 'https://' + bmHost + '/widget-v4?lang=' + currentLang + '&theme=california&v=20260308b&zip=' + zip + (mode === 'myplan' ? '&start=myplan' : mode === 'all' ? '&start=all' : '') + (zipFromSource ? '&from=' + encodeURIComponent(zipFromSource) : '') + (window.bmTester ? '&qa=1' : '');
 }
 
 // T-133: a ZIP in the URL (zip-box pages) auto-submits, same pattern as beneficiosmedicare's home.

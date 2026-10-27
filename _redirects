@@ -130,3 +130,14 @@
 /california/cities/fresno /best-medicare-advantage-california 301
 /california/cities/bakersfield.html /best-medicare-advantage-california 301
 /california/cities/bakersfield /best-medicare-advantage-california 301
+
+# T-135 phase 2 (2026-10-26, AB "only LA and SD are ready, remove the other 3"): long-beach,
+# riverside and orange-county were kept live pending a rewrite; not waiting. 301 to Los
+# Angeles. Routed through functions/_middleware.js too (see D-124 -- plain _redirects 301s
+# for a page retired in the same deploy that adds the rule don't actually fire).
+/california/cities/long-beach.html /california/cities/los-angeles 301
+/california/cities/long-beach /california/cities/los-angeles 301
+/california/cities/riverside.html /california/cities/los-angeles 301
+/california/cities/riverside /california/cities/los-angeles 301
+/california/cities/orange-county.html /california/cities/los-angeles 301
+/california/cities/orange-county /california/cities/los-angeles 301

@@ -87,15 +87,24 @@
 /* v34: "this week on social" follow block, grid layout, real brand-colored icons */
 .soc{display:grid;grid-template-columns:96px 1fr;grid-template-areas:"img h" "img t" "img l";column-gap:16px;row-gap:4px;align-items:start;background:var(--white);border-radius:var(--radius);padding:16px 18px;box-shadow:0 4px 24px rgba(12,35,64,.10)}
 .soc img{grid-area:img;width:96px;height:120px;object-fit:cover;border-radius:8px}
-.soc .folh{grid-area:h;margin:0}
+/* .socin wraps folh/folt/soclinks as ONE grid item (grid-area on a grandchild has no effect),
+   so it auto-places into whichever column is free: column 2 when an <img> sibling claims
+   column 1 (the common case, works by luck), but column 1 (96px) when there is no image --
+   confirmed broken live on San Diego's .soc.noimg, text wrapping to one word per line. Pin it
+   explicitly both ways instead of relying on auto-placement order. */
+.soc .socin{grid-column:2}
+.soc.noimg{grid-template-columns:1fr}
+.soc.noimg .socin{grid-column:1}
+.soc .folh{margin:0}
 .soc .fol{font-size:17px;line-height:1.25;color:var(--navy)}
-.soc .folt{grid-area:t;margin:0;font-size:14px;color:#6b7280;text-wrap:pretty}
-.soc .soclinks{grid-area:l;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-top:8px}
+.soc .folt{margin:0;font-size:14px;color:#6b7280;text-wrap:pretty}
+.soc .soclinks{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-top:8px}
 .soclinks a{display:inline-flex;align-items:center;gap:6px;color:var(--navy);text-decoration:none;font-weight:600;font-size:14px}
 .soclinks svg{width:28px;height:28px;flex:none}
 /* AB 2026-10-25: names spelled out again, not visually hidden */
 @media(max-width:600px){
   .soc{grid-template-columns:72px 1fr;padding:14px}
+  .soc.noimg{grid-template-columns:1fr}
   .soc img{width:72px;height:90px}
   .soc .fol{font-size:15px}
   .soc .folt{font-size:13px}

@@ -58,6 +58,11 @@ const CITY_REDIRECTS = new Map([
   ['/california/cities/sacramento', '/best-medicare-advantage-california'],
   ['/california/cities/fresno', '/best-medicare-advantage-california'],
   ['/california/cities/bakersfield', '/best-medicare-advantage-california'],
+  // T-135 phase 2 (2026-10-26, AB: "only LA and SD are ready, remove the other 3") --
+  // long-beach/riverside/orange-county were kept live pending a rewrite; not waiting.
+  ['/california/cities/long-beach', '/california/cities/los-angeles'],
+  ['/california/cities/riverside', '/california/cities/los-angeles'],
+  ['/california/cities/orange-county', '/california/cities/los-angeles'],
 ]);
 
 const BLOG_REDIRECTS = new Map([

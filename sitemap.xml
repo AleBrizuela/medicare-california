@@ -422,29 +422,11 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://medicare-california.com/california/cities/long-beach</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/california/cities/long-beach" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/california/cities/long-beach" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/california/cities/long-beach" />
-    <lastmod>2026-10-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://medicare-california.com/california/cities/los-angeles</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/california/cities/los-angeles" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/california/cities/los-angeles" />
     <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/california/cities/los-angeles" />
     <lastmod>2026-10-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://medicare-california.com/california/cities/riverside</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/california/cities/riverside" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/california/cities/riverside" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/california/cities/riverside" />
-    <lastmod>2026-10-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

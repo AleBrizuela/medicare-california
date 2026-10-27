@@ -1233,6 +1233,56 @@ def check_place_display(root, f):
 
 # ---------------------------------------------------------------- output
 
+# T-163: one footer per site per language. Every public page's footer must be byte-identical
+# to its language's partial. Pages were stamped once (T-108) and then edited by hand, and MC's
+# stamper crashed on deleted pages, so 11 BM and 6 MC footers drifted apart with nothing to
+# notice. Fix a drift with `node tools/stamp-shared.mjs`, never by editing the page.
+# Exempt by design: the partner letter (/presentacion, /presentation: footer sits inside the
+# letter, own bottom bar and click tracker) and the NON_PUBLIC share sheet (its language is
+# decided by script at view time).
+FOOTER_EXEMPT = ("presentacion", "presentation")
+FOOTER_RE = re.compile(r"<footer\b.*?</footer>", re.S)
+
+
+def _footer_partial(root, lang):
+    for name in (f"footer-{lang}.html", f"footer--footer-{lang}.html"):
+        p = os.path.join(root, "partials", name)
+        if os.path.exists(p):
+            return open(p, encoding="utf-8").read().strip()
+    return None
+
+
+def check_footer(root, f):
+    redirects = load_redirect_sources(root)
+    for fp, rel in iter_html(root):
+        stem = os.path.basename(rel)[:-5]
+        if is_non_public(rel) or stem in FOOTER_EXEMPT or rel.startswith("social/"):
+            continue
+        url = "/" + rel[:-5]
+        url = url[:-len("/index")] if url.endswith("/index") else url
+        if (url or "/") in redirects or "/" + rel in redirects:
+            continue
+        src = open(fp, encoding="utf-8", errors="replace").read()
+        if re.search(r'http-equiv=["\']refresh', src, re.I):
+            continue
+        m = re.search(r'<html[^>]*\blang=["\']([a-zA-Z]{2})', src)
+        lang = m.group(1).lower() if m else "?"
+        canon = _footer_partial(root, lang)
+        if canon is None:
+            f.error("footer-drift", rel, f"no partials/footer for lang={lang}")
+            continue
+        footers = FOOTER_RE.findall(src)
+        if not footers:
+            f.error("footer-missing", rel, "page has no <footer>; stamp it from the partial")
+        elif len(footers) > 1:
+            f.error("footer-drift", rel, f"{len(footers)} <footer> blocks")
+        elif footers[0].strip() != canon:
+            a, b = footers[0].strip().split("\n"), canon.split("\n")
+            i = next((i for i, (x, y) in enumerate(zip(a, b)) if x != y), min(len(a), len(b)))
+            f.error("footer-drift", rel,
+                    f"differs from partials footer-{lang} at line {i + 1}; run node tools/stamp-shared.mjs")
+
+
 def report(f, strict):
     order = ["ERROR", "WARN"]
     icons = {"ERROR": "FAIL", "WARN": "warn"}
@@ -1303,6 +1353,7 @@ def main():
         "google-safety": lambda: check_google_safety(root, domain, f, a.base),
         "contrast": lambda: check_contrast_heuristic(root, f),
         "place-display": lambda: check_place_display(root, f),
+        "footer": lambda: check_footer(root, f),
     }
     if a.base:
         all_checks["content-loss"] = lambda: check_content_loss(root, a.base, f)

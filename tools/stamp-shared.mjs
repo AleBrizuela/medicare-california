@@ -103,6 +103,9 @@ function stampGa(filePath, family) {
 // Left as a listed follow-up, not stamped, not committed as partials this pass.
 
 for (const [filePath, fields] of Object.entries(manifest.page)) {
+  // T-163: pages deleted since the manifest was written (the merged city pages, 4 blog
+  // posts) used to crash the run halfway, so the footer was never re-stamped and drifted.
+  if (!fs.existsSync(path.join(ROOT, filePath))) { log.skipped_mismatch.push(`${filePath}:file-gone`); continue; }
   for (const [field, info] of Object.entries(fields)) {
     if (field === "header" || field === "footer") {
       stampHeaderOrFooter(field, filePath, info.family, info.crosslang);

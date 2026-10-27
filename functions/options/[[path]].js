@@ -5,7 +5,7 @@
  * preview would read the same. This Function serves that same file and rewrites the title and
  * description from the path, so the card says how many options and for which ZIP.
  *
- * T-136 (2026-10-24): the image now varies by agent + language too, same SUSANA state map as
+ * T-136 (2026-10-24): the image now varies by agent + language too, same state map (T-159) as
  * beneficiosmedicare's opciones-compartidas.js. MC's own repo carries no zip->state data (it embeds
  * beneficiosmedicare's widget rather than its own), so the state lookup is a plain cross-origin fetch
  * of BM's public `/data/zip_index.js` -- a static asset, not a bound service, so a normal fetch() is
@@ -20,7 +20,7 @@
  * A Function takes precedence over the _redirects rewrite for this path, so it serves the page
  * itself. Anything unexpected falls through to the plain asset: a visitor always gets the page.
  */
-const SUSANA = { KS: 1, MO: 1, TX: 1, FL: 1 };
+const ALEJANDRA = { CA: 1, AZ: 1 };  // T-159: her only licensed states; Susana everywhere else
 
 // '"<key>":"<value>"' found by plain search -- same approach as BM's opciones-compartidas.js
 function pick(text, key) {
@@ -65,7 +65,7 @@ export async function onRequest(context) {
       const zi = await fetch('https://beneficiosmedicare.com/data/zip_index.js');
       if (zi.ok) {
         const st = pick(await zi.text(), zip);
-        if (SUSANA[st]) ak = 'susana';
+        ak = ALEJANDRA[st] ? 'alejandra' : 'susana';
       }
       const zc = await fetch('https://beneficiosmedicare.com/data/zip_city.js');
       if (zc.ok) place = pick(await zc.text(), zip);

@@ -7,8 +7,8 @@
  *
  * WhatsApp, iMessage, Facebook and Gmail do not run JavaScript: the preview is whatever HTML the
  * server hands their crawler. For a link-preview crawler only (or ?og=1, for checking), this serves
- * the static file with its og/twitter tags rewritten: the agent for the ZIP's state (same SUSANA map
- * as beneficiosmedicare's opciones-compartidas.js: Susana for KS, MO, TX, FL, Alejandra everywhere
+ * the static file with its og/twitter tags rewritten: the agent for the ZIP's state (same state map
+ * as beneficiosmedicare's opciones-compartidas.js, T-159: Alejandra for CA and AZ, Susana everywhere
  * else) and her card image (1200x630, og-plans-mc-<agent>-<lang>-20261024.jpg). MC's own repo carries
  * no zip->state data (it embeds beneficiosmedicare's widget rather than its own), so the lookup is a
  * plain cross-origin fetch of BM's public `/data/zip_index.js` -- a static asset, not a bound
@@ -20,7 +20,7 @@
  * returns the plain file, so a shared link always opens.
  */
 const BOT = /facebookexternalhit|facebot|whatsapp|twitterbot|slackbot|linkedinbot|telegrambot|discordbot|skypeuripreview|googlebot|google-inspectiontool|googleimageproxy|google-pagerenderer|bingbot|applebot|pinterest|embedly|redditbot|iframely|vkshare|outbrain|quora link preview|nuzzel|bitlybot|xing-contenttabreceiver|mastodon|bluesky/i;
-const SUSANA = { KS: 1, MO: 1, TX: 1, FL: 1 };
+const ALEJANDRA = { CA: 1, AZ: 1 };  // T-159: her only licensed states; Susana everywhere else
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
 function pick(text, key) {
@@ -61,7 +61,7 @@ export async function onRequestGet(context) {
       const zi = await fetch('https://beneficiosmedicare.com/data/zip_index.js');
       if (zi.ok) {
         st = pick(await zi.text(), zip);
-        if (SUSANA[st]) ak = 'susana';
+        ak = ALEJANDRA[st] ? 'alejandra' : 'susana';
       }
       const zc = await fetch('https://beneficiosmedicare.com/data/zip_city.js');
       if (zc.ok) place = pick(await zc.text(), zip);

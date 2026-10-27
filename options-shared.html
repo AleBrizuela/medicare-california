@@ -229,7 +229,6 @@ p,div,span{text-wrap:pretty}
 
   var T = {
     title:  EN ? 'Medicare options for 2027' : 'opciones de Medicare 2027',
-    adv:    EN ? 'YOUR AGENT · LIC. #4507923' : 'SU ASESORA · LIC. #4507923',
     call:   EN ? 'CALL, TEXT OR WHATSAPP' : 'LLAMADA, TEXTO O WHATSAPP',
     before: EN ? 'Choose before <b>Dec 7</b>' : 'Elija antes del <b>7 de dic.</b>',
     start:  EN ? 'starts January 1' : 'inicia el 1 de enero',
@@ -281,7 +280,28 @@ p,div,span{text-wrap:pretty}
     drug:'<g transform="rotate(-35 12 12)"><rect x="2.5" y="8" width="19" height="8" rx="4"/><path d="M12 8v8"/></g>',
     star:'<path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.9z"/>'
   };
-  var TEL = '(310) 597‑9142';
+  /* T-159: who is on the page follows the ZIP's state, from the agent the widget sends with the plans
+     (d.agent, same one map as widget-v4.html: Alejandra for CA and AZ, Susana everywhere else). Before
+     any state is known (the error screen) it is Susana, the no-state default. Alejandra keeps this
+     site's own address; Susana's is the one the widget carries. */
+  var AGENT = {key:'susana', name:'Susana Marcos', tel:'(913) 488-5341', digits:'19134885341',
+               email:'Susana@BeneficiosMedicare.com', photo:'images/susana-headshot.jpg', lic:''};
+  // (913) 488-5341 with a non-breaking space and hyphen: it never splits.
+  function telOf(a){ return String(a.tel).replace(') ', ') ').replace('-', '‑'); }
+  var TEL = telOf(AGENT);
+  function useAgent(a){
+    if (!a || !/^1\d{10}$/.test(String(a.digits || '')) || !/^images\/[a-z-]+\.jpg$/.test(String(a.photo || ''))) return;
+    AGENT = {key:String(a.key || ''), name:String(a.name || ''), tel:String(a.tel || ''), digits:String(a.digits),
+             email:a.key === 'alejandra' ? 'Alejandra@Medicare-California.com' : String(a.email || ''),
+             photo:String(a.photo), lic:/^\d+$/.test(String(a.lic || '')) ? String(a.lic) : ''};
+    TEL = telOf(AGENT);
+  }
+  function advLab(){ return (EN ? 'YOUR AGENT' : 'SU ASESORA') + (AGENT.lic ? ' · LIC. #' + AGENT.lic : ''); }
+  function whoHTML(){
+    return '<div class="who2"><img src="' + IMGBASE + esc(AGENT.photo) + '" alt="' + esc(AGENT.name) + '" width="46" height="46">' +
+      '<div><div class="lab2">' + esc(advLab()) + '</div><div class="nm2">' + esc(AGENT.name) + '</div>' +
+      '<div class="em2"><a href="mailto:' + esc(AGENT.email.toLowerCase()) + '" style="color:inherit;text-decoration:none">' + esc(AGENT.email) + '</a></div></div></div>';
+  }
   var esc = function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){
     return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});};
 
@@ -301,7 +321,7 @@ p,div,span{text-wrap:pretty}
         ? 'We could not open these options. The link may be incomplete.'
         : 'No pudimos abrir estas opciones. El enlace puede estar incompleto.') +
       '</p><p><a href="/">' + (EN ? 'Find plans for your ZIP code' : 'Busque planes para su código postal') +
-      '</a></p><p>' + T.cw + '<a href="tel:+13105979142">' + TEL + '</a></p></div>';
+      '</a></p><p>' + T.cw + '<a href="tel:+' + AGENT.digits + '">' + TEL + '</a></p></div>';
   }
   if (!/^\d{5}$/.test(ZIP) || (!IDS.length && !LIST)) { fail(); return; }
 
@@ -322,6 +342,7 @@ p,div,span{text-wrap:pretty}
     var d = e.data;
     if (!d || d.type !== 'widget-plans-result' || d.rid !== rid) return;
     done = true; clearTimeout(timer);
+    useAgent(d.agent);
     if (LIST) { if (!d.ok || !d.html || !d.css) { fail(); return; } try { renderList(d); } catch (err) { fail(); } return; }
     if (!d.ok || !d.plans.length) { fail(); return; }
     render(d);
@@ -354,7 +375,7 @@ p,div,span{text-wrap:pretty}
   function callRow(icon, text){
     return '<div class="row"><div class="rl"></div><div class="callrow">' +
       '<svg class="cri" viewBox="0 0 24 24">' + PIC[icon] + '</svg><span>' + esc(text) +
-      '<b><a href="tel:+13105979142" style="color:inherit;text-decoration:none">' + TEL + '</a></b></span></div></div>';
+      '<b><a href="tel:+' + AGENT.digits + '" style="color:inherit;text-decoration:none">' + TEL + '</a></b></span></div></div>';
   }
 
   function render(d){
@@ -403,12 +424,10 @@ p,div,span{text-wrap:pretty}
         '<div class="hdr2">' +
           '<div class="logo2"><a href="/" aria-label="Medicare California home" ' +
             'style="display:inline-block;text-decoration:none">' + LOGO + '</a></div><div class="sep2"></div>' +
-          '<div class="who2"><img src="' + IMGBASE + 'images/alejandra-headshot.jpg" alt="Alejandra Brizuela" width="46" height="46">' +
-            '<div><div class="lab2">' + esc(T.adv) + '</div><div class="nm2">Alejandra Brizuela</div>' +
-            '<div class="em2"><a href="mailto:alejandra@medicare-california.com" style="color:inherit;text-decoration:none">Alejandra@Medicare-California.com</a></div></div></div>' +
+          whoHTML() +
           '<div class="sep2"></div>' +
           '<div class="call2"><div class="lab2">' + esc(T.call) + '</div>' +
-            '<div class="ph2"><a href="tel:+13105979142" style="color:inherit;text-decoration:none">' + TEL + '</a></div></div>' +
+            '<div class="ph2"><a href="tel:+' + AGENT.digits + '" style="color:inherit;text-decoration:none">' + TEL + '</a></div></div>' +
         '</div>' +
         '<div class="band2"><h1>' + n + ' ' + esc(T.title) + ' <em>' + placePill(ZIP, d.city) + '</em></h1>' +
           '<div class="dl"><span class="gold">' + T.before + '</span>' +
@@ -420,8 +439,8 @@ p,div,span{text-wrap:pretty}
           '<div class="c2w">Medicare-California.com</div></div>' +
         '<p class="disc">' + esc(T.disc) + ' ' + esc(T.sent) + esc(when) + '.</p>' +
       '</div>' +
-      '<div class="fix"><a class="l" href="tel:+13105979142">' + esc(T.callb) + '</a>' +
-        '<a class="w" href="https://wa.me/13105979142" target="_blank" rel="noopener">WhatsApp</a></div>';
+      '<div class="fix"><a class="l" href="tel:+' + AGENT.digits + '">' + esc(T.callb) + '</a>' +
+        '<a class="w" href="https://wa.me/' + AGENT.digits + '" target="_blank" rel="noopener">WhatsApp</a></div>';
 
     placeSugBox();
     if (window.gtag) window.gtag('event', 'shared_page_view', {plans:n, zip3:ZIP.slice(0,3), lang:EN?'en':'es'});
@@ -495,12 +514,10 @@ p,div,span{text-wrap:pretty}
         '<div class="hdr2">' +
           '<div class="logo2"><a href="/" aria-label="Medicare California home" ' +
             'style="display:inline-block;text-decoration:none">' + LOGO + '</a></div><div class="sep2"></div>' +
-          '<div class="who2"><img src="' + IMGBASE + 'images/alejandra-headshot.jpg" alt="Alejandra Brizuela" width="46" height="46">' +
-            '<div><div class="lab2">' + esc(T.adv) + '</div><div class="nm2">Alejandra Brizuela</div>' +
-            '<div class="em2"><a href="mailto:alejandra@medicare-california.com" style="color:inherit;text-decoration:none">Alejandra@Medicare-California.com</a></div></div></div>' +
+          whoHTML() +
           '<div class="sep2"></div>' +
           '<div class="call2"><div class="lab2">' + esc(T.call) + '</div>' +
-            '<div class="ph2"><a href="tel:+13105979142" style="color:inherit;text-decoration:none">' + TEL + '</a></div></div>' +
+            '<div class="ph2"><a href="tel:+' + AGENT.digits + '" style="color:inherit;text-decoration:none">' + TEL + '</a></div></div>' +
         '</div>' +
         '<div class="band2"><h1>' + esc(listTitleBase(n)) + ' <em>' + placePill(ZIP, d.city) + '</em></h1>' +
           '<div class="dl"><span class="gold">' + T.before + '</span>' +
@@ -511,8 +528,8 @@ p,div,span{text-wrap:pretty}
           '<div class="c2w">Medicare-California.com</div></div>' +
         '<p class="disc">' + esc(T.disc) + ' ' + esc(T.sent) + esc(when) + '.</p>' +
       '</div>' +
-      '<div class="fix"><a class="l" href="tel:+13105979142">' + esc(T.callb) + '</a>' +
-        '<a class="w" href="https://wa.me/13105979142" target="_blank" rel="noopener">WhatsApp</a></div>' +
+      '<div class="fix"><a class="l" href="tel:+' + AGENT.digits + '">' + esc(T.callb) + '</a>' +
+        '<a class="w" href="https://wa.me/' + AGENT.digits + '" target="_blank" rel="noopener">WhatsApp</a></div>' +
       // T-142: the compare bar, outside #out's shadow-rooted content so it survives this function's
       // own re-renders and sits above the Call/WhatsApp bar, not inside it.
       '<div class="lcbar" id="lcbar">' +

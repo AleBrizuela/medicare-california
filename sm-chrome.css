@@ -118,10 +118,10 @@ p,li,blockquote,figcaption{text-wrap:pretty}
 /* T-163 (2026-10-27): the footer looks the same on every page. Page stylesheets used to reach
    into it at phone width: mobile-enhancements.css set the last disclaimer line to 12px (inline
    11px everywhere else), and home / benefits / privacy / blog each set a different bottom
-   padding (16px to 208px). One value now, enough to clear the floating Llamar / Call button
+   padding (16px to 208px) and the home pages a smaller top padding. One value now, enough to clear the floating Llamar / Call button
    (56px tall, 20px from the bottom) and nothing more. Specificity beats every page override. */
 html body .sm-footer .sm-disclaimer p:last-child{font-size:11px!important;line-height:1.6!important}
 @media(max-width:1023px){
-  html body footer.sm-footer{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))!important}
+  html body footer.sm-footer{padding-top:36px!important;padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))!important}
   html body footer.sm-footer .sm-foot-in{padding-bottom:0!important}
 }

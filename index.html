@@ -1863,6 +1863,14 @@ html body .t31-form #zip-card .t31-zip-wrap{margin:0 0 16px!important}
 html body .t31-form #zip-card #zip-btn{height:52px!important;padding:0 24px!important;box-sizing:border-box!important}
 html body .t31-checks{margin-top:22px!important;padding-top:0!important}
 
+/* T-157 (AB 2026-10-26): the trust strip under the ZIP card. Desktop: reviews, 2,000+, language in one
+   row. Phones: the reviews line only, then the D-136 line. Review count = the live Business Profile
+   number (12 on 2026-10-26); change it here (and in I18N t157-rev) when it moves. */
+html body .t31-checks .t157-st{color:#F5A623;letter-spacing:1px}
+html body .t31-checks .t157-rev b{color:#0B2D4F}
+html body .t31-checks .t157-rev a{color:#0071BC;text-decoration:underline;text-underline-offset:3px}
+html body .t31-checks .t157-gov{flex-basis:100%;margin:0 auto;font-size:13px;line-height:18px;color:#4A5568;text-align:center;max-width:320px}
+
 html body .t31-bar{display:none}
 /* T-084: the page's compare bar is a phone thing, exactly like the contact bar above this line.
    Outside the phone media query it has no display rule of its own, so without this it renders as
@@ -1930,7 +1938,9 @@ html body details.t31-cities[open]>summary{margin-bottom:16px}
 
 @media (max-width:768px){
   /* top of page */
-  html body .t31-checks{display:none!important}
+  html body .t31-checks{margin-top:18px!important;gap:6px!important}
+  html body .t31-checks .t157-d{display:none!important}
+  html body .t31-checks .t157-rev{font-size:15px;line-height:22px;color:#4A5568}
   html body .t31-band{padding:20px 18px 32px!important}
   html body.t31-thin .t31-band{padding:14px 18px 36px!important}
   html body.t31-thin .t31-band h1{font-size:22px!important;margin:0!important}
@@ -2122,7 +2132,7 @@ html body #zip-card .t42-book:focus-visible{outline:3px solid #FFB300;outline-of
   </div>
   <div class="hero-form-area t31-form">
     <!-- ZIP FORM -->
-    <div class="zip-card fade-up-d1" id="zip-card" style="position:relative;margin-top:-24px;box-shadow:0 -4px 32px rgba(0,0,0,0.08),0 8px 32px rgba(0,0,0,0.06);">
+    <div class="zip-card" id="zip-card" style="position:relative;margin-top:-24px;box-shadow:0 -4px 32px rgba(0,0,0,0.08),0 8px 32px rgba(0,0,0,0.06);">
       <label for="zip-input"><span data-i18n="zip-label">Enter your ZIP code</span></label>
       <div class="zip-input-wrap t31-zip-wrap">
         <input
@@ -2144,9 +2154,10 @@ html body #zip-card .t42-book:focus-visible{outline:3px solid #FFB300;outline-of
     </div>
 
     <div class="hero-checks t31-checks fade-up-d2">
-      <span class="hero-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span data-i18n="hero-check-0">3 min</span></span>
-      <span class="hero-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="hero-check-1">2,000+ clients</span></span>
-      <span class="hero-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="hero-check-2">Hablamos Espa&ntilde;ol</span></span>
+      <span class="hero-check t157-rev"><span class="t157-st" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <b>5.0</b> &middot; <a href="https://maps.app.goo.gl/wfbQjcZ2C4wkN5E99" target="_blank" rel="noopener" data-i18n="t157-rev">12 Google reviews</a></span>
+      <span class="hero-check t157-d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="hero-check-1">2,000+ clients</span></span>
+      <span class="hero-check t157-d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="hero-check-2">Hablamos Espa&ntilde;ol</span></span>
+      <p class="t157-gov" data-i18n="t157-gov">Not the government or Medicare.</p>
     </div>
   </div>
 </section>
@@ -2249,7 +2260,7 @@ html body #zip-card .t42-book:focus-visible{outline:3px solid #FFB300;outline-of
       <div class="team-role" data-i18n="team-a-role">CPTO &amp; Agent</div>
       <p class="team-bio" data-i18n="team-a-bio">Alejandra's mission: make Medicare accessible for every family, especially Spanish-speaking communities and adult children navigating the system for their parents.</p>
       <div class="team-creds">
-        <span class="team-cred" data-i18n="team-a-c1">Licensed in CA</span>
+        <span class="team-cred" data-i18n="team-a-c1">Licensed in CA and AZ</span>
         <span class="team-cred" data-i18n="team-a-c2">AHIP Certified</span>
         <span class="team-cred" data-i18n="team-a-c3">Bilingual</span>
       </div>
@@ -2277,15 +2288,15 @@ html body #zip-card .t42-book:focus-visible{outline:3px solid #FFB300;outline-of
 <section class="trust-stats t31-stats" id="trust-stats">
   <div class="trust-stats-inner">
     <div class="stat-item fade-in-up">
-      <h3 class="counter" data-target="2000" data-suffix="+" data-prefix="">0</h3>
+      <h3 class="counter" data-target="2000" data-suffix="+" data-prefix="">2,000+</h3>
       <p data-i18n="stat-1">California families helped</p>
     </div>
     <div class="stat-item fade-in-up">
-      <h3 class="counter" data-target="15" data-suffix="+" data-prefix="" data-prefix-es="">0</h3>
+      <h3 class="counter" data-target="15" data-suffix="+" data-prefix="" data-prefix-es="">15+</h3>
       <p data-i18n="stat-2">Years of experience</p>
     </div>
     <div class="stat-item fade-in-up">
-      <h3 class="counter" data-target="9" data-suffix="" data-prefix="">0</h3>
+      <h3 class="counter" data-target="9" data-suffix="" data-prefix="">9</h3>
       <p data-i18n="stat-3">States licensed</p>
     </div>
   </div>
@@ -2791,7 +2802,9 @@ const I18N = {
   'team-s-c1': { en:'Licensed in 8 States', es:'Con licencia en 8 estados' },
   'team-s-c2': { en:'AHIP Certified', es:'Certificada AHIP' },
   'team-s-c3': { en:'Bilingual', es:'Biling\u00fce' },
-  'team-a-c1': { en:'Licensed in CA', es:'Con licencia en CA' },
+  'team-a-c1': { en:'Licensed in CA and AZ', es:'Con licencia en CA y AZ' },
+  't157-rev': { en:'12 Google reviews', es:'12 rese\u00f1as en Google' },
+  't157-gov': { en:'Not the government or Medicare.', es:'No somos el gobierno ni Medicare.' },
   'team-a-c2': { en:'AHIP Certified', es:'Certificada AHIP' },
   'team-a-c3': { en:'Bilingual', es:'Biling\u00fce' },
   'team-more': { en:'Read our full bios \u2192', es:'Conozca m\u00e1s sobre nosotras \u2192' },

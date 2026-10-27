@@ -2147,14 +2147,14 @@ html body #zip-card .t42-book:focus-visible{outline:3px solid #FFB300;outline-of
         >
         <div class="zip-error" id="zip-error" data-i18n="zip-error">Please enter a valid 5-digit California ZIP code.</div>
       </div>
-      <button data-cta="home_hero" class="zip-btn" id="zip-btn" data-cta-target="my_plan" onclick="handleZipSubmit(window.t156On?'myplan':'')">
+      <button data-cta="home_hero" class="zip-btn" id="zip-btn" onclick="handleZipSubmit(window.t156On?'myplan':'')">
         <span data-i18n="t156-btn">Compare my current plan</span>
         <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </button>
         <!-- T-156 (AB 2026-10-26): the headline asks "is your plan changing?", the button answers it (opens the
              plan finder on "What plan do you have today?"), the link keeps today's path. The video call leaves the
              card (still in the menu and footer). Reverts by itself on Dec 8 (see the T-156 block after toggleLang). -->
-        <p class="t156-all" id="t156-all"><a data-cta="home_hero" data-cta-target="all_plans" href="#" onclick="event.preventDefault();handleZipSubmit('')" data-i18n="t156-all">Or see all 2027 plans</a></p>
+        <p class="t156-all" id="t156-all"><a data-cta="home_hero" data-cta-target="plan_finder" href="#" onclick="event.preventDefault();handleZipSubmit('')" data-i18n="t156-all">Or see all 2027 plans</a></p>
         <script>(function(){var p=new Date(new Date().toLocaleString('en-US',{timeZone:'America/Los_Angeles'}));window.t156On=p<new Date(2026,11,8);})();</script>
     </div>
 

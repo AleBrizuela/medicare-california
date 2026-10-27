@@ -108,7 +108,11 @@ def scan_local_files(directory, domain):
     domain = domain.rstrip("/")
     directory = os.path.abspath(directory)
 
-    skip = {".git", "node_modules", ".github", "__pycache__", ".cloudflare"}
+    # "partials" holds header/footer/favicon/font/zip-box fragments (named "field--variant.html"),
+    # not standalone pages -- they have no canonical identity of their own and were never meant
+    # to be crawled. Found 2026-10-26: a sitemap regeneration silently added 18 of them because
+    # nothing here ever excluded the directory; fixed here rather than shipped.
+    skip = {".git", "node_modules", ".github", "__pycache__", ".cloudflare", "partials"}
 
     for root, dirs, files in os.walk(directory):
         dirs[:] = [d for d in dirs if d not in skip]

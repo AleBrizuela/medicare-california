@@ -7,6 +7,8 @@ window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 /* T-050 tester mode: ?qa=1 marks this browser as ours until ?qa=0; our visits go to GA4 as traffic_type=internal (filtered out). */
 (function(){var t=false;try{var q=/[?&]qa=([01])(?=&|#|$)/.exec(location.search);if(q){if(q[1]==='1')localStorage.setItem('bm_tester','1');else localStorage.removeItem('bm_tester');}t=localStorage.getItem('bm_tester')==='1';}catch(e){t=/[?&]qa=1(?=&|#|$)/.test(location.search);}window.bmTester=t;window.bmInternal=t||/\.pages\.dev$/i.test(location.hostname);if(window.bmInternal)gtag('set',{traffic_type:'internal'});})();
+  /* T-166 team mode: ?equipo=1 turns Compartir back on in the plan finder for this browser (until ?equipo=0) and marks it as ours in GA4. */
+  (function(){var e=false;try{var m=/[?&]equipo=([01])(?=&|#|$)/.exec(location.search);if(m){if(m[1]==='1'){localStorage.setItem('bm_equipo','1');localStorage.setItem('bm_tester','1');}else localStorage.removeItem('bm_equipo');}e=localStorage.getItem('bm_equipo')==='1';}catch(x){e=/[?&]equipo=1(?=&|#|$)/.test(location.search);}window.bmEquipo=e;if(e){window.bmTester=true;window.bmInternal=true;gtag('set',{traffic_type:'internal'});}})();
 gtag('js', new Date());
 gtag('config', 'G-QT10YEXDCJ');
 setTimeout(function(){
@@ -2602,7 +2604,7 @@ function handleZipSubmit(mode) {
   // Match BM's environment to our own, so staging tests staging and
   // production tests production instead of staging always borrowing BM prod.
   var bmHost = bmWidgetHost();
-  frame.src = 'https://' + bmHost + '/widget-v4?lang=' + currentLang + '&theme=california&v=20260308b&zip=' + zip + (mode === 'myplan' ? '&start=myplan' : mode === 'all' ? '&start=all' : '') + (zipFromSource ? '&from=' + encodeURIComponent(zipFromSource) : '') + (window.bmTester ? '&qa=1' : '');
+  frame.src = 'https://' + bmHost + '/widget-v4?lang=' + currentLang + '&theme=california&v=20260308b&zip=' + zip + (mode === 'myplan' ? '&start=myplan' : mode === 'all' ? '&start=all' : '') + (zipFromSource ? '&from=' + encodeURIComponent(zipFromSource) : '') + (window.bmTester ? '&qa=1' : '') + (window.bmEquipo ? '&equipo=1' : '');
 }
 
 // T-133: a ZIP in the URL (zip-box pages) auto-submits, same pattern as beneficiosmedicare's home.

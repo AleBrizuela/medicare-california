@@ -219,6 +219,8 @@ p,div,span{text-wrap:pretty}
   // T-139: a shared LIST link -- never plan ids, replayed instead by re-applying the same
   // filters/sort/carrier to this zip's live plans (shareRenderList in widget-v4.html).
   var LF = q.get('f') || '', LO = q.get('o') || '', LA = q.get('a') || '';
+  // T-166: who sent it (team share); the plan finder answers with that person, whatever the state
+  var DE = /^[a-z]{2,12}$/.test(q.get('de') || '') ? q.get('de') : '';
   var LT = q.get('t') || '', LN = parseInt(q.get('n') || '0', 10) || 0;
   var SHARE_ID = q.get('share_id') || '';
   // T-142 (AB 2026-10-25): compare from a SHARED LIST. Ticked ids, this page's own (no pin, no
@@ -293,10 +295,11 @@ p,div,span{text-wrap:pretty}
     if (!a || !/^1\d{10}$/.test(String(a.digits || '')) || !/^images\/[a-z-]+\.jpg$/.test(String(a.photo || ''))) return;
     AGENT = {key:String(a.key || ''), name:String(a.name || ''), tel:String(a.tel || ''), digits:String(a.digits),
              email:a.key === 'alejandra' ? 'Alejandra@Medicare-California.com' : String(a.email || ''),
-             photo:String(a.photo), lic:/^\d+$/.test(String(a.lic || '')) ? String(a.lic) : ''};
+             photo:String(a.photo), lic:/^\d+$/.test(String(a.lic || '')) ? String(a.lic) : '',
+             licSt:/^[A-Z]{2}(, [A-Z]{2})*$/.test(String(a.licSt || '')) ? String(a.licSt) : ''};
     TEL = telOf(AGENT);
   }
-  function advLab(){ return (EN ? 'YOUR AGENT' : 'SU ASESORA') + (AGENT.lic ? ' · LIC. #' + AGENT.lic : ''); }
+  function advLab(){ return (EN ? 'YOUR AGENT' : 'SU ASESORA') + (AGENT.lic ? ' · ' + (AGENT.licSt ? AGENT.licSt + ' ' : '') + 'LIC. #' + AGENT.lic : ''); }
   function whoHTML(){
     return '<div class="who2"><img src="' + IMGBASE + esc(AGENT.photo) + '" alt="' + esc(AGENT.name) + '" width="46" height="46">' +
       '<div><div class="lab2">' + esc(advLab()) + '</div><div class="nm2">' + esc(AGENT.name) + '</div>' +
@@ -350,8 +353,8 @@ p,div,span{text-wrap:pretty}
   frame.addEventListener('load', function(){
     try {
       frame.contentWindow.postMessage(LIST
-        ? {type:'widget-plans', rid:rid, zip:ZIP, f:LF, o:LO, a:LA, list:true}
-        : {type:'widget-plans', rid:rid, zip:ZIP, ids:IDS, r:PRI}, WIDGET_HOST);
+        ? {type:'widget-plans', rid:rid, zip:ZIP, f:LF, o:LO, a:LA, list:true, de:DE}
+        : {type:'widget-plans', rid:rid, zip:ZIP, ids:IDS, r:PRI, de:DE}, WIDGET_HOST);
     } catch (err) { fail(); }
   });
   frame.src = WIDGET_HOST + '/widget-v4.html?data=1&theme=california&lang=' + (EN ? 'en' : 'es');

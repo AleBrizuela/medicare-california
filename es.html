@@ -1653,6 +1653,12 @@ html body .t31-head,html body .t33-head{max-width:960px!important;min-height:0!i
 html body #zip-card .t156-all{margin:10px 0 0;padding:0}
 /* T-161 (AB 2026-10-27): the see-all link becomes a secondary button the same size as the primary */
 html body #zip-card .t156-all a{display:flex;align-items:center;justify-content:center;width:100%;min-height:52px;padding:6px 12px;box-sizing:border-box;line-height:1.25;text-align:center;background:#fff;color:#0071BC;font:700 17px 'Open Sans',Arial,sans-serif;border:2px solid #0071BC;border-radius:12px;text-decoration:none;cursor:pointer}
+/* T-170 (AB 2026-10-29): see-all is the main button, check-my-plan the outlined one under it. Only while the T-156 pair is on (until Dec 8). */
+html body #zip-card.t170 .t156-all{margin:0 0 10px}
+html body #zip-card.t170 .t156-all a{background:var(--terra);color:#fff;border-color:var(--terra)}
+html body #zip-card.t170 .t156-all a:hover,html body #zip-card.t170 .t156-all a:focus-visible{background:var(--terra-dark);border-color:var(--terra-dark)}
+html body #zip-card.t170 #zip-btn{background:#fff!important;color:#0071BC!important;border:2px solid #0071BC!important;box-shadow:none!important;font-size:17px}
+html body #zip-card.t170 #zip-btn:hover,html body #zip-card.t170 #zip-btn:focus-visible{background:#F0F3F6!important}
 html body #zip-card .t156-all a:hover,html body #zip-card .t156-all a:focus-visible{background:#F0F3F6}
 html body #zip-card .t42-vl{margin:14px 0 2px;font-size:15.5px!important;color:#3a4650!important;line-height:1.45;text-align:center}
 html body #zip-card .t42-book{display:inline-block;color:var(--t31-brand);font-family:inherit;font-size:16.5px;font-weight:800;line-height:1.3;text-decoration:underline;text-underline-offset:3px;padding:10px 0;min-height:44px;cursor:pointer}
@@ -1731,7 +1737,7 @@ html body #zip-card .t42-book:focus-visible{outline:3px solid #FFB300;outline-of
              plan finder on "What plan do you have today?"), the link keeps today's path. The video call leaves the
              card (still in the menu and footer). Reverts by itself on Dec 8 (see the T-156 block after toggleLang). -->
         <p class="t156-all" id="t156-all"><a data-cta="home_hero" data-cta-target="plan_finder" href="#" onclick="event.preventDefault();handleZipSubmit('all')" data-i18n="t156-all">Ver todos los planes 2027</a></p>
-        <script>(function(){var p=new Date(new Date().toLocaleString('en-US',{timeZone:'America/Los_Angeles'}));window.t156On=p<new Date(2026,11,8);})();</script>
+        <script>(function(){var p=new Date(new Date().toLocaleString('en-US',{timeZone:'America/Los_Angeles'}));window.t156On=p<new Date(2026,11,8);if(window.t156On){var z=document.getElementById('zip-btn'),a=document.getElementById('t156-all');if(z&&a){z.parentNode.insertBefore(a,z);document.getElementById('zip-card').classList.add('t170');}}})();</script>
     </div>
 
     <div class="hero-checks t31-checks">
@@ -2086,7 +2092,7 @@ let zipFromSource = '';  // T-133: zip_top/zip_end when the ZIP arrived via ?fro
 
 // Allow Enter key
 zipInput.addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') handleZipSubmit(window.t156On ? 'myplan' : '');
+  if (e.key === 'Enter') handleZipSubmit(window.t156On ? 'all' : '');
 });
 
 // Only allow digits

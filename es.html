@@ -420,6 +420,11 @@ h1, h2, h3, h4 {
   line-height: 1.5;
   color: var(--text);
 }
+/* T-169: Medigap plan-type card is a link (whole card tappable, chevron like a link row) */
+a.plan-card-link{display:block;position:relative;text-decoration:none;color:inherit}
+a.plan-card-link::after{content:"\203A";position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:28px;line-height:1;font-weight:700;color:#0071BC}
+a.plan-card-link:focus-visible{outline:3px solid #FFB300;outline-offset:2px}
+@media (max-width:768px){html body .t31-plans .plans-grid>a.plan-card-link{padding-right:40px!important}}
 
 /* ── WHY US SECTION ── */
 .why-us {
@@ -1790,11 +1795,11 @@ html body #zip-card .t42-book:focus-visible{outline:3px solid #FFB300;outline-of
       <p data-i18n="plan-ma-p">Partes A, B y casi siempre D, en un solo plan.</p>
       <p style="font-size:13px;margin-top:8px;"><a href="https://beneficiosmedicare.com/blog/comparar-planes-medicare-advantage-california" style="color:#0066cc;font-weight:500;text-decoration:none;">Vea c&oacute;mo comparar planes →</a></p>
     </article>
-    <article class="plan-card fade-in-up">
+    <a class="plan-card plan-card-link fade-in-up" href="https://beneficiosmedicare.com/medigap-suplementos-california">
       <div class="t31-picon" style="color:#0071BC;background:rgba(0,113,188,.1)"><svg viewBox="0 0 576 512" aria-hidden="true" focusable="false"><path fill="currentColor" d="M142.4 21.9c5.6 16.8-3.5 34.9-20.2 40.5L96 71.1V192c0 53 43 96 96 96s96-43 96-96V71.1l-26.1-8.7c-16.8-5.6-25.8-23.7-20.2-40.5s23.7-25.8 40.5-20.2l26.1 8.7C334.4 19.1 352 43.5 352 71.1V192c0 77.2-54.6 141.6-127.3 156.7C231 404.6 278.4 448 336 448c61.9 0 112-50.1 112-112V265.3c-28.3-12.3-48-40.5-48-73.3c0-44.2 35.8-80 80-80s80 35.8 80 80c0 32.8-19.7 61-48 73.3V336c0 97.2-78.8 176-176 176c-92.9 0-168.9-71.9-175.5-163.1C87.2 334.2 32 269.6 32 192V71.1c0-27.5 17.6-52 43.8-60.7l26.1-8.7c16.8-5.6 34.9 3.5 40.5 20.2zM480 224a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/></svg></div>
       <h3 data-i18n="plan-mg-h">Planes Medigap</h3>
       <p data-i18n="plan-mg-p">Paga lo que Medicare Original no cubre.</p>
-    </article>
+    </a>
     <article class="plan-card fade-in-up">
       <div class="t31-picon" style="color:#0071BC;background:rgba(0,113,188,.1)"><svg viewBox="0 0 576 512" aria-hidden="true" focusable="false"><path fill="currentColor" d="M112 96c-26.5 0-48 21.5-48 48V256h96V144c0-26.5-21.5-48-48-48zM0 144C0 82.1 50.1 32 112 32s112 50.1 112 112V368c0 61.9-50.1 112-112 112S0 429.9 0 368V144zM554.9 399.4c-7.1 12.3-23.7 13.1-33.8 3.1L333.5 214.9c-10-10-9.3-26.7 3.1-33.8C360 167.7 387.1 160 416 160c88.4 0 160 71.6 160 160c0 28.9-7.7 56-21.1 79.4zm-59.5 59.5C472 472.3 444.9 480 416 480c-88.4 0-160-71.6-160-160c0-28.9 7.7-56 21.1-79.4c7.1-12.3 23.7-13.1 33.8-3.1L498.5 425.1c10 10 9.3 26.7-3.1 33.8z"/></svg></div>
       <h3 data-i18n="plan-pd-h">Parte D medicinas</h3>
@@ -2020,7 +2025,7 @@ html body #zip-card .t42-book:focus-visible{outline:3px solid #FFB300;outline-of
     <div class="sm-foot-row" style="margin-top:-2px"><span style="color:#E8F2FA;opacity:.65;font-weight:600">D&oacute;nde ayudamos:</span><a href="/california/cities/los-angeles">Los &Aacute;ngeles</a> &middot; <a href="/california/cities/san-diego">San Diego</a></div>
     <div class="sm-foot-row">
       <a href="/es"><svg class="sm-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Inicio</a>
-      <a href="/beneficios"><svg class="sm-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Medicare 101</a>
+      <a href="/beneficios"><svg class="sm-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Guía de Medicare</a>
       <a href="/california/cities/"><svg class="sm-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Ciudades de California</a>
       <a href="/blog/"><svg class="sm-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>Blog</a>
       <a href="/careers"><svg class="sm-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>Carreras</a>

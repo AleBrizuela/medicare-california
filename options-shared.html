@@ -537,7 +537,7 @@ p,div,span{text-wrap:pretty}
         '<button type="button" class="go" id="lcbarGo" onclick="lcbarGo()"></button></div>';
 
     part(document.getElementById('listA'), d.css, stripDeadCardLinks(d.html));
-    if (window.gtag) window.gtag('event', 'list_share_view', {plans:n, zip3:ZIP.slice(0,3), lang:EN?'en':'es', share_id:SHARE_ID});
+    if (window.gtag && q.get('utm_source') !== 'lead_alert') window.gtag('event', 'list_share_view', {plans:n, zip3:ZIP.slice(0,3), lang:EN?'en':'es', share_id:SHARE_ID});
     if (PRINT) setTimeout(function(){
       document.title = place + ' - ' + (EN ? '2027 Plans' : 'Planes 2027') + ' - ' + when;
       window.print();

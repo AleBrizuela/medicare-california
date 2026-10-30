@@ -295,10 +295,11 @@ p,div,span{text-wrap:pretty}
     if (!a || !/^1\d{10}$/.test(String(a.digits || '')) || !/^images\/[a-z-]+\.jpg$/.test(String(a.photo || ''))) return;
     AGENT = {key:String(a.key || ''), name:String(a.name || ''), tel:String(a.tel || ''), digits:String(a.digits),
              email:a.key === 'alejandra' ? 'Alejandra@Medicare-California.com' : String(a.email || ''),
-             photo:String(a.photo), lic:/^\d+$/.test(String(a.lic || '')) ? String(a.lic) : ''};
+             photo:String(a.photo), lic:/^\d+$/.test(String(a.lic || '')) ? String(a.lic) : '',
+             licSt:/^[A-Z]{2}(, [A-Z]{2})*$/.test(String(a.licSt || '')) ? String(a.licSt) : ''};
     TEL = telOf(AGENT);
   }
-  function advLab(){ return (EN ? 'YOUR AGENT' : 'SU ASESORA') + (AGENT.lic ? ' · LIC. #' + AGENT.lic : ''); }
+  function advLab(){ return (EN ? 'YOUR AGENT' : 'SU ASESORA') + (AGENT.lic ? ' · ' + (AGENT.licSt ? AGENT.licSt + ' ' : '') + 'LIC. #' + AGENT.lic : ''); }
   function whoHTML(){
     return '<div class="who2"><img src="' + IMGBASE + esc(AGENT.photo) + '" alt="' + esc(AGENT.name) + '" width="46" height="46">' +
       '<div><div class="lab2">' + esc(advLab()) + '</div><div class="nm2">' + esc(AGENT.name) + '</div>' +

@@ -218,7 +218,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/medicare-enrollment-mistakes-california" />
     <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/errores-inscripcion-medicare-california" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/blog/medicare-enrollment-mistakes-california" />
-    <lastmod>2026-11-03</lastmod>
+    <lastmod>2026-11-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -385,7 +385,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/blog/new-year-medicare-checklist-california" />
     <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/blog/lista-medicare-ano-nuevo-california" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/blog/new-year-medicare-checklist-california" />
-    <lastmod>2026-11-03</lastmod>
+    <lastmod>2026-11-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -414,6 +414,33 @@
     <lastmod>2026-10-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://medicare-california.com/california/cities/downey</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/california/cities/downey" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/california/cities/downey" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/california/cities/downey" />
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://medicare-california.com/california/cities/east-los-angeles</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/california/cities/east-los-angeles" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/california/cities/east-los-angeles" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/california/cities/east-los-angeles" />
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://medicare-california.com/california/cities/long-beach</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/california/cities/long-beach" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/california/cities/long-beach" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/california/cities/long-beach" />
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://medicare-california.com/california/cities/los-angeles</loc>

@@ -348,11 +348,41 @@ h1, h2, h3, h4 {
   max-width: 520px;
   margin: 0 auto;
   padding: 0 24px;
+  position: relative;
 }
 .widget-container.active {
   display: block;
   animation: fadeUp 0.4s ease;
 }
+/* T-114: the iframe loads cross-origin from beneficiosmedicare.com and sits blank for several
+   seconds (longer on a slow connection) until it sends its first widget-resize/widget-view
+   message -- GA4 showed 50 people started the finder in 30 days and only 4 saw results, the
+   biggest drop in the funnel. Shown from the moment .loading is added until that first message;
+   absolutely positioned over the iframe's own min-height, never adding layout height of its own. */
+.widget-loading {
+  display: none;
+  position: absolute;
+  top: 0; left: 24px; right: 24px;
+  min-height: 500px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 14px;
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+}
+.widget-container.loading .widget-loading { display: flex; }
+.widget-container.loading iframe { visibility: hidden; }
+.widget-spinner {
+  width: 36px; height: 36px;
+  border: 3px solid #E6F0FA;
+  border-top-color: var(--terra);
+  border-radius: 50%;
+  animation: wv-spin 0.8s linear infinite;
+}
+.widget-loading-text { color: #5A6B7A; font-size: 0.95rem; text-align: center; padding: 0 24px; }
+@keyframes wv-spin { to { transform: rotate(360deg); } }
 .widget-container iframe {
   width: 100%;
   border: none;
@@ -2203,6 +2233,10 @@ html body #zip-card .t42-book:focus-visible{outline:3px solid #FFB300;outline-of
 <!-- ═══ WIDGET (hidden until ZIP submitted) ═══ -->
 <div id="widget-anchor"></div>
 <div class="widget-container" id="widget-container">
+  <div class="widget-loading" id="widget-loading" aria-hidden="true">
+    <span class="widget-spinner"></span>
+    <span class="widget-loading-text" data-i18n="widget-loading">Loading your plan comparison&hellip;</span>
+  </div>
   <iframe id="widget-frame" scrolling="no" title="Medicare plan comparison tool for your ZIP code"></iframe>
 </div>
 <!-- T-141 (6): AB 2026-10-25, moved to footer only ("Where we help") — a hero-area line implies relevance to every visitor, not just ones actually in LA -->
@@ -2599,6 +2633,7 @@ function handleZipSubmit(mode) {
 
   // Show widget container
   widgetC.classList.add('active');
+  widgetC.classList.add('loading');  // T-114: cleared on the iframe's first widget-resize/widget-view message
 
   // Load widget with current language, California theme, and zip param.
   // Match BM's environment to our own, so staging tests staging and
@@ -2715,10 +2750,11 @@ window.addEventListener('message', function(e) {
     // 500, so 224px of nothing sat under the two answers.
     frame.style.minHeight = '0px';
     frame.style.height = e.data.height + 'px';
+    widgetC.classList.remove('loading');  // T-114: first real size means the widget is up
   }
   // T-020: the widget's GA4 events land in THIS site's property (the iframe is BM's; on MC they must count for MC).
   if (e.data.type === 'widget-ga' && typeof gtag === 'function' && /^[a-z_]{3,40}$/.test(e.data.name || '')) gtag('event', e.data.name, e.data.params || {});
-  if (e.data.type === 'widget-view') { setPlansView(!!e.data.results, document.getElementById('widget-container')); setResultsHero(!!e.data.results); }
+  if (e.data.type === 'widget-view') { widgetC.classList.remove('loading'); setPlansView(!!e.data.results, document.getElementById('widget-container')); setResultsHero(!!e.data.results); }
   if (e.data.type === 'widget-scrolltop') {
     var a = document.getElementById('widget-anchor') || frame;
     if (a) a.scrollIntoView({behavior:'smooth', block:'start'});
@@ -2766,6 +2802,8 @@ function toggleAccordion(button) {
 // ── LANGUAGE TOGGLE ──
 let currentLang = 'en';
 const I18N = {
+  // T-114: shown over the widget iframe while it loads cross-origin from beneficiosmedicare.com
+  'widget-loading': { en:'Loading your plan comparison…', es:'Cargando su comparador de planes…' },
   // Hero
   'hero-h1': { en:'Medicare California,', es:'Medicare California,' },
   'hero-h1-em': { en:'Simplified.', es:'Simplificado.' },

@@ -1061,9 +1061,14 @@ def check_google_safety(root, domain, f, base=None):
             continue
         src = open(fp, encoding="utf-8", errors="ignore").read()
         m = re.search(r'rel="canonical"[^>]*href="([^"]+)"', src)
+        noindex = re.search(r'name="robots"[^>]*content="[^"]*noindex', src, re.I)
         if not m:
             f.error("google-safety-home-no-canonical", home_rel, "home page has no canonical tag")
-        elif not m.group(1).startswith(domain):
+        elif not m.group(1).startswith(domain) and not noindex:
+            # A home-equivalent page deliberately made non-ranking (noindex, follow) and
+            # canonicalised to its twin on the other domain -- e.g. T-172/D-147 -- is doing
+            # this on purpose, not losing its canonical identity by accident. Only an
+            # INDEXABLE home page with a foreign canonical is the real conflict this guards.
             f.error("google-safety-home-cross-domain-canonical", home_rel,
                     f"canonical points at {m.group(1)}, not this domain")
 

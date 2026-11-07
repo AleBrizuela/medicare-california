@@ -1927,6 +1927,10 @@ html body .t31-cbar{display:none}
   html body.t31-c:not(.t31-solid):not(.t31-ready) .t31-cbar button{background:#fff;color:var(--t31-brand)}
   html body.t31-solid .t31-cbar{border:0;background:none;box-shadow:none;padding:0}
   html body .t31-cbar .t31-shr{display:none!important}
+  /* T-177 (AB 2026-11-07): "Enviar" sits beside "Ayúdeme a elegir" in this bar on desktop too (T-154 had hidden it). */
+  html body.t31-c.t31-duo .t31-cbar button.t31-shr:not([hidden]){display:flex!important;align-items:center;justify-content:center;gap:6px;
+    flex:0 0 38%;width:auto;background:#fff;color:var(--t31-brand);border:2px solid var(--t31-brand);font-weight:600;font-size:16.5px}
+  html body.t31-c.t31-duo .t31-cbar{gap:10px}
   html body.t31-sheet .t31-cbar{display:none!important}
   html body .t31-cbar button:disabled{opacity:.45;cursor:default}
   html body .t31-cbar button:focus-visible{outline:3px solid #FFB300;outline-offset:2px}

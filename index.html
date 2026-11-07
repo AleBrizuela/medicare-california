@@ -3212,12 +3212,13 @@ only to the exact origin the iframe was loaded from. */
       /* T-181 (A): the agent's photo sits inside this button (40px, 2px white ring). Accepted only from the widget's own
          origin; built with DOM calls, never innerHTML. */
       var fo=/^https:\/\/(?:[a-z0-9-]+\.)*(?:beneficiosmedicare\.com|beneficiosmedicare\.pages\.dev)\/images\/[\w.-]+$/.test(String(d.face||''));
+      if(!document.getElementById('t31-face-css')){ var cs=document.createElement('style'); cs.id='t31-face-css';
+        cs.textContent='html body .t31-cbar button{font-weight:600}html body .t31-cbar button.t31-hasface{display:inline-flex;align-items:center;justify-content:center;gap:3px}html body .t31-cbar button .t31-face{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #fff;margin:-6px 6px -6px -8px;flex:none}';
+        document.head.appendChild(cs); }
       if(fo){
         var im=btn.querySelector('img.t31-face'), tx=btn.querySelector('span.t31-bt');
         if(!im){
-          if(!document.getElementById('t31-face-css')){ var cs=document.createElement('style'); cs.id='t31-face-css';
-            cs.textContent='html body .t31-cbar button.t31-hasface{display:inline-flex;align-items:center;justify-content:center;gap:3px}html body .t31-cbar button .t31-face{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #fff;margin:-6px 6px -6px -8px;flex:none}';
-            document.head.appendChild(cs); }
+
           btn.textContent=''; im=document.createElement('img'); im.className='t31-face'; im.alt=''; im.width=40; im.height=40;
           tx=document.createElement('span'); tx.className='t31-bt'; btn.appendChild(im); btn.appendChild(tx);
         }

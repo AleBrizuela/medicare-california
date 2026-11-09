@@ -237,6 +237,8 @@ p,div,span{text-wrap:pretty}
     sug:    EN ? 'Our suggestion' : 'Nuestra sugerencia',
     sugShort: EN ? 'Suggested' : 'Sugerido',
     costs:  EN ? 'COSTS' : 'COSTOS',
+    mcnote: EN ? 'What you pay with Medi-Cal' : 'Lo que usted paga con Medi-Cal',
+    nosug:  EN ? 'The best fit depends on your doctors. Call me: ' : 'La mejor opción depende de sus médicos. Llámeme: ',
     doctor: EN ? 'YOUR DOCTOR' : 'SU MÉDICO',
     hosp:   EN ? 'HOSPITAL AND EMERGENCIES' : 'HOSPITAL Y EMERGENCIAS',
     drugs:  EN ? 'MEDICINES (1 MONTH)' : 'MEDICAMENTOS (1 MES)',
@@ -299,7 +301,7 @@ p,div,span{text-wrap:pretty}
              licSt:/^[A-Z]{2}(, [A-Z]{2})*$/.test(String(a.licSt || '')) ? String(a.licSt) : ''};
     TEL = telOf(AGENT);
   }
-  function advLab(){ return (EN ? 'YOUR AGENT' : 'SU ASESORA') + (AGENT.lic ? ' · ' + (AGENT.licSt ? AGENT.licSt + ' ' : '') + 'LIC. #' + AGENT.lic : ''); }
+  function advLab(){ return (EN ? 'YOUR MEDICARE ADVISOR' : 'SU ASESORA DE MEDICARE') + (AGENT.lic ? ' · ' + (AGENT.licSt ? AGENT.licSt + ' ' : '') + 'LIC. #' + AGENT.lic : ''); }
   function whoHTML(){
     return '<div class="who2"><img src="' + IMGBASE + esc(AGENT.photo) + '" alt="' + esc(AGENT.name) + '" width="46" height="46">' +
       '<div><div class="lab2">' + esc(advLab()) + '</div><div class="nm2">' + esc(AGENT.name) + '</div>' +
@@ -318,6 +320,12 @@ p,div,span{text-wrap:pretty}
     return '<span class="placepill">' + pin + (city ? ('<b>' + esc(city) + '</b> ' + z) : ('<b>' + z + '</b>')) + '</span>';
   }
 
+  // T-183: a sheet whose figures contradict each other is not printed; the reasons are listed instead.
+  function blocked(list){
+    document.getElementById('out').innerHTML =
+      '<div class="err"><p><b>' + (EN ? 'This sheet was not produced. Fix the plan data first:' : 'Esta hoja no se generó. Corrija primero los datos del plan:') + '</b></p>' +
+      '<ul style="text-align:left;max-width:560px;margin:0 auto 12px">' + list.map(function(x){ return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>';
+  }
   function fail(){
     document.getElementById('out').innerHTML =
       '<div class="err"><p>' + (EN
@@ -347,6 +355,7 @@ p,div,span{text-wrap:pretty}
     done = true; clearTimeout(timer);
     useAgent(d.agent);
     if (LIST) { if (!d.ok || !d.html || !d.css) { fail(); return; } try { renderList(d); } catch (err) { fail(); } return; }
+    if (!d.ok && d.blocks && d.blocks.length) { blocked(d.blocks); return; }
     if (!d.ok || !d.plans.length) { fail(); return; }
     render(d);
   });
@@ -354,7 +363,7 @@ p,div,span{text-wrap:pretty}
     try {
       frame.contentWindow.postMessage(LIST
         ? {type:'widget-plans', rid:rid, zip:ZIP, f:LF, o:LO, a:LA, list:true, de:DE}
-        : {type:'widget-plans', rid:rid, zip:ZIP, ids:IDS, r:PRI, de:DE}, WIDGET_HOST);
+        : {type:'widget-plans', rid:rid, zip:ZIP, ids:IDS, r:PRI, de:DE, sheet:true, mc:q.get('mc') || '', kp:q.get('kp') || '', net:q.get('net') || ''}, WIDGET_HOST);   // T-183: mc=1 Medi-Cal / Extra Help, kp=1 uses Kaiser, net=carriers whose network has the client's doctors
     } catch (err) { fail(); }
   });
   frame.src = WIDGET_HOST + '/widget-v4.html?data=1&theme=california&lang=' + (EN ? 'en' : 'es');
@@ -406,6 +415,7 @@ p,div,span{text-wrap:pretty}
     var sugId = sug ? sug.id : '';
     var table =
       secHTML('cost', T.costs) +
+      (d.dual ? '<div class="row"><div class="rl"></div><div class="callrow" style="font-style:italic"><span>' + esc(T.mcnote) + '</span></div></div>' : '') +
       rowHTML('premium', plans, sugId) + rowHTML('giveback', plans, sugId) + rowHTML('moop', plans, sugId) + rowHTML('mded', plans, sugId) +
       secHTML('visits', T.doctor) +
       rowHTML('pcp', plans, sugId) + rowHTML('spec', plans, sugId) + callRow('visits', T.docCall) +
@@ -420,7 +430,9 @@ p,div,span{text-wrap:pretty}
     var sugLine = sug
       ? '<div class="pick2"><div><b class="sgt">' + esc(T.sug) + ': ' + esc(sug.name) + '.</b> ' +
         esc([sug.lead, sug.why].filter(Boolean).join(' ')) + '</div></div>'
-      : '';
+      : (d.dual
+        ? '<div class="pick2"><div><b>' + esc(T.nosug) + '<a href="tel:+' + AGENT.digits + '" style="color:inherit;text-decoration:none">' + TEL + '</a></b></div></div>'
+        : '');
 
     document.getElementById('out').innerHTML =
       '<div class="sheet">' +

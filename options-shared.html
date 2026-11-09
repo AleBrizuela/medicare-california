@@ -392,7 +392,7 @@ p,div,span{text-wrap:pretty}
 
   function render(d){
     var plans = d.plans, n = plans.length;
-    var sug = d.sug;
+    var sug = null;   // T-186 (AB 2026-11-09): no plan is suggested; ignores d.sug even from an older widget
     var when = new Date().toLocaleDateString(EN ? 'en-US' : 'es-ES',
       {day:'numeric', month:'short', year:'numeric'});
     // T-138: the place is the CITY (d.city, from plansForShare), never the bare ZIP/state pair.
@@ -430,9 +430,7 @@ p,div,span{text-wrap:pretty}
     var sugLine = sug
       ? '<div class="pick2"><div><b class="sgt">' + esc(T.sug) + ': ' + esc(sug.name) + '.</b> ' +
         esc([sug.lead, sug.why].filter(Boolean).join(' ')) + '</div></div>'
-      : (d.dual
-        ? '<div class="pick2"><div><b>' + esc(T.nosug) + '<a href="tel:+' + AGENT.digits + '" style="color:inherit;text-decoration:none">' + TEL + '</a></b></div></div>'
-        : '');
+      : '<div class="pick2"><div><b>' + esc(T.nosug) + '<a href="tel:+' + AGENT.digits + '" style="color:inherit;text-decoration:none">' + TEL + '</a></b></div></div>';
 
     document.getElementById('out').innerHTML =
       '<div class="sheet">' +

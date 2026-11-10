@@ -102,6 +102,8 @@ p,div,span{text-wrap:pretty}
 .car{font-size:22px;font-weight:700;color:var(--c)}
 .pn{font-size:15px;color:#3a4650}
 .id{font-size:13px;color:#4A5568}
+.dtl a{color:#0071BC;text-decoration:underline;text-underline-offset:2px;font-size:13.5px;display:inline-block;padding:13px 2px;margin:-13px -2px}
+@media print{.dtl{display:none}}
 /* T-098: the type and the plan ID each stay whole, but the line may break BETWEEN them.
    Without the break, three columns of "HMO · H0523-085" set a min-content floor wider
    than a 375px phone and the whole sheet scrolled sideways (8px on BM, 28px on MC). */
@@ -406,6 +408,10 @@ p,div,span{text-wrap:pretty}
         '<div class="pn">' + esc(p.name) + '</div>' +
         '<div class="id"><span class="ty">' + esc(p.type) + ' ·</span> <span class="pid">' +
           esc(p.id) + '</span> ' + stars + '</div>' +
+        // T-187: one details link per plan, the same single-plan view the list cards use (detailURL).
+        // A one-plan page is that view already, so it gets none.
+        (n > 1 ? '<div class="dtl"><a href="' + esc(detailURL(p.id)) + '" data-plan-detail="' + esc(planIdRaw(p.id)) + '">' +
+          esc(EN ? 'See details' : 'Ver detalles') + ' ›</a></div>' : '') +
         (sug && sug.id === p.id
           ? '<span class="sgc dk">' + esc(T.sug) + '</span><span class="sgc ph">' + esc(T.sugShort) + '</span>'
           : '') +

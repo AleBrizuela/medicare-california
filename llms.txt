@@ -27,6 +27,8 @@ UnitedHealthcare, Humana, Aetna, Anthem Blue Cross, Blue Shield of California, K
 
 We serve all 58 counties in California, including major metro areas: Los Angeles, San Diego, San Francisco, Sacramento, San Jose, Riverside, Orange County, Fresno, Long Beach, Bakersfield, and all rural areas. Plan availability varies by ZIP code and county.
 
+City guides (English): https://medicare-california.com/california/cities/los-angeles · /san-diego · /east-los-angeles · /long-beach · /downey · /santa-ana · /anaheim · /riverside (all under /california/cities/).
+
 We also serve Medicare beneficiaries in Florida, Illinois, Iowa, Kansas, Missouri, Oklahoma, and Texas.
 
 ## Languages

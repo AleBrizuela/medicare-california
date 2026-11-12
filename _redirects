@@ -135,8 +135,6 @@
 # orange-county were kept live pending a rewrite; not waiting. 301 to Los Angeles. Routed
 # through functions/_middleware.js too (see D-124 -- plain _redirects 301s for a page retired
 # in the same deploy that adds the rule don't actually fire).
-# long-beach removed from this block by T-173 (2026-11-04): it's a real page now.
-/california/cities/riverside.html /california/cities/los-angeles 301
-/california/cities/riverside /california/cities/los-angeles 301
+# long-beach removed from this block by T-173 (2026-11-04): it's a real page now. riverside removed by T-182 (2026-11-12): real page now.
 /california/cities/orange-county.html /california/cities/los-angeles 301
 /california/cities/orange-county /california/cities/los-angeles 301

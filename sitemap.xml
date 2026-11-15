@@ -470,6 +470,24 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://medicare-california.com/california/cities/san-bernardino</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/california/cities/san-bernardino" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/california/cities/san-bernardino" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/california/cities/san-bernardino" />
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://medicare-california.com/california/cities/chula-vista</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/california/cities/chula-vista" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/california/cities/chula-vista" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://beneficiosmedicare.com/california/cities/chula-vista" />
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://medicare-california.com/california/cities/san-diego</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medicare-california.com/california/cities/san-diego" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://medicare-california.com/california/cities/san-diego" />
